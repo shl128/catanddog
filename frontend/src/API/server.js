@@ -8,7 +8,7 @@ export default {
     login: 'restAuth/login/',
     signup: 'restAuth/signup/',
     logout: 'restAuth/logout/',
-
+    password: 'restAuth/password/',
     // Set
     create: 'books/create/',
     update: 'books/',
