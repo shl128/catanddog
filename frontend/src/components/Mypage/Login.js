@@ -17,15 +17,12 @@ function Login() {
     };
   
     const onSubmitHandler = (e) => {
-      //수정 console.log('로그인 버튼 누름.');
       e.preventDefault();
   
       if (localStorage.getItem('Authorization') != null) {
         localStorage.removeItem('Authorization');
       }
       console.log(Email, Password)
-      //로그인을 진행하기위해서
-      //첫번째 useDispatch(액션) 을 활용해서 액션을 dispatch해준다
       const body = {
         email: Email,
         password: Password,
@@ -41,12 +38,10 @@ function Login() {
           { withCredentials: true },
         )
         .then(function (response) {
-          //수정 console.log(response);
           if (response.status == 200) {
             localStorage.setItem('Authorization', 'JWT ' + response.data.token);
             alert('로그인이 정상적으로 완료되었습니다');
-            // dispatch({ type: 'LOGIN' });
-            // props.history.push('/');
+
           }
         })
         .catch(function (error) {

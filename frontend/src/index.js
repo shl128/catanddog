@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Main from './components/Mainpage/Main'
-import { Mypage, Signup, Login } from './components/Mypage'
+import { Mypage, Signup, Login, PasswordFind } from './components/Mypage'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -16,6 +16,7 @@ ReactDOM.render(
       <Route path="/mypage" element={<Mypage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/passwordFind" element={<PasswordFind />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
