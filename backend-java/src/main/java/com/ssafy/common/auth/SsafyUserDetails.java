@@ -21,22 +21,22 @@ public class SsafyUserDetails implements UserDetails {
     boolean credentialNonExpired;
     boolean enabled = false;
     List<GrantedAuthority> roles = new ArrayList<>();
-    
+
     public SsafyUserDetails(User user) {
     		super();
     		this.user = user;
     }
-    
+
     public User getUser() {
     		return this.user;
     }
 	@Override
 	public String getPassword() {
-		return this.user.getPassword();
+		return this.user.getUser_password();
 	}
 	@Override
 	public String getUsername() {
-		return this.user.getUserId();
+		return this.user.getUser_email();
 	}
 	@Override
 	public boolean isAccountNonExpired() {

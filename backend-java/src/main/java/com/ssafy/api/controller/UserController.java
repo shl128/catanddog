@@ -1,14 +1,12 @@
 package com.ssafy.api.controller;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.ssafy.api.request.UserUpdatePostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ssafy.api.request.UserLoginPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
@@ -38,7 +36,10 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-	
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
 	@PostMapping()
 	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -49,7 +50,6 @@ public class UserController {
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
 			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
-		
 		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
 		User user = userService.createUser(registerInfo);
 		
@@ -72,7 +72,65 @@ public class UserController {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		String userId = userDetails.getUsername();
 		User user = userService.getUserByUserId(userId);
-		
 		return ResponseEntity.status(200).body(UserRes.of(user));
+	}
+
+	@GetMapping("{user_email}")
+	@ApiOperation(value = "유저 정보(존재하는 회원 확인용)", notes = "존재하는 회원 확인")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> checkUser(String user_email){
+		if(userService.checkUser(user_email)){
+			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		}else{
+			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
+		}
+
+	}
+
+	// Update(갱신)
+	@PatchMapping("{user_email}")
+	@ApiOperation(value = "userId 회원 수정", notes = "해당 아이디 회원의 정보를 수정한다.")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> updateUser(String user_email, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+		String getUser_email = userDetails.getUsername();
+		if (user_email == getUser_email) {
+			User user = userService.getUserByUserId(getUser_email);
+			userService.updateUser(user, userUpdatePostReq);
+			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		} else {
+			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "회원 수정 실패"));
+		}
+	}
+
+
+	@DeleteMapping("{user_email}")
+	@ApiOperation(value = "유저 정보 삭제", notes = "유저 정보 삭제")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<UserLoginPostRes> deleteUser(@RequestBody @ApiParam(value="계정 정보", required = true) UserLoginPostReq loginInfo) {
+		String userId = loginInfo.getUser_email();
+		String password = loginInfo.getUser_password();
+
+		User user = userService.getUserByUserId(userId);
+		// 로그인 요청한 유저로부터 입력된 패스워드 와 디비에 저장된 유저의 암호화된 패스워드가 같은지 확인.(유효한 패스워드인지 여부 확인)
+		if(passwordEncoder.matches(password, user.getUser_password())) {
+			userService.deleteUser(user);
+			return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(userId)));
+		}
+		// 유효하지 않는 패스워드인 경우, 로그인 실패로 응답.
+		return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null));
 	}
 }

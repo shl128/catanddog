@@ -11,8 +11,8 @@ function App() {
         기본
         <Mypage id="sw"/>
         <Routes>
-          <Route path="/signup" element={<Signup />}/>
-          <Route path="/login" element={<Login />}/>
+          <Route path="/signup" value="회원가입" element={<Signup />}/>
+          <Route path="/login" value="로그인" element={<Login />}/>
         </Routes>
       </div>
     </BrowserRouter>
