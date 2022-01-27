@@ -25,27 +25,27 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(UserRegisterPostReq userRegisterInfo) {
 		User user = new User();
-		user.setUser_email(userRegisterInfo.getUser_email());
+		user.setUserEmail(userRegisterInfo.getUserEmail());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
-		user.setUser_password(passwordEncoder.encode(userRegisterInfo.getUser_password()));
-		user.setUser_phone(userRegisterInfo.getUser_phone());
-		user.setUser_nickname(userRegisterInfo.getUser_nickname());
-		user.setUser_kind(userRegisterInfo.getUser_kind());
+		user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
+		user.setUserPhone(userRegisterInfo.getUserPhone());
+		user.setUserNickname(userRegisterInfo.getUserNickname());
+		user.setUserKind(userRegisterInfo.getUserKind());
 
 		return userRepository.save(user);
 	}
 
 	@Override
-	public User getUserByUserId(String user_email) {
+	public User getUserByUserId(String userEmail) {
 		// 디비에 유저 정보 조회
-		User user = userRepositorySupport.findUserByUserId(user_email).get();
+		User user = userRepositorySupport.findUserByUserId(userEmail).get();
 		return user;
 	}
 
 	@Override
-	public boolean checkUser(String user_email) {
+	public boolean checkUser(String userEmail) {
 		try{
-			User user = userRepositorySupport.findUserByUserId(user_email).get();
+			User user = userRepositorySupport.findUserByUserId(userEmail).get();
 		}catch (Exception e){
 			return false;
 		}
@@ -55,9 +55,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(User user, UserUpdatePostReq userUpdatePostReq) {
 		// 수정할 회원 정보 현재 회원 정보에 setting
-		user.setUser_phone(userUpdatePostReq.getUser_phone());
-		user.setUser_kind(userUpdatePostReq.getUser_kind());
-		user.setUser_nickname(userUpdatePostReq.getUser_nickname());
+		user.setUserPhone(userUpdatePostReq.getUserPhone());
+		user.setUserKind(userUpdatePostReq.getUserKind());
+		user.setUserNickname(userUpdatePostReq.getUserNickname());
 		// db에 update
 		userRepository.save(user);
 	}

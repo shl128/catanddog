@@ -17,26 +17,26 @@ import lombok.Setter;
 @ApiModel("UserResponse")
 public class UserRes{
 	@ApiModelProperty(name="User ID")
-	String user_nickname;
-	String user_email;
-	Integer user_phone;
-	Integer user_kind;
-	Integer user_grade;
-	Bool user_active;
-	Integer user_regdate;
+	String userNickname;
+	String userEmail;
+	Integer userPhone;
+	Integer userKind;
+	Integer userGrade;
+	Bool userActive;
+	Integer userRegdate;
 
-	public UserRes(String user_email, Integer user_kind, Integer user_phone, String user_nickname, Integer user_grade, Integer user_regdate) {
-		this.user_email = user_email;
-		this.user_kind = user_kind;
-		this.user_phone = user_phone;
-		this.user_nickname = user_nickname;
-		this.user_grade = user_grade;
-		this.user_active = user_active;
-		this.user_regdate = user_regdate;
+	public UserRes(String userEmail, Integer userKind, Integer userPhone, String userNickname, Integer userGrade, Integer userRegdate) {
+		this.userEmail = userEmail;
+		this.userKind = userKind;
+		this.userPhone = userPhone;
+		this.userNickname = userNickname;
+		this.userGrade = userGrade;
+		this.userActive = userActive;
+		this.userRegdate = userRegdate;
 	}
 
 	public static UserRes of(User user) {
-		UserRes res = new UserRes(user.getUser_email(),user.getUser_kind(), user.getUser_phone(), user.getUser_nickname(), user.getUser_grade(), user.getUser_regdate());
+		UserRes res = new UserRes(user.getUserEmail(),user.getUserKind(), user.getUserPhone(), user.getUserNickname(), user.getUserGrade(), user.getUserRegdate());
 		return res;
 	}
 }

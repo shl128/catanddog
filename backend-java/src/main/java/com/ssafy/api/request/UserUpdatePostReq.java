@@ -13,9 +13,9 @@ package com.ssafy.api.request;
 @Setter
 @ApiModel("UserUpdatePostRequest")
 public class UserUpdatePostReq {
-    Integer user_phone;
-    Integer user_kind;
-    String user_nickname;
-    Integer user_grade;
-    Boolean user_active;
+    Integer userPhone;
+    Integer userKind;
+    String userNickname;
+    Integer userGrade;
+    Boolean userActive;
 }

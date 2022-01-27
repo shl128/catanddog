@@ -49,14 +49,18 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
-			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
+		@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
 		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
-		User user = userService.createUser(registerInfo);
-		
+
+		if(userService.checkUser(registerInfo.getUserEmail())){
+			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
+		}else{
+			User user = userService.createUser(registerInfo);
+		}
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
-	@GetMapping("/me")
+	@GetMapping("/myPage")
 	@ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원 본인의 정보를 응답한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -70,8 +74,8 @@ public class UserController {
 		 * 액세스 토큰이 없이 요청하는 경우, 403 에러({"error": "Forbidden", "message": "Access Denied"}) 발생.
 		 */
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		String userId = userDetails.getUsername();
-		User user = userService.getUserByUserId(userId);
+		String userEmail = userDetails.getUsername();
+		User user = userService.getUserByUserId(userEmail);
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 
@@ -83,8 +87,8 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<? extends BaseResponseBody> checkUser(String user_email){
-		if(userService.checkUser(user_email)){
+	public ResponseEntity<? extends BaseResponseBody> checkUser(String userEmail){
+		if(userService.checkUser(userEmail)){
 			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 		}else{
 			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
@@ -93,17 +97,17 @@ public class UserController {
 	}
 
 	// Update(갱신)
-	@PatchMapping("{user_email}")
+	@PatchMapping("/myPage")
 	@ApiOperation(value = "userId 회원 수정", notes = "해당 아이디 회원의 정보를 수정한다.")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<? extends BaseResponseBody> updateUser(String user_email, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
+	public ResponseEntity<? extends BaseResponseBody> updateUser(String userEmail, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
-		String getUser_email = userDetails.getUsername();
-		if (user_email == getUser_email) {
-			User user = userService.getUserByUserId(getUser_email);
+		String getUserEmail = userDetails.getUsername();
+		if (userEmail == getUserEmail) {
+			User user = userService.getUserByUserId(getUserEmail);
 			userService.updateUser(user, userUpdatePostReq);
 			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 		} else {
@@ -111,8 +115,8 @@ public class UserController {
 		}
 	}
 
-
-	@DeleteMapping("{user_email}")
+	// 삭제
+	@DeleteMapping("/myPage")
 	@ApiOperation(value = "유저 정보 삭제", notes = "유저 정보 삭제")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
@@ -121,14 +125,14 @@ public class UserController {
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
 	public ResponseEntity<UserLoginPostRes> deleteUser(@RequestBody @ApiParam(value="계정 정보", required = true) UserLoginPostReq loginInfo) {
-		String userId = loginInfo.getUser_email();
-		String password = loginInfo.getUser_password();
+		String userEmail = loginInfo.getUserEmail();
+		String userPassword = loginInfo.getUserPassword();
 
-		User user = userService.getUserByUserId(userId);
+		User user = userService.getUserByUserId(userEmail);
 		// 로그인 요청한 유저로부터 입력된 패스워드 와 디비에 저장된 유저의 암호화된 패스워드가 같은지 확인.(유효한 패스워드인지 여부 확인)
-		if(passwordEncoder.matches(password, user.getUser_password())) {
+		if(passwordEncoder.matches(userPassword, user.getUserPassword())) {
 			userService.deleteUser(user);
-			return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(userId)));
+			return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(userEmail)));
 		}
 		// 유효하지 않는 패스워드인 경우, 로그인 실패로 응답.
 		return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null));

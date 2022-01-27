@@ -13,10 +13,10 @@ import lombok.Setter;
 @ApiModel("UserRegisterPostRequest")
 public class UserRegisterPostReq {
 	@ApiModelProperty(name="유저 이메일", example="ssafy@naver.com")
-	String user_email;
+	String userEmail;
 	@ApiModelProperty(name="유저 Password", example="your_password")
-	String user_password;
-	Integer user_phone;
-	String user_nickname;
-	Integer user_kind;
+	String userPassword;
+	Integer userPhone;
+	String userNickname;
+	Integer userKind;
 }
