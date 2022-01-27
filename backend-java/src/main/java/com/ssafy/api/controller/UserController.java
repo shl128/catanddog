@@ -108,7 +108,11 @@ public class UserController {
 		String getUserEmail = userDetails.getUsername();
 		if (userEmail == getUserEmail) {
 			User user = userService.getUserByUserId(getUserEmail);
-			userService.updateUser(user, userUpdatePostReq);
+			if(userService.checkUsername(userUpdatePostReq.getUserNickname())){
+				return ResponseEntity.status(404).body(BaseResponseBody.of(404, "중복 닉네임 있음"));
+			}else{
+				userService.updateUser(user, userUpdatePostReq);
+			}
 			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 		} else {
 			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "회원 수정 실패"));
@@ -124,17 +128,12 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<UserLoginPostRes> deleteUser(@RequestBody @ApiParam(value="계정 정보", required = true) UserLoginPostReq loginInfo) {
-		String userEmail = loginInfo.getUserEmail();
-		String userPassword = loginInfo.getUserPassword();
-
+	public ResponseEntity<? extends BaseResponseBody> deleteUser(@ApiIgnore Authentication authentication){
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserId(userEmail);
-		// 로그인 요청한 유저로부터 입력된 패스워드 와 디비에 저장된 유저의 암호화된 패스워드가 같은지 확인.(유효한 패스워드인지 여부 확인)
-		if(passwordEncoder.matches(userPassword, user.getUserPassword())) {
-			userService.deleteUser(user);
-			return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(userEmail)));
-		}
-		// 유효하지 않는 패스워드인 경우, 로그인 실패로 응답.
-		return ResponseEntity.status(401).body(UserLoginPostRes.of(401, "Invalid Password", null));
+		userService.deleteUser(user);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
+
 }
