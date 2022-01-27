@@ -27,7 +27,7 @@ const PasswordFind = (props) => {
   const onConfirmNum = (e) => {
     e.preventDefault()
     console.log(confirmNum, randomNumber)
-    if (confirmNum == randomNumber){
+    if (String(confirmNum) === String(randomNumber)){
       setEmailConfirm(false)
       setEmailValidation(true)
     } else {
@@ -122,16 +122,16 @@ const PasswordFind = (props) => {
     <div className="PasswordFind">
       
       <div className='card'>
-      <img className='logoImg' src={logo} alt='logo' width="120px" />
+        <img className='logoImg' src={logo} alt='logo' width="120px" />
       <div className="register">
     
-          <div className='container'>
+          <div className='PasswordContainer'>
             
             <h4>이메일로 비밀번호 찾기</h4>
           </div>
           <form action="">
               <div className="flex">
-                  <ul className="container">
+                  <ul className="PasswordContainer">
                       <li className="item center">
                           이메일
                       </li>
@@ -144,7 +144,7 @@ const PasswordFind = (props) => {
                   </ul>
                   {
                     emailConfirm === true &&
-                    <ul className="container confirm">
+                    <ul className="PasswordContainer confirm">
                         <li className="item">
                           <input className='numInput' placeholder="4자리 숫자 입력" autoFocus required value={confirmNum} onChange={handleConfirmNum}/>
                         </li>
@@ -156,7 +156,7 @@ const PasswordFind = (props) => {
                   { 
                   emailValidation === true &&
                   <div>
-                    <ul className="container">
+                    <ul className="PasswordContainer">
                         <li className="item center">
                             새로운 비밀번호
                         </li>
@@ -164,7 +164,7 @@ const PasswordFind = (props) => {
                             <input className='emailInput'  type="password" name="password" placeholder="Password" value={Password} onChange={onPasswordHanlder} autoFocus required></input>
                         </li>
                     </ul>
-                    <ul className="container">
+                    <ul className="PasswordContainer">
                         <li className="item center">
                             비밀번호 확인
                         </li>
@@ -173,7 +173,7 @@ const PasswordFind = (props) => {
                             {passwordError && <div style={{ color: 'red', fontSize: '20px', marginLeft: '50px', marginTop:'10px' }}>비밀번호가 일치하지 않습니다.</div>}
                         </li>
                     </ul>
-                    <ul className="container">
+                    <ul className="PasswordContainer">
                       <li className="item center">
                       </li>                    
                       <li className="item passwordChange">
@@ -183,7 +183,7 @@ const PasswordFind = (props) => {
                   </div>
                   }
 
-                  <ul className="container">
+                  <ul className="PasswordContainer">
                     <li className="item center">
                     </li>                    
                     <li className="item passwordChange">

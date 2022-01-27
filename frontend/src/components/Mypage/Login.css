@@ -1,86 +1,87 @@
-.PasswordFind{
-    margin: 120px;
+.Login {
+  margin: 80px;
 }
-.PasswordFind .card {
+
+.Login .card {
   width: 100%;
   height: 600px;
   padding-top: 45px;
   flex-direction: row;
   margin: 0 auto;
 }
-.PasswordFind .card{
-border-radius: 5%;
+.Login .card{
+  border-radius: 5%;
+  height: 100%;
+}
+.Login .right{
+  border-radius: 10px;
 }
 * {
   margin: 0;
   padding: 0;
   /* box-sizing: border-box; */
 }
-.PasswordFind .logoImg{
-    position:absolute;
-    left: 30px;
-    top: 20px;
+.loginLogoImg{
+    margin-top: 50px;
+    margin-left: 60px;
 }
-.PasswordFind ul,
-.PasswordFind li {
+.Login ul,
+.Login li {
   list-style: none;
 }
-.PasswordFind a {
+.Login a {
   text-decoration: none;
   color: inherit;
 }        
-.PasswordFind .register{
-            width: 800px;
-            margin: 0 auto;
-            padding: 15px 20px;
+.login{
+            width: 100%;
+            padding:0;
             background: white;
             color: #2b2e4a;
-            font-size: 19px;
+            font-size: 20px;
             text-align: left;
+            margin-top: 40px;
+            border-radius: 5%;
 
             /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); */
-}
-.register h4{
-    font-size: 30px;
+        }
+.login h4{
+    font-size: 25px;
     margin-bottom: 20px;
     font-weight: 500;
     color: black;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: 10px;
 }
-.register input{
-    width: 80%;
+.login input{
+    width: 100%;
     height: 40px;
     outline: none;
     padding: 10px;
     border: 1px solid #707070;
     transition: 0.3s;
-    margin-left: 20px;
+    margin-left: 0px;
+    margin-right: 40px;
 }
-/* .register input:valid, .register input:focus{
+/* .login input:valid, .login input:focus{
     border: 1px solid #2b2e4a;
 } */
-.register .center{
-    display: flex;
-    align-items: center;
-    width: 150px;
-    margin-top: 10px;
-}
-.register .flex{
-    display: flex;
+
+.login .cflex{
+    display: cflex;
     flex-direction: column;
 }
-.register .flex .PasswordContainer{
+.login .cflex .customcontainer{
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     margin-bottom: 10px;
 }
-.register .flex .PasswordContainer .item:first-child{
+.login .cflex .customcontainer .item:first-child{
     margin-right: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
-.register .flex .PasswordContainer .item .idcheck{
+.login .cflex .customcontainer .item .idcheck{
     height: 100%;
     margin-left: 10px;
     padding: 5px 15px;
@@ -90,59 +91,73 @@ border-radius: 5%;
     font-size: 12px;
     transition: 0.3s;
 }
-.register .flex .PasswordContainer .item .idcheck:hover{
+.login .cflex .customcontainer .item .idcheck:hover{
     background: white;
     color: #2b2e4a;
 }
-.register .flex .PasswordContainer .item select{
+.login .cflex .customcontainer .item select{
     height: 40px;
     padding: 10px;
     border: 1px solid #2b2e4a;
 }
-.register .submit{
-    width: 120px;
+.login .submit{
+    width: 100%;
     height: 40px;
     color: white;
     border: none;
-    border-radius: 15%;
-    margin-left: 15px;
+    border-radius: 5%;
+    margin-left: 0px;
     border: 1px solid #FF805B;
     background: #FF805B;
     transition: 0.3s;
 }
-.register .flex .PasswordContainer:last-child{
+.login .cflex .customcontainer:last-child{
     margin: 0;
 }
-.register .submit:hover{
-    width: 120px;
+.login .submit:hover{
+    width: 100%;
     height: 40px;
     border: none;
     border: 1px solid #FF805B;
     color: #FF805B;
     background: white;
 }
-.register .emailInput{
-    background-color: #FFF9F8;
-    border: none;
+.login .emailInput{
+  background-color: #FFF9F8;
+  border: none;
+  border-radius: 10%;
 }
-.register .numInput{
+.login .numInput{
     border: none;
     background-color: #FFF9F8;
     width: 200px;
     margin-left: 50px;
 }
-.register .confirm{
+.login .confirm{
     margin-left: 100px;
 }
-.register .passwordChange{
-    margin-top: 50px;
+.login .passwordFind{
     justify-self: center;
 }
-.register .back{
+.login .back{
     text-decoration-line: none;
     color: #FF805B;
 }
-.register .back:hover{
+.login .back:hover{
     text-decoration-line: none;
     color: #2b2e4a;
+}
+.login .googleLoginfont{
+  margin-top: 20px;
+  text-align: center;
+}
+.login .googleLoginfont:hover{
+  color: #FF805B;
+  cursor: pointer;
+}
+.login .google{
+  margin: 20px auto;
+}
+.login .signup{
+  text-align: center;
 }
