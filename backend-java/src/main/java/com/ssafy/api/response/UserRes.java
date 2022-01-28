@@ -3,6 +3,7 @@ package com.ssafy.api.response;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.User;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -16,11 +17,26 @@ import lombok.Setter;
 @ApiModel("UserResponse")
 public class UserRes{
 	@ApiModelProperty(name="User ID")
-	String userId;
-	
+	String userNickname;
+	String userEmail;
+	Integer userPhone;
+	Integer userKind;
+	Integer userGrade;
+	Bool userActive;
+	Integer userRegdate;
+
+	public UserRes(String userEmail, Integer userKind, Integer userPhone, String userNickname, Integer userGrade, Integer userRegdate) {
+		this.userEmail = userEmail;
+		this.userKind = userKind;
+		this.userPhone = userPhone;
+		this.userNickname = userNickname;
+		this.userGrade = userGrade;
+		this.userActive = userActive;
+		this.userRegdate = userRegdate;
+	}
+
 	public static UserRes of(User user) {
-		UserRes res = new UserRes();
-		res.setUserId(user.getUserId());
+		UserRes res = new UserRes(user.getUserEmail(),user.getUserKind(), user.getUserPhone(), user.getUserNickname(), user.getUserGrade(), user.getUserRegdate());
 		return res;
 	}
 }
