@@ -31,11 +31,11 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2).useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/api/**"))
+                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.ssafy.api.controller"))
                 .build()
                 .securityContexts(newArrayList(securityContext()))
-                .securitySchemes(newArrayList(apiKey()))
-                ;
+                .securitySchemes(newArrayList(apiKey()));
     }
 
     private ApiKey apiKey() {
