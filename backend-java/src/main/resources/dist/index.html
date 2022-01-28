@@ -1,46 +1,24 @@
 <!DOCTYPE html><html lang="en"><head><meta name ="google-signin-client_id" content="836218810577-9eg8njbufj0r9sfqfooqp80il4lnlops.apps.googleusercontent.com"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><title>ssafy-vue</title><link href="/css/app.02230831.css" rel="preload" as="style"><link href="/css/chunk-vendors.b8a9ac7a.css" rel="preload" as="style"><link href="/js/app.a788b5d2.js" rel="preload" as="script"><link href="/js/chunk-vendors.b505db65.js" rel="preload" as="script"><link href="/css/chunk-vendors.b8a9ac7a.css" rel="stylesheet"><link href="/css/app.02230831.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but ssafy-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="/js/chunk-vendors.b505db65.js"></script><script src="/js/app.a788b5d2.js"></script>
 <ul>
-    <li id="GgCustomLogin">
-        <a href="javascript:void(0)">
-            <span>Login with Google</span>
-        </a>
-    </li>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "836218810577-9eg8njbufj0r9sfqfooqp80il4lnlops.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+          google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+    </script>
+    <div id="buttonDiv"></div>
 </ul>
 </body>
-<script>
-function init() {
-gapi.load('auth2', function() {
-gapi.auth2.init();
-options = new gapi.auth2.SigninOptionsBuilder();
-options.setPrompt('select_account');
-// 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
-options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
-// 인스턴스의 함수 호출 - element에 로그인 기능 추가
-// GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
-gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
-})
-}
-
-function onSignIn(googleUser) {
-var access_token = googleUser.getAuthResponse().access_token
-$.ajax({
-// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
-url: 'https://people.googleapis.com/v1/people/me'
-// key에 자신의 API 키를 넣습니다.
-, data: {personFields:'birthdays', key:'AIzaSyDNcT2bmv8eTpFOOcttk3gDtUvwk7u7wqU', 'access_token': access_token}
-, method:'GET'
-})
-.done(function(e){
-//프로필을 가져온다.
-var profile = googleUser.getBasicProfile();
-console.log(profile)
-})
-.fail(function(e){
-console.log(e);
-})
-}
-function onSignInFailure(t){
-console.log(t);
-}
-</script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </html>
