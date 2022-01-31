@@ -1,0 +1,16 @@
+.My-chat {
+  margin-top: 1rem;
+}
+
+.My-chat-list {
+  width: 100%;
+}
+
+.My-chat-list-item {
+  display: flex;
+  justify-content: space-between;
+  border-style: none;
+  border-radius: 1rem;
+  background-color: white;
+  padding: 0rem 1rem;
+}
