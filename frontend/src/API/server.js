@@ -24,5 +24,8 @@ export default {
     deleteCard: 'books/card/',
     updateCard: 'books/card/',
     createCard: 'books/card/',
+
+    // createPetInformation(Petpage)
+    createPet: 'petPage/pets/',
   },
 };
