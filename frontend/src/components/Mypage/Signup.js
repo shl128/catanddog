@@ -167,30 +167,17 @@ function Signup() {
         //   alert('닉네임 중복확인은 필수입니다.')
         // }    
         if (Password === ConfirmPasword) {
-          //수정 console.log(Name);
-          //수정 console.log(Email);
-    
-          // const body = {
-          //   email: Email,
-          //   name: NickName,
-          //   confirm_password: ConfirmPasword,
-          //   password: Password,
-          // };
-          // dispatch(registerUser(body)).then((res) => {
-          //   //수정 console.log(res);
-          //   alert('가입이 정상적으로 완료되었습니다');
-          //   props.history.push('/login');
-          // });
+
           axios
             .post(
               SERVER.BASE_URL + SERVER.ROUTES.signup,
               {
                 // userPhoto: ''
                 "userEmail": Email,
-                "userKind": userKind,
+                "userKind": 0,
                 "userNickname": NickName,
                 "userPassword":  Password,
-                "userPhone": phonNumber
+                "userPhone": 43367124,
               }
             )
             .then(function (response) {
