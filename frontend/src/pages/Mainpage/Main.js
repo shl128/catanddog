@@ -1,8 +1,8 @@
 import React from 'react';
-import MyPetList from './MyPetList';
-import Welcome from './Welcome'
-import MyChatroomList from './MyChatroomList'
-import MyProfile from './MainAxios';
+import MyPetList from '../../components/Mainpage/MyPetList';
+import Welcome from '../../components/Mainpage/Welcome'
+import MyChatroomList from '../../components/Mainpage/MyChatroomList'
+import MyProfile from '../../components/Mainpage/MainAxios';
 
 
 function Main() {
