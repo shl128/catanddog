@@ -88,7 +88,7 @@ const Petpage = () => {
           TypeOfPet: typeOfPet,
           SpeciesOfPet: speciesOfPet,
           KnowBirth: knowBirth,
-          petBirthday: petBirthday,
+          PetBirthday: petBirthday,
           Gender: gender,
           Neutering: neutering,
           Vaccination: vaccination,
@@ -101,6 +101,7 @@ const Petpage = () => {
       })
       .catch(function (error) {
         alert('모든 항목을 체크했는지 확인하십시오.');
+        console.log(petBirthday);
         //수정 console.log(error);
       });
   }
