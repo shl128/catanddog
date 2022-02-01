@@ -1,9 +1,9 @@
 import React from 'react';
 import './Mypage.css'
 import { Navbar, TopNavbar } from '../UI'
-import {Login, Signup } from '../Mypage'
 
-const Mypage = (props) => {
+
+const Template = (props) => {
   return (
     <div className="Mypage">
       <div className='cardMypage'>
@@ -14,8 +14,7 @@ const Mypage = (props) => {
             </div>
             <div className='col-10 rightpage'>
               <TopNavbar/>
-              {/* 여기다 이제 내용물 넣기 */}
-
+              {/* 여기에 주소를 바꿔가면서 넣기 */}
             </div>
           </div>
         </div>
@@ -24,4 +23,4 @@ const Mypage = (props) => {
   );
 }
 
-export default Mypage;
+export default Template;

@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  BASE_URL: 'http://localhost:8000/api/',
+  BASE_URL: 'http://localhost:8080/api/v1/',
   // BASE_URL: 'https://memorytraining.cf/api/',
 
   ROUTES: {
@@ -8,7 +8,7 @@ export default {
     login: 'restAuth/login/',
     signup: 'restAuth/signup/',
     logout: 'restAuth/logout/',
-
+    password: 'restAuth/password/',
     // Set
     create: 'books/create/',
     update: 'books/',
