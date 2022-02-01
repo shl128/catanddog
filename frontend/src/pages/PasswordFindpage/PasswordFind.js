@@ -1,9 +1,9 @@
 import React, { useState} from 'react';
-import '../Mypage/PasswordFind.css'
+import './PasswordFind.css'
 import axios from 'axios';
 import SERVER from '../../API/server';
 import { Link } from 'react-router-dom';
-import logo from '../images/로고.png'
+import logo from '../../components/image/로고.png'
 import emailjs from 'emailjs-com'
 
 const PasswordFind = (props) => {

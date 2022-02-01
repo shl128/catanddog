@@ -1,5 +1,6 @@
 import React from 'react'
 import './Nav.css'
+import logo from '../image/상단로고.png'
 import { Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -7,8 +8,7 @@ function Navbar() {
   return (
     <div>
       <Nav.Link href="/main">
-        <img className="Logo" alt="logo" src="img/냥과함개로고.png" />
-        <img className="Logo-name" alt="logoname" src="img/냥과함개.png" />
+        <img className="Logo" alt="logoname" src={logo} />
       </Nav.Link>
       <Nav className="flex-column">
         <button className="Nav-button"><Link to="/petpage" className='Nav-link'>반려동물 추가</Link></button>

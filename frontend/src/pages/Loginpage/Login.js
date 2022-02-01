@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import SERVER from '../../API/server';
 import './Login.css'
-import logo from '../images/로고.png'
-import googleLogo from '../images/google.png'
+import logo from '../../components/image/로고.png'
 import { Link } from 'react-router-dom';
 
 
@@ -89,7 +88,7 @@ function Login() {
                         <li className="item">
                           <ul className='customcontainer'>
                             <li className="item center google">
-                              <img src={googleLogo} alt='googleLogo' width="30px"/>
+                          
                             </li>                    
                             <li className="item ">
                               <p className='googleLoginfont'>Google 로그인</p>

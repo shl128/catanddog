@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Main from './components/Mainpage/Main'
-import { Mypage, Signup, Login, PasswordFind } from './components/Mypage'
-import Petpage from './components/Petpage/Petpage';
+import { Mypage, Signup, Login, PasswordFind, Petpage, Main } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
