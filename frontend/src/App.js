@@ -1,14 +1,17 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import { Link } from 'react-router-dom';
+import Nav from './components/Mainpage/Nav'
+import Top from './components/Mainpage/Top'
 
 function App() {
   return (
-    <div>
-      <div>
-        <Link to="/mypage">앱</Link>
-      </div>
-      <div>
-        <Link to="/petpage">반려동물정보</Link>
+    <div className="App">
+      <div className="App-container">
+        <div className="App-nav"><Nav /></div>
+        <div className="App-page">
+          <Top />
+          <Outlet />
+        </div>
       </div>
     </div>
   );
