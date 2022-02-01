@@ -104,7 +104,7 @@ const PasswordFind = (props) => {
       axios.patch(
         SERVER.BASE_URL + SERVER.ROUTES.password + Email,
         {
-          user_password: Password,
+          userPassword: Password,
         }
       )
       .then((response) => {

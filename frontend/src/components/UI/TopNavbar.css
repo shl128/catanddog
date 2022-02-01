@@ -1,0 +1,19 @@
+
+.TopNavbar {
+  margin-top: 30px;
+  
+}
+.TopNavbar .navProfile{
+  width: 50%;
+  border-radius: 50%;
+  margin-left: 55px;
+}
+.TopNavbar .navNickname{
+  margin-top: 5px;
+  font-weight: 550;
+  font-size: 18px;
+  color: #888888;
+}
+.TopNavbar .level{
+  width: 45%;
+}

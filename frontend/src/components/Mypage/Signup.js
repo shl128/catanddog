@@ -163,9 +163,9 @@ function Signup() {
         if (emailValidation === false){
           alert('이메일 인증은 필수입니다.')
         }
-        if (nicknameValidation === false){
-          alert('닉네임 중복확인은 필수입니다.')
-        }    
+        // if (nicknameValidation === false){
+        //   alert('닉네임 중복확인은 필수입니다.')
+        // }    
         if (Password === ConfirmPasword) {
           //수정 console.log(Name);
           //수정 console.log(Email);
@@ -185,14 +185,13 @@ function Signup() {
             .post(
               SERVER.BASE_URL + SERVER.ROUTES.signup,
               {
-                user_email: Email,
-                user_password: Password,
-                user_nickname: NickName,
-                user_phone: phonNumber,
-                user_kind: userKind,
-                user_photo: ''
-              },
-              { withCredentials: true },
+                // userPhoto: ''
+                "userEmail": Email,
+                "userKind": userKind,
+                "userNickname": NickName,
+                "userPassword":  Password,
+                "userPhone": phonNumber
+              }
             )
             .then(function (response) {
               //수정 console.log(response);
