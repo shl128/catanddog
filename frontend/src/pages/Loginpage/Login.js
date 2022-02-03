@@ -33,7 +33,7 @@ function Login() {
           }
         )
         .then(function (response) {
-            console.log(response)
+            console.log(response.data)
             localStorage.setItem('accessToken', response.data.accessToken);
             alert('로그인이 정상적으로 완료되었습니다');
         })
@@ -48,6 +48,7 @@ function Login() {
           <div className='container'>
             <div className='row'>
               <div className='col-4'>
+            
                 <img className='loginLogoImg' src={logo} alt='logo' width="100%" />
               </div>
               <div className='col-8 right'>
