@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Mypage.css'
 import SERVER from '../../API/server'
-import {PhotoSide, MypageTextForm, MypageHashtag } from '../../components'
+import {PhotoSide, MypageTextForm, MypageHashtag, WithdrawalModal } from '../../components'
 
 const Mypage = (props) => {
   const [user, setUser] = useState('')
@@ -21,6 +21,25 @@ const Mypage = (props) => {
   const [userGrade, setUserGrade] = useState(null)
   const [userActive, setUserActive] = useState(null)
   const [update, setUpdate] = useState(false)
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const onwithdrawal = (e) => {
+    e.preventDefault()
+    axios.delete(SERVER.BASE_URL + SERVER.ROUTES.mypage,
+      {headers: {
+        Authorization: `Bearer ${userData}`
+      }})
+    .then(res => {
+      setShow(false)
+      localStorage.removeItem('accessToken')
+      alert('탈퇴 완료')
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 
   useEffect(() => {
     axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
@@ -155,14 +174,16 @@ const Mypage = (props) => {
                 update === false
                 ?
                 <button onClick={onUpdate} className='mypageUpdateButton'>수정하기</button>
+                
                 :
                 <div className='mypageOnUpdate'>
                   <button onClick={onUpdate} className='updateCorrectButton'>수정완료</button>
                   <button onClick={cancelUpdate} className='updateCancleButton'>수정취소</button>
                 </div>
-
               }
+
             </div>
+            <WithdrawalModal show={show} handleClose={handleClose} handleShow={handleShow} onwithdrawal={onwithdrawal}/>
           </div>
         </div>
       }

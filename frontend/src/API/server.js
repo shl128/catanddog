@@ -6,7 +6,7 @@ export default {
   ROUTES: {
     // Account
     login: 'api/v1/restAuth/login/',
-    signup: 'api/v1/restAuth/loginrestAuth/signup/',
+    signup: 'api/v1/restAuth/signup/',
     logout: 'api/v1/restAuth/loginrestAuth/logout/',
     password: 'api/v1/restAuth/loginrestAuth/password/',
     eamailConfirm: 'api/v1/myPage/',
