@@ -5,7 +5,6 @@ import './Login.css'
 import logo from '../../components/image/로고.png'
 import { Link } from 'react-router-dom';
 
-
 function Login() {
 
     const [Email, setEmail] = useState('');
@@ -21,8 +20,8 @@ function Login() {
     const onSubmitHandler = (e) => {
       e.preventDefault();
       // console.log(Email, Password)
-      if (localStorage.getItem('Authorization') != null) {
-        localStorage.removeItem('Authorization');
+      if (localStorage.getItem('accessToken') != null) {
+        localStorage.removeItem('accessToken');
       }
   
       axios
@@ -34,11 +33,9 @@ function Login() {
           }
         )
         .then(function (response) {
-          if (response.status == 200) {
-            localStorage.setItem('Authorization', 'JWT ' + response.data.token);
+            console.log(response)
+            localStorage.setItem('accessToken', response.data.accessToken);
             alert('로그인이 정상적으로 완료되었습니다');
-
-          }
         })
         .catch(function (error) {
           alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다');

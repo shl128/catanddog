@@ -22,6 +22,7 @@ function Signup() {
     const [confirmNum, setConfirmNum] = useState('')
     const [emailValidation, setEmailValidation] = useState(false);
     const [nicknameValidation, setNicknameValidation] = useState(false);
+    const [userKindNum, setUserKindNum] = useState(0)
 
 
     useEffect(() => {
@@ -33,6 +34,14 @@ function Signup() {
       }
     }, [phonNumber]);
 
+    useEffect(() => {
+      if (userKind === "의사"){
+        setUserKindNum(1)
+      }
+      else{
+        setUserKindNum(0)
+      }
+    }, [userKind])
     const handleUserKind = (e) => {
       setUserKind(e.target.value);
     };
@@ -53,7 +62,7 @@ function Signup() {
       e.preventDefault()
       axios
       .get(
-        SERVER.BASE_URL + SERVER.ROUTES.nicknameConfirm + NickName,
+        SERVER.BASE_URL + SERVER.ROUTES.nicknameConfirm + Email,
       )
       .then(function (response) {
         alert('사용 가능한 닉네임 입니다.');
@@ -62,7 +71,7 @@ function Signup() {
       .catch((err)=> {
         alert('사용 불가능한 닉네임 입니다.')
       })
-      console.log(SERVER.BASE_URL + SERVER.ROUTES.nicknameConfirm + NickName)
+      console.log(SERVER.BASE_URL + SERVER.ROUTES.eamailConfirm + NickName)
     }
 
     const templateParams = {
@@ -107,16 +116,23 @@ function Signup() {
 
       // 동기처리를 하고싶은
       templateParams.notes = tempRandomNumber
-      
-      emailjs.send(
-        'service_sangwoo',
-        'template_5rbudkm',
-        templateParams,
-        'user_LEBGlHpyf8P6UlU2H8lm9'
-        ).then(res => {
-          setEmailConfirm(true)
-          alert('인증메일을 보냈습니다. 확인 후 숫자를 입력 바랍니다.')
-        }).catch(error => ( alert('인증가능한 이메일 주소를 입력해 주세요')))
+      // ex) http://localhost:8080/api/v1/myPage/{user_email}?userEmail=hansangwoo1996%40gmail.com
+      axios.get(SERVER.BASE_URL + SERVER.ROUTES.eamailConfirm + '{user_email}?userEmail=' + Email)
+      .then(res => {
+        emailjs.send(
+          'service_sangwoo',
+          'template_5rbudkm',
+          templateParams,
+          'user_LEBGlHpyf8P6UlU2H8lm9'
+          ).then(res => {
+            setEmailConfirm(true)
+            alert('인증메일을 보냈습니다. 확인 후 숫자를 입력 바랍니다.')
+          }).catch(error => ( alert('인증가능한 이메일 주소를 입력해 주세요')))
+      })
+      .catch(err => {
+        alert('회원가입 되어있지 않은 이메일 입니다.')
+      })
+
     }
 
     const onSubmitHandler = (e) => {
@@ -160,9 +176,9 @@ function Signup() {
           alert('종류 선택은 필수입니다.')
           return;
         }
-        if (emailValidation === false){
-          alert('이메일 인증은 필수입니다.')
-        }
+        // if (emailValidation === false){
+        //   alert('이메일 인증은 필수입니다.')
+        // }
         // if (nicknameValidation === false){
         //   alert('닉네임 중복확인은 필수입니다.')
         // }    
@@ -174,10 +190,10 @@ function Signup() {
               {
                 // userPhoto: ''
                 "userEmail": Email,
-                "userKind": 0,
+                "userKind": parseInt(userKindNum),
                 "userNickname": NickName,
                 "userPassword":  Password,
-                "userPhone": 43367124,
+                "userPhone": phonNumber,
               }
             )
             .then(function (response) {

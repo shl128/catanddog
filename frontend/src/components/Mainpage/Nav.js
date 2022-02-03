@@ -5,6 +5,10 @@ import { Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+  const logout = (e) => {
+    e.preventDefault()
+    localStorage.removeItem('accessToken')
+  }
   return (
     <div>
       <Nav.Link href="/main">
@@ -19,7 +23,7 @@ function Navbar() {
         <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>유저들과 소통</Link></button>
         <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>카툰화</Link></button>
         <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>꾸미기</Link></button>
-        <button className="Nav-button">로그아웃</button>
+        <button className="Nav-button" onClick={logout}>로그아웃</button>
       </Nav>
     </div>
   )

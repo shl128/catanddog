@@ -1,0 +1,21 @@
+.PhotoSide{
+  margin-top: 3rem;
+}
+
+.PhotoSide .myPhoto-image {
+  width: 100%;
+  height: 200px;
+}
+
+
+.PhotoSide .photoButton{
+  width: 100%;
+  height: 40px;
+  padding: 6px 25px;
+  text-align: center;
+  background-color:#ff8767;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-top: 1rem;
+}

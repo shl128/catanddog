@@ -5,11 +5,12 @@ export default {
 
   ROUTES: {
     // Account
-    login: 'restAuth/login/',
-    signup: 'restAuth/signup/',
-    logout: 'restAuth/logout/',
-    password: 'restAuth/password/',
-
+    login: 'api/v1/restAuth/login/',
+    signup: 'api/v1/restAuth/loginrestAuth/signup/',
+    logout: 'api/v1/restAuth/loginrestAuth/logout/',
+    password: 'api/v1/restAuth/loginrestAuth/password/',
+    eamailConfirm: 'api/v1/myPage/',
+    mypage: 'api/v1/myPage',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
   },
