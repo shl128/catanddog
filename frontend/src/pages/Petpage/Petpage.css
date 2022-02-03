@@ -1,0 +1,35 @@
+td {
+    border: none !important;
+    text-align: left;
+    width: 50%; 
+ }
+
+.no-left-padding {
+    padding-left: 0
+}
+
+.pet-image {
+    border-radius: 6px;
+}
+
+.button{
+    width: 300px;
+    height: 40px;
+    padding: 6px 25px;
+    background-color:#ff8767;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.create-pet {
+    position: relative;
+    bottom: -100px;
+    right: -1300px;
+    width: 300px;
+    height: 40px;
+    padding: 6px 25px;
+    border-radius: 6px;
+  }
+  

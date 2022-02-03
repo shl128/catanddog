@@ -20,19 +20,22 @@ public class Pet{
     String petName;
     String petKind;
     String petBreed;
-    OffsetDateTime petBirthDay;
+    OffsetDateTime petBirthday;
     String petGender;
     boolean petNeutering;
     boolean petVaccination;
 
-    public Pet(Long petId, Long userId, String petPhoto, String petName, String petKind, String petBreed, OffsetDateTime petBirthDay, String petGender, boolean petNeutering, boolean petVaccination) {
+    public Pet() {
+    }
+
+    public Pet(Long petId, Long userId, String petPhoto, String petName, String petKind, String petBreed, OffsetDateTime petBirthday, String petGender, boolean petNeutering, boolean petVaccination) {
         this.petId = petId;
         this.userId = userId;
         this.petPhoto = petPhoto;
         this.petName = petName;
         this.petKind = petKind;
         this.petBreed = petBreed;
-        this.petBirthDay = petBirthDay;
+        this.petBirthday = petBirthday;
         this.petGender = petGender;
         this.petNeutering = petNeutering;
         this.petVaccination = petVaccination;

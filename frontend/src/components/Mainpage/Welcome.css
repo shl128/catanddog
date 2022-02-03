@@ -1,0 +1,11 @@
+.Welcome {
+  margin-top: 1rem;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  border-radius: 1rem;
+  background-color: #ff8767;
+  border-style: none;
+  padding: 1rem;
+  text-align: center;
+}

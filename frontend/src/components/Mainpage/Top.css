@@ -1,0 +1,17 @@
+.Top-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1rem;
+}
+
+.Top-search {
+  grid-column-start: 1;
+  grid-column-end: 9;
+}
+
+.Top-profile {
+  grid-column-start: 9;
+  grid-column-end: 13;
+  display: flex;
+  justify-content: space-around;
+}

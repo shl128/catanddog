@@ -19,13 +19,13 @@ public class UserRes{
 	@ApiModelProperty(name="User ID")
 	String userNickname;
 	String userEmail;
-	Integer userPhone;
+	String userPhone;
 	Integer userKind;
 	Integer userGrade;
 	Bool userActive;
 	Integer userRegdate;
 
-	public UserRes(String userEmail, Integer userKind, Integer userPhone, String userNickname, Integer userGrade, Integer userRegdate) {
+	public UserRes(String userEmail, Integer userKind, String userPhone, String userNickname, Integer userGrade, Integer userRegdate) {
 		this.userEmail = userEmail;
 		this.userKind = userKind;
 		this.userPhone = userPhone;
