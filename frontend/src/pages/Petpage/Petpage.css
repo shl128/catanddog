@@ -4,6 +4,10 @@ td {
     width: 50%; 
  }
 
+ul {
+    list-style: none;
+}
+
 .no-left-padding {
     padding-left: 0
 }
@@ -24,9 +28,6 @@ td {
 }
 
 .create-pet {
-    position: relative;
-    bottom: -100px;
-    right: -1300px;
     width: 300px;
     height: 40px;
     padding: 6px 25px;

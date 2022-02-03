@@ -14,6 +14,7 @@ const Mypage = (props) => {
   const [passwordError, setPasswordError] = useState(false);
   const [phonNumber, setPhonNumber] = useState('');
   const [userKind, setUserKind] = useState(0);
+  const [userKindName, setUserKindName] = useState('');
   const [userPhoto, setUserPhoto] = useState('')
   const [loading, setLoading] = useState(false)
   const [userData, seUserData] = useState(localStorage.getItem('accessToken'))
@@ -22,24 +23,6 @@ const Mypage = (props) => {
   const [userActive, setUserActive] = useState(null)
   const [update, setUpdate] = useState(false)
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const onwithdrawal = (e) => {
-    e.preventDefault()
-    axios.delete(SERVER.BASE_URL + SERVER.ROUTES.mypage,
-      {headers: {
-        Authorization: `Bearer ${userData}`
-      }})
-    .then(res => {
-      setShow(false)
-      localStorage.removeItem('accessToken')
-      alert('탈퇴 완료')
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
 
   useEffect(() => {
     axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
@@ -61,24 +44,50 @@ const Mypage = (props) => {
       console.log(err)
     })
   }, []);
+
+
+  useEffect(() => {
+    if (userKind === 0){
+      setUserKindName('동물 주인')
+    }
+    else{
+      setUserKindName('의사')
+    }
+  }, [userKind])
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const onwithdrawal = (e) => {
+    e.preventDefault()
+    axios.delete(SERVER.BASE_URL + SERVER.ROUTES.mypage,
+      {headers: {
+        Authorization: `Bearer ${userData}`
+      }})
+    .then(res => {
+      setShow(false)
+      localStorage.removeItem('accessToken')
+      alert('탈퇴 완료')
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   const onUpdate = (e) =>{
     e.preventDefault()
     if (update === false) {
       setUpdate(true)
     }
     else {
-      // const patchData = {
-      //   "userActive": true,
-      //   "userGrade": 0,
-      //   "userKind": 0,
-      //   "userNickname": nickname,
-      //   "userPhone": parseInt(phonNumber) 
-      // }
-      axios.patch(SERVER.BASE_URL + SERVER.ROUTES.mypage, 
-        {
-          ...user,
-          "userPhone": parseInt(phonNumber) 
-        },
+      const patchData = {
+        "userActive": true,
+        "userGrade": 0,
+        "userKind": 0,
+        "userNickname": nickname,
+        "userPhone": phonNumber 
+      }
+      axios.patch(SERVER.BASE_URL + SERVER.ROUTES.mypage, patchData,
         {
         headers: {
             Authorization: `Bearer ${userData}`
@@ -164,7 +173,7 @@ const Mypage = (props) => {
             { userPhoto }
           </div>
           <div className='mypageContentBox'>
-            <MypageTextForm role='유저 종류' data={userKind} update={update} handleData={onUserKindHandler}/>
+            <MypageTextForm role='유저 종류' data={userKindName} update={update} handleData={onUserKindHandler}/>
             <MypageTextForm role='닉네임' data={nickname} update={update} handleData={onNickNameHandler}/>
             <MypageTextForm role='이메일' data={email} update={update}  handleData={onEmailHandler}/>
             <MypageTextForm role='전화번호' data={phonNumber} update={update}  handleData={onPhonNumberHandler}/>
