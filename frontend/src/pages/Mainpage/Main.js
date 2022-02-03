@@ -2,7 +2,6 @@ import React from 'react';
 import MyPetList from '../../components/Mainpage/MyPetList';
 import Welcome from '../../components/Mainpage/Welcome'
 import MyChatroomList from '../../components/Mainpage/MyChatroomList'
-import MyProfile from '../../components/Mainpage/MainAxios';
 
 
 function Main() {
@@ -18,8 +17,8 @@ function Main() {
 
   return (
     <div>
-      <MyProfile />
-      <Welcome name="진용" />
+      <p>임시</p>
+      <Welcome />
       <MyPetList pets={pets} />
       <MyChatroomList chatrooms={chatrooms} />
     </div>

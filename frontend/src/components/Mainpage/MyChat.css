@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+.My-chat-search {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+}
+
 .My-chat-list-item {
   display: flex;
   justify-content: space-between;
