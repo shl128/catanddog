@@ -129,28 +129,7 @@ const Mypage = (props) => {
   // //     alert('사용 불가능한 닉네임 입니다.')
   // // })
 
-  // console.log(SERVER.BASE_URL + SERVER.ROUTES.nicknameConfirm + nickname)
-  // }
-  // const getUser = (e) =>{
-  //   e.preventDefault()
-  //   console.log(localStorage.getItem('accessToken'))
-  //   console.log(JSON.parse(atob(localStorage.getItem('accessToken').split('.')[1])))
-  //   setUser(localStorage.getItem('accessToken'))
-  // }
 
-  // const onMypage = (e) => {
-  //   e.preventDefault()
-  //   axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
-  //     {headers: {
-  //       Authorization: `Bearer ${user}`
-  //     }})
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // }
   return (
     <div className="Mypage">
       {
@@ -183,8 +162,6 @@ const Mypage = (props) => {
                 </div>
 
               }
-              
-
             </div>
           </div>
         </div>

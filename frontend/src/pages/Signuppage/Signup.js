@@ -22,6 +22,7 @@ function Signup() {
     const [confirmNum, setConfirmNum] = useState('')
     const [emailValidation, setEmailValidation] = useState(false);
     const [nicknameValidation, setNicknameValidation] = useState(false);
+    const [userKindNum, setUserKindNum] = useState(0)
 
 
     useEffect(() => {
@@ -33,6 +34,14 @@ function Signup() {
       }
     }, [phonNumber]);
 
+    useEffect(() => {
+      if (userKind === "의사"){
+        setUserKindNum(1)
+      }
+      else{
+        setUserKindNum(0)
+      }
+    }, [userKind])
     const handleUserKind = (e) => {
       setUserKind(e.target.value);
     };
@@ -167,9 +176,9 @@ function Signup() {
           alert('종류 선택은 필수입니다.')
           return;
         }
-        if (emailValidation === false){
-          alert('이메일 인증은 필수입니다.')
-        }
+        // if (emailValidation === false){
+        //   alert('이메일 인증은 필수입니다.')
+        // }
         // if (nicknameValidation === false){
         //   alert('닉네임 중복확인은 필수입니다.')
         // }    
@@ -181,10 +190,10 @@ function Signup() {
               {
                 // userPhoto: ''
                 "userEmail": Email,
-                "userKind": 0,
+                "userKind": parseInt(userKindNum),
                 "userNickname": NickName,
                 "userPassword":  Password,
-                "userPhone": 43367124,
+                "userPhone": phonNumber,
               }
             )
             .then(function (response) {
