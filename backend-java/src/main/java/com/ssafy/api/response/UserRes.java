@@ -16,19 +16,21 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserResponse")
 public class UserRes{
-	@ApiModelProperty(name="User ID")
+	@ApiModelProperty(name="User ID", example = "ssafy@naver.com")
 	String userNickname;
 	String userEmail;
 	String userPhone;
+	String userPhoto;
 	Integer userKind;
 	Integer userGrade;
 	Bool userActive;
 	Integer userRegdate;
 
-	public UserRes(String userEmail, Integer userKind, String userPhone, String userNickname, Integer userGrade, Integer userRegdate) {
+	public UserRes(String userEmail, Integer userKind, String userPhone, String userPhoto, String userNickname, Integer userGrade, Integer userRegdate) {
 		this.userEmail = userEmail;
 		this.userKind = userKind;
 		this.userPhone = userPhone;
+		this.userPhoto = userPhoto;
 		this.userNickname = userNickname;
 		this.userGrade = userGrade;
 		this.userActive = userActive;
@@ -36,7 +38,7 @@ public class UserRes{
 	}
 
 	public static UserRes of(User user) {
-		UserRes res = new UserRes(user.getUserEmail(),user.getUserKind(), user.getUserPhone(), user.getUserNickname(), user.getUserGrade(), user.getUserRegdate());
+		UserRes res = new UserRes(user.getUserEmail(),user.getUserKind(), user.getUserPhone(), user.getUserPhoto(), user.getUserNickname(), user.getUserGrade(), user.getUserRegdate());
 		return res;
 	}
 }
