@@ -13,7 +13,7 @@ package com.ssafy.api.request;
 @Setter
 @ApiModel("UserUpdatePostRequest")
 public class UserUpdatePostReq {
-    Integer userPhone;
+    String userPhone;
     Integer userKind;
     String userNickname;
     Integer userGrade;
