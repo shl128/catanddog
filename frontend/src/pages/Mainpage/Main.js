@@ -17,7 +17,7 @@ function Main() {
 
   return (
     <div>
-      <p>임시</p>
+      <p>임시임시</p>
       <Welcome />
       <MyPetList pets={pets} />
       <MyChatroomList chatrooms={chatrooms} />
