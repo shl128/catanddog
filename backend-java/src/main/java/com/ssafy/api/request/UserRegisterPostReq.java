@@ -16,7 +16,7 @@ public class UserRegisterPostReq {
 	String userEmail;
 	@ApiModelProperty(name="유저 Password", example="your_password")
 	String userPassword;
-	Integer userPhone;
+	String userPhone;
 	String userNickname;
 	Integer userKind;
 }
