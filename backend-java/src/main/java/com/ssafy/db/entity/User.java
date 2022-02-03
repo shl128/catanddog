@@ -21,6 +21,7 @@ public class User extends BaseEntity{
     String userNickname;
     String userEmail;
     String userPhone;
+    String userPhoto;
     Integer userKind;
     Integer userGrade;
     boolean userActive;
@@ -35,10 +36,14 @@ public class User extends BaseEntity{
     @Override
     public String toString() {
         return "User{" +
-                "userKind='" + userKind + '\'' +
-                ", userPhone='" + userPhone + '\'' +
                 ", userNickname='" + userNickname + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userPhoto='" + userPhoto + '\'' +
+                ", userKind='" + userKind + '\'' +
+                ", userGrade='" + userGrade + '\'' +
+                ", userActive='" + userActive + '\'' +
+                ", userRegdate='" + userRegdate + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 '}';
     }

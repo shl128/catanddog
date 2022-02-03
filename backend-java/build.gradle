@@ -23,7 +23,6 @@ buildscript{
         classpath "com.github.node-gradle:gradle-node-plugin:3.1.0"
     }
 }
-
 plugins {
     id 'java'
     id 'idea'
@@ -193,6 +192,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.20")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    implementation 'com.google.code.gson:gson'
 }
 
 /*def webappDir = "$projectDir/src/main/reactjs"
