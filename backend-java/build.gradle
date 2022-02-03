@@ -23,7 +23,6 @@ buildscript{
         classpath "com.github.node-gradle:gradle-node-plugin:3.1.0"
     }
 }
-
 plugins {
     id 'java'
     id 'idea'
@@ -49,6 +48,12 @@ repositories {
 group 'com.ssafy'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+//bootJar{
+//    archiveBaseName='-'
+//    archiveFileName='catanddog.jar'
+//    archiveVersion='0.0.0'
+//}
 
 //node {
 //    download = true
@@ -177,6 +182,9 @@ dependencies {
     implementation("io.springfox:springfox-data-rest:3.0.0")
     implementation("io.springfox:springfox-bean-validators:3.0.0")
     implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation ("org.springframework.boot:spring-boot-start-test")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     compile("javax.annotation:javax.annotation-api:1.2")
 
@@ -184,8 +192,58 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.20")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    implementation 'com.google.code.gson:gson'
 }
+
+/*def webappDir = "$projectDir/src/main/reactjs"
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["$webappDir/build", "$projectDir/src/main/resources"]
+        }
+    }
+}
+
+processResources {
+    dependsOn "copyWebApp"
+}
+
+
+task copyWebApp(type: Copy) {
+    dependsOn "buildReact"
+    from "$webappDir/build"
+    into "$projectDir/src/main/resources/static"
+}
+
+
+task buildReact(type: Exec) {
+    dependsOn "installReact"
+    workingDir "$webappDir"
+    inputs.dir "$webappDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "run-script", "build"
+    } else {
+        commandLine "npm", "run-script", "build"
+    }
+}
+
+task installReact(type: Exec) {
+    workingDir "$webappDir"
+    inputs.dir "$webappDir"
+    group = BasePlugin.BUILD_GROUP
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine "npm.cmd", "audit", "fix"
+        commandLine 'npm.cmd', 'install'
+    } else {
+        commandLine "npm", "audit", "fix"
+        commandLine 'npm', 'install'
+    }
+}*/
 
 test {
     useJUnitPlatform()
 }
+

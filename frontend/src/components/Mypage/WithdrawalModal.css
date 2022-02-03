@@ -1,0 +1,33 @@
+.Withdrawal{
+  margin-top: 5rem;
+  text-decoration-line: none;
+  color: #FF805B;
+}
+.Withdrawal:hover{
+  margin-top: 5rem;
+
+  text-decoration-line: none;
+  color: #2b2e4a;
+  cursor: pointer;
+}
+.mypage-closebutton{
+  background-color: #ffe0d7;
+  border: 1px solid #FF805B;
+  border: #FF805B;
+}
+.mypage-closebutton:hover{
+  background-color: #f9f9f9;
+  border: 1px  #FF805B;
+  color: #FF805B;
+
+}
+.mypage-WithdrawalButton{
+  background-color: #FF805B;
+  border: 1px solid #FF805B;
+  border: #FF805B;
+}
+.mypage-WithdrawalButton:hover{
+  background-color: #f9f9f9;
+  border: 1px  #FF805B;
+  color: #FF805B;
+}

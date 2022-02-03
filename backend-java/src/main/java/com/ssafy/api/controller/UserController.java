@@ -1,6 +1,5 @@
 package com.ssafy.api.controller;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.ssafy.api.request.UserUpdatePostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,16 +7,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.ssafy.api.request.UserLoginPostReq;
-import com.ssafy.api.request.UserRegisterPostReq;
-import com.ssafy.api.response.UserLoginPostRes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ssafy.api.response.UserRes;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.common.util.JwtTokenUtil;
 import com.ssafy.db.entity.User;
-import com.ssafy.db.repository.UserRepositorySupport;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -61,7 +58,7 @@ public class UserController {
 //	}
 	
 	@GetMapping()
-	@ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원 본인의 정보를 응답한다.") 
+	@ApiOperation(value = "회원 본인 정보 조회(토큰 기반)", notes = "로그인한 회원 본인의 정보를 응답한다.")
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 401, message = "인증 실패"),
@@ -80,21 +77,22 @@ public class UserController {
 	}
 
 	@GetMapping("{user_email}")
-	@ApiOperation(value = "유저 정보(존재하는 회원 확인용)", notes = "존재하는 회원 확인")
+	@ApiOperation(value = "회원 본인 정보 조회(아이디 기반)", notes = "로그인한 회원 본인의 정보를 응답한다.")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
 			@ApiResponse(code = 401, message = "인증 실패"),
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<? extends BaseResponseBody> checkUser(String userEmail){
+	public ResponseEntity<UserRes> checkUser(String userEmail){
 		if(userService.checkUser(userEmail)){
-			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
-		}else{
-			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
+			User user = userService.getUserByUserId(userEmail);
+			return ResponseEntity.status(200).body(UserRes.of(user));
 		}
-
+		return null;
 	}
+
+	private final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	// Update(갱신)
 	@PatchMapping()
@@ -106,17 +104,9 @@ public class UserController {
 	public ResponseEntity<? extends BaseResponseBody> updateUser(String userEmail, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
 		String getUserEmail = userDetails.getUsername();
-		if (userEmail == getUserEmail) {
-			User user = userService.getUserByUserId(getUserEmail);
-			if(userService.checkUsername(userUpdatePostReq.getUserNickname())){
-				return ResponseEntity.status(404).body(BaseResponseBody.of(404, "중복 닉네임 있음"));
-			}else{
-				userService.updateUser(user, userUpdatePostReq);
-			}
-			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
-		} else {
-			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "회원 수정 실패"));
-		}
+		User user = userService.getUserByUserId(getUserEmail);
+		userService.updateUser(user, userUpdatePostReq);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 
 	// 삭제

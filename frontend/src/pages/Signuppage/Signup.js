@@ -190,7 +190,7 @@ function Signup() {
               {
                 // userPhoto: ''
                 "userEmail": Email,
-                "userKind": parseInt(userKindNum),
+                "userKind": 0,
                 "userNickname": NickName,
                 "userPassword":  Password,
                 "userPhone": phonNumber,
