@@ -20,7 +20,7 @@ ReactDOM.render(
       </Route>
     </Routes>
     <div>
-    <header>asdasd</header>
+    <header></header>
     <Outlet />  {/* MemberInfo의 component가 Outlet의 위치에 위치하게 된다. */}
   </div>
   </BrowserRouter>,
