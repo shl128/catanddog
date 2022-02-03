@@ -13,11 +13,11 @@ ReactDOM.render(
       <Route path="/" element={<App />}>
         <Route path="main" element={<Main />} />
         <Route path="mypage" element={<Mypage />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="login" element={<Login />} />
-        <Route path="passwordFind" element={<PasswordFind />} />
         <Route path="petpage" element={<Petpage />} />
       </Route>
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/passwordFind" element={<PasswordFind />} />
     </Routes>
     <div>
     <header></header>
