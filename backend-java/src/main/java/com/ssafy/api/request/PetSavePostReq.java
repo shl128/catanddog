@@ -13,7 +13,7 @@ public class PetSavePostReq {
     String petName;
     String petKind;
     String petBreed;
-    OffsetDateTime petBirthday;
+    String petBirthday;
     String petGender;
     boolean petNeutering;
     boolean petVaccination;

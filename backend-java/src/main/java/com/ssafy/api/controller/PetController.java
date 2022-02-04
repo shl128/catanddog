@@ -39,6 +39,7 @@ public class PetController {
     public ResponseEntity<? extends BaseResponseBody> save(PetSavePostReq petSavePostReq, @ApiIgnore Authentication authentication){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
+        System.out.println(petSavePostReq.getPetBirthday());
         if(petService.savePet(petSavePostReq, userId) != null){
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
