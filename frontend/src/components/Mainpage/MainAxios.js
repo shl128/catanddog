@@ -2,56 +2,36 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 import SERVER from '../../API/server'
 
+const profileUrl = SERVER.BASE_URL + SERVER.ROUTES.mypage
+const petUrl = SERVER.BASE_URL + SERVER.ROUTES.createPet
+const userData = localStorage.getItem('accessToken')
 
 function MyProfile() {
-  const [userName, setUserName] = useState(null);
-  // const [userPhoto, setUserPhoto] = useState('')
-  const userData = localStorage.getItem('accessToken')
-  const url = SERVER.BASE_URL + SERVER.ROUTES.mypage
-
-  useEffect(() => {
-    axios.get(url, 
-      {
-        headers: {
-          Authorization: `Bearer ${userData}`
-        }
-      })
-    .then(function(response) {
-      setUserName(response.data.userNickname)
-      // setUserPhoto(response.data.userPhoto)
-      console.log(response.data)
-      console.log("회원정보 불러오기 성공")
-    })
-    .catch(function(error) {
-      console.log("회원정보 불러오기 실패")
-    });
-  }, [userName, url, userData])
-
-  return userName
+  return axios.get(profileUrl, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
 }
 
 
 function MyPet() {
-  const [petdata, setPetdata] = useState(null)
-  const userData = localStorage.getItem('accessToken')
-  const url = SERVER.BASE_URL + SERVER.ROUTES.createPet
+  const [petdata, setPetdata] = useState([])
 
   useEffect(() => {
-    axios.get(url,
+    axios.get(petUrl,
       {
         headers: {
           Authorization: `Bearer ${userData}`
         }
       })
     .then(function(response) {
-      setPetdata(response.data)
       console.log(response.data)
       console.log("반려동물 정보 불러오기 성공")
+      setPetdata(response.data)
     })
     .catch(function() {
       console.log("반려동물 정보 불러오기 실패")
     })
-  }, [petdata, url, userData])
+  }, [])
 
   return petdata
 
