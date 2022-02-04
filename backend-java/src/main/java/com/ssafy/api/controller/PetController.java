@@ -36,7 +36,7 @@ public class PetController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> save(PetSavePostReq petSavePostReq, @ApiIgnore Authentication authentication){
+    public ResponseEntity<? extends BaseResponseBody> save(@RequestBody PetSavePostReq petSavePostReq, @ApiIgnore Authentication authentication){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         System.out.println(petSavePostReq.getPetBirthday());
