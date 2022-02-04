@@ -5,7 +5,7 @@ import App from './App';
 import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chatting } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -20,10 +20,6 @@ ReactDOM.render(
       <Route path="/passwordFind" element={<PasswordFind />} />
       <Route path="/chatting" element={<Chatting/>} />
     </Routes>
-    <div>
-    <header></header>
-    <Outlet />  {/* MemberInfo의 component가 Outlet의 위치에 위치하게 된다. */}
-  </div>
   </BrowserRouter>,
   document.getElementById('root')
 );
