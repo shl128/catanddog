@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Mypage, Signup, Login, PasswordFind, Petpage, Main } from './pages/index'
+import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chatting } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
@@ -18,6 +18,7 @@ ReactDOM.render(
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/passwordFind" element={<PasswordFind />} />
+      <Route path="/chatting" element={<Chatting/>} />
     </Routes>
     <div>
     <header></header>

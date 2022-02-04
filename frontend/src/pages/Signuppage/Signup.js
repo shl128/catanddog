@@ -36,10 +36,10 @@ function Signup() {
 
     useEffect(() => {
       if (userKind === "의사"){
-        setUserKindNum(1)
+        setUserKindNum(2)
       }
       else{
-        setUserKindNum(0)
+        setUserKindNum(1)
       }
     }, [userKind])
     const handleUserKind = (e) => {
@@ -190,7 +190,7 @@ function Signup() {
               {
                 // userPhoto: ''
                 "userEmail": Email,
-                "userKind": 0,
+                "userKind": userKindNum,
                 "userNickname": NickName,
                 "userPassword":  Password,
                 "userPhone": phonNumber,

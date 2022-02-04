@@ -81,7 +81,7 @@ const Mypage = (props) => {
     }
     else {
       const patchData = {
-        "userActive": true,
+        "userActive": 0,
         "userGrade": 0,
         "userKind": 0,
         "userNickname": nickname,
