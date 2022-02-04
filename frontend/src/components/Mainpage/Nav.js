@@ -3,7 +3,7 @@ import './Nav.css'
 import logo from '../image/상단로고.png'
 import { Nav} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import ConsultingRequest from './ConsultingRequest'
+import ConsultingForm from './ConsultingForm'
 
 
 function Navbar() {
@@ -18,7 +18,7 @@ function Navbar() {
       </Nav.Link>
       <Nav className="flex-column">
         <button className="Nav-button"><Link to="/petpage" className='Nav-link'>반려동물 추가</Link></button>
-        <ConsultingRequest/>
+        <ConsultingForm />
         <button className="Nav-button" >캘린더</button>
         <button className="Nav-button" >이달의 지출</button>
         <button className="Nav-button" >반려동물 케어</button>
