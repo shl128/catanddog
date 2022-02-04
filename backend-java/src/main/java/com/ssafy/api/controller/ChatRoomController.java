@@ -2,6 +2,7 @@ package com.ssafy.api.controller;
 
 import com.ssafy.api.request.UserChatSavePostReq;
 import com.ssafy.api.service.ChatRoomService;
+import com.ssafy.api.service.ChatRoomTagService;
 import com.ssafy.api.service.UserChatRoomService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
@@ -28,6 +29,9 @@ public class ChatRoomController {
     @Autowired
     UserChatRoomService userChatRoomService;
 
+    @Autowired
+    ChatRoomTagService chatRoomTagService;
+
     @PostMapping()
     @ApiOperation(value = "채팅방 생성")
     @ApiResponses({
@@ -41,6 +45,7 @@ public class ChatRoomController {
         Long userId = userDetails.getUser().getUserId();
         ChatRoom chatRoom = chatRoomService.saveChatRoom(userChatSavePostReq, userId);
         if(chatRoom != null){
+            chatRoomTagService.saveChatRoomTag(chatRoom.getChatRoomId(), userChatSavePostReq.getChatRoomTagName());
             userChatRoomService.saveUserChatRoom(chatRoom.getChatRoomId(), userId);
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }

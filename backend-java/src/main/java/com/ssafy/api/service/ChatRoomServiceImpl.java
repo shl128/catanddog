@@ -1,11 +1,19 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.request.UserChatSavePostReq;
+import com.ssafy.api.response.ChatRoomRes;
 import com.ssafy.db.entity.ChatRoom;
+import com.ssafy.db.entity.ChatRoomTag;
 import com.ssafy.db.repository.ChatRoomRepository;
+import com.ssafy.db.repository.ChatRoomTagRepository;
 import com.ssafy.db.repository.UserChatRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service("chatRoomService")
 public class ChatRoomServiceImpl implements ChatRoomService{
@@ -15,6 +23,9 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     @Autowired
     UserChatRoomRepository userChatRoomRepository;
 
+    @Autowired
+    ChatRoomTagRepository chatRoomTagRepository;
+
     @Override
     public ChatRoom saveChatRoom(UserChatSavePostReq userChatSavePostReq, Long userId) {
         ChatRoom chatRoom = new ChatRoom();
@@ -22,7 +33,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         chatRoom.setChatRoomTitle(userChatSavePostReq.getChatRoomTitle());
         chatRoom.setUserMaxCount(userChatSavePostReq.getUserMaxCount());
         chatRoom.setUserNowCount(1);
-        System.out.println(chatRoom);
+
         return chatRoomRepository.save(chatRoom);
     }
 
@@ -47,6 +58,71 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             userChatRoomRepository.deleteChatRoomId(chatRoomId);
             chatRoomRepository.deleteById(chatRoomId);
         }
+    }
+
+    // 채팅방 정보 가져와서 해시태그 찾고 반환
+    @Override
+    public List<ChatRoomRes> findChatRoom(int page) {
+        List<ChatRoomRes> chatRoomResList = new ArrayList<>();
+        int pageCnt = (page-1) * 6;
+        List<ChatRoom> chatRoomList = chatRoomRepository.findByPage(pageCnt);
+        for(int i=0; i<chatRoomList.size(); i++){
+            ChatRoomRes chatRoomRes = new ChatRoomRes();
+            ChatRoom chatRoom = chatRoomList.get(i);
+            chatRoomRes.setChatRoomId(chatRoom.getChatRoomId());
+            chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
+            chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
+            chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
+
+            List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
+            chatRoomRes.setTagName(tagName);
+            chatRoomResList.add(chatRoomRes);
+        }
+
+        return chatRoomResList;
+    }
+
+    @Override
+    public List<ChatRoomRes> findChatRoomTitle(String chatRoomTitle, int page) {
+        List<ChatRoomRes> chatRoomResList = new ArrayList<>();
+        int pageCnt = (page-1) * 6;
+        List<ChatRoom> chatRoomList = chatRoomRepository.findByTitlePage(chatRoomTitle,pageCnt);
+        for(int i=0; i<chatRoomList.size(); i++){
+            ChatRoomRes chatRoomRes = new ChatRoomRes();
+            ChatRoom chatRoom = chatRoomList.get(i);
+            chatRoomRes.setChatRoomId(chatRoom.getChatRoomId());
+            chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
+            chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
+            chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
+
+            List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
+            chatRoomRes.setTagName(tagName);
+            chatRoomResList.add(chatRoomRes);
+        }
+
+        return chatRoomResList;
+    }
+
+    // 해당 해시태그가 들어간 글 찾고 정보 가져오기
+    @Override
+    public List<ChatRoomRes> findChatRoomTag(String chatRoomTagName, int page) {
+        List<ChatRoomRes> chatRoomResList = new ArrayList<>();
+        int pageCnt = (page-1) * 6;
+        List<Long> chatRoomId = chatRoomTagRepository.findByTagName(chatRoomTagName, pageCnt);
+        for(int i=0; i< chatRoomId.size(); i++){
+            Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId.get(i));
+            ChatRoomRes chatRoomRes = new ChatRoomRes();
+            chatRoomRes.setChatRoomId(chatRoom.get().getChatRoomId());
+            chatRoomRes.setChatRoomTitle(chatRoom.get().getChatRoomTitle());
+            chatRoomRes.setUserMaxCount(chatRoom.get().getUserMaxCount());
+            chatRoomRes.setUserNowCount(chatRoom.get().getUserNowCount());
+
+            List<String> tagName = chatRoomTagRepository.findByTag(chatRoomId.get(i));
+            chatRoomRes.setTagName(tagName);
+            chatRoomResList.add(chatRoomRes);
+        }
+
+        return chatRoomResList;
     }
 
 }
