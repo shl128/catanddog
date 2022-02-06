@@ -1,6 +1,11 @@
 package com.ssafy.api.controller;
 
+import com.ssafy.api.request.ExpenditureWritePostReq;
+import com.ssafy.api.request.UserTagSavePostReq;
 import com.ssafy.api.request.UserUpdatePostReq;
+import com.ssafy.db.entity.Expenditure;
+import com.ssafy.db.entity.Pet;
+import com.ssafy.db.entity.UserTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -22,6 +27,8 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.List;
 
 /**
  * 유저 관련 API 요청 처리를 위한 컨트롤러 정의.
@@ -123,6 +130,58 @@ public class UserController {
 		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserId(userEmail);
 		userService.deleteUser(user);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+
+	@PostMapping("/tags/{user_tag_name}")
+	@ApiOperation(value = "유저 해시태그 등록")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "페이지 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> saveUserTag(UserTagSavePostReq userTagSavePostReq, @ApiIgnore Authentication authentication){
+		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+		Long userId = userDetails.getUser().getUserId();
+		if(userService.saveUserTag(userTagSavePostReq, userId) == null){
+			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
+		} else {
+			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		}
+
+	}
+
+	@GetMapping("/tags")
+	@ApiOperation(value = "유저 해시태그 조회")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "페이지 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<UserTag>> findUserTag(@ApiIgnore Authentication authentication){
+		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+		Long userId = userDetails.getUser().getUserId();
+		List<UserTag> userTagList = userService.findByUserTag(userId);
+		if(userTagList != null){
+			return ResponseEntity.status(200).body(userTagList);
+		}
+		return ResponseEntity.status(500).body(null);
+	}
+
+	@DeleteMapping("/tags/{user_tag_id}")
+	@ApiOperation(value = "유저 해시태그 삭제")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "지출내역 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> deleteUserTag(@ApiIgnore Authentication authentication, Integer userTagId){
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		Long userId = userDetails.getUser().getUserId();
+		userService.deleteUserTag(userTagId, userId);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 
