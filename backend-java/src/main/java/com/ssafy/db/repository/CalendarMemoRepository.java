@@ -1,8 +1,6 @@
 package com.ssafy.db.repository;
 
 import com.ssafy.db.entity.CalendarMemo;
-import com.ssafy.db.entity.Expenditure;
-import com.ssafy.db.entity.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

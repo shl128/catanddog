@@ -1,6 +1,5 @@
 package com.ssafy.db.repository;
 
-import com.ssafy.db.entity.Expenditure;
 import com.ssafy.db.entity.UserTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

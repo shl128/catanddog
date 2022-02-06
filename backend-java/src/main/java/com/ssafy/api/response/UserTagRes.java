@@ -1,6 +1,5 @@
 package com.ssafy.api.response;
 
-import com.ssafy.db.entity.Expenditure;
 import com.ssafy.db.entity.UserTag;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;

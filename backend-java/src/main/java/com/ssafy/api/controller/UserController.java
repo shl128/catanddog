@@ -1,10 +1,7 @@
 package com.ssafy.api.controller;
 
-import com.ssafy.api.request.ExpenditureWritePostReq;
 import com.ssafy.api.request.UserTagSavePostReq;
 import com.ssafy.api.request.UserUpdatePostReq;
-import com.ssafy.db.entity.Expenditure;
-import com.ssafy.db.entity.Pet;
 import com.ssafy.db.entity.UserTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
