@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -19,7 +20,7 @@ public class Expenditure {
     String expenditureCategory;
     String expenditureItem;
     Integer expenditurePrice;
-    String expenditureDate;
+    Date expenditureDate;
 
     @Override
     public String toString() {

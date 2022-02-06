@@ -54,14 +54,14 @@ public class ExpenditureController {
             @ApiResponse(code = 404, message = "지출내역 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<List<Expenditure>> read(@ApiIgnore Authentication authentication, String expenditureCategory){
+    public ResponseEntity<List<Expenditure>> read(@ApiIgnore Authentication authentication, String expenditureCategory, String expenditureDate){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         List<Expenditure> ExpenditureInfoList;
         if (expenditureCategory.equals("전체")) {
-            ExpenditureInfoList = expenditureService.findByExpenditure(userId);
+            ExpenditureInfoList = expenditureService.findByExpenditure(userId, expenditureDate);
         } else {
-            ExpenditureInfoList = expenditureService.findByExpenditureCategory(userId, expenditureCategory);
+            ExpenditureInfoList = expenditureService.findByExpenditureCategory(userId, expenditureCategory, expenditureDate);
         }
         if(ExpenditureInfoList != null){
             return ResponseEntity.status(200).body(ExpenditureInfoList);
@@ -111,14 +111,14 @@ public class ExpenditureController {
             @ApiResponse(code = 404, message = "지출내역 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity count(@ApiIgnore Authentication authentication, String expenditureCategory){
+    public ResponseEntity count(@ApiIgnore Authentication authentication, String expenditureCategory, String expenditureMonth){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         Integer ExpenditureAmount;
         if (expenditureCategory.equals("전체")) {
-            ExpenditureAmount = expenditureService.findByExpenditureCount(userId);
+            ExpenditureAmount = expenditureService.findByExpenditureCount(userId, expenditureMonth);
         } else {
-            ExpenditureAmount = expenditureService.findByExpenditureCategoryCount(userId, expenditureCategory);
+            ExpenditureAmount = expenditureService.findByExpenditureCategoryCount(userId, expenditureCategory, expenditureMonth);
         }
         if(ExpenditureAmount != null){
             return ResponseEntity.status(200).body(ExpenditureAmount);

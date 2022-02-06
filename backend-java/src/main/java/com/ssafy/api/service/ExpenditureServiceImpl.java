@@ -30,23 +30,23 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     }
 
     @Override
-    public List<Expenditure> findByExpenditure(Long userId) {
-        return expenditureRepository.findByExpenditure(userId);
+    public List<Expenditure> findByExpenditure(Long userId, String expenditureMonth) {
+        return expenditureRepository.findByExpenditure(userId ,expenditureMonth);
     }
 
     @Override
-    public List<Expenditure> findByExpenditureCategory(Long userId, String expenditureCategory) {
-        return expenditureRepository.findByExpenditureCategory(userId, expenditureCategory);
+    public List<Expenditure> findByExpenditureCategory(Long userId, String expenditureCategory, String expenditureMonth) {
+        return expenditureRepository.findByExpenditureCategory(userId, expenditureCategory, expenditureMonth);
     }
 
     @Override
-    public Integer findByExpenditureCount(Long userId) {
-        return expenditureRepository.findByExpenditureCount(userId);
+    public Integer findByExpenditureCount(Long userId, String expenditureMonth) {
+        return expenditureRepository.findByExpenditureCount(userId, expenditureMonth);
     }
 
     @Override
-    public Integer findByExpenditureCategoryCount(Long userId, String expenditureCategory) {
-        return expenditureRepository.findByExpenditureCategoryCount(userId, expenditureCategory);
+    public Integer findByExpenditureCategoryCount(Long userId, String expenditureCategory, String expenditureMonth) {
+        return expenditureRepository.findByExpenditureCategoryCount(userId, expenditureCategory, expenditureMonth);
     }
 
     @Override

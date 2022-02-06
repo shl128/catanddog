@@ -12,17 +12,16 @@ import java.util.List;
 
 @Repository
 public interface ExpenditureRepository extends JpaRepository <Expenditure, Integer> {
-    @Query(value = "SELECT * from expenditure where user_id = :userId order by expenditure_id desc",nativeQuery = true)
-    List<Expenditure> findByExpenditure(@Param("userId") Long userId);
+    @Query(value = "SELECT * from expenditure where user_id = :userId and DATE_FORMAT(expenditure_date, '%Y-%m') = :expenditureMonth order by expenditure_id desc",nativeQuery = true)
+    List<Expenditure> findByExpenditure(@Param("userId") Long userId, @Param("expenditureMonth") String expenditureMonth);
+    @Query(value = "SELECT * from expenditure where user_id = :userId and expenditure_category = :expenditureCategory and DATE_FORMAT(expenditure_date, '%Y-%m') = :expenditureMonth order by expenditure_id desc",nativeQuery = true)
+    List<Expenditure> findByExpenditureCategory(@Param("userId") Long userId, @Param("expenditureCategory") String expenditureCategory, @Param("expenditureMonth") String expenditureMonth);
 
-    @Query(value = "SELECT * from expenditure where user_id = :userId and expenditure_category = :expenditureCategory order by expenditure_id desc",nativeQuery = true)
-    List<Expenditure> findByExpenditureCategory(@Param("userId") Long userId, @Param("expenditureCategory") String expenditureCategory);
+    @Query(value = "SELECT SUM(expenditure_price) from expenditure where user_id = :userId and DATE_FORMAT(expenditure_date, '%Y-%m') = :expenditureMonth",nativeQuery = true)
+    Integer findByExpenditureCount(@Param("userId") Long userId, @Param("expenditureMonth") String expenditureMonth);
 
-    @Query(value = "SELECT SUM(expenditure_price) from expenditure where user_id = :userId",nativeQuery = true)
-    Integer findByExpenditureCount(@Param("userId") Long userId);
-
-    @Query(value = "SELECT SUM(expenditure_price) from expenditure where user_id = :userId and expenditure_category = :expenditureCategory order by expenditure_id desc",nativeQuery = true)
-    Integer findByExpenditureCategoryCount(@Param("userId") Long userId, @Param("expenditureCategory") String expenditureCategory);
+    @Query(value = "SELECT SUM(expenditure_price) from expenditure where user_id = :userId and expenditure_category = :expenditureCategory and DATE_FORMAT(expenditure_date, '%Y-%m') = :expenditureMonth",nativeQuery = true)
+    Integer findByExpenditureCategoryCount(@Param("userId") Long userId, @Param("expenditureCategory") String expenditureCategory, @Param("expenditureMonth") String expenditureMonth);
 
     @Query(value = "SELECT * from expenditure where user_id = :userId and expenditure_id = :expenditureId",nativeQuery = true)
     List<Expenditure> findByExpenditureOne(@Param("userId") Long userId, @Param("expenditureId")  Integer expenditureId);
