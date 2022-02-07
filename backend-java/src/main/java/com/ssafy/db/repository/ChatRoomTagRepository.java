@@ -25,5 +25,4 @@ public interface ChatRoomTagRepository extends JpaRepository <ChatRoomTag, Long>
 
     @Query(value = "select count(*) from chat_room_tag where chat_room_tag_name = :chatRoomTagName",nativeQuery = true)
     Long countTag(String chatRoomTagName);
-
 }

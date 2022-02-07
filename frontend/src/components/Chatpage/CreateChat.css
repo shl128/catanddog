@@ -1,0 +1,17 @@
+.Chat-create {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Chat-create-button {
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  padding: 0.5rem 1rem;
+}
+
+.Chat-create-button:hover {
+  background-color: #ff805b;
+}

@@ -11,7 +11,11 @@ export default {
     password: 'api/v1/restAuth/loginrestAuth/password/',
     eamailConfirm: 'api/v1/myPage/',
     mypage: 'api/v1/myPage',
+    chatroom: 'userChatrooms/',
+    chat: '/userChat/',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
+    // spendingOfMonth
+    createExpenditure: 'spendingOfMonth/expenditures'
   },
 };
