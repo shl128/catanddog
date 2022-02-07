@@ -13,6 +13,7 @@ import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -75,9 +76,15 @@ public class UserServiceImpl implements UserService {
 		user.setUserPhone(userUpdatePostReq.getUserPhone());
 		user.setUserKind(userUpdatePostReq.getUserKind());
 		user.setUserNickname(userUpdatePostReq.getUserNickname());
-		user.setUserPhoto(userUpdatePostReq.getUserPhoto());
 		user.setUserGrade(userUpdatePostReq.getUserGrade());
 		user.setUserActive(userUpdatePostReq.getUserActive());
+		// db에 update
+		userRepository.save(user);
+	}
+
+	@Override
+	public void updateUserPhoto(User user, String userPhoto) {
+		user.setUserPhoto(userPhoto);
 		// db에 update
 		userRepository.save(user);
 	}
@@ -86,6 +93,7 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(User user) {
 		userRepository.delete(user);
 	}
+
 
 	@Override
 	public UserTag saveUserTag(UserTagSavePostReq userTagSavePostReq, Long userId) {

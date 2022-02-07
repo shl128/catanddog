@@ -4,6 +4,7 @@ import com.ssafy.api.request.*;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserTag;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -15,7 +16,8 @@ public interface UserService {
 	boolean checkUser(String userEmail);
 	boolean checkUsername(String userNickname);
 	void updateUser(User user, UserUpdatePostReq userUpdatePostReq);
-    void deleteUser(User user);
+	void deleteUser(User user);
+	void updateUserPhoto(User user, String userPhoto);
 	UserTag saveUserTag(UserTagSavePostReq userTagSavePostReq, Long userId);
 
 	List<UserTag> findByUserTag(Long userId);

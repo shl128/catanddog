@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.sql.Blob;
 
 /**
  * 유저 모델 정의.
