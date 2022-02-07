@@ -87,9 +87,9 @@ const Petpage = () => {
   }
 
   const onSubmitHandler = async () => {
-    // const array = {petPhoto, petName, petKind, petBreed, petBirthday, petGender, petNeutering, petVaccination}
     let formData = new FormData();
     formData.append('petPhoto', petPhoto);
+    formData.append('petName', petName);
     formData.append('petKind', petKind);
     formData.append('petBreed', petBreed);
     formData.append('petBirthday', petBirthday);
