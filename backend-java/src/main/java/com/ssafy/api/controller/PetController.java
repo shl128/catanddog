@@ -15,9 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 // 펫 API 컨트롤러
 @Api(value = "펫 API", tags = {"Pet"})
@@ -36,10 +40,18 @@ public class PetController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> save(@RequestBody PetSavePostReq petSavePostReq, @ApiIgnore Authentication authentication){
+    public ResponseEntity<? extends BaseResponseBody> save(@RequestPart("petPhoto") MultipartFile petPhoto, PetSavePostReq petSavePostReq, @ApiIgnore Authentication authentication) throws IOException {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
-        if(petService.savePet(petSavePostReq, userId) != null){
+
+        //파일 업로드
+        String petPhotoName = null;
+        if (petPhoto != null) {
+            petPhotoName = UUID.randomUUID().toString();
+            File petPhotoFile = new File(petPhotoName + ".PNG");
+            petPhoto.transferTo(petPhotoFile);
+        }
+        if (petService.savePet(petSavePostReq, userId, petPhotoName) != null) {
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
@@ -71,9 +83,17 @@ public class PetController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq){
+    public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @RequestPart("pet_photo") MultipartFile petPhoto, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq) throws IOException {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
+
+        if(petPhoto != null){
+            String petPhotoName = UUID.randomUUID().toString();
+            petUpdatePostReq.setPetPhoto(petPhotoName);
+            File petPhotoFile = new File(petPhotoName + ".PNG");
+            petPhoto.transferTo(petPhotoFile);
+        }
+
         if(petService.update(petUpdatePostReq, petId, userId) != null){
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }

@@ -15,4 +15,7 @@ public interface ChatRoomRepository extends JpaRepository <ChatRoom, Long> {
 
     @Query(value = "select *from chat_room where chat_room_title = :chatRoomTitle limit 6 offset :pageCnt",nativeQuery = true)
     List<ChatRoom> findByTitlePage(String chatRoomTitle, int pageCnt);
+
+    @Query(value = "select count(*) from chat_room where chat_room_title = :chatRoomTitle",nativeQuery = true)
+    Long countTitle(String chatRoomTitle);
 }
