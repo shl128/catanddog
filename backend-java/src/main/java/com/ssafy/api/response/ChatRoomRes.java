@@ -13,5 +13,5 @@ public class ChatRoomRes {
     int userMaxCount;
     int userNowCount;
     List<String> tagName;
-
+    Long totalPage;
 }

@@ -65,4 +65,30 @@ public class UserChatRoomController {
         List<ChatRoomRes> chatRoomResList = chatRoomService.findChatRoomTag(chatRoomTagName, page);
         return ResponseEntity.status(200).body(chatRoomResList);
     }
+
+    @GetMapping("searchTitle/{chat_room_title}")
+    @ApiOperation(value = "채팅방 제목 자동완성")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<List<String>> findChatRoomSearchTitle(@ApiIgnore Authentication authentication, @PathVariable ("chat_room_title")String chatRoomTitle){
+        List<String> list = chatRoomService.findChatRoomSearchTitle(chatRoomTitle);
+        return ResponseEntity.status(200).body(list);
+    }
+
+    @GetMapping("searchHash/{chat_room_tag_name}")
+    @ApiOperation(value = "채팅방 태크 자동완성")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<List<String>> findChatRoomSearchHash(@ApiIgnore Authentication authentication, @PathVariable ("chat_room_tag_name")String chatRoomTagName){
+        List<String> list = chatRoomService.findChatRoomSearchHash(chatRoomTagName);
+        return ResponseEntity.status(200).body(list);
+    }
 }
