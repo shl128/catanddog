@@ -15,5 +15,7 @@ export default {
     chat: '/userChat/',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
+    // spendingOfMonth
+    createExpenditure: 'spendingOfMonth/expenditures'
   },
 };
