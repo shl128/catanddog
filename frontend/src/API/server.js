@@ -13,5 +13,7 @@ export default {
     mypage: 'api/v1/myPage',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
+    // spendingOfMonth
+    createExpenditure: 'spendingOfMonth/expenditures'
   },
 };
