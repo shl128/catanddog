@@ -1,17 +1,51 @@
 import React, { useState, useRef } from 'react'
 import './CreateChat.css'
 import { Modal, Form } from 'react-bootstrap'
+import { CreateRoom } from './ChatAxios'
 
 function CreateChat() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const [tagValue, setTagValue] = useState('')
+  const [show, setShow] = useState(false)
+  const [tags, setTags] = useState([])
   const inputTitle = useRef()
-  const inputTag = useRef()
   const inputCnt = useRef()
+
+  const handleShow = () => setShow(true)
+
+  function handleClose() {
+    setTags([])
+    setTagValue('')
+    setShow(false)
+  }
+
+  function changeTag(event) {
+    setTagValue(event.target.value)
+  }
+
+  function addTag(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      setTags(tags => [...tags, tagValue])
+      setTagValue('')
+    }
+  }
+
   function createRoom() {
-    if (inputTitle.current.value && inputTag.current.value && inputCnt.current.value) {
+
+    if (inputTitle.current.value && tags && inputCnt.current.value) {
+      const chatData = new FormData()
+      chatData.append("chatRoomTagName", tags)
+      chatData.append("chatRoomTitle", inputTitle.current.value)
+      chatData.append("userMaxCount", inputCnt.current.value * 1)
+
+      CreateRoom(chatData)
+      .then(() => {
+        console.log("채팅방 생성 완료")
+      })
+      .catch(() => {
+        console.log("채팅방 생성 실패")
+      })
+
       handleClose()
     } else {
       alert("모든 항목을 입력하세요")
@@ -25,7 +59,7 @@ function CreateChat() {
         방 생성
       </button>
 
-      <Modal show={show} onHide={handleClose} centered="true">
+      <Modal dialogClassName="Chat-create-form" show={show} onHide={handleClose} centered="true">
         <Modal.Title>채팅방 생성하기</Modal.Title>
         <Modal.Body>
           방 제목, 해시태그, 인원제한은 필수 항목입니다
@@ -36,7 +70,12 @@ function CreateChat() {
             </Form.Group>
             <Form.Group>
               <Form.Label>해시태그</Form.Label>
-              <Form.Control ref={inputTag} type="text" />
+              <div>
+                {tags.map((tag, idx) => 
+                  <span key={idx}>#{tag} </span>
+                )}
+              </div>
+              <Form.Control value={tagValue} type="text" onChange={changeTag} onKeyPress={addTag}/>
             </Form.Group>
             <Form.Group>
               <Form.Label>인원</Form.Label>

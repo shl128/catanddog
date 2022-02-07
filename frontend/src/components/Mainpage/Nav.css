@@ -1,11 +1,6 @@
 .Logo {
-  width: 20%;
-  height: auto;
-}
-
-.Logo-name {
-  margin-left: 1rem;
-  width: 50%
+  width: 11vw;
+  justify-content: center;
 }
 
 .Nav-button{
