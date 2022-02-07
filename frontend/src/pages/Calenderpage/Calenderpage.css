@@ -1,0 +1,15 @@
+.Calenderpage {
+    height: 90%;
+    width: 100%;  
+    background-color: white;
+    border-radius: 2rem;
+  
+  } 
+
+.CalenderContainer{
+    display: grid;
+    border-radius: 2rem;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1rem;
+    height: 100%;
+  }

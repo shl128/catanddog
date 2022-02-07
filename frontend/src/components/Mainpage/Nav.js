@@ -19,8 +19,8 @@ function Navbar() {
       <Nav className="flex-column">
         <button className="Nav-button"><Link to="/petpage" className='Nav-link'>반려동물 추가</Link></button>
         <ConsultingForm />
-        <button className="Nav-button" >캘린더</button>
-        <button className="Nav-button" >이달의 지출</button>
+        <button className="Nav-button" ><Link to="/calenderpage" className='Nav-link'>캘린더</Link></button>
+        <button className="Nav-button" ><Link to="/spendingOfMonth" className='Nav-link'>이달의 지출</Link></button>
         <button className="Nav-button" >반려동물 케어</button>
         <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>유저들과 소통</Link></button>
         <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>카툰화</Link></button>

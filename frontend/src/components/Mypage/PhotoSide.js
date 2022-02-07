@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PhotoSide.css'
+import noImage from '../image/이미지없음.png'
 
 const PhotoSide = (props) => {
   const [nowPhotoData, setNowPhotoData] = useState("props.userPhoto")
@@ -28,7 +29,7 @@ const PhotoSide = (props) => {
     <div className="PhotoSide">
             { 
               imgFile === '' 
-              ? <img src="/noPetImage.png" className="myPhoto-image" alt="no" />
+              ? <img src={noImage} className="myPhoto-image" alt="no" />
               : <img src={imgBase64} className="myPhoto-image" alt="no" />
             }
             <div className="mt-1">
