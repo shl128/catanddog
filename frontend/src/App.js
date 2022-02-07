@@ -4,7 +4,6 @@ import './App.css';
 import Nav from './components/Mainpage/Nav'
 import Top from './components/Mainpage/Top'
 import { Login, Signup, PasswordFind} from './pages'
-import ConsultingOk from './components/Mainpage/ConsultingOk';
 
 function App() {
   const location = useLocation().pathname
@@ -25,7 +24,6 @@ function App() {
           <div className="App-page">
             <Top />
             <Outlet />
-            <ConsultingOk />
           </div>
         </div>
       }

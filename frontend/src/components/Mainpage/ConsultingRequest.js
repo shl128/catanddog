@@ -1,21 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Modal, Spinner } from 'react-bootstrap'
 import Wait from '../image/쫑이.jpg'
 import './ConsultingRequest.css'
 
-function ConsultingRequest() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+function ConsultingRequest(props) {
   return (
     <>
-      <button className="Consulting-request" onClick={handleShow}>
-        수의사님 찾기
-      </button>
-
-      <Modal dialogClassName="Consulting" show={show} onHide={handleClose} centered="true">
+      <Modal dialogClassName="Consulting" show={props.findDocterDialog} onHide={() => props.setFindDocterDialog(false)} centered="true">
         <img className="Wait-image" alt="logoname" src={Wait} />
         <Modal.Body className="Consulting-body">
           응답할 수 있는 의사분을 찾는 중입니다!!
@@ -26,7 +17,7 @@ function ConsultingRequest() {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button className="Consulting-request" onClick={handleClose}>
+          <button className="Consulting-request" onClick={() => props.setFindDocterDialog(false)}>
             취소하기
           </button>
         </Modal.Footer>

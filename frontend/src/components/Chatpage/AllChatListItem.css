@@ -1,0 +1,10 @@
+.All-chat-list-item {
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+}
+
+.chat-right {
+  display: flex;
+  align-items: center;
+}

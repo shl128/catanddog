@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import { Modal, Form } from 'react-bootstrap'
 import './ConsultingForm.css'
-import ConsultingRequest from './ConsultingRequest'
 
-function ConsultingForm() {
-  const [show, setShow] = useState(false);
+function ConsultingForm(props) {
+  const inputKind = useRef()
+  const inputSymptom = useRef()
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  function submitForm() {
+    
+    if (inputKind.current.value && inputSymptom.current.value) {
+      props.setFindDocterDialog(true)
+      props.setConsultingDialog(false)
+    } else {
+      alert("종과 증상을 모두 입력하세요")
+    }
+  }
 
   return (
     <>
-      <button className="Consulting-button" onClick={handleShow}>
-        실시간 상담
-      </button>
-      <Modal dialogClassName="Consulting" show={show} onHide={handleClose} centered="true">
+      <Modal dialogClassName="Consulting" show={props.consultingDialog} onHide={() => props.setConsultingDialog(false)} centered="true">
         <Modal.Header>
           내용을 입력하시면 더 좋은 상담을 진행할 수 있어요
         </Modal.Header>
@@ -22,17 +26,17 @@ function ConsultingForm() {
           <Form>
             <Form.Group>
               <Form.Label>종을 입력하세요</Form.Label>
-              <Form.Control type="text" placeholder="예: 스피츠 / 코리안 숏 헤어" />
+              <Form.Control ref={inputKind} type="text" placeholder="예: 스피츠 / 코리안 숏 헤어" />
             </Form.Group>
             <Form.Group>
               <Form.Label>증상을 입력하세요</Form.Label>
-              <Form.Control as="textarea" placeholder="예: 다리를 절뚝거려요" required/>
+              <Form.Control ref={inputSymptom}as="textarea" placeholder="예: 다리를 절뚝거려요"/>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <ConsultingRequest/>
-          <button className="Consulting-cancel" onClick={handleClose}>
+          <button className="Consulting-accept" onClick={submitForm}>수의사 찾기</button>
+          <button className="Consulting-cancel" onClick={() => props.setConsultingDialog(false)}>
             취소하기
           </button>
         </Modal.Footer>
