@@ -27,7 +27,7 @@ public class ExpenditureController {
     @Autowired
     ExpenditureService expenditureService;
 
-    @PostMapping("/expenditures/{user_id}")
+    @PostMapping("/expenditures")
     @ApiOperation(value = "지출내역 등록")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -46,7 +46,7 @@ public class ExpenditureController {
 
     }
 
-    @GetMapping("/allExpenditures")
+    @GetMapping("/expenditures")
     @ApiOperation(value = "지출내역 조회")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -69,7 +69,7 @@ public class ExpenditureController {
         return ResponseEntity.status(500).body(null);
     }
 
-    @PatchMapping("/expenditures/{expenditure_id}")
+    @PatchMapping("/expenditures/{expenditure_id} ")
     @ApiOperation(value = "지출내역 수정")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -87,7 +87,7 @@ public class ExpenditureController {
     }
 
     // 삭제
-    @DeleteMapping("/allExpenditures")
+    @DeleteMapping("/expenditures/{expenditure_id}")
     @ApiOperation(value = "지출내역 삭제")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -103,7 +103,7 @@ public class ExpenditureController {
     }
 
     // 지출금액 합계
-    @GetMapping("/expenditures/totalAmountOfPayment/{expenditures_category}")
+    @GetMapping("/totalAmountOfPayment/{expenditures_category}")
     @ApiOperation(value = "지출내역 총합계")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
