@@ -1,10 +1,10 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.request.*;
+import com.ssafy.api.response.UserChatRoomRes;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserTag;
 
-import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -23,4 +23,8 @@ public interface UserService {
 	List<UserTag> findByUserTag(Long userId);
 
 	void deleteUserTag(Integer userTagId, Long userId);
+
+
+	List<UserChatRoomRes> findUserChatRoom(Long userId);
+
 }

@@ -1,6 +1,6 @@
 package com.ssafy.api.controller;
 
-import com.ssafy.api.response.ChatRoomRes;
+import com.ssafy.api.response.UserChatRoomRes;
 import com.ssafy.api.service.ChatRoomService;
 import com.ssafy.api.service.UserChatRoomService;
 import io.swagger.annotations.Api;
@@ -35,7 +35,7 @@ public class UserChatRoomController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<List<ChatRoomRes>> findChatRoom(@ApiIgnore Authentication authentication){
+    public ResponseEntity<List<UserChatRoomRes>> findChatRoom(@ApiIgnore Authentication authentication){
         return null;
     }
 }

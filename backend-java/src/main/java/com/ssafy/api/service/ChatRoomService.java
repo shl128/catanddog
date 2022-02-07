@@ -9,4 +9,5 @@ public interface ChatRoomService {
     ChatRoom updateChatRoom(UserChatSavePostReq userChatSavePostReq, Long chatRoomId, Long userId);
 
     void deleteChatRoom(Long chatRoomId, Long userId);
+
 }
