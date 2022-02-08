@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  BASE_URL: 'http://localhost:8080/',
+  BASE_URL: 'http://localhost:8081/',
   // BASE_URL: 'http://i6b109.p.ssafy.io/',
 
   ROUTES: {
