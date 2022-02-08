@@ -10,3 +10,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.Top-profile .profilePhoto {
+  width: 10%;
+  border-radius: 50%;
+}
