@@ -19,4 +19,8 @@ public interface ChatRoomService {
     List<ChatRoomRes> findChatRoomTitle(String chatRoomTitle, int page);
 
     List<ChatRoomRes> findChatRoomTag(String chatRoomTagName, int page);
+
+    List<String> findChatRoomSearchTitle(String chatRoomTitle);
+
+    List<String> findChatRoomSearchHash(String chatRoomTagName);
 }

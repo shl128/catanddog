@@ -66,6 +66,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         List<ChatRoomRes> chatRoomResList = new ArrayList<>();
         int pageCnt = (page-1) * 6;
         List<ChatRoom> chatRoomList = chatRoomRepository.findByPage(pageCnt);
+        Long totalPage = (chatRoomRepository.count() / 6) + 1;
         for(int i=0; i<chatRoomList.size(); i++){
             ChatRoomRes chatRoomRes = new ChatRoomRes();
             ChatRoom chatRoom = chatRoomList.get(i);
@@ -73,7 +74,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
             chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
             chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
-
+            chatRoomRes.setTotalPage(totalPage);
             List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
             chatRoomRes.setTagName(tagName);
             chatRoomResList.add(chatRoomRes);
@@ -87,6 +88,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         List<ChatRoomRes> chatRoomResList = new ArrayList<>();
         int pageCnt = (page-1) * 6;
         List<ChatRoom> chatRoomList = chatRoomRepository.findByTitlePage(chatRoomTitle,pageCnt);
+        Long totalPage = chatRoomRepository.countTitle(chatRoomTitle) / 6 + 1;
         for(int i=0; i<chatRoomList.size(); i++){
             ChatRoomRes chatRoomRes = new ChatRoomRes();
             ChatRoom chatRoom = chatRoomList.get(i);
@@ -94,6 +96,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
             chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
             chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
+            chatRoomRes.setTotalPage(totalPage);
 
             List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
             chatRoomRes.setTagName(tagName);
@@ -109,6 +112,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         List<ChatRoomRes> chatRoomResList = new ArrayList<>();
         int pageCnt = (page-1) * 6;
         List<Long> chatRoomId = chatRoomTagRepository.findByTagName(chatRoomTagName, pageCnt);
+        Long totalPage = (chatRoomTagRepository.countTag(chatRoomTagName) / 6) + 1;
         for(int i=0; i< chatRoomId.size(); i++){
             Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId.get(i));
             ChatRoomRes chatRoomRes = new ChatRoomRes();
@@ -116,6 +120,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             chatRoomRes.setChatRoomTitle(chatRoom.get().getChatRoomTitle());
             chatRoomRes.setUserMaxCount(chatRoom.get().getUserMaxCount());
             chatRoomRes.setUserNowCount(chatRoom.get().getUserNowCount());
+            chatRoomRes.setTotalPage(totalPage);
 
             List<String> tagName = chatRoomTagRepository.findByTag(chatRoomId.get(i));
             chatRoomRes.setTagName(tagName);
@@ -123,6 +128,16 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         }
 
         return chatRoomResList;
+    }
+
+    @Override
+    public List<String> findChatRoomSearchTitle(String chatRoomTitle) {
+        return chatRoomTagRepository.findBySearchTitle(chatRoomTitle);
+    }
+
+    @Override
+    public List<String> findChatRoomSearchHash(String chatRoomTagName) {
+        return chatRoomTagRepository.findBySearchHash(chatRoomTagName);
     }
 
 }

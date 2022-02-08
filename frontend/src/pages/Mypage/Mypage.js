@@ -23,6 +23,7 @@ const Mypage = (props) => {
   const [userActive, setUserActive] = useState(null)
   const [update, setUpdate] = useState(false)
   const [show, setShow] = useState(false);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
@@ -35,10 +36,22 @@ const Mypage = (props) => {
       setNickName(res.data.userNickname)
       setPhonNumber(res.data.userPhone)
       setUserKind(res.data.userKind)
+      setUserPhoto(res.data.userPhoto)
       setUserRegdate(res.data.userRegdate)
       setUserGrade(res.data.userGrade)
       setUserActive(res.data.userActive)
       setLoading(true)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+    axios.get(SERVER.BASE_URL + SERVER.ROUTES.tag,
+    {headers: {
+      Authorization: `Bearer ${userData}`
+    }})
+    .then(res => {
+      setTags(res.data.reverse())
     })
     .catch(err => {
       console.log(err)
@@ -74,19 +87,22 @@ const Mypage = (props) => {
     })
   }
 
+  const patchData = {
+    "userActive": 0,
+    "userGrade": 0,
+    "userKind": userKind,
+    "userNickname": nickname,
+    "userPhone": phonNumber,
+    "userPhoto": userPhoto
+  }
+
   const onUpdate = (e) =>{
     e.preventDefault()
+    // console.log(patchData);
     if (update === false) {
       setUpdate(true)
     }
     else {
-      const patchData = {
-        "userActive": 0,
-        "userGrade": 0,
-        "userKind": 0,
-        "userNickname": nickname,
-        "userPhone": phonNumber 
-      }
       axios.patch(SERVER.BASE_URL + SERVER.ROUTES.mypage, patchData,
         {
         headers: {
@@ -143,6 +159,10 @@ const Mypage = (props) => {
   const onUserPhotohandle = (e) => {
     setUserPhoto(e)
   }
+
+  const onTagsHandle = (e) => {
+    setTags(...tags)
+  }
   // const onNicknameConfirm = (e) => {
   // e.preventDefault()
   // // axios
@@ -169,15 +189,14 @@ const Mypage = (props) => {
         :
         <div className='mypageContainer'>
           <div className='mypageImageBox'>
-            <PhotoSide onPhoto={onUserPhotohandle} photoData={userPhoto}/>
-            { userPhoto }
+            <PhotoSide onPhoto={onUserPhotohandle} photoData={userPhoto} patchData={patchData}/>
           </div>
           <div className='mypageContentBox'>
             <MypageTextForm role='유저 종류' data={userKindName} update={update} handleData={onUserKindHandler}/>
             <MypageTextForm role='닉네임' data={nickname} update={update} handleData={onNickNameHandler}/>
             <MypageTextForm role='이메일' data={email} update={update}  handleData={onEmailHandler}/>
             <MypageTextForm role='전화번호' data={phonNumber} update={update}  handleData={onPhonNumberHandler}/>
-            <MypageHashtag role='관심사' update={update} />
+            <MypageHashtag role='관심사' update={update} tags={tags} handleData={onTagsHandle} />
             <div className='buttonContainer'>
               {
                 update === false

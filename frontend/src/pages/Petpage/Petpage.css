@@ -1,3 +1,11 @@
+.Petpage {
+    height: 90%;
+    width: 100%;  
+    background-color: white;
+    border-radius: 2rem;
+  
+  } 
+
 td {
     border: none !important;
     text-align: left;

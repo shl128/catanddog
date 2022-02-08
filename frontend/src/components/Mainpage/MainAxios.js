@@ -12,6 +12,12 @@ function MyProfile() {
   })
 }
 
+function ChangeActive(data) {
+  console.log("정보를 변경합니다", data)
+  return axios.patch(profileUrl, data, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
 
 function MyPet() {
   const [petdata, setPetdata] = useState([])
@@ -24,8 +30,7 @@ function MyPet() {
         }
       })
     .then(function(response) {
-      console.log(response.data)
-      console.log("반려동물 정보 불러오기 성공")
+      console.log("반려동물 정보 불러오기 성공", response.data)
       setPetdata(response.data)
     })
     .catch(function() {
@@ -37,4 +42,4 @@ function MyPet() {
 
 }
 
-export { MyProfile, MyPet }
+export { MyProfile, ChangeActive, MyPet }
