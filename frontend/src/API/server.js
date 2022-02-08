@@ -13,7 +13,7 @@ export default {
     mypage: 'api/v1/myPage',
     userChatroom: 'userChatrooms/',
     userChat: 'userChat/',
-    
+    tag: 'api/v1/myPage/tags',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
     // spendingOfMonth

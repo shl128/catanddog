@@ -37,7 +37,7 @@ function Top() {
         <p>알림</p>
         <p>티어</p>
         <Link to="/mypage">
-          <img alt="프로필사진" src={photo} /> / {nickname}
+          <img className='profilePhoto' alt="프로필사진" src={photo} /> / {nickname}
         </Link>
       </div>
     </div>

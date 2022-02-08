@@ -3,13 +3,14 @@ import axios from 'axios';
 import SERVER from '../../API/server';
 import './Login.css'
 import logo from '../../components/image/로고.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 
 function Login() {
 
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-    
+    let navigate = useNavigate();
+
     const onEmailHandler = (e) => {
       setEmail(e.currentTarget.value);
     };
@@ -36,6 +37,10 @@ function Login() {
             console.log(response.data)
             localStorage.setItem('accessToken', response.data.accessToken);
             alert('로그인이 정상적으로 완료되었습니다');
+
+            return(
+              navigate('/')
+            )
         })
         .catch(function (error) {
           alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다');
