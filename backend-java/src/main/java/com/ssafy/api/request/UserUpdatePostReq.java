@@ -25,7 +25,6 @@ public class UserUpdatePostReq {
         return "UserUpdatePostReq{" +
                 "userPhone='" + userPhone + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
                 ", userKind='" + userKind + '\'' +
                 ", userNickname='" + userNickname + '\'' +
                 ", userGrade='" + userGrade + '\'' +
