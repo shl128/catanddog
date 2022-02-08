@@ -1,6 +1,7 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.response.ChatRoomRes;
+import com.ssafy.api.response.UserChatRoomRes;
 import com.ssafy.api.service.ChatRoomService;
 import com.ssafy.api.service.UserChatRoomService;
 import com.ssafy.common.model.response.BaseResponseBody;
@@ -35,6 +36,7 @@ public class UserChatRoomController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+
     public ResponseEntity<List<ChatRoomRes>> findChatRoom(@ApiIgnore Authentication authentication, int page){
         List<ChatRoomRes> chatRoomResList = chatRoomService.findChatRoom(page);
         return ResponseEntity.status(200).body(chatRoomResList);

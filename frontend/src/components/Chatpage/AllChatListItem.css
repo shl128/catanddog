@@ -1,7 +1,11 @@
 .All-chat-list-item {
+  background-color: white;
+  border-radius: 1rem;
+  border-style: none;
   display: flex;
   justify-content: space-between;
   height: 3rem;
+  margin: 1rem 0rem;
 }
 
 .chat-right {

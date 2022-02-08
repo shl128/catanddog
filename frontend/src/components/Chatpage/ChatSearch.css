@@ -1,0 +1,26 @@
+.Search-chat {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  margin: 1rem 0rem;
+}
+
+.Search-cancel-on {
+  position: absolute;
+  transform: translate(-100%, 0%);
+}
+
+.Search-cancel-off {
+  display: none;
+}
+
+.Search-type {
+  grid-column: 1 / 3;
+}
+
+.Search-content {
+  grid-column: 5 / 12;
+}
+
+.Search-button {
+  grid-column: 12 / 14;
+}

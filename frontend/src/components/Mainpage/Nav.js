@@ -27,8 +27,8 @@ function Navbar() {
         <button className="Nav-button" ><Link to="/spendingOfMonth" className='Nav-link'>이달의 지출</Link></button>
         <button className="Nav-button" >반려동물 케어</button>
         <button className="Nav-button" ><Link to="/Chat" className='Nav-link'>유저들과 소통</Link></button>
-        <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>카툰화</Link></button>
-        <button className="Nav-button" ><Link to="/petpage" className='Nav-link'>꾸미기</Link></button>
+        <button className="Nav-button" ><Link to="/cartoon" className='Nav-link'>카툰화</Link></button>
+        <button className="Nav-button" ><Link to="/emoji" className='Nav-link'>꾸미기</Link></button>
         <button className="Nav-button" onClick={logout}>
           <Link to="/login" className='Nav-link'>로그아웃</Link>
         </button>
