@@ -33,7 +33,7 @@ function Top() {
     <div className="Top-container">
       <div className="Top-profile">
         {userkind === 0 && <Toggle userdata={userdata} userActive={userActive} setUserActive={setUserActive} />}
-        {userkind > 0 && userActive && <ConsultingOk />}
+        {userkind === 0 && userActive && <ConsultingOk />}
         <p>알림</p>
         <p>티어</p>
         <Link to="/mypage">

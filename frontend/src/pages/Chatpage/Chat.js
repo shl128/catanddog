@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import AllChatList from '../../components/Chatpage/AllChatList'
+import { AllRoom } from '../../components/Chatpage/ChatAxios'
 import ChatSearch from '../../components/Chatpage/ChatSearch'
 import CreateChat from '../../components/Chatpage/CreateChat'
 
 function Chat() {
+  const [rooms, setRooms] = useState([])
+
+  useEffect(() => {
+    AllRoom()
+    .then(response => {
+      setRooms(response.data)
+      console.log("전체 채팅방 조회 성공", response.data)
+    })
+    .catch(error => {
+      console.log("전체 채팅방 조회 실패", error)
+    })
+  }, [])
+
+
   return (
     <div>
       <h3>유저들과 소통</h3>
-      <ChatSearch />
+      <ChatSearch setRooms={setRooms}/>
       <div>
         <CreateChat />
-        <AllChatList />
+        <AllChatList rooms={rooms}/>
       </div>
     </div>
   )

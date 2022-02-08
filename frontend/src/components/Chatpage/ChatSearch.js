@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import './ChatSearch.css'
-import { SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle } from './ChatAxios'
+import { SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle, AllRoom } from './ChatAxios'
 
-function ChatSearch() {
+function ChatSearch(props) {
   const searchType = useRef()
   const [target, setTarget] = useState('')
   const [words, setWords] = useState([])
@@ -45,6 +45,7 @@ function ChatSearch() {
     if (searchType.current.value === 'title' && target) {
       SearchRoomByTitle(target)
       .then(response => {
+        props.setRooms(response.data)
         console.log("제목으로 조회 성공", response.data)
       })
       .catch(() =>{
@@ -53,6 +54,7 @@ function ChatSearch() {
     } else if (searchType.current.value === 'tag' && target){
       SearchRoomByTag(target)
       .then(response => {
+        props.setRooms(response.data)
         console.log("해시태그로 조회 성공", response.data)
       })
       .catch(() =>{
@@ -61,6 +63,17 @@ function ChatSearch() {
     } else {
       alert("단어가 없으면 검색할 수 없습니다")
     }
+  }
+
+  function AllRooms() {
+    AllRoom()
+    .then(response => {
+      props.setRooms(response.data)
+      console.log("전체 채팅방 조회 성공", response.data)
+    })
+    .catch(error => {
+      console.log("전체 채팅방 조회 실패", error)
+    })
   }
 
   return (
@@ -78,6 +91,7 @@ function ChatSearch() {
         </div>)}
       </div>
       <button className="Search-button" onClick={SearchRooms}>찾기</button>
+      <button className="Search-button" onClick={AllRooms}>새로고침</button>
     </div>
   )
 }
