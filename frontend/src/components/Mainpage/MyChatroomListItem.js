@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function MyChatroomListItem(chatrooms) {
   return chatrooms.map((chatroom) => {
     return (
-      <div key={chatroom.chatroom_id} className="My-chat-list-item">
+      <div key={chatroom.chat_room_id} className="My-chat-list-item">
         <span>
           <p>{chatroom.chat_room_title}</p>
           {chatroom.chat_room_tag_names.map((tag, idx) => <span key={idx}>#{tag} </span>)}

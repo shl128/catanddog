@@ -3,12 +3,13 @@ import { Modal, Form } from 'react-bootstrap'
 import './ConsultingForm.css'
 
 function ConsultingForm(props) {
+  const inputName = useRef()
   const inputKind = useRef()
   const inputSymptom = useRef()
 
   function submitForm() {
     
-    if (inputKind.current.value && inputSymptom.current.value) {
+    if (inputKind.current.value && inputSymptom.current.value && inputName.current.value) {
       props.setFindDocterDialog(true)
       props.setConsultingDialog(false)
     } else {
@@ -24,6 +25,10 @@ function ConsultingForm(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
+            <Form.Group>
+              <Form.Label>이름을 입력하세요</Form.Label>
+              <Form.Control ref={inputName} type="text" placeholder="예: 쫑이 / 쿠키" />
+            </Form.Group>
             <Form.Group>
               <Form.Label>종을 입력하세요</Form.Label>
               <Form.Control ref={inputKind} type="text" placeholder="예: 스피츠 / 코리안 숏 헤어" />
