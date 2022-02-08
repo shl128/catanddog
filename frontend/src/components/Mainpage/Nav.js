@@ -10,6 +10,7 @@ import ConsultingRequest from './ConsultingRequest'
 function Navbar() {
   const [consultingDialog, setConsultingDialog] = useState(false)
   const [findDocterDialog, setFindDocterDialog] = useState(false)
+  const [consultingData, setConsultingData] = useState([])
 
   const logout = (e) => {
     e.preventDefault()
@@ -33,8 +34,19 @@ function Navbar() {
           <Link to="/login" className='Nav-link'>로그아웃</Link>
         </button>
       </Nav>
-      {consultingDialog && <ConsultingForm consultingDialog={consultingDialog} setConsultingDialog={setConsultingDialog} setFindDocterDialog={setFindDocterDialog}/>}
-      {findDocterDialog && <ConsultingRequest findDocterDialog={findDocterDialog} setFindDocterDialog={setFindDocterDialog}/>}
+      {consultingDialog && 
+        <ConsultingForm 
+          consultingDialog={consultingDialog} 
+          setConsultingDialog={setConsultingDialog} 
+          setFindDocterDialog={setFindDocterDialog}
+          setConsultingData={setConsultingData}
+        />}
+      {findDocterDialog && 
+        <ConsultingRequest 
+          findDocterDialog={findDocterDialog}
+          consultingData={consultingData}
+          setFindDocterDialog={setFindDocterDialog}
+        />}
     </div>
   )
 }
