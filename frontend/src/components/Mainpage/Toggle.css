@@ -1,0 +1,29 @@
+.Toggle-on {
+  background-color: #ff805b;
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 1rem;
+}
+
+.Toggle-on:hover {
+  background-color: #ffe0d7;
+  color: #ff805b;
+  font-weight: bold;
+}
+
+.Toggle-off {
+  background-color: #ffe0d7;
+  color: #ff805b;
+  font-weight: bold;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 1rem;
+}
+
+.Toggle-off:hover {
+  background-color: #ff805b;
+  color: white;
+  font-weight: bold;
+}

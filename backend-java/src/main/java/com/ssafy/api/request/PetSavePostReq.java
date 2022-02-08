@@ -9,12 +9,24 @@ import java.time.OffsetDateTime;
 @Getter
 @Setter
 public class PetSavePostReq {
-    String petPhoto;
     String petName;
     String petKind;
     String petBreed;
-    OffsetDateTime petBirthday;
+    String petBirthday;
     String petGender;
     boolean petNeutering;
     boolean petVaccination;
+
+    @Override
+    public String toString() {
+        return "PetSavePostReq{" +
+                ", petName='" + petName + '\'' +
+                ", petKind='" + petKind + '\'' +
+                ", petBreed='" + petBreed + '\'' +
+                ", petBirthday='" + petBirthday + '\'' +
+                ", petGender='" + petGender + '\'' +
+                ", petNeutering=" + petNeutering +
+                ", petVaccination=" + petVaccination +
+                '}';
+    }
 }

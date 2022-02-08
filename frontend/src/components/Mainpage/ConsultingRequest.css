@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-.Consulting-cancel {
+.Consulting-request {
   margin-right: 1rem;
   border-radius: 1rem;
   border-style: none;
@@ -36,6 +36,6 @@
   font-weight: bold;
 }
 
-.Consulting-cancel:hover {
+.Consulting-request:hover {
   background-color: #ff805b;
 }

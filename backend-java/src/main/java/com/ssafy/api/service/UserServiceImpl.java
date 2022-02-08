@@ -1,6 +1,9 @@
 package com.ssafy.api.service;
 
+import com.ssafy.api.request.UserTagSavePostReq;
 import com.ssafy.api.request.UserUpdatePostReq;
+import com.ssafy.db.entity.UserTag;
+import com.ssafy.db.repository.UserTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,8 @@ import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
+
+import java.util.List;
 
 /**
  *	유저 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
@@ -19,6 +24,8 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	@Autowired
 	UserRepositorySupport userRepositorySupport;
+	@Autowired
+	UserTagRepository userTagRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -79,4 +86,28 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(User user) {
 		userRepository.delete(user);
 	}
+
+	@Override
+	public UserTag saveUserTag(UserTagSavePostReq userTagSavePostReq, Long userId) {
+		UserTag userTag = new UserTag();
+
+		userTag.setUserTagId(userTag.getUserTagId());
+		userTag.setUserId(userId);
+		userTag.setUserTagName(userTagSavePostReq.getUserTagName());
+
+		return userTagRepository.save(userTag);
+	}
+
+	@Override
+	public List<UserTag> findByUserTag(Long userId) {
+
+		return userTagRepository.findByUserTag(userId);
+	}
+
+
+	@Override
+	public void deleteUserTag(Integer userTagId, Long userId) {
+		userTagRepository.deleteUserTag(userTagId, userId);
+	}
+
 }
