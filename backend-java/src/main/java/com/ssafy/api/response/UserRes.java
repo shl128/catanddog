@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Blob;
+
 /**
  * 회원 본인 정보 조회 API ([GET] /api/v1/users/me) 요청에 대한 응답값 정의.
  */
@@ -22,7 +24,7 @@ public class UserRes{
 	String userPhoto;
 	Integer userKind;
 	Integer userGrade;
-	Bool userActive;
+	String userActive;
 	Integer userRegdate;
 
 	public UserRes(String userEmail, Integer userKind, String userPhone, String userPhoto, String userNickname, Integer userGrade, Integer userRegdate) {
