@@ -2,17 +2,13 @@ import {useState, useEffect} from 'react';
 import './ExpenditureInput.css';
 import EditExpenditure from '../image/수정버튼.png';
 import DeleteExpenditure from '../image/삭제버튼.png';
-// import {numberWithCommas} from './NumberWithCommas';
+import {numberWithCommas} from './NumberWithCommas';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import SERVER from '../../API/server';
 
 const ExpenditureTable = (props) => {
   const userData = localStorage.getItem('accessToken');
-
-  const numberWithCommas = (num) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
 
   const onUpdateHandler = (e) => {
     e.prevenDefault()

@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import './SpendingOfMonthpage.css'
 import ExpenditureInput from '../../components/SpendingOfMonthpage/ExpenditureInput'
 import ExpenditureTable from '../../components/SpendingOfMonthpage/ExpenditureTable'
+import {numberWithCommas} from '../../components/SpendingOfMonthpage/NumberWithCommas';
 import axios from 'axios';
 import SERVER from '../../API/server';
 
@@ -14,10 +15,9 @@ const SpendingOfMonthpage = () => {
   var dayString = nowYear + '-' + nowMonth + '-' + nowDay
   
   const ExpenditureUrl = SERVER.BASE_URL + SERVER.ROUTES.Expenditure
-  const TotalPriceUrl = SERVER.BASE_URL + SERVER.ROUTES.TotalPrice
-  // const [categoryFilter,setCategoryFilter] = useState('전체');
   const categoryFilter = useRef("전체");
-  const [monthFilter,setMonthFilter] = useState(monthString);
+  const [justMonthRender,setJustMonthRender] = useState(monthString);
+  const monthFilter = useRef(monthString);
   const [expenditureFilterContents,setExpenditureFilterContents] = useState(null);
   const [totalPrice,setTotalPrice] = useState(0)
   const userData = localStorage.getItem('accessToken');
@@ -26,46 +26,28 @@ const SpendingOfMonthpage = () => {
     textAlign: 'center'
   };
 
-  // async function totalPriceGet() {
-  //   try {
-  //     const response = await axios.get(`${TotalPriceUrl}/{expenditures_category}?expenditureCategory=${categoryFilter}&expenditureDate=${monthFilter}`,
-  //     {headers: {
-  //       Authorization: `Bearer ${userData}`
-  //     }});
-  //     setTotalPrice(response);
-  //     console.log(response)
-  //     console.log(totalPrice)
-  //     console.log("총합계조회성공") 
-  //   } catch (error) {
-  //     console.log("총합계조회실패");
-  //   }
-  // }
-
-  async function filterContentsGet() {
-    try {
-      const response = await axios.get(`${ExpenditureUrl}?expenditureCategory=${categoryFilter.current.value ? categoryFilter.current.value : categoryFilter.current}&expenditureDate=${monthFilter}`,
+  function filterContentsGet() {
+    axios.get(
+      `${ExpenditureUrl}?expenditureCategory=${categoryFilter.current.value ? categoryFilter.current.value : categoryFilter.current}&expenditureDate=${monthFilter.current.value ? monthFilter.current.value : monthFilter.current}`,
       {headers: {
         Authorization: `Bearer ${userData}`
-      }});
-      setExpenditureFilterContents(response.data);
-      totalPriceHandler();
-      console.log(expenditureFilterContents)
-      console.log("지출내역조회성공")
-      // totalPriceGet(); 
-    } catch (error) {
-      console.log(categoryFilter)
-      console.log("지출내역조회실패");
-    }
+      }})
+      .then(response => {
+        setExpenditureFilterContents(response.data);
+        console.log("조회 성공", response.data)
+        totalPriceHandler(response.data);
+      })
+      .catch(() =>{
+        alert("조회 실패")
+      })
   }
 
-  const totalPriceHandler = () => {
-    console.log(expenditureFilterContents)
+  const totalPriceHandler = (filterContents) => {
     var total = 0
-    if (!expenditureFilterContents) {
+    if (!filterContents) {
       setTotalPrice(0)
     } else {
-      console.log(expenditureFilterContents)
-      expenditureFilterContents.map((content) => {
+      filterContents.map((content) => {
         return total += content.expenditurePrice
       })
       setTotalPrice(total)
@@ -73,20 +55,16 @@ const SpendingOfMonthpage = () => {
   }
 
   useEffect(() => {
-    console.log(categoryFilter.current)
     filterContentsGet();
   }, []);
 
   const monthFilterHandler = (e) => {
-    setMonthFilter(e.target.value);
+    setJustMonthRender(e.target.value);
     filterContentsGet();
-    totalPriceHandler();
   };
 
-  const categoryFilterHandler = (e) => {
-    // setCategoryFilter(e.target.value);
+  const categoryFilterHandler = () => {
     filterContentsGet();
-    totalPriceHandler();
   };
 
   if (!expenditureFilterContents) {
@@ -98,7 +76,7 @@ const SpendingOfMonthpage = () => {
       <div className='SpendingOfMonthHeader'>
         <h3 className='my-3'>
           <span>
-            <input id="monthFilter" type="month" className="me-3" style={textAlignCenter} onChange={monthFilterHandler} value={monthFilter}/>
+            <input id="monthFilter" type="month" className="me-3" style={textAlignCenter} onChange={monthFilterHandler} value={justMonthRender} ref={monthFilter}/>
           </span>
           의
           <span>
@@ -110,11 +88,13 @@ const SpendingOfMonthpage = () => {
               <option value="기타">기타</option>
             </select> 
           </span> 
-          지출 금액은 총 {totalPrice}원 입니다.
+          지출 금액은 총  
+          <span className='redColor mx-2'>{numberWithCommas(totalPrice)}</span>
+          원 입니다.
         </h3>
       </div>
       <div>
-        <ExpenditureInput baseDay={dayString}/>
+        <ExpenditureInput baseDay={dayString} function={filterContentsGet}/>
       </div>
       <div>
         <ExpenditureTable contents={expenditureFilterContents}/>

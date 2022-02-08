@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './ExpenditureInput.js';
 import CreateExpenditure from '../image/추가버튼.png';
+import DisabledExpenditure from '../image/추가비활성화버튼.jpg';
 import DatePicker from '../PublicComponents/DatePicker'
-import SelectBox from '../PublicComponents/SelectBox'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import SERVER from '../../API/server';
@@ -13,6 +13,7 @@ const ExpenditureInput = (props) => {
   const [expenditureItem, setExpenditureItem] = useState(null)
   const [expenditurePrice, setExpenditurePrice] = useState(null)
   const userData = localStorage.getItem('accessToken');
+  const ExpenditureUrl = SERVER.BASE_URL + SERVER.ROUTES.Expenditure
   const textAlignCenter = {
     textAlign: 'center'
   };
@@ -29,16 +30,18 @@ const ExpenditureInput = (props) => {
     setExpenditurePrice(e.target.value)
   }
   const onSubmitHandler = (e) => {
-    e.prevenDefault()
+    e.preventDefault()
+    const newContents = {
+      'expenditureDate': expenditureDate,
+      'expenditureCategory': expenditureCategory,
+      'expenditureItem': expenditureItem,
+      'expenditurePrice': expenditurePrice
+    }
+    
     axios
       .post(
-        SERVER.BASE_URL + SERVER.ROUTES.Expenditure,
-        {
-          'expenditureDate': expenditureDate,
-          'expenditureCategory': expenditureCategory,
-          'expenditureItem': expenditureItem,
-          'expenditurePrice': expenditurePrice
-        },
+        `${ExpenditureUrl}?expenditureCategory=${expenditureCategory}&expenditureDate=${expenditureDate}&expenditureItem=${expenditureItem}&expenditurePrice=${expenditurePrice}`,
+        newContents,
         {headers: {
           Authorization: `Bearer ${userData}`
         }}
@@ -46,17 +49,26 @@ const ExpenditureInput = (props) => {
       .then(function (response) {
         console.log(response)
       })
+      .then(() => {  
+        props.function()
+      }) 
       .catch(function (error) {
-        // console.log(error);
+        console.log(error);
       });
+
   }
 
   return (
     <div className="ExpenditureTable">
       <div className='ExpenditureCreateButtonCol'>
-        <button className='ExpenditureButton' onClick={onSubmitHandler}>
-          <img src={CreateExpenditure} alt="no" className='ExpenditureButton'/>
-        </button>
+        {
+          expenditureItem === null || expenditurePrice === null || expenditureItem === '' || expenditurePrice === ''
+          ? <img src={DisabledExpenditure} alt="no" className='ExpenditureButton'/>
+          :
+          <button className='ExpenditureButton' onClick={onSubmitHandler}>
+            <img src={CreateExpenditure} alt="no" className='ExpenditureButton'/>
+          </button>
+        }
       </div>
       <div className='ExpenditureDateCol'>
         <DatePicker type='date' style={textAlignCenter} change={dateHandler} baseDay={expenditureDate}/>
