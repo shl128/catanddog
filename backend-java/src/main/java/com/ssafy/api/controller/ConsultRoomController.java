@@ -66,7 +66,7 @@ public class ConsultRoomController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<List<User>> find(){
+    public ResponseEntity<List<User>> findActiveUser(){
         List<User> activeUserList = consultRoomService.findActiveUser();
         if(activeUserList != null){
             return ResponseEntity.status(200).body(activeUserList);
