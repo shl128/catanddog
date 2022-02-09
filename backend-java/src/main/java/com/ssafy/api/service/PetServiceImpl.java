@@ -2,11 +2,18 @@ package com.ssafy.api.service;
 
 import com.ssafy.api.request.PetSavePostReq;
 import com.ssafy.api.request.PetUpdatePostReq;
+import com.ssafy.api.response.PetRes;
 import com.ssafy.db.entity.Pet;
 import com.ssafy.db.repository.PetRepository;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 // 서비스 클래스 - 데이터 가공
@@ -32,8 +39,9 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public List<Pet> findByPet(Long userId) {
-        return petRepository.findByPet(userId);
+    public List<Pet> findByPet(Long userId) throws IOException {
+        return  petRepository.findByPet(userId);
+
     }
 
     @Override
