@@ -14,7 +14,6 @@ package com.ssafy.api.request;
 @ApiModel("UserUpdatePostRequest")
 public class UserUpdatePostReq {
     String userPhone;
-    String userPhoto;
     Integer userKind;
     String userNickname;
     Integer userGrade;
@@ -24,7 +23,6 @@ public class UserUpdatePostReq {
     public String toString() {
         return "UserUpdatePostReq{" +
                 "userPhone='" + userPhone + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
                 ", userKind='" + userKind + '\'' +
                 ", userNickname='" + userNickname + '\'' +
                 ", userGrade='" + userGrade + '\'' +

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from "react-router-dom";
-import Myopenvidu from '../../components/VideoChat/Myopenvidu';
+import VideoRoomComponent from '../../components/VideoChat/VideoRoomComponent';
 import './Chatting.css'
 import SERVER from '../../API/server'
 import axios from 'axios';
@@ -29,7 +29,7 @@ function Chatting () {
         <div className='Chatting'>
             {
                 nickname !== '' 
-                && <Myopenvidu chatroomId={chatroomId} nickname={nickname} want={true}/>
+                && <VideoRoomComponent chatroomId={chatroomId} nickname={nickname} want={true}/>
             }
             
         </div>

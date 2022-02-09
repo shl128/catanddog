@@ -46,7 +46,7 @@ const PhotoSide = (props) => {
             { 
               imgFile === '' 
               ? <img src={noImage} className="myPhoto-image" alt="no" />
-              : <img src={imgFile} className="myPhoto-image" alt="no" />
+              : <img width='500' height='500' src={imgFile} className="myPhoto-image" alt="no" />
             }
             <div className="mt-1">
               <label className="photoButton" htmlFor="input-file">프로필 사진 변경</label>

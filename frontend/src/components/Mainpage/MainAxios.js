@@ -5,6 +5,7 @@ import SERVER from '../../API/server'
 const profileUrl = SERVER.BASE_URL + SERVER.ROUTES.mypage
 const petUrl = SERVER.BASE_URL + SERVER.ROUTES.createPet
 const userData = localStorage.getItem('accessToken')
+const petImgUrl = SERVER.BASE_URL + "petPage/pets/image/petPhoto"
 
 function MyProfile() {
   return axios.get(profileUrl, {
@@ -21,6 +22,7 @@ function ChangeActive(data) {
 
 function MyPet() {
   const [petdata, setPetdata] = useState([])
+  const [petTmp, setPetTmp] = useState([])
 
   useEffect(() => {
     axios.get(petUrl,
@@ -30,15 +32,37 @@ function MyPet() {
         }
       })
     .then(function(response) {
-      console.log("반려동물 정보 불러오기 성공", response.data)
-      setPetdata(response.data)
+      console.log("반려동물 정보 불러오기 성공")
+      // setPetdata(response.data)
+  
+      for(let i=0; i<response.data.length; i++){
+        let formData = new FormData();
+        formData.append('petPhoto',response.data[i].petPhoto);
+        axios.post(petImgUrl,formData,
+          {
+            responseType:'blob'
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${userData}`
+            }
+          })
+          .then((res)=>{
+            let url = window.URL || window.webkitURL;
+            let imgsrc = url.createObjectURL((new Blob([res.data], { type: 'image/png' })))
+            response.data[i].petPhotoImg = imgsrc;
+            setPetTmp(petTmp.concat(response.data[i]))
+          })
+      }
+      console.log(petTmp);
+      setPetdata(petTmp);
     })
-    .catch(function() {
+    .catch(function(e) {
       console.log("반려동물 정보 불러오기 실패")
+      console.log(e);
     })
   }, [])
-
-  return petdata
+  return petTmp;
 
 }
 
