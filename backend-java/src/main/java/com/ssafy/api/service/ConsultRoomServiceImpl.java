@@ -3,10 +3,14 @@ package com.ssafy.api.service;
 import com.ssafy.api.request.ConsultSavePostReq;
 import com.ssafy.db.entity.ConsultRoom;
 import com.ssafy.db.entity.ConsultRoomHistory;
+import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.ConsultRoomHistoryRepository;
 import com.ssafy.db.repository.ConsultRoomRepository;
+import com.ssafy.db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("consultRoomService")
 public class ConsultRoomServiceImpl implements ConsultRoomService{
@@ -15,6 +19,9 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
 
     @Autowired
     ConsultRoomHistoryRepository consultRoomHistoryRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public ConsultRoom saveConsultRoom(Long hostId, ConsultSavePostReq consultSavePostReq) {
@@ -43,5 +50,11 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
            consultRoomHistoryRepository.save((consultRoomHistory));
            consultRoomRepository.deleteByUserId(userId);
         }
+    }
+
+    @Override
+    public List<User> findActiveUser() {
+        List<User> activeUserList = userRepository.findActiveUser();
+        return activeUserList;
     }
 }
