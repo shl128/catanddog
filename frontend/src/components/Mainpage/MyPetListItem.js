@@ -8,15 +8,11 @@ const userData = localStorage.getItem('accessToken')
 
 // 반려동물 개별 항목 함수
 function MyPetListItem(pets) {
-  // console.log("pets")
-  // console.log(pets)
-
-  for(let i=0; i<pets.length; i++){
-    console.log(pets.petPhotoImg)
-    console.log(pets[i].petPhoto)
-  }
+  console.log("pets");
+  console.log(pets);
   return pets.map((pet) => {
-      console.log(pet.petPhotoImg)
+    //console.log(pet);
+  //    console.log(pet.petPhotoImg)
   //   let data = new FormData();
   //   data.append('petPhoto', pet.petPhoto);
   //   let xhr = new XMLHttpRequest();
@@ -35,10 +31,9 @@ function MyPetListItem(pets) {
   // }
     return (
       <div key={pet.petId}>
-        <div>{pet.petPhoto}</div>
         <Link to="/petpage">
           <button className="My-pet-list-item">
-            <img className="My-pet-img" alt="사진" src={pet.petPhoto}/>
+            <img className="My-pet-img" alt="사진" src={pet.petPhotoImg}/>
             <span>
               <p>{pet.petName}</p>
               <p>{pet.petBreed}/살</p>
