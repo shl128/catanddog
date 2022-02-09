@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calenderpage, Chatting } from './pages/index'
+import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calenderpage, Emoji, Cartoon, Chatting } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -18,11 +18,13 @@ ReactDOM.render(
         <Route path="Chat" element={<Chat />} />
         <Route path="spendingOfMonth" element={<SpendingOfMonthpage />} />
         <Route path="calenderpage" element={<Calenderpage />} />
+        <Route path="emoji" element={<Emoji />} />
+        <Route path="cartoon" element={<Cartoon />} />
       </Route>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/passwordFind" element={<PasswordFind />} />
-      <Route path="/chatting" element={<Chatting/>} />
+      <Route path="/chatting/:chatroomId" element={<Chatting/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

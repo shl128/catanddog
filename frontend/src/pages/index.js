@@ -8,4 +8,6 @@ export { default as Chatting } from './ChattingPage/Chatting'
 export { default as Chat } from './Chatpage/Chat'
 export { default as SpendingOfMonthpage } from './SpendingOfMonthpage/SpendingOfMonthpage';
 export { default as Calenderpage } from './Calenderpage/Calenderpage';
+export { default as Emoji } from './Emojipage/Emoji'
+export { default as Cartoon } from './Cartoonpage/Cartoon'
 
