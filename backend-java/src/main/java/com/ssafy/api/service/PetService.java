@@ -11,7 +11,7 @@ import java.util.List;
 
 // 펫 비즈니스 로직처리 (서비스 클래스)
 public interface PetService {
-    Pet savePet(PetSavePostReq petSavePostReq, Long userId, String petPhotoName);
+    Pet savePet(PetSavePostReq petSavePostReq, Long userId, String photoImg);
     List<Pet> findByPet(Long userId) throws IOException;
-    Pet update(PetUpdatePostReq petUpdatePostReq, Long petId, Long userId);
+    Pet update(PetUpdatePostReq petUpdatePostReq, Long petId, Long userId, String photoImg);
 }
