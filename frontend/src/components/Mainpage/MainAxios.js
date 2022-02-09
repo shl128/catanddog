@@ -22,6 +22,7 @@ function ChangeActive(data) {
 
 function MyPet() {
   const [petdata, setPetdata] = useState([])
+  const [petTmp, setPetTmp] = useState([])
 
   useEffect(() => {
     axios.get(petUrl,
@@ -50,17 +51,18 @@ function MyPet() {
             let url = window.URL || window.webkitURL;
             let imgsrc = url.createObjectURL((new Blob([res.data], { type: 'image/png' })))
             response.data[i].petPhotoImg = imgsrc;
+            setPetTmp(petTmp.concat(response.data[i]))
           })
       }
-      console.log(response.data);
-      setPetdata(response.data);
+      console.log(petTmp);
+      setPetdata(petTmp);
     })
     .catch(function(e) {
       console.log("반려동물 정보 불러오기 실패")
       console.log(e);
     })
   }, [])
-  return petdata
+  return petTmp;
 
 }
 
