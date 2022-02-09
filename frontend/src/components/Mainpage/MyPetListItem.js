@@ -8,30 +8,37 @@ const userData = localStorage.getItem('accessToken')
 
 // 반려동물 개별 항목 함수
 function MyPetListItem(pets) {
-  const [petImg, setPetImg] = useState("");
+  // console.log("pets")
+  // console.log(pets)
 
-  return pets.map((pet) => {
-    let data = new FormData();
-    data.append('petPhoto', pet.petPhoto);
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST',petUrl,true);
-    xhr.setRequestHeader('Authorization','Bearer' + userData);
-    xhr.responseType = 'blob';
-    xhr.send(data);
-    xhr.onreadystatechange = function(){
-    if(this.readyState === 4 && this.status === 200){
-      let url = window.URL || window.webkitURL;
-      console.log(this.response)
-      let imgsrc = url.createObjectURL(this.response);
-      setPetImg(imgsrc);
-      console.log(petImg);
-    }
+  for(let i=0; i<pets.length; i++){
+    console.log(pets.petPhotoImg)
+    console.log(pets[i].petPhoto)
   }
+  return pets.map((pet) => {
+      console.log(pet.petPhotoImg)
+  //   let data = new FormData();
+  //   data.append('petPhoto', pet.petPhoto);
+  //   let xhr = new XMLHttpRequest();
+  //   xhr.open('POST',petUrl,true);
+  //   xhr.setRequestHeader('Authorization','Bearer' + userData);
+  //   xhr.responseType = 'blob';
+  //   xhr.send(data);
+  //   xhr.onreadystatechange = function(){
+  //   if(this.readyState === 4 && this.status === 200){
+  //     let url = window.URL || window.webkitURL;
+  //     console.log(this.response)
+  //     let imgsrc = url.createObjectURL(this.response);
+  //     setPetImg(imgsrc);
+  //     console.log(petImg);
+  //   }
+  // }
     return (
       <div key={pet.petId}>
+        <div>{pet.petPhoto}</div>
         <Link to="/petpage">
           <button className="My-pet-list-item">
-            <img className="My-pet-img" alt="사진" src={petImg}/>
+            <img className="My-pet-img" alt="사진" src={pet.petPhoto}/>
             <span>
               <p>{pet.petName}</p>
               <p>{pet.petBreed}/살</p>
