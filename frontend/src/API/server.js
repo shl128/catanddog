@@ -15,6 +15,7 @@ export default {
     userChatroom: 'userChatrooms/',
     userChat: 'userChat/',
     tag: 'api/v1/myPage/tags',
+    consultRequest: '/consultRequest/',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
     // spendingOfMonth

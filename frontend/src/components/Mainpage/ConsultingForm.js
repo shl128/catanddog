@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { Modal, Form } from 'react-bootstrap'
 import './ConsultingForm.css'
+import { ConsultingRequest } from './MainAxios'
 
 function ConsultingForm(props) {
   const inputName = useRef()
@@ -10,14 +11,21 @@ function ConsultingForm(props) {
   function submitForm() {
     
     if (inputKind.current.value && inputSymptom.current.value && inputName.current.value) {
-      props.setFindDocterDialog(true)
-      props.setConsultingDialog(false)
       const inputData = {
         petName: inputName.current.value,
         petKind: inputKind.current.value,
         petContent: inputSymptom.current.value
       }
-      props.setConsultingData(inputData)
+      ConsultingRequest(inputData)
+      .then(() => {
+        console.log("상담 신청 성공")
+        props.setFindDocterDialog(true)
+        props.setConsultingDialog(false)
+        props.setConsultingData(inputData)
+      })
+      .catch(() => {
+        console.log("상담 신청 실패")
+      })
     } else {
       alert("이름, 종, 증상을 모두 입력하세요")
     }

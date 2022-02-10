@@ -8,8 +8,7 @@ function ConsultingAlarmItem(props) {
 
   return (
     <div className="Alarm-item">
-      <span>{props.alarmItem.petKind}상담이 있어요 </span>
-      <button onClick={() => setShow(true)}>/ 펼쳐보기</button>
+      <button onClick={() => setShow(true)}>{props.alarmItem.petKind}상담이 있어요 </button>
 
       <Modal show={show} centered="true">
         <Modal.Header>

@@ -31,4 +31,10 @@ function MyPet() {
   })
 }
 
-export { MyProfile, ChangeActive, MyChatRoom, MyPet }
+function ConsultingRequest(data) {
+  return axios.post(petUrl, data, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
+
+export { MyProfile, ChangeActive, MyChatRoom, MyPet, ConsultingRequest }

@@ -25,8 +25,7 @@ function Top() {
       setPhoto(response.data.userPhoto)
       setUserActive(response.data.userActive)
       setUserdata(response.data)
-      console.log("회원정보 가져오기 성공")
-      console.log(response.data)
+      console.log("회원정보 가져오기 성공", response.data)
     })
     .catch(() => {
       console.log("회원정보 가져오기 실패")
