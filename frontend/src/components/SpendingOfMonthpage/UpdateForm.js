@@ -4,7 +4,7 @@ import UpdateDeleteButtons from './UpdateDeleteButtons'
 import { Form } from 'react-bootstrap';
 import DatePicker from '../PublicComponents/DatePicker';
 
-const ExpenditureTable = (props) => {
+const UpdateForm = (props) => {
   var YYYYMMDD = props.expenditureDate.substring(0,10);
   const [expenditureDate, setExpenditureDate] = useState(YYYYMMDD)
   const [expenditureCategory, setExpenditureCategory] = useState(props.expenditureCategory)
@@ -65,5 +65,5 @@ const ExpenditureTable = (props) => {
   
 }
 
-export default ExpenditureTable;
+export default UpdateForm;
 
