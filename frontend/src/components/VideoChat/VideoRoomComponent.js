@@ -56,7 +56,7 @@ class VideoRoomComponent extends Component {
 
     componentDidMount() {
         const openViduLayoutOptions = {
-            maxRatio: 2 / 2, // The narrowest ratio that will be used (default 2x3)
+            maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
             minRatio: 9 / 16, // The widest ratio that will be used (default 16x9)
             fixedRatio: false, // If this is true then the aspect ratio of the video is maintained and minRatio and maxRatio are ignored (default false)
             bigClass: 'OV_big', // The class to add to elements that should be sized bigger

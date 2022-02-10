@@ -13,7 +13,7 @@ function MyChatroomListItem({chatroom}) {
       </div>
       <div className="My-chat-list-item-right">
         <span>{chatroom.userNowCount}/{chatroom.userMaxCount}</span>
-        <Link to={`/chatting/${chatroom.chat_room_id}`}>
+        <Link to={`/chatting/${chatroom.chatRoomId}`}>
           <FontAwesomeIcon icon={faLongArrowAltRight} size="3x" style={{color: '#ff8767'}}/>
         </Link>
       </div>
