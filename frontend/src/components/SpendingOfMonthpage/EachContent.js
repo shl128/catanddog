@@ -12,7 +12,6 @@ const EachContent = (props) => {
   const [expenditureCategory, setExpenditureCategory] = useState(props.expenditureCategory)
   const [expenditureItem, setExpenditureItem] = useState(props.expenditureItem)
   const [expenditurePrice, setExpenditurePrice] = useState(props.expenditurePrice)
-  const [commasNumber,setCommasNumber] = useState(numberWithCommas(props.expenditurePrice))
   const textAlignCenter = {
     textAlign: 'center'
   };
@@ -30,7 +29,7 @@ const EachContent = (props) => {
   }
 
   return (
-        <div className="ExpenditureTable mt-2" id={props.expenditureId}> 
+        <div className="ExpenditureTable mt-2 divFixHeight" id={props.expenditureId}> 
             <div className='ExpenditureDateCol'>
                 {
                     isUpdating === false
