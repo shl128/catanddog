@@ -27,6 +27,7 @@
     "install": "^0.13.0",
     "jquery": "^3.6.0",
     "npm": "^8.3.2",
+    "photoeditorsdk": "^5.15.0",
     "openvidu-browser": "^2.21.0-beta1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
