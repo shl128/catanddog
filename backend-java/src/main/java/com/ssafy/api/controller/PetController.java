@@ -27,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -53,13 +54,16 @@ public class PetController {
         String root_path = request.getSession().getServletContext().getRealPath("/");
 
         //파일 업로드
-        String petPhotoName = null;
+        String photoImg = null;
         if (petPhoto != null) {
-            petPhotoName = root_path + UUID.randomUUID().toString() + ".PNG";
-            File petPhotoFile = new File(petPhotoName);
-            petPhoto.transferTo(petPhotoFile);
+            Base64.Encoder encoder = Base64.getEncoder();
+            byte[] photoEncode = encoder.encode(petPhoto.getBytes());
+            photoImg = new String(photoEncode, "UTF8");
+//            petPhotoName = root_path + UUID.randomUUID().toString() + ".PNG";
+//            File petPhotoFile = new File(petPhotoName);
+//            petPhoto.transferTo(petPhotoFile);
         }
-        if (petService.savePet(petSavePostReq, userId, petPhotoName) != null) {
+        if (petService.savePet(petSavePostReq, userId, photoImg) != null) {
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
@@ -96,14 +100,18 @@ public class PetController {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
 
+        String photoImg = null;
         if(petPhoto != null){
-            String petPhotoName = UUID.randomUUID().toString();
-            petUpdatePostReq.setPetPhoto(petPhotoName);
-            File petPhotoFile = new File(petPhotoName + ".PNG");
-            petPhoto.transferTo(petPhotoFile);
+            Base64.Encoder encoder = Base64.getEncoder();
+            byte[] photoEncode = encoder.encode(petPhoto.getBytes());
+            photoImg = new String(photoEncode, "UTF8");
+//            String petPhotoName = UUID.randomUUID().toString();
+//            petUpdatePostReq.setPetPhoto(petPhotoName);
+//            File petPhotoFile = new File(petPhotoName + ".PNG");
+//            petPhoto.transferTo(petPhotoFile);
         }
 
-        if(petService.update(petUpdatePostReq, petId, userId) != null){
+        if(petService.update(petUpdatePostReq, petId, userId, photoImg) != null){
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
