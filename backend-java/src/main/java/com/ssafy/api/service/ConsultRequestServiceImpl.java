@@ -59,6 +59,11 @@ public class ConsultRequestServiceImpl implements ConsultRequestService{
     }
 
     @Override
+    public void deleteConsultRequestByUserId(Long userId) {
+        consultRequestRepository.deleteConsultRequestByUserId(userId);
+    }
+
+    @Override
     public void modifyConsultRequestState(Long hostId) {
         consultRequestRepository.modifyConsultRequestState(hostId);
     }
