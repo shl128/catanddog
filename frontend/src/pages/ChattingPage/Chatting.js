@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 function Chatting () {
-    let chatroomId = useParams().chatroomId;
+    let chatRoomId = useParams().chatRoomId;
     const [nickname, setNickName] = useState('');
     const userData =  localStorage.getItem('accessToken')
 
@@ -29,7 +29,7 @@ function Chatting () {
         <div className='Chatting'>
             {
                 nickname !== '' 
-                && <VideoRoomComponent chatroomId={chatroomId} nickname={nickname} want={true}/>
+                && <VideoRoomComponent chatroomId={chatRoomId} nickname={nickname} want={true}/>
             }
             
         </div>
