@@ -4,6 +4,7 @@ import com.ssafy.api.request.ConsultSavePostReq;
 import com.ssafy.db.entity.ConsultRoom;
 import com.ssafy.db.entity.ConsultRoomHistory;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.repository.ConsultRequestRepository;
 import com.ssafy.db.repository.ConsultRoomHistoryRepository;
 import com.ssafy.db.repository.ConsultRoomRepository;
 import com.ssafy.db.repository.UserRepository;
@@ -23,6 +24,9 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    ConsultRequestRepository consultRequestRepository;
+
     @Override
     public ConsultRoom saveConsultRoom(Long doctorId, ConsultSavePostReq consultSavePostReq) {
         ConsultRoom consultRoom = new ConsultRoom();
@@ -31,7 +35,11 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
         consultRoom.setPetKind(consultSavePostReq.getPetKind());
         consultRoom.setPetContent(consultSavePostReq.getPetContent());
         consultRoom.setPetName(consultSavePostReq.getPetName());
-
+        userRepository.updateUserActive(doctorId);
+        // host_id 로 온 신청 내역 is_done=1로 변경
+        consultRequestRepository.modifyConsultRequestState(consultSavePostReq.getHostId());
+        // host_id 로 온 신청 내역 삭제
+        consultRequestRepository.deleteCurrentConsultRequest(doctorId, consultSavePostReq.getHostId());
 
         return consultRoomRepository.save((consultRoom));
     }

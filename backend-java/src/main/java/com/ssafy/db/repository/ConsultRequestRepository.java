@@ -24,4 +24,9 @@ public interface ConsultRequestRepository extends JpaRepository<ConsultRequest, 
     @Modifying
     @Query(value = "DELETE from consult_request where user_id = :userId and host_id = :hostId",nativeQuery = true)
     void deleteCurrentConsultRequest(Long userId, Long hostId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE consult_request set is_done=1 where host_id = :hostId",nativeQuery = true)
+    void modifyConsultRequestState(Long hostId);
 }
