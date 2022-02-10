@@ -27,7 +27,7 @@
     grid-column-end: 8;
   }
 
-.ExpenditureContentCol {
+.ExpenditureItemCol {
     grid-column-start: 8;
     grid-column-end: 12;
   }
@@ -46,4 +46,11 @@
 hr {
     grid-column-start: 3;
     grid-column-end: 15;
+}
+
+button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
 }

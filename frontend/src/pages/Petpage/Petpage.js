@@ -35,12 +35,10 @@ const Petpage = () => {
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]); 
       setPetPhoto(e.target.files[0]);
-      // setPetPhoto(reader); 
-      // console.log(e.target.files[0])
     }
   }
-  const handlePetName = () => {
-    setPetName(document.getElementById('petName').value);
+  const handlePetName = (e) => {
+    setPetName(e.target.value);
   }
   const handlePetKind = () => {
     if (petKind === "강아지") {
@@ -48,10 +46,9 @@ const Petpage = () => {
     } else {
       setPetKind("강아지");
     }
-    console.log(petKind)
   }
-  const handlePetBreed = () => {
-    setPetBreed(document.getElementById('petBreed').value);
+  const handlePetBreed = (e) => {
+    setPetBreed(e.target.value);
   }
   const handleKnowBirth = () => {
     setKnowBirth(!knowBirth);
@@ -62,7 +59,6 @@ const Petpage = () => {
     } else {
       setPetBirthday(document.getElementById('petBirthMonth').value)
     }
-    console.log(petBirthday);
   }
   const handlePetGender = () => {
     if (petGender === "남자") {
@@ -86,26 +82,23 @@ const Petpage = () => {
     }
   }
 
-  const onSubmitHandler = async () => {
+  const onSubmitHandler = () => {
     let formData = new FormData();
-    formData.append('petPhoto', petPhoto);
-    formData.append('petName', petName);
-    formData.append('petKind', petKind);
-    formData.append('petBreed', petBreed);
-    formData.append('petBirthday', petBirthday);
-    formData.append('petGender', petGender);
-    formData.append('petNeutering', petNeutering);
-    formData.append('petVaccination', petVaccination);
-    
-    console.log(userData)
-    console.log(formData)
-    console.log(petName)
-    console.log(petKind)
-    console.log(petBreed)
-    console.log(petBirthday)
-    console.log(petGender)
-    console.log(petNeutering)
-    console.log(petVaccination)
+    const object = {
+      'petPhoto':petPhoto, 
+      'petName':petName, 
+      'petKind':petKind, 
+      'petBreed':petBreed, 
+      'petBirthday':petBirthday, 
+      'petGender':petGender, 
+      'petBirthday':petBirthday, 
+      'petNeutering':petNeutering, 
+      'petVaccination':petVaccination}
+
+    for (const data in object) {
+      formData.append(data, object[data])
+    }
+
     if (petName === null && petBreed !== null && petBirthday !== null) {
       alert('반려동물 이름을 입력해주세요.');
       return;
@@ -143,16 +136,11 @@ const Petpage = () => {
           "Content-Type": "multipart/form-data",
         }}
       )
-      .then(function (
-        response) {
-        console.log(petPhoto)
-        // console.log(response)
+      .then((response) => {
         alert('반려동물 추가가 정상적으로 완료되었습니다!');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
-        console.log(petPhoto)
-        console.log(formData)
         alert('오류가 발생하였습니다.');
       });
   }
@@ -166,13 +154,13 @@ const Petpage = () => {
             <Col className="mt-5">
               { 
                 imgBase64 == null 
-                ? <img src={noImage} className="pet-image" alt="no" style={{"width":"300px", "height":"400px"}} />
-                : <img src={imgBase64} className="pet-image" alt="no" style={{"width":"300px", "height":"400px"}} />
+                ? <img src={noImage} className="pet-image" alt="no" />
+                : <img src={imgBase64} className="pet-image" alt="no" />
               }
               <div className="mt-1">
                 <label className="button" for="input-file">프로필 사진 변경</label>
                 <input type="file"
-                  name="input-file" id="input-file" 
+                  id="input-file" 
                   accept='image/*'
                   onChange={handleChangeFile}
                   style={{display:"none"}}
@@ -186,7 +174,7 @@ const Petpage = () => {
                     <tr>
                       <td>이름</td>
                       <td>
-                        <Form.Control id="petName" className="w-75" type="text" placeholder="반려동물 이름" onChange={handlePetName}/>
+                        <Form.Control className="w-75" type="text" placeholder="반려동물 이름" onChange={handlePetName}/>
                       </td>
                     </tr>
                     <tr>
@@ -201,7 +189,7 @@ const Petpage = () => {
                     <tr>
                       <td>품종</td>
                       <td>
-                        <Form.Control id="petBreed" className="w-75" type="text" placeholder="반려동물 품종" onChange={handlePetBreed}/>
+                        <Form.Control className="w-75" type="text" placeholder="반려동물 품종" onChange={handlePetBreed}/>
                       </td>
                     </tr>
                     <tr>
@@ -213,7 +201,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="생일을 알아요!"
-                                name="group1"
                                 type={type}
                                 id={`birthday-${type}-1`}
                                 checked={knowBirth === true}
@@ -222,7 +209,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="생일을 몰라요!"
-                                name="group1"
                                 type={type}
                                 id={`birthday-${type}-2`}
                                 checked={knowBirth === false}
@@ -242,8 +228,6 @@ const Petpage = () => {
                                   placeholder="Due date"
                                   id="petBirthDate"
                                   required onChange={handlePetBirthday}
-                                  // value={date}
-                                  // onChange={(e) => setDate(e.target.value)}
                                 />
                               </Form.Group>
                               :
@@ -253,13 +237,8 @@ const Petpage = () => {
                                   placeholder="Due date"
                                   id="petBirthMonth"
                                   required onChange={handlePetBirthday}
-                                  // value={date}
-                                  // onChange={(e) => setDate(e.target.value)}
                                 />
-                              </Form.Group>
-                              // ? <input type="date" id="petBirthDate" required onChange={handlePetBirthday}></input>
-                              // : <input type="month" id="petBirthMonth" required onChange={handlePetBirthday}></input>
-                                  
+                              </Form.Group>   
                             }
                           </li>
                         </ul>
@@ -274,7 +253,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="남자"
-                                name="group2"
                                 type={type}
                                 id={`gender-${type}-1`}
                                 checked={petGender === "남자"}
@@ -283,7 +261,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="여자"
-                                name="group2"
                                 type={type}
                                 id={`gender-${type}-2`}
                                 checked={petGender === "여자"}
@@ -303,7 +280,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="Yes"
-                                name="group3"
                                 type={type}
                                 id={`neutering-${type}-1`}
                                 checked={petNeutering === true}
@@ -312,7 +288,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="No"
-                                name="group3"
                                 type={type}
                                 id={`neutering-${type}-2`}
                                 checked={petNeutering === false}
@@ -332,7 +307,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="Yes"
-                                name="group1"
                                 type={type}
                                 id={`inline-${type}-1`}
                                 checked={petVaccination === true}
@@ -341,7 +315,6 @@ const Petpage = () => {
                               <Form.Check
                                 inline
                                 label="No"
-                                name="group1"
                                 type={type}
                                 id={`inline-${type}-2`}
                                 checked={petVaccination === false}
