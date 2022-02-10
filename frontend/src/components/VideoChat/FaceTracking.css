@@ -1,0 +1,20 @@
+.Face {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.Face-container {
+  position: absolute;
+  width: 940px;
+  height: 650px;
+}
+
+.Emoji-on {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.Emoji-off {
+  display: none;
+}

@@ -11,6 +11,7 @@ export default {
     password: 'api/v1/restAuth/loginrestAuth/password/',
     eamailConfirm: 'api/v1/myPage/',
     mypage: 'api/v1/myPage',
+    myChatRoom: 'api/v1/myPage/rooms/',
     userChatroom: 'userChatrooms/',
     userChat: 'userChat/',
     tag: 'api/v1/myPage/tags',
