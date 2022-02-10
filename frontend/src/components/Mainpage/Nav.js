@@ -30,6 +30,7 @@ function Navbar() {
         <button className="Nav-button" ><Link to="/Chat" className='Nav-link'>유저들과 소통</Link></button>
         <button className="Nav-button" ><Link to="/cartoon" className='Nav-link'>카툰화</Link></button>
         <button className="Nav-button" ><Link to="/emoji" className='Nav-link'>꾸미기</Link></button>
+        <button className="Nav-button" ><Link to="/faceTest" className='Nav-link'>트래킹테스트</Link></button>
         <button className="Nav-button" onClick={logout}>
           <Link to="/login" className='Nav-link'>로그아웃</Link>
         </button>

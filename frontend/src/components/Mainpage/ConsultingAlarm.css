@@ -1,0 +1,8 @@
+.Alarm-list {
+  border-radius: 0.5rem;
+  background-color: white;
+  border-style: solid;
+  height: 70px;
+  overflow: auto;
+  position: absolute;
+}

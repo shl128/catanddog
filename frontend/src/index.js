@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // import registerServiceWorker from './registerServiceWorker';
+import FaceTracking from './components/VideoChat/FaceTracking'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path="calenderpage" element={<Calenderpage />} />
         <Route path="emoji" element={<Emoji />} />
         <Route path="cartoon" element={<Cartoon />} />
+        <Route path="faceTest" element={<FaceTracking />} />
       </Route>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />

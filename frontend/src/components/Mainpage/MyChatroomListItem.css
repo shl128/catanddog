@@ -1,0 +1,22 @@
+.My-chat-list-item {
+  border-radius: 1rem;
+  border-style: solid;
+  padding: 0rem 1rem;
+  margin-top: 1rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.My-chat-list-item-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tag {
+  border-radius: 1rem;
+  background-color: #ffe0d7;
+  margin-right: 1rem;
+}

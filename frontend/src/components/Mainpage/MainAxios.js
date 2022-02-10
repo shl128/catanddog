@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react'
 import axios from 'axios'
 import SERVER from '../../API/server'
 
@@ -27,27 +26,9 @@ function MyChatRoom() {
 }
 
 function MyPet() {
-  const [petdata, setPetdata] = useState([])
-
-  useEffect(() => {
-    axios.get(petUrl,
-      {
-        headers: {
-          Authorization: `Bearer ${userData}`
-        }
-      })
-    .then(function(response) {
-      console.log("반려동물 정보 불러오기 성공")
-      console.log(response.data)
-      setPetdata(response.data)
-    })
-    .catch(function(e) {
-      console.log("반려동물 정보 불러오기 실패")
-      console.log(e);
-    })
-  }, [])
-  return petdata;
-
+  return axios.get(petUrl, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
 }
 
 export { MyProfile, ChangeActive, MyChatRoom, MyPet }
