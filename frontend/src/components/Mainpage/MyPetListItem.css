@@ -1,0 +1,13 @@
+.My-pet-list-item {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.My-pet-img {
+  width: 8vh;
+  border-radius: 1rem;
+}

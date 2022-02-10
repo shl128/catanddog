@@ -7,7 +7,7 @@ function MyChatroomList(props) {
     <div className="My-chat-list">
       <h3>내 채팅방</h3>
       {props.myChatrooms.map((chatroom) => {
-        return <MyChatroomListItem key={chatroom.chatroomId} chatroom={chatroom}/>
+        return <MyChatroomListItem key={chatroom.chatRoomId} chatroom={chatroom}/>
       })}
     </div>
   )

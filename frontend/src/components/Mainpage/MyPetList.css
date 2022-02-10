@@ -1,0 +1,7 @@
+.My-pet-list {
+  margin-top: 1rem;
+  height: 10vh;
+  font-weight: bold;
+  display: flex;
+  gap: 1rem;
+}
