@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './ToolbarComponent.css';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 
 import Mic from '@material-ui/icons/Mic';
 import MicOff from '@material-ui/icons/MicOff';
@@ -10,7 +8,6 @@ import Videocam from '@material-ui/icons/Videocam';
 import VideocamOff from '@material-ui/icons/VideocamOff';
 import Fullscreen from '@material-ui/icons/Fullscreen';
 import FullscreenExit from '@material-ui/icons/FullscreenExit';
-import SwitchVideoIcon from '@material-ui/icons/SwitchVideo';
 import PictureInPicture from '@material-ui/icons/PictureInPicture';
 import ScreenShare from '@material-ui/icons/ScreenShare';
 import StopScreenShare from '@material-ui/icons/StopScreenShare';
@@ -19,10 +16,10 @@ import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
 import PetsIcon from '@material-ui/icons/Pets';
 import DateRangeIcon from '@material-ui/icons/DateRange';
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
 
 import IconButton from '@material-ui/core/IconButton';
 
-const logo = require('../../components/image/상단로고.png');
 
 export default class ToolbarComponent extends Component {
     constructor(props) {
@@ -126,6 +123,11 @@ export default class ToolbarComponent extends Component {
                         <IconButton color="inherit" className="navButton" >
                             {localUser !== undefined ?  <div><DateRangeIcon /><div className='font'>캘린더</div></div> :  <div><DateRangeIcon /><div className='font'>캘린더</div></div>}
                         </IconButton>
+
+                        <IconButton color="inherit" className="navButton" >
+                            {localUser !== undefined ?  <div><WallpaperIcon /><div className='font'>가상배경</div></div> :  <div><WallpaperIcon /><div className='font'>가상배경</div></div>}
+                        </IconButton>
+
 
                         <IconButton color="inherit" onClick={this.toggleChat} className="chatButton">
                             {this.props.showNotification && <div id="point" className="" />}

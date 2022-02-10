@@ -2,7 +2,8 @@
     position: absolute;
     z-index: 0;
     width: 100%;
-    height: 100%;
+    height: 90%;
+    margin-bottom: 5rem;
   }
   
   #chatToolbar {
@@ -150,12 +151,12 @@
   
   #messageInput {
     position: absolute;
-    bottom: 100px;
+    bottom: 0px;
     width: 100%;
     background-color: #ffffff;
     text-align: center;
     padding: 10px 0px;
-    height: 30px;
+    height: 50px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
   }

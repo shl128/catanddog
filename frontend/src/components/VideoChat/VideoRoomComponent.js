@@ -9,6 +9,7 @@ import ToolbarComponent from './ToolbarComponent';
 
 import OpenViduLayout from '../../layout/openvidu-layout';
 import UserModel from '../../models/user-model';
+import { useNavigate  } from 'react-router-dom';
 
 var localUser = new UserModel();
 
@@ -25,6 +26,7 @@ class VideoRoomComponent extends Component {
         let userName = this.props.user ? this.props.user : 'OpenVidu_User' + Math.floor(Math.random() * 100);
         this.remotes = [];
         this.localUserAccessAllowed = false;
+        
         this.state = {
             mySessionId: props.chatroomId,
             myUserName: props.nickname,
@@ -215,6 +217,7 @@ class VideoRoomComponent extends Component {
         if (this.props.leaveSession) {
             this.props.leaveSession();
         }
+
     }
     camStatusChanged() {
         localUser.setVideoActive(!localUser.isVideoActive());

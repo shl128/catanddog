@@ -100,7 +100,7 @@ export default class ChatComponent extends Component {
                                     'message' + (data.connectionId !== this.props.user.getConnectionId() ? ' left' : ' right')
                                 }
                             >
-                                <canvas id={'userImg-' + i} width="60" height="60" className="user-img" />
+                                <img src={'userImg-' + i} width="60" height="60" className="user-img" />
                                 <div className="msg-detail">
                                     <div className="msg-info">
                                         <p> {data.nickname}</p>
