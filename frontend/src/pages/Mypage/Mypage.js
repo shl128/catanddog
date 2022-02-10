@@ -51,7 +51,9 @@ const Mypage = (props) => {
       Authorization: `Bearer ${userData}`
     }})
     .then(res => {
+      console.log(res.data)
       setTags(res.data.reverse())
+      console.log(tags)
     })
     .catch(err => {
       console.log(err)
