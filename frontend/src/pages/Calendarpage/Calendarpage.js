@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Calenderpage.css'
+import './Calendarpage.css'
 import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -9,10 +9,10 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import SERVER from '../../API/server';
 
-const Calenderpage = () => {
+const Calendarpage = () => {
 
   return (
-    <div className="Calenderpage">
+    <div className="Calendarpage">
       <Container>
         <h2>캘린더 입니다.</h2>
         
@@ -35,5 +35,5 @@ const Calenderpage = () => {
 }
 
 
-export default Calenderpage;
+export default Calendarpage;
 

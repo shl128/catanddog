@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calenderpage, Emoji, Cartoon, Chatting } from './pages/index'
+import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calendarpage, Emoji, Cartoon, Chatting } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -18,7 +18,7 @@ ReactDOM.render(
         <Route path="petpage" element={<Petpage />} />
         <Route path="Chat" element={<Chat />} />
         <Route path="spendingOfMonth" element={<SpendingOfMonthpage />} />
-        <Route path="calenderpage" element={<Calenderpage />} />
+        <Route path="calendarpage" element={<Calendarpage />} />
         <Route path="emoji" element={<Emoji />} />
         <Route path="cartoon" element={<Cartoon />} />
         <Route path="faceTest" element={<FaceTracking />} />
