@@ -10,9 +10,8 @@ function MyChatroomListItem(chatrooms) {
           {chatroom.tagName.map((tag, idx) => <span key={idx}>#{tag} </span>)}
         </span>
         <p>
-          <span>{chatroom.userNowCount}</span>
-          <span>{chatroom.userMaxCount}</span>
-          <span><Link to="/">입장하기</Link></span>
+          <span>{chatroom.user_max_count}</span>
+          <span><Link to={`/chatting/${chatroom.chat_room_id}`}>입장하기</Link></span>
         </p>
       </div>
     )
