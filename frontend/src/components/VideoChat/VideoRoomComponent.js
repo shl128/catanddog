@@ -217,7 +217,7 @@ class VideoRoomComponent extends Component {
         if (this.props.leaveSession) {
             this.props.leaveSession();
         }
-
+        this.props.navigate('/main')
     }
     camStatusChanged() {
         localUser.setVideoActive(!localUser.isVideoActive());
@@ -535,6 +535,7 @@ class VideoRoomComponent extends Component {
                                 chatDisplay={this.state.chatDisplay}
                                 close={this.toggleChat}
                                 messageReceived={this.checkNotification}
+                                userPhoto={this.props.userPhoto}
                             />
                         </div>
                     )}

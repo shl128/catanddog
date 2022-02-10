@@ -8,7 +8,7 @@
   
   #chatToolbar {
     height: 30px;
-    background-color: #3d3d3d;
+    background-color: #F9F9F9;
     box-sizing: border-box;
     font-weight: bold;
     font-size: 14px;
@@ -16,7 +16,7 @@
     padding-top: 4px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    color: #ffffff;
+    color: black;
   }
   
   #closeButton {
@@ -133,15 +133,15 @@
   }
   .message.right .user-img {
     right: -5px;
-    border: 1px solid #c8ffe8ab;
+    border: 1px solid #FFF9F8;
   }
   
   .message.right .msg-detail .msg-content {
-    background-color: #c8ffe8;
+    background-color: #FFF9F8;
     float: right;
   }
   .message.right .msg-detail .msg-content span.triangle {
-    background-color: #c8ffe8;
+    background-color: #FFF9F8;
     border-bottom-width: 0;
     border-left-width: 0;
     right: -5px;
@@ -171,13 +171,13 @@
   }
   
   #sendButton {
-    background-color: #81e9b0;
+    background-color: #FFF9F8;
     position: absolute;
     right: 10px;
     top: 0;
     bottom: 0;
     margin: auto;
-    border: 1px solid #7ae2a9;
+    border: 1px solid #FFF9F8;
     box-shadow: none !important;
   }
   #sendButton {

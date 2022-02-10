@@ -39,7 +39,7 @@ function Login() {
             alert('로그인이 정상적으로 완료되었습니다');
 
             return(
-              navigate('/')
+              navigate('/main')
             )
         })
         .catch(function (error) {

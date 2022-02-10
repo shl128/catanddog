@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
-import HighlightOff from '@material-ui/icons/HighlightOff';
 import Send from '@material-ui/icons/Send';
+import CloseIcon from '@material-ui/icons/Close';
 
 import './ChatComponent.css';
-import { Tooltip } from '@material-ui/core';
 
 // d
 
@@ -17,7 +16,6 @@ export default class ChatComponent extends Component {
             message: '',
         };
         this.chatScroll = React.createRef();
-
         this.handleChange = this.handleChange.bind(this);
         this.handlePressKey = this.handlePressKey.bind(this);
         this.close = this.close.bind(this);
@@ -86,9 +84,9 @@ export default class ChatComponent extends Component {
             <div id="chatContainer">
                 <div id="chatComponent" style={styleChat}>
                     <div id="chatToolbar">
-                        <span>{this.props.user.getStreamManager().stream.session.sessionId} - CHAT</span>
+                        <span>room - {this.props.user.getStreamManager().stream.session.sessionId} - CHAT</span>
                         <IconButton id="closeButton" onClick={this.close}>
-                            <HighlightOff color="secondary" />
+                            <CloseIcon  />
                         </IconButton>
                     </div>
                     <div className="message-wrap" ref={this.chatScroll}>
@@ -100,7 +98,7 @@ export default class ChatComponent extends Component {
                                     'message' + (data.connectionId !== this.props.user.getConnectionId() ? ' left' : ' right')
                                 }
                             >
-                                <img id={'userImg-' + i} width="60" height="60" className="user-img" />
+                                <img src={'data:image/png;base64,' + this.props.userPhoto} alt="img" width="60" height="60" className="user-img" />
                                 <div className="msg-detail">
                                     <div className="msg-info">
                                         <p> {data.nickname}</p>
@@ -116,17 +114,15 @@ export default class ChatComponent extends Component {
 
                     <div id="messageInput">
                         <input
-                            placeholder="Send a messge"
+                            placeholder="메시지 입력"
                             id="chatInput"
                             value={this.state.message}
                             onChange={this.handleChange}
                             onKeyPress={this.handlePressKey}
                         />
-                        <Tooltip title="Send message">
                             <Fab size="small" id="sendButton" onClick={this.sendMessage}>
                                 <Send />
                             </Fab>
-                        </Tooltip>
                     </div>
                 </div>
             </div>

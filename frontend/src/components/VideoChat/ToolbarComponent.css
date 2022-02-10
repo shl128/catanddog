@@ -52,6 +52,7 @@
   }
   
   #header .outButton{
+    margin-top: 0.5rem;
     grid-column-start: 1;
   }
 
