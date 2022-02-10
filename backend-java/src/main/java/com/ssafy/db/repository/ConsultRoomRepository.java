@@ -18,4 +18,7 @@ public interface ConsultRoomRepository  extends JpaRepository<ConsultRoom, Long>
     @Modifying
     @Query(value = "DELETE from video_chat_room where host_id = :userId",nativeQuery = true)
     void deleteByUserId(@Param("userId") Long userId);
+
+    @Query(value = "SELECT * from video_chat_room where host_id = :userId",nativeQuery = true)
+    ConsultRoom findConsultRoomByUserId(Long userId);
 }
