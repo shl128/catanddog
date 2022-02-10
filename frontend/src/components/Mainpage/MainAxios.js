@@ -1,9 +1,9 @@
-import {useEffect, useState} from 'react'
 import axios from 'axios'
 import SERVER from '../../API/server'
 
 const profileUrl = SERVER.BASE_URL + SERVER.ROUTES.mypage
 const petUrl = SERVER.BASE_URL + SERVER.ROUTES.createPet
+const myChatUrl = SERVER.BASE_URL + SERVER.ROUTES.myChatRoom
 const userData = localStorage.getItem('accessToken')
 
 function MyProfile() {
@@ -19,28 +19,16 @@ function ChangeActive(data) {
   })
 }
 
-function MyPet() {
-  const [petdata, setPetdata] = useState([])
-
-  useEffect(() => {
-    axios.get(petUrl,
-      {
-        headers: {
-          Authorization: `Bearer ${userData}`
-        }
-      })
-    .then(function(response) {
-      console.log("반려동물 정보 불러오기 성공")
-      console.log(response.data)
-      setPetdata(response.data)
-    })
-    .catch(function(e) {
-      console.log("반려동물 정보 불러오기 실패")
-      console.log(e);
-    })
-  }, [])
-  return petdata;
-
+function MyChatRoom() {
+  return axios.get(myChatUrl, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
 }
 
-export { MyProfile, ChangeActive, MyPet }
+function MyPet() {
+  return axios.get(petUrl, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
+
+export { MyProfile, ChangeActive, MyChatRoom, MyPet }

@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MyPetList from '../../components/Mainpage/MyPetList';
 import Welcome from '../../components/Mainpage/Welcome'
 import MyChatroomList from '../../components/Mainpage/MyChatroomList'
-import { MyPet } from '../../components/Mainpage/MainAxios'
+import { MyPet, MyChatRoom } from '../../components/Mainpage/MainAxios'
 
 
 function Main() {
+  const [myChatrooms, setMyChatRooms] = useState([])
+  const [pets, setPets] = useState([])
 
-  const chatrooms = [
-    {chat_room_id: 1, chat_room_title: '고양이 토', user_max_count: 6, chat_room_tag_names: ['고양이', '토', '궁금해요']},
-    {chat_room_id: 2, chat_room_title: '강아지 훈련', user_max_count: 6, chat_room_tag_names: ['강아지', '훈련', '궁금해요']}
-  ]
+  useEffect(() =>{
+    MyChatRoom()
+    .then(response => {
+      console.log("내가 속한 채팅방 목록", response.data)
+      setMyChatRooms(response.data)
+    })
+    .catch(() => {
+      console.log("내가 속한 채팅방 목록 불러오기 실패")
+    })
 
-  const pets = MyPet()
+    MyPet()
+    .then(response => {
+      console.log("내 반려동물 정보", response.data)
+      setPets(response.data)
+    })
+    .catch(() => {
+      console.log("내 반려동물 정보 불러오기 실패")
+    })
+  }, [])
 
   return (
     <div>
       <Welcome />
       <MyPetList pets={pets} />
-      <MyChatroomList chatrooms={chatrooms} />
+      <MyChatroomList myChatrooms={myChatrooms} />
     </div>
   )
 }
