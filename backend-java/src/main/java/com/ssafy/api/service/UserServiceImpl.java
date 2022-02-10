@@ -141,5 +141,10 @@ public class UserServiceImpl implements UserService {
 		return userChatRoomList;
 	}
 
+	@Override
+	public void updateUserActive(Long userId) {
+		userRepository.updateUserActive(userId);
+	}
+
 
 }
