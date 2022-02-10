@@ -94,10 +94,10 @@ const SpendingOfMonthpage = () => {
         </h3>
       </div>
       <div>
-        <ExpenditureInput baseDay={dayString} function={filterContentsGet}/>
+        <ExpenditureInput baseDay={dayString} axiosGet={filterContentsGet}/>
       </div>
       <div>
-        <ExpenditureTable contents={expenditureFilterContents}/>
+        <ExpenditureTable contents={expenditureFilterContents} axiosGet={filterContentsGet}/>
       </div>
     </div>
   );
