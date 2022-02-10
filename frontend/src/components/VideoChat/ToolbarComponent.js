@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './ToolbarComponent.css';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 
 import Mic from '@material-ui/icons/Mic';
 import MicOff from '@material-ui/icons/MicOff';
@@ -10,17 +8,18 @@ import Videocam from '@material-ui/icons/Videocam';
 import VideocamOff from '@material-ui/icons/VideocamOff';
 import Fullscreen from '@material-ui/icons/Fullscreen';
 import FullscreenExit from '@material-ui/icons/FullscreenExit';
-import SwitchVideoIcon from '@material-ui/icons/SwitchVideo';
 import PictureInPicture from '@material-ui/icons/PictureInPicture';
 import ScreenShare from '@material-ui/icons/ScreenShare';
 import StopScreenShare from '@material-ui/icons/StopScreenShare';
 import Tooltip from '@material-ui/core/Tooltip';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
+import PetsIcon from '@material-ui/icons/Pets';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
 
 import IconButton from '@material-ui/core/IconButton';
 
-const logo = require('../../components/image/상단로고.png');
 
 export default class ToolbarComponent extends Component {
     constructor(props) {
@@ -62,6 +61,7 @@ export default class ToolbarComponent extends Component {
         this.props.switchCamera();
     }
 
+    
     leaveSession() {
         this.props.leaveSession();
     }
@@ -74,62 +74,73 @@ export default class ToolbarComponent extends Component {
         const mySessionId = this.props.sessionId;
         const localUser = this.props.user;
         return (
-            <AppBar className="toolbar" id="header">
-                <Toolbar className="toolbar">
-                    <div id="navSessionInfo">
-                        <img
-                            id="header_img"
-                            alt="OpenVidu Logo"
-                            src={logo}
-                        />
-
-                        {this.props.sessionId && <div id="titleContent">
-                            <span id="session-title">{mySessionId}</span>
-                        </div>}
-                    </div>
-
+            <div id="header">
+                <div  className="toolbar">
                     <div className="buttonsContent">
-                        <IconButton color="inherit" className="navButton" id="navMicButton" onClick={this.micStatusChanged}>
-                            {localUser !== undefined && localUser.isAudioActive() ? <Mic /> : <MicOff color="secondary" />}
+                        <IconButton color="secondary" className="outButton" onClick={this.leaveSession} id="navLeaveButton">
+                            <PowerSettingsNew />
+                            <div className='outFont'>나가기</div>
+                        </IconButton>
+                            <div className='roomName'>
+                                {this.props.sessionId && <div id="titleContent">
+                                    <span id="session-title">방번호: {mySessionId}</span>
+                                </div>}
+                            </div>
+                        <IconButton color="inherit" className="muteButton" onClick={this.micStatusChanged}>
+                            {localUser !== undefined && localUser.isAudioActive() ? <div><Mic /> <div className='font'>음소거</div></div> : <div><MicOff color="secondary" /><div className='font'>음소거 해제</div></div>}
                         </IconButton>
 
                         <IconButton color="inherit" className="navButton" id="navCamButton" onClick={this.camStatusChanged}>
                             {localUser !== undefined && localUser.isVideoActive() ? (
-                                <Videocam />
+                                <div><Videocam /><div className='font'>비디오 중지</div></div>
                             ) : (
-                                <VideocamOff color="secondary" />
+                                <div><VideocamOff color="secondary" /><div className='font'>비디오 재생</div></div>
                             )}
                         </IconButton>
 
                         <IconButton color="inherit" className="navButton" onClick={this.screenShare}>
-                            {localUser !== undefined && localUser.isScreenShareActive() ? <PictureInPicture /> : <ScreenShare />}
+                            {localUser !== undefined && localUser.isScreenShareActive() ? <div><PictureInPicture /><div className='font'>공유 중지</div></div> : <div><ScreenShare /><div className='font'>화면 공유</div></div>}
                         </IconButton>
 
                         {localUser !== undefined &&
                             localUser.isScreenShareActive() && (
-                                <IconButton onClick={this.stopScreenShare} id="navScreenButton">
+                                <div>                                
+                                    <IconButton onClick={this.stopScreenShare} id="navScreenButton">
                                     <StopScreenShare color="secondary" />
-                                </IconButton>
+                                    </IconButton>
+                                    <div className='font'>공유 중지</div>
+                                </div>
                             )}
 
-                        <IconButton color="inherit" className="navButton" onClick={this.switchCamera}>
-                            <SwitchVideoIcon />
-                        </IconButton>
                         <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
-                            {localUser !== undefined && this.state.fullscreen ? <FullscreenExit /> : <Fullscreen />}
+                            {localUser !== undefined && this.state.fullscreen ?  <div><FullscreenExit /><div className='font'>화면 복귀</div></div> :  <div><Fullscreen /><div className='font'>전체 화면</div></div>}
                         </IconButton>
-                        <IconButton color="secondary" className="navButton" onClick={this.leaveSession} id="navLeaveButton">
-                            <PowerSettingsNew />
+
+                        <IconButton color="inherit" className="navButton" >
+                            {localUser !== undefined ?  <div><PetsIcon /><div className='font'>얼굴 변환</div></div> :  <div><PetsIcon /><div className='font'>얼굴 복구</div></div>}
                         </IconButton>
-                         <IconButton color="inherit" onClick={this.toggleChat} id="navChatButton">
+
+                        <IconButton color="inherit" className="navButton" >
+                            {localUser !== undefined ?  <div><DateRangeIcon /><div className='font'>캘린더</div></div> :  <div><DateRangeIcon /><div className='font'>캘린더</div></div>}
+                        </IconButton>
+
+                        <IconButton color="inherit" className="navButton" >
+                            {localUser !== undefined ?  <div><WallpaperIcon /><div className='font'>가상배경</div></div> :  <div><WallpaperIcon /><div className='font'>가상배경</div></div>}
+                        </IconButton>
+
+
+                        <IconButton color="inherit" onClick={this.toggleChat} className="chatButton">
                             {this.props.showNotification && <div id="point" className="" />}
-                            <Tooltip title="Chat">
-                                <QuestionAnswer />
-                            </Tooltip>
+                            <div>
+                                <Tooltip >
+                                    <QuestionAnswer />
+                                </Tooltip>
+                                <div className='font'>채팅</div>
+                            </div>                   
                         </IconButton>
                     </div>
-                </Toolbar>
-            </AppBar>
+                </div>
+            </div>
         );
     }
 }

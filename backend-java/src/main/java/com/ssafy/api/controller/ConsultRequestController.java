@@ -82,7 +82,7 @@ public class ConsultRequestController {
         return ResponseEntity.status(200).body(consultRequestService.readDoneStateByHostId(hostId));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/done")
     @ApiOperation(value = "상담완료 상태인 상담 신청 내역 삭제")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -107,6 +107,21 @@ public class ConsultRequestController {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         consultRequestService.deleteCurrentConsultRequest(userId, hostId);
+        return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+    }
+
+    @DeleteMapping
+    @ApiOperation(value = "매칭되기 전 현재 로그인한 유저가 신청한 내역을 삭제")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<? extends BaseResponseBody> deleteConsultRequestByUserId(@ApiIgnore Authentication authentication){
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        Long userId = userDetails.getUser().getUserId();
+        consultRequestService.deleteConsultRequestByUserId(userId);
         return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
     }
 

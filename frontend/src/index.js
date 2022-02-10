@@ -26,7 +26,7 @@ ReactDOM.render(
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/passwordFind" element={<PasswordFind />} />
-      <Route path="/chatting/:chatroomId" element={<Chatting/>} />
+      <Route path="/chatting/:chatRoomId" element={<Chatting/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

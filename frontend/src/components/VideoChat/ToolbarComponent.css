@@ -1,17 +1,100 @@
-#header {
+@media (max-width: 2500px){
+  #header {
     color: #ffffff;
-    height: 40px;
-    background-color: #333333;
-    padding: 0 14px 0 0;
+    height: 90px;
+    background-color: #494949;
+    padding: 0 7px 0 0;
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 999999;
-    min-width: 400px !important;
+    min-width: 100% !important;
+
   }
+}
+@media (max-width: 1200px){
+  #header {
+    color: #ffffff;
+    height: 70px;
+    background-color: #494949;
+    padding: 0 7px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 999999;
+    min-width: 100% !important;
+
+  }
+}
+
+
   .toolbar{
     padding: 0 !important;
   }
+  .buttonsContent{
+    height: 40px !important;
+    text-align: center;
+    /* margin: 0 auto 0; */
+    width: inherit;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    
+
+  }
+  #navButtons {
+    
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-width: 400px;
+    font-size: 16px;
+    
+  }
+  
+  #header .outButton{
+    grid-column-start: 1;
+  }
+
+  #header .roomName{
+    grid-column-start: 2;
+    margin-top: 10px;
+  } 
+
+  #header .muteButton{
+    grid-column-start: 4;
+
+  }
+  #header .chatButton{
+    grid-column-start: 11;
+    margin-left: 5rem;
+
+  }
+@media (max-width: 2500px){
+  .outFont{
+    font-size: 14px;
+  }
+  .font{
+    font-size: 12px;
+  }
+  #session-title{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 14px;
+  }
+
+}
+@media (max-width: 1200px){
+  .outFont{
+    display: none;
+  }
+  .font{
+    display: none;
+  }
+  #session-title{
+    font-family: 'Open Sans', sans-serif; 
+    display: none;
+  }
+}
+
   
   .headerLight{
     color: #706969 !important;
@@ -22,24 +105,15 @@
     position: absolute;
   }
 
-  #navButtons {
-    position: absolute;
-    left: 0;
-    right: 0;
-    min-width: 400px;
-  }
-  #navChatButton {
-    position: absolute;
-    right: 10px;
-    top: 0;
-  }
+
   
   #titleContent{
     max-width: 100px;
-    background-color: #494949;
-    margin: 5px -18px;
+    /* background-color: #494949; */
+
     padding: 0px 15px;
     font-size: 16px;
+    margin-bottom: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     float: right;
@@ -57,9 +131,7 @@
     margin-top: 10px;
   }
 
-  #session-title{
-    font-family: 'Open Sans', sans-serif; 
-  }
+
 
 
 #point{

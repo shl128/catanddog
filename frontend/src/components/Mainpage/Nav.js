@@ -24,7 +24,7 @@ function Navbar() {
       <Nav className="flex-column">
         <button className="Nav-button"><Link to="/petpage" className='Nav-link'>반려동물 추가</Link></button>
         <button className="Nav-button" onClick={() => setConsultingDialog(true)}>실시간 상담</button>
-        <button className="Nav-button" ><Link to="/calenderpage" className='Nav-link'>캘린더</Link></button>
+        <button className="Nav-button" ><Link to="/calendarpage" className='Nav-link'>캘린더</Link></button>
         <button className="Nav-button" ><Link to="/spendingOfMonth" className='Nav-link'>이달의 지출</Link></button>
         <button className="Nav-button" >반려동물 케어</button>
         <button className="Nav-button" ><Link to="/Chat" className='Nav-link'>유저들과 소통</Link></button>

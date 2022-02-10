@@ -13,5 +13,6 @@ public interface ConsultRequestService {
     String readDoneStateByHostId(Long hostId);
     void deleteDoneConsultRequest();
     void deleteCurrentConsultRequest(Long userId, Long hostId);
+    void deleteConsultRequestByUserId(Long userId);
     void modifyConsultRequestState(Long hostId);
 }
