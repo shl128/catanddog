@@ -3,10 +3,15 @@ package com.ssafy.api.service;
 import com.ssafy.api.request.ConsultSavePostReq;
 import com.ssafy.db.entity.ConsultRoom;
 import com.ssafy.db.entity.ConsultRoomHistory;
+import com.ssafy.db.entity.User;
+import com.ssafy.db.repository.ConsultRequestRepository;
 import com.ssafy.db.repository.ConsultRoomHistoryRepository;
 import com.ssafy.db.repository.ConsultRoomRepository;
+import com.ssafy.db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("consultRoomService")
 public class ConsultRoomServiceImpl implements ConsultRoomService{
@@ -16,14 +21,25 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
     @Autowired
     ConsultRoomHistoryRepository consultRoomHistoryRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ConsultRequestRepository consultRequestRepository;
+
     @Override
-    public ConsultRoom saveConsultRoom(Long hostId, ConsultSavePostReq consultSavePostReq) {
+    public ConsultRoom saveConsultRoom(Long doctorId, ConsultSavePostReq consultSavePostReq) {
         ConsultRoom consultRoom = new ConsultRoom();
-        consultRoom.setHostId(hostId);
-        consultRoom.setDoctorId(consultSavePostReq.getDoctorId());
+        consultRoom.setDoctorId(doctorId);
+        consultRoom.setHostId(consultSavePostReq.getHostId());
         consultRoom.setPetKind(consultSavePostReq.getPetKind());
         consultRoom.setPetContent(consultSavePostReq.getPetContent());
         consultRoom.setPetName(consultSavePostReq.getPetName());
+        userRepository.updateUserActive(doctorId);
+        // host_id 로 온 신청 내역 is_done=1로 변경
+        consultRequestRepository.modifyConsultRequestState(consultSavePostReq.getHostId());
+        // host_id 로 온 신청 내역 삭제
+        consultRequestRepository.deleteCurrentConsultRequest(doctorId, consultSavePostReq.getHostId());
 
         return consultRoomRepository.save((consultRoom));
     }
@@ -43,5 +59,11 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
            consultRoomHistoryRepository.save((consultRoomHistory));
            consultRoomRepository.deleteByUserId(userId);
         }
+    }
+
+    @Override
+    public List<User> findActiveUser() {
+        List<User> activeUserList = userRepository.findActiveUser();
+        return activeUserList;
     }
 }

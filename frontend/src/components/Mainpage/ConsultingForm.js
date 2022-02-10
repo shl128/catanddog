@@ -12,8 +12,14 @@ function ConsultingForm(props) {
     if (inputKind.current.value && inputSymptom.current.value && inputName.current.value) {
       props.setFindDocterDialog(true)
       props.setConsultingDialog(false)
+      const inputData = {
+        petName: inputName.current.value,
+        petKind: inputKind.current.value,
+        petContent: inputSymptom.current.value
+      }
+      props.setConsultingData(inputData)
     } else {
-      alert("종과 증상을 모두 입력하세요")
+      alert("이름, 종, 증상을 모두 입력하세요")
     }
   }
 

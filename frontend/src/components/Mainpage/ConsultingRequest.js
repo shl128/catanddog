@@ -15,6 +15,9 @@ function ConsultingRequest(props) {
               <spen className="visually-hidden">Loading...</spen>
             </Spinner>
           </div>
+          <div>{props.consultingData.petName}</div>
+          <div>{props.consultingData.petKind}</div>
+          <div>{props.consultingData.petContent}</div>
         </Modal.Body>
         <Modal.Footer>
           <button className="Consulting-request" onClick={() => props.setFindDocterDialog(false)}>
