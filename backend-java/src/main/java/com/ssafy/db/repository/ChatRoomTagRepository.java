@@ -17,10 +17,10 @@ public interface ChatRoomTagRepository extends JpaRepository <ChatRoomTag, Long>
     @Query(value = "SELECT chat_room_id from chat_room_tag where chat_room_tag_name = :chatRoomTagName limit 6 offset :pageCnt",nativeQuery = true)
     List<Long> findByTagName(String chatRoomTagName, int pageCnt);
 
-    @Query(value = "select chat_room_title from chat_room where chat_room_title Like :chatRoomTitle%",nativeQuery = true)
+    @Query(value = "select distinct chat_room_title from chat_room where chat_room_title Like :chatRoomTitle%",nativeQuery = true)
     List<String> findBySearchTitle(String chatRoomTitle);
 
-    @Query(value = "select chat_room_tag_name from chat_room_tag where chat_room_tag_name Like %:chatRoomTagName%",nativeQuery = true)
+    @Query(value = "select distinct chat_room_tag_name from chat_room_tag where chat_room_tag_name Like :chatRoomTagName%",nativeQuery = true)
     List<String> findBySearchHash(String chatRoomTagName);
 
     @Query(value = "select count(*) from chat_room_tag where chat_room_tag_name = :chatRoomTagName",nativeQuery = true)

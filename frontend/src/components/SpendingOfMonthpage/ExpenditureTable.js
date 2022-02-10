@@ -1,66 +1,67 @@
-import React, {useState} from 'react';
+import { useState } from 'react';
 import './ExpenditureInput.css';
-import EditExpenditure from '../image/수정버튼.png';
-import DeleteExpenditure from '../image/삭제버튼.png';
-import Form from 'react-bootstrap/Form';
-import axios from 'axios';
-import SERVER from '../../API/server';
+import {numberWithCommas} from './NumberWithCommas';
+import UpdateDeleteButtons from './UpdateDeleteButtons'
+import UpdateForm from './UpdateForm'
+import EachContent from './EachContent'
 
-const ExpenditureTable = () => {
-  const userData = localStorage.getItem('accessToken');
-
-  const onSubmitHandler = (e) => {
-    e.prevenDefault()
-    axios
-      .post(
-        SERVER.BASE_URL + SERVER.ROUTES.createExpenditure,
-        {
-        },
-        {headers: {
-          Authorization: `Bearer ${userData}`
-        }}
-      )
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+const ExpenditureTable = (props) => {
+  const [isUpdating, setIsUpdating] = useState(false);//광범위한 state 없애고 개인 state 생성
 
   return (
-    <div className="ExpenditureTable">
+    props.contents.map((content) => {
+      return (
+        // <EachContent
+        // expenditureDate={content.expenditureDate}
+        // expenditureCategory={content.expenditureCategory}
+        // expenditureItem={content.expenditureItem}
+        // expenditurePrice={content.expenditurePrice}
+        // expenditureId={content.expenditureId}
+        // axiosGet={props.axiosGet}
+        // />
+        <div>
+          {
+            isUpdating === true
+            ?
+            <UpdateForm
+            isUpdating={isUpdating}
+            setIsUpdating={setIsUpdating}
+            expenditureDate={content.expenditureDate}
+            expenditureCategory={content.expenditureCategory}
+            expenditureItem={content.expenditureItem}
+            expenditurePrice={content.expenditurePrice}
+            expenditureId={content.expenditureId}
+            axiosGet={props.axiosGet}
+            />
+            :
+            <div className="ExpenditureTable mt-2" id={content.expenditureId}> 
+              <div className='ExpenditureDateCol'>
+                {content.expenditureDate.substring(0,10)}
+              </div>
+              <div className='ExpenditureCategoryCol'>
+                {content.expenditureCategory}
+              </div>
+              <div className='ExpenditureItemCol'>
+                {content.expenditureItem}
+              </div>
+              <div className='ExpenditurePriceCol'>
+                {numberWithCommas(content.expenditurePrice)} 원
+              </div>
+              <div className='ExpenditureEditButtonsCol'>
+                {/* 수정 버튼 눌렀을때 handler에 Id 넘기기 */}
+                <UpdateDeleteButtons axiosGet={props.axiosGet} expenditureId={content.expenditureId} setIsUpdating={setIsUpdating} isUpdating={isUpdating} type='update'/>
+                <UpdateDeleteButtons axiosGet={props.axiosGet} expenditureId={content.expenditureId} type='delete'/>
+              </div>
+              <hr />
+            </div>
+          }
+        </div>
+      )
 
-      
-      {/* 추가한 모든 내용 보여주기 */}
-      {/* <div className='ExpenditureCreateButtonCol'>
-      </div> */}
-      <div className='ExpenditureDateCol mt-2'>
-        fd
-      </div>
-      <div className='ExpenditureCategoryCol mt-2'>
-        dfd
-      </div>
-      <div className='ExpenditureContentCol mt-2'>
-        dfdf
-      </div>
-      <div className='ExpenditurePriceCol mt-2'>
-        df
-      </div>
-      <div className='ExpenditureEditButtonsCol mt-2'>
-        <span className='me-2'>
-          <img src={EditExpenditure} alt="no" className='ExpenditureButton'/>
-        </span>
-        <span>
-          <img src={DeleteExpenditure} alt="no" className='ExpenditureButton'/>
-        </span>
-      </div>
-      <hr />
-      
-    </div>
+    })
+    
   );
 }
-
 
 export default ExpenditureTable;
 
