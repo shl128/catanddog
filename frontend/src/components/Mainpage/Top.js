@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Top.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { MyProfile } from './MainAxios'
 import Toggle  from './Toggle'
 import ConsultingOk from './ConsultingOk'
+import ConsultingAlarm from './ConsultingAlarm'
 
 function Top() {
 
@@ -12,7 +15,8 @@ function Top() {
   const [nickname, setNickname] = useState('')
   const [photo, setPhoto] = useState('')
   const [userActive, setUserActive] = useState(true)
-
+  const [open, setOpen] = useState(false)
+  
   useEffect(() => {
     MyProfile()
     .then(response => {
@@ -29,16 +33,32 @@ function Top() {
     })
   }, [])
 
+  const consultingList = [
+    {userName: "아무거나", petKind: "코숏", petName: "쿠키", content: "토했어요"},
+    {userName: "이것저것", petKind: "스피츠", petName: "쫑", content: "입을 긁어요"},
+    {userName: "대충대충", petKind: "진돗개", petName: "백구", content: "다리를 절어요"},
+  ]
+
+  function ListOpen() {
+    setOpen(!open)
+  }
+
   return (
     <div className="Top-container">
       <div className="Top-profile">
-        {userkind === 0 && <Toggle userdata={userdata} userActive={userActive} setUserActive={setUserActive} />}
-        {userkind === 0 && userActive && <ConsultingOk />}
-        <p>알림</p>
+        {userkind === 2 && <Toggle userdata={userdata} userActive={userActive} setUserActive={setUserActive} />}
+        {userkind === 2 && userActive && <ConsultingOk />}
+        <button onClick={ListOpen}>
+          <FontAwesomeIcon className="bell-icon" icon={faBell}/>
+          <div>{consultingList.length}</div>
+        </button>
         <p>티어</p>
-        <Link to="/mypage">
-          <img className='profilePhoto' alt="프로필사진" src={photo} /> / {nickname}
+        <Link to="/mypage" className="Top-link">
+          <img className='profilePhoto' alt="프로필사진" src={'data:image/png;base64,' + photo} /> {nickname}
         </Link>
+      </div>
+      <div className={open ? "list-open" : "list-off"}>
+        <ConsultingAlarm consultingList={consultingList}/>
       </div>
     </div>
   )

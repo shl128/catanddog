@@ -11,7 +11,31 @@
   justify-content: space-around;
 }
 
+.Top-link {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.Top-link:hover {
+  color: black;
+}
+
 .Top-profile .profilePhoto {
-  width: 10%;
+  width: 2rem;
   border-radius: 50%;
+}
+
+.bell-icon {
+  width: 2rem;
+  height: auto;
+}
+
+.list-open {
+  grid-column-start: 9;
+  grid-column-end: 13;
+}
+
+.list-off {
+  display: none;
 }
