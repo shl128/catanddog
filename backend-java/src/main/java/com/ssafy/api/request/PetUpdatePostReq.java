@@ -8,7 +8,6 @@ import java.time.OffsetDateTime;
 @Getter
 @Setter
 public class PetUpdatePostReq {
-    String petPhoto;
     String petName;
     String petKind;
     String petBreed;

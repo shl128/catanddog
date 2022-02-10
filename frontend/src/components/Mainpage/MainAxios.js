@@ -30,15 +30,16 @@ function MyPet() {
         }
       })
     .then(function(response) {
-      console.log("반려동물 정보 불러오기 성공", response.data)
+      console.log("반려동물 정보 불러오기 성공")
+      console.log(response.data)
       setPetdata(response.data)
     })
-    .catch(function() {
+    .catch(function(e) {
       console.log("반려동물 정보 불러오기 실패")
+      console.log(e);
     })
   }, [])
-
-  return petdata
+  return petdata;
 
 }
 

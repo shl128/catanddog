@@ -24,10 +24,10 @@ public class UserRes{
 	String userPhoto;
 	Integer userKind;
 	Integer userGrade;
-	String userActive;
+	boolean userActive;
 	Integer userRegdate;
 
-	public UserRes(String userEmail, Integer userKind, String userPhone, String userPhoto, String userNickname, Integer userGrade, Integer userRegdate) {
+	public UserRes(String userEmail, Integer userKind, String userPhone, String userPhoto, String userNickname, Integer userGrade, Integer userRegdate, boolean userActive) {
 		this.userEmail = userEmail;
 		this.userKind = userKind;
 		this.userPhone = userPhone;
@@ -39,7 +39,7 @@ public class UserRes{
 	}
 
 	public static UserRes of(User user) {
-		UserRes res = new UserRes(user.getUserEmail(),user.getUserKind(), user.getUserPhone(), user.getUserPhoto(), user.getUserNickname(), user.getUserGrade(), user.getUserRegdate());
+		UserRes res = new UserRes(user.getUserEmail(),user.getUserKind(), user.getUserPhone(), user.getUserPhoto(), user.getUserNickname(), user.getUserGrade(), user.getUserRegdate(), user.isUserActive());
 		return res;
 	}
 }

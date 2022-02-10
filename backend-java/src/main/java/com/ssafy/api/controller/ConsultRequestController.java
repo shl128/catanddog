@@ -1,17 +1,11 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.request.ConsultRequestSavePostReq;
-import com.ssafy.api.request.ConsultSavePostReq;
 import com.ssafy.api.response.ConsultRequestRes;
-import com.ssafy.api.response.UserLoginPostRes;
 import com.ssafy.api.service.ConsultRequestService;
-import com.ssafy.api.service.ConsultRoomService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.common.util.JwtTokenUtil;
 import com.ssafy.db.entity.ConsultRequest;
-import com.ssafy.db.entity.ConsultRoom;
-import com.ssafy.db.entity.Pet;
 import com.ssafy.db.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

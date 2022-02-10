@@ -11,7 +11,7 @@ function MyChatroomListItem(chatrooms) {
         </span>
         <p>
           <span>{chatroom.user_max_count}</span>
-          <span><Link to="/">입장하기</Link></span>
+          <span><Link to={`/chatting/${chatroom.chat_room_id}`}>입장하기</Link></span>
         </p>
       </div>
     )

@@ -19,12 +19,8 @@ public interface UserService {
 	void deleteUser(User user);
 	void updateUserPhoto(User user, String userPhoto);
 	UserTag saveUserTag(UserTagSavePostReq userTagSavePostReq, Long userId);
-
 	List<UserTag> findByUserTag(Long userId);
-
 	void deleteUserTag(Integer userTagId, Long userId);
-
-
 	List<UserChatRoomRes> findUserChatRoom(Long userId);
-
+	void updateUserActive(Long userId);
 }

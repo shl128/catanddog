@@ -1,10 +1,9 @@
 import React from 'react'
 import EmojiExample from '../../components/Emojipage/EmojiExample'
-
+import './emoji.css'
 function Emoji() {
   return (
-    <div>
-      이모지페이지입니다
+    <div class="emoji">
       <EmojiExample />
     </div>
   )

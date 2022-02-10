@@ -23,12 +23,12 @@ public class PetServiceImpl implements PetService{
     PetRepository petRepository;
 
     @Override
-    public Pet savePet(PetSavePostReq petSavePostReq, Long UserId, String petPhotoName) {
+    public Pet savePet(PetSavePostReq petSavePostReq, Long UserId, String photoImg) {
         // Req 값 받아서 Pet 클래스로 가공
         Pet pet = new Pet();
         pet.setUserId(UserId);
         pet.setPetName(petSavePostReq.getPetName());
-        pet.setPetPhoto(petPhotoName);
+        pet.setPetPhoto(photoImg);
         pet.setPetKind(petSavePostReq.getPetKind());
         pet.setPetBreed(petSavePostReq.getPetBreed());
         pet.setPetBirthday(petSavePostReq.getPetBirthday());
@@ -45,11 +45,11 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public Pet update(PetUpdatePostReq petUpdatePostReq, Long petId, Long userId) {
+    public Pet update(PetUpdatePostReq petUpdatePostReq, Long petId, Long userId, String photoImg) {
         Pet pet = new Pet();
         pet.setUserId(userId);
         pet.setPetId(petId);
-        pet.setPetPhoto(petUpdatePostReq.getPetPhoto());
+        pet.setPetPhoto(photoImg);
         pet.setPetName(petUpdatePostReq.getPetName());
         pet.setPetKind(petUpdatePostReq.getPetKind());
         pet.setPetBreed(petUpdatePostReq.getPetBreed());
