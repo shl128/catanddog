@@ -25,7 +25,7 @@ public class ConsultRoomController {
     @Autowired
     ConsultRoomService consultRoomService;
 
-    @PostMapping("/open/{doctor_id}")
+    @PostMapping
     @ApiOperation(value = "수의사와 실시간 상담방 생성")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),

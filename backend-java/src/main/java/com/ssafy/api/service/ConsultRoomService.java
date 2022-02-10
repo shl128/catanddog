@@ -7,7 +7,7 @@ import com.ssafy.db.entity.User;
 import java.util.List;
 
 public interface ConsultRoomService {
-    ConsultRoom saveConsultRoom(Long hostId, ConsultSavePostReq consultSavePostReq);
+    ConsultRoom saveConsultRoom(Long doctorId, ConsultSavePostReq consultSavePostReq);
     void deleteConsultRoom(Long userId);
     List<User> findActiveUser();
 }

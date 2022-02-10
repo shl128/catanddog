@@ -24,13 +24,14 @@ public class ConsultRoomServiceImpl implements ConsultRoomService{
     UserRepository userRepository;
 
     @Override
-    public ConsultRoom saveConsultRoom(Long hostId, ConsultSavePostReq consultSavePostReq) {
+    public ConsultRoom saveConsultRoom(Long doctorId, ConsultSavePostReq consultSavePostReq) {
         ConsultRoom consultRoom = new ConsultRoom();
-        consultRoom.setHostId(hostId);
-        consultRoom.setDoctorId(consultSavePostReq.getDoctorId());
+        consultRoom.setDoctorId(doctorId);
+        consultRoom.setHostId(consultSavePostReq.getHostId());
         consultRoom.setPetKind(consultSavePostReq.getPetKind());
         consultRoom.setPetContent(consultSavePostReq.getPetContent());
         consultRoom.setPetName(consultSavePostReq.getPetName());
+
 
         return consultRoomRepository.save((consultRoom));
     }
