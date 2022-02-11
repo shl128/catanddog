@@ -4,6 +4,8 @@ import SERVER from '../../API/server'
 const profileUrl = SERVER.BASE_URL + SERVER.ROUTES.mypage
 const petUrl = SERVER.BASE_URL + SERVER.ROUTES.createPet
 const myChatUrl = SERVER.BASE_URL + SERVER.ROUTES.myChatRoom
+const consultRequest = SERVER.BASE_URL + SERVER.ROUTES.consultRequest
+const webChat = SERVER.BASE_URL + SERVER.ROUTES.webChat 
 const userData = localStorage.getItem('accessToken')
 
 function MyProfile() {
@@ -32,9 +34,21 @@ function MyPet() {
 }
 
 function ConsultingRequest(data) {
-  return axios.post(petUrl, data, {
+  return axios.post(`${consultRequest}?petContent=${data.petContent}&petKind=${data.petKind}&petName=${data.petName}`, null, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }
 
-export { MyProfile, ChangeActive, MyChatRoom, MyPet, ConsultingRequest }
+function ConsultingCancel() {
+  return axios.delete(consultRequest, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
+
+function ConsultingWait() {
+  return axios.get(webChat, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
+
+export { MyProfile, ChangeActive, MyChatRoom, MyPet, ConsultingRequest, ConsultingCancel, ConsultingWait }

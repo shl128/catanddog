@@ -12,9 +12,9 @@ function ConsultingForm(props) {
     
     if (inputKind.current.value && inputSymptom.current.value && inputName.current.value) {
       const inputData = {
-        petName: inputName.current.value,
-        petKind: inputKind.current.value,
-        petContent: inputSymptom.current.value
+        'petName': inputName.current.value,
+        'petKind': inputKind.current.value,
+        'petContent': inputSymptom.current.value
       }
       ConsultingRequest(inputData)
       .then(() => {
@@ -49,7 +49,7 @@ function ConsultingForm(props) {
             </Form.Group>
             <Form.Group>
               <Form.Label>증상을 입력하세요</Form.Label>
-              <Form.Control ref={inputSymptom}as="textarea" placeholder="예: 다리를 절뚝거려요"/>
+              <Form.Control ref={inputSymptom} as="textarea" placeholder="예: 다리를 절뚝거려요"/>
             </Form.Group>
           </Form>
         </Modal.Body>
