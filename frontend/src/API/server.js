@@ -18,6 +18,7 @@ export default {
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
     // spendingOfMonth
-    Expenditure: 'spendingOfMonth/expenditures'
+    Expenditure: 'spendingOfMonth/expenditures',
+    userPhoto: 'api/v1/myPage/user_photo'
   },
 };
