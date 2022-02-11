@@ -98,13 +98,13 @@ public class UserController {
 	}
 
 	// profile image Update(갱신)
-	@PatchMapping("{user_email}")
+	@PatchMapping("/user_photo")
 	@ApiOperation(value = "프로필 이미지 수정", notes = "해당 아이디 회원의 프로필 이미지를 수정한다.")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<? extends BaseResponseBody> updateProfileImage(String userEmail, @RequestPart("userPhoto") MultipartFile userPhoto, @ApiIgnore Authentication authentication) throws IOException {
+	public ResponseEntity<? extends BaseResponseBody> updateProfileImage(@RequestPart("userPhoto") MultipartFile userPhoto, @ApiIgnore Authentication authentication) throws IOException {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
 		String getUserEmail = userDetails.getUsername();
 		User user = userService.getUserByUserId(getUserEmail);
