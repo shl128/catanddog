@@ -44,7 +44,6 @@ public class PetServiceImpl implements PetService{
         Pet pet = new Pet();
         pet.setUserId(userId);
         pet.setPetId(petId);
-        pet.setPetPhoto(photoImg);
         pet.setPetName(petUpdatePostReq.getPetName());
         pet.setPetKind(petUpdatePostReq.getPetKind());
         pet.setPetBreed(petUpdatePostReq.getPetBreed());
@@ -52,6 +51,13 @@ public class PetServiceImpl implements PetService{
         pet.setPetGender(petUpdatePostReq.getPetGender());
         pet.setPetNeutering(petUpdatePostReq.isPetNeutering());
         pet.setPetVaccination(petUpdatePostReq.isPetVaccination());
+
+        if(photoImg != null){
+            pet.setPetPhoto(photoImg);
+        }else{
+            Optional<Pet> petTmp = petRepository.findById(petId);
+            pet.setPetPhoto(petTmp.get().getPetPhoto());
+        }
         return petRepository.save(pet);
     }
 
