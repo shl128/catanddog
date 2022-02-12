@@ -42,5 +42,15 @@ ul {
     height: 40px;
     padding: 6px 25px;
     border-radius: 6px;
-  }
+}
 
+.update-pet {
+    width: 150px;
+    height: 40px;
+    padding: 6px 25px;
+    border-radius: 6px;
+}
+
+.fix-div-height {
+    height: 540px;
+}

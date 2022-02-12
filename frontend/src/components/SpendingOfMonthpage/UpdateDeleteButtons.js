@@ -14,7 +14,7 @@ const UpdateDeleteButtons = (props) => {
         } else {
           props.setIsUpdating(false);
           axios.patch(
-            `${ExpenditureUrl}/{expenditure_id} ?expenditureCategory=${props.expenditureCategory}&expenditureDate=${props.expenditureDate}&expenditureItem=${props.expenditureItem}&expenditurePrice=${props.expenditurePrice}&expenditureId=${props.expenditureId}`,
+            `${ExpenditureUrl}?expenditureCategory=${props.expenditureCategory}&expenditureDate=${props.expenditureDate}&expenditureItem=${props.expenditureItem}&expenditurePrice=${props.expenditurePrice}&expenditureId=${props.expenditureId}`,
             {
                 'expenditureDate':props.expenditureDate,
                 'expenditureCategory':props.expenditureCategory,
@@ -38,7 +38,7 @@ const UpdateDeleteButtons = (props) => {
     const deleteHandler = () => {
         console.log(props.expenditureId)
         axios.delete(
-          `${ExpenditureUrl}/{expenditure_id}?expenditureId=${props.expenditureId}`,
+          `${ExpenditureUrl}?expenditureId=${props.expenditureId}`,
           {headers: {
             Authorization: `Bearer ${userData}`
           }})
