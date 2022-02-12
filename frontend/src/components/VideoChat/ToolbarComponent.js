@@ -17,7 +17,7 @@ import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
 import PetsIcon from '@material-ui/icons/Pets';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
-
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import IconButton from '@material-ui/core/IconButton';
 
 
@@ -30,12 +30,19 @@ export default class ToolbarComponent extends Component {
         this.screenShare = this.screenShare.bind(this);
         this.stopScreenShare = this.stopScreenShare.bind(this);
         this.toggleFullscreen = this.toggleFullscreen.bind(this);
-        this.switchCamera = this.switchCamera.bind(this);
         this.leaveSession = this.leaveSession.bind(this);
         this.toggleChat = this.toggleChat.bind(this);
+        this.togglecalender = this.togglecalender.bind(this)
+        this.emojiChange = this.emojiChange.bind(this)
+        this.camDisplayChange = this.camDisplayChange.bind(this)
     }
 
-
+    emojiChange() {
+        this.props.emojiChange();
+    }
+    camDisplayChange() {
+        this.props.camDisplayChange()
+    }
     micStatusChanged() {
         this.props.micStatusChanged();
     }
@@ -57,8 +64,9 @@ export default class ToolbarComponent extends Component {
         this.props.toggleFullscreen();
     }
 
-    switchCamera() {
-        this.props.switchCamera();
+    togglecalender() {
+        console.log()
+        this.props.togglecalender()
     }
 
     
@@ -86,6 +94,9 @@ export default class ToolbarComponent extends Component {
                                     <span id="session-title">방번호: {mySessionId}</span>
                                 </div>}
                             </div>
+                        <IconButton color="inherit" className="whasangButton" onClick={this.camDisplayChange}>
+                            {localUser !== undefined ?  <div><AccountBoxIcon /><div className='font'>화상채팅</div></div> :  <div><AccountBoxIcon /><div className='font'>화상중지</div></div>}
+                        </IconButton>
                         <IconButton color="inherit" className="muteButton" onClick={this.micStatusChanged}>
                             {localUser !== undefined && localUser.isAudioActive() ? <div><Mic /> <div className='font'>음소거</div></div> : <div><MicOff color="secondary" /><div className='font'>음소거 해제</div></div>}
                         </IconButton>
@@ -116,11 +127,11 @@ export default class ToolbarComponent extends Component {
                             {localUser !== undefined && this.state.fullscreen ?  <div><FullscreenExit /><div className='font'>화면 복귀</div></div> :  <div><Fullscreen /><div className='font'>전체 화면</div></div>}
                         </IconButton>
 
-                        <IconButton color="inherit" className="navButton" >
+                        <IconButton color="inherit" className="navButton" onClick={this.emojiChange}>
                             {localUser !== undefined ?  <div><PetsIcon /><div className='font'>얼굴 변환</div></div> :  <div><PetsIcon /><div className='font'>얼굴 복구</div></div>}
                         </IconButton>
 
-                        <IconButton color="inherit" className="navButton" >
+                        <IconButton color="inherit" className="navButton" onClick={this.togglecalender}>
                             {localUser !== undefined ?  <div><DateRangeIcon /><div className='font'>캘린더</div></div> :  <div><DateRangeIcon /><div className='font'>캘린더</div></div>}
                         </IconButton>
 

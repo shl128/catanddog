@@ -6,6 +6,7 @@ class UserModel {
     nickname;
     streamManager;
     type; // 'remote' | 'local'
+    emoji;
 
     constructor() {
         this.connectionId = '';
@@ -15,6 +16,7 @@ class UserModel {
         this.nickname = '';
         this.streamManager = null;
         this.type = 'local';
+        this.emoji=false;
     }
 
     isAudioActive() {
@@ -27,6 +29,15 @@ class UserModel {
 
     isScreenShareActive() {
         return this.screenShareActive;
+    }
+
+    isEmojiActive() {
+        return this.emoji;
+    }
+
+    setEmojiActive(isEmojiActive) {
+        this.emoji = isEmojiActive;
+        console.log( this.emoji )
     }
 
     getConnectionId() {

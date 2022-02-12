@@ -114,11 +114,11 @@
   }
   
   .message.left .msg-detail .msg-content {
-    background-color: #f0f0f0;
+    background-color: white;
     float: left;
   }
   .message.left .msg-detail .msg-content span.triangle {
-    background-color: #f0f0f0;
+    background-color: white;
     border-bottom-width: 0;
     border-left-width: 0;
     left: -5px;

@@ -5,9 +5,8 @@ import axios from 'axios';
 import SERVER from '../../API/server'
 
 const PhotoSide = (props) => {
-  const [nowPhotoData, setNowPhotoData] = useState(props.photoData)
   const [imgBase64, setImgBase64] = useState(props.photoData); // 파일 base64
-  const [userData, seUserData] = useState(localStorage.getItem('accessToken'))
+  const userData = localStorage.getItem('accessToken')
 
   
   
@@ -16,8 +15,6 @@ const PhotoSide = (props) => {
     console.log(e.target.files[0])
     const formdata = new FormData()
     formdata.append("userPhoto", e.target.files[0])
-
-    //{user_email}?userEmail=t1%40naver.com
     axios.patch(SERVER.BASE_URL + SERVER.ROUTES.userPhoto ,  formdata,
       {
       headers: {
@@ -56,7 +53,6 @@ const PhotoSide = (props) => {
                 style={{display:"none"}}
               />
             </div>
-            {/* <button onClick={clcl}> 수정</button> */}
     </div>
   );
 }

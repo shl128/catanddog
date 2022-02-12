@@ -32,7 +32,7 @@ function Chatting () {
         <div className='Chatting'>
             {
                 nickname !== '' 
-                && <VideoRoomComponent userPhoto={userPhoto} chatroomId={chatRoomId} nickname={nickname} want={true} navigate={navigate}/>
+                && <VideoRoomComponent userPhoto={userPhoto} chatroomId={chatRoomId} nickname={nickname} want={true} navigate={navigate} isUserChat="none"/>
             }
             
         </div>

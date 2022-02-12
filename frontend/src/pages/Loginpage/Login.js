@@ -36,7 +36,6 @@ function Login() {
         .then(function (response) {
             console.log(response.data)
             localStorage.setItem('accessToken', response.data.accessToken);
-            alert('로그인이 정상적으로 완료되었습니다');
 
             return(
               navigate('/main')

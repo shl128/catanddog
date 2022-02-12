@@ -1,22 +1,23 @@
 @media (max-width: 2500px){
   #header {
-    color: #ffffff;
+    color: gray;
     height: 90px;
-    background-color: #494949;
+    background-color: #ffe0d7;
     padding: 0 7px 0 0;
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 999999;
     min-width: 100% !important;
-
+    /* border: solid; */
+    border-radius: 30px;
   }
 }
 @media (max-width: 1200px){
   #header {
     color: #ffffff;
     height: 70px;
-    background-color: #494949;
+    background-color: #ffe0d7;
     padding: 0 7px 0 0;
     position: absolute;
     bottom: 0;
@@ -54,12 +55,17 @@
   #header .outButton{
     margin-top: 0.5rem;
     grid-column-start: 1;
+    color: #FF805B;
+    font-weight: 900;
   }
 
   #header .roomName{
     grid-column-start: 2;
     margin-top: 10px;
   } 
+  #header .whasangButton{
+    grid-column-start: 3;
+  }
 
   #header .muteButton{
     grid-column-start: 4;

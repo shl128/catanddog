@@ -8,6 +8,8 @@ export default class OvVideoComponent extends Component {
     }
 
     componentDidMount() {
+        console.log('여기봐줘')
+        console.log(this.props.user)
         if (this.props && this.props.user.streamManager && !!this.videoRef) {
             console.log('PROPS: ', this.props);
             this.props.user.getStreamManager().addVideoElement(this.videoRef.current);
