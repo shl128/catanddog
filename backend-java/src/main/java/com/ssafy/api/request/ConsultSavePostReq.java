@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ConsultSavePostReq {
-    Long doctorId;
+    Long hostId;
     String petKind;
     String petContent;
     String petName;

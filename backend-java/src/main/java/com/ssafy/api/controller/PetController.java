@@ -26,10 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 // 펫 API 컨트롤러
 @Api(value = "펫 API", tags = {"Pet"})
@@ -96,9 +93,13 @@ public class PetController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @RequestPart("pet_photo") MultipartFile petPhoto, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq) throws IOException {
+    public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @RequestPart(value = "pet_photo",required = false) MultipartFile petPhoto, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq) throws IOException {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
+<<<<<<< HEAD
+=======
+        System.out.println(petPhoto);
+>>>>>>> dffe6fe3619356498e4a345050bffc48eaf8a770
         String photoImg = null;
         if(petPhoto != null){
             Base64.Encoder encoder = Base64.getEncoder();
@@ -116,7 +117,7 @@ public class PetController {
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
     }
 
-    @PostMapping("image/petPhoto")
+    @PostMapping("image/pet_photo")
     @ApiOperation(value = "반려동물 이미지 변환")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -129,5 +130,24 @@ public class PetController {
         byte[] petPhotoByte = IOUtils.toByteArray(petPhotoImage);
         petPhotoImage.close();
         return ResponseEntity.status(200).body(petPhotoByte);
+    }
+
+    @GetMapping("{pet_id}")
+    @ApiOperation(value = "특정 반려동물 조회")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<Optional<Pet>> findByPetId(@PathVariable("pet_id")Long petId, @ApiIgnore Authentication authentication) {
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        Long userId = userDetails.getUser().getUserId();
+        Optional<Pet> pet = petService.findByPetId(petId);
+
+        if(pet != null){
+            return ResponseEntity.status(200).body(pet);
+        }
+        return ResponseEntity.status(500).body(null);
     }
 }

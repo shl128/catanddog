@@ -96,7 +96,7 @@ const SpendingOfMonthpage = () => {
       <div>
         <ExpenditureInput baseDay={dayString} axiosGet={filterContentsGet}/>
       </div>
-      <div>
+      <div className='overflowFrame'>
         <ExpenditureTable contents={expenditureFilterContents} axiosGet={filterContentsGet}/>
       </div>
     </div>

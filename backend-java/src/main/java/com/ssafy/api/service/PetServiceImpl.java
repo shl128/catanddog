@@ -2,19 +2,14 @@ package com.ssafy.api.service;
 
 import com.ssafy.api.request.PetSavePostReq;
 import com.ssafy.api.request.PetUpdatePostReq;
-import com.ssafy.api.response.PetRes;
 import com.ssafy.db.entity.Pet;
 import com.ssafy.db.repository.PetRepository;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // 서비스 클래스 - 데이터 가공
 @Service("petService")
@@ -49,7 +44,6 @@ public class PetServiceImpl implements PetService{
         Pet pet = new Pet();
         pet.setUserId(userId);
         pet.setPetId(petId);
-        pet.setPetPhoto(photoImg);
         pet.setPetName(petUpdatePostReq.getPetName());
         pet.setPetKind(petUpdatePostReq.getPetKind());
         pet.setPetBreed(petUpdatePostReq.getPetBreed());
@@ -57,6 +51,18 @@ public class PetServiceImpl implements PetService{
         pet.setPetGender(petUpdatePostReq.getPetGender());
         pet.setPetNeutering(petUpdatePostReq.isPetNeutering());
         pet.setPetVaccination(petUpdatePostReq.isPetVaccination());
+
+        if(photoImg != null){
+            pet.setPetPhoto(photoImg);
+        }else{
+            Optional<Pet> petTmp = petRepository.findById(petId);
+            pet.setPetPhoto(petTmp.get().getPetPhoto());
+        }
         return petRepository.save(pet);
+    }
+
+    @Override
+    public Optional<Pet> findByPetId(Long petId) {
+        return petRepository.findById(petId);
     }
 }
