@@ -6,8 +6,13 @@ import { faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons'
 
 
 function MyChatroomListItem({chatroom}) {
-  // const location = useLocation().pathname
+  const location = useLocation().pathname
 
+  
+  function goChatroom(){
+    if(location !== '/main')
+    window.location.replace(`/chatting/${chatroom.chatRoomId}`)
+  }
   return (
     <div className="My-chat-list-item">
       <div>
@@ -16,7 +21,7 @@ function MyChatroomListItem({chatroom}) {
       </div>
       <div className="My-chat-list-item-right">
         <span>{chatroom.userNowCount}/{chatroom.userMaxCount}</span>
-        <Link to={`/chatting/${chatroom.chatRoomId}`} state={{ fromDashboard: true }} >
+        <Link to={`/chatting/${chatroom.chatRoomId}`} state={{ fromDashboard: true }} onClick={goChatroom}>
           <FontAwesomeIcon icon={faLongArrowAltRight} size="3x" style={{color: '#ff8767'}}/>
         </Link>
       </div>

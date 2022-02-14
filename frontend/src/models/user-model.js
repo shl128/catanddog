@@ -7,6 +7,7 @@ class UserModel {
     streamManager;
     type; // 'remote' | 'local'
     emoji;
+    userPhoto;
 
     constructor() {
         this.connectionId = '';
@@ -17,6 +18,7 @@ class UserModel {
         this.streamManager = null;
         this.type = 'local';
         this.emoji= false;
+        this.userPhoto= '';
     }
 
     isAudioActive() {
