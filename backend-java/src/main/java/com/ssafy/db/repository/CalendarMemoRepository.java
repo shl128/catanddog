@@ -17,17 +17,17 @@ public interface CalendarMemoRepository extends JpaRepository <CalendarMemo, Int
 //    @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_category = :calendarMemoCategory and DATE_FORMAT(calendar_memo_date, '%Y-%m') = :calendarMemoMonth order by calendar_memo_id desc",nativeQuery = true)
 //    List<CalendarMemo> findByCalendarMemoCategory(@Param("userId") Long userId, @Param("calendarMemoCategory") String calendarMemoCategory, @Param("calendarMemoMonth") String calendarMemoMonth);
 
-    @Query(value = "SELECT * from calendar_memo where user_id = :userId order by calendar_memo_id desc",nativeQuery = true)
+    @Query(value = "SELECT * from calendar_memo where user_id = :userId order by id desc",nativeQuery = true)
     List<CalendarMemo> findByCalendarMemo(@Param("userId") Long userId);
 
-    @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_category = :calendarMemoCategory order by calendar_memo_id desc",nativeQuery = true)
-    List<CalendarMemo> findByCalendarMemoCategory(@Param("userId") Long userId, @Param("calendarMemoCategory") String calendarMemoCategory);
+    @Query(value = "SELECT * from calendar_memo where user_id = :userId and category = :category order by id desc",nativeQuery = true)
+    List<CalendarMemo> findByCalendarMemoCategory(@Param("userId") Long userId, @Param("category") String category);
 
-    @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_id = :calendarMemoId",nativeQuery = true)
-    List<CalendarMemo> findByCalendarMemoOne(@Param("userId") Long userId, @Param("calendarMemoId")  Integer calendarMemoId);
+    @Query(value = "SELECT * from calendar_memo where user_id = :userId and id = :id",nativeQuery = true)
+    List<CalendarMemo> findByCalendarMemoOne(@Param("userId") Long userId, @Param("id")  Integer id);
 
     @Transactional
     @Modifying
-    @Query(value = "delete from calendar_memo where user_id = :userId and calendar_memo_id = :calendarMemoId", nativeQuery = true)
-    void delete(Long userId, Integer calendarMemoId);
+    @Query(value = "delete from calendar_memo where user_id = :userId and id = :id", nativeQuery = true)
+    void delete(Long userId, Integer id);
 }
