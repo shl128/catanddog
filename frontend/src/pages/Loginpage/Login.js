@@ -42,7 +42,7 @@ function Login() {
             localStorage.setItem('accessToken', response.data.accessToken);
 
             return(
-              navigate('/main')
+              navigate('/')
             )
         })
         .catch(function (error) {

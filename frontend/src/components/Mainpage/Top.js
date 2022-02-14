@@ -64,10 +64,10 @@ function Top() {
     <div className="Top-container">
       <div className="Top-profile">
         {userkind === 2 && <Toggle userActive={userActive} setUserActive={setUserActive} />}
-        <button onClick={ListOpen}>
+        {userkind === 2 && <button onClick={ListOpen}>
           <FontAwesomeIcon className="bell-icon" icon={faBell}/>
           <div>{consultingList.length >= 1 && consultingList.length}</div>
-        </button>
+        </button>}
         <p>티어</p>
         <Link to="/mypage" className="Top-link">
           <img className='profilePhoto' alt="프로필사진" src={'data:image/png;base64,' + photo} /> {nickname}

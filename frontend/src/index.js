@@ -6,13 +6,14 @@ import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMon
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import NotFound from './pages/Mainpage/NotFound'
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="main" element={<Main />} />
+        <Route path="" element={<Main />} />
         <Route path="mypage" element={<Mypage />} />
         <Route path="petpage" element={<Petpage />} />
         <Route path="Chat" element={<Chat />} />
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Route path="/chatting/:chatRoomId" element={<Chatting/>} />
       <Route path="/diagnosischat/:chatRoomId" element={<Diagnosischat/>} />
       <Route path="/kakaoOAuth" element={<KakaoOAuth />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import './ConsultingAlarmItem.css'
-import { ConsultingStart, CreateConsultingRoom } from './MainAxios'
+import { useNavigate } from 'react-router-dom'
+import { ConsultingStart, CreateConsultingRoom, ConsultingWait } from './MainAxios'
 
 function ConsultingAlarmItem(props) {
   const [show, setShow] = useState(false)
+  const navigate = useNavigate()
 
   function consultingStart() {
     ConsultingStart(props.alarmItem.hostId)
@@ -19,8 +21,18 @@ function ConsultingAlarmItem(props) {
     .then(() => {
       console.log("화상 상담방 생성 완료")
     })
-    .catch(() => {
-      console.log("화상 상담방 생성 실패")
+    .then(() => {
+      ConsultingWait()
+      .then(response => {
+        console.log("개설된 상담 방 정보", response.data)
+        navigate(`/diagnosischat/${response.data.videoChatRoom}`)
+      })
+      .catch(() => {
+        console.log("개설된 상담 방 정보 모름")
+      })
+      .catch(() => {
+        console.log("화상 상담방 생성 실패")
+      })
     })
 
     props.setUserActive(false)
@@ -31,7 +43,7 @@ function ConsultingAlarmItem(props) {
     <div className="Alarm-item">
       <button onClick={() => setShow(true)}>{props.alarmItem.petKind}상담이 있어요 </button>
 
-      <Modal show={show} centered="true">
+      <Modal dialogClassName="Alarm-item-modal" show={show} centered="true">
         <Modal.Header>
           <div>{props.alarmItem.userName}님의 상담입니다</div>
         </Modal.Header>
@@ -41,10 +53,10 @@ function ConsultingAlarmItem(props) {
           <div>증상: {props.alarmItem.petContent}</div>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={consultingStart}>
+          <button className="Alarm-item-accept" onClick={consultingStart}>
             상담하기
           </button>
-          <button onClick={() => setShow(false)}>
+          <button className="Alarm-item-cancel" onClick={() => setShow(false)}>
             취소하기
           </button>
         </Modal.Footer>
