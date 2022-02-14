@@ -15,23 +15,23 @@ public class CalendarMemo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer calendarMemoId;
+    Integer id;
 
     Long userId;
-    String calendarMemoCategory;
-    String calendarMemoTitle;
-    Date calendarMemoStartDate;
-    Date calendarMemoEndDate;
+    String category;
+    String title;
+    Date start;
+    Date end;
 
     @Override
     public String toString() {
         return "calendarMemo{" +
-                ", calendarMemoId='" + calendarMemoId + '\'' +
+                ", id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
-                ", calendarMemoCategory='" + calendarMemoCategory + '\'' +
-                ", calendarMemoTitle='" + calendarMemoTitle + '\'' +
-                ", calendarMemoDate='" + calendarMemoStartDate + '\'' +
-                ", calendarMemoDate='" + calendarMemoEndDate + '\'' +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
                 '}';
     }
 
