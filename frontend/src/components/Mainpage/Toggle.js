@@ -5,16 +5,12 @@ import { ChangeActive } from './MainAxios'
 function Toggle(props) {
 
   function ActiveToggle() {
-    const newData = {
-      ...props.userdata,
-      userActive: !props.userActive
-    }
-    ChangeActive(newData)
+    ChangeActive(!props.userActive)
     .then(()=> {
       props.setUserActive(!props.userActive)
       console.log("상담 상태가 변경되었습니다")
     })
-    .catch(error => {
+    .catch(() => {
       console.log("상담 상태가 변경되지 않았습니다")
     })
   }

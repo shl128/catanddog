@@ -6,7 +6,7 @@ function ConsultingAlarm(props) {
   return (
     <div className="Alarm-list">
       {props.consultingList.map((alarmItem, idx) => {
-        return <ConsultingAlarmItem key={idx} alarmItem={alarmItem}/>
+        return <ConsultingAlarmItem key={idx} alarmItem={alarmItem} setUserActive={props.setUserActive}/>
       })}
     </div>
   )
