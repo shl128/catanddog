@@ -58,7 +58,7 @@ public class CalendarMemoServiceImpl implements CalendarMemoService {
     }
 
     @Override
-    public void deleteCalendarMemo(Long userId, Integer calendarMemoId) {
-        calendarMemoRepository.delete(userId, calendarMemoId);
+    public void deleteCalendarMemo(Long userId, Integer id) {
+        calendarMemoRepository.delete(userId, id);
     }
 }
