@@ -244,5 +244,20 @@ public class UserServiceImpl implements UserService {
 		return userInfo;
 	}
 
+	@Override
+	public boolean checkUserNickname(String userNickname) {
+		try{
+			User user = userRepositorySupport.findUserByUserNickname(userNickname).get();
+		}catch (Exception e){
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public User getUserByUserNickname(String userNickname) {
+		return userRepositorySupport.findUserByUserNickname(userNickname).get();
+	}
+
 
 }
