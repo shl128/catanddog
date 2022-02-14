@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  BASE_URL: 'http://localhost:8080/',
-  // BASE_URL: 'http://i6b109.p.ssafy.io/',
+  // BASE_URL: 'http://localhost:8081/',
+  BASE_URL: 'http://i6b109.p.ssafy.io/',
 
   ROUTES: {
     // Account
@@ -19,8 +19,10 @@ export default {
     webChat: 'webChat',
     changeActive: 'api/v1/myPage/possible',
     // createPetInformation(Petpage)
-    createPet: 'petPage/pets/',
+    Petpage: 'petPage/pets/',
     // spendingOfMonth
-    Expenditure: 'spendingOfMonth/expenditures'
+    Expenditure: 'spendingOfMonth/expenditures/',
+    Calendar: 'calendar/',
+    userPhoto: 'api/v1/myPage/user_photo'
   },
 };

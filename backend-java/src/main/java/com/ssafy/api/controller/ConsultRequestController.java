@@ -35,20 +35,21 @@ public class ConsultRequestController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> writeConsultRequest(@ApiIgnore Authentication authentication, ConsultRequestSavePostReq consultRequestSavePostReq){
+    public ResponseEntity<ConsultRequestRes> writeConsultRequest(@ApiIgnore Authentication authentication, ConsultRequestSavePostReq consultRequestSavePostReq){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
+        String userName = userDetails.getUser().getUserNickname();
 
         List<User> activeUserList = consultRequestService.findActiveUser();
         if(activeUserList.size()>0){
             for(int i=0; i<activeUserList.size(); i++) {
                 ConsultRequest consultRequest = consultRequestService.saveConsultRequest(userId, consultRequestSavePostReq, activeUserList.get(i).getUserId());
             }
-            return ResponseEntity.ok(ConsultRequestRes.of(200, "Success", activeUserList.size()));
+            return ResponseEntity.ok(ConsultRequestRes.of(200, "Success", activeUserList.size(), userName));
         } else if(activeUserList.size()==0){
-            return ResponseEntity.ok(ConsultRequestRes.of(200, "Success", activeUserList.size()));
+            return ResponseEntity.ok(ConsultRequestRes.of(200, "Success", activeUserList.size(), userName));
         }
-        return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
+        return ResponseEntity.status(500).body(ConsultRequestRes.of(500, "Error", 0, "실패"));
     }
 
     @GetMapping
