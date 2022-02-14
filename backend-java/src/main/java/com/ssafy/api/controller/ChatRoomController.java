@@ -70,6 +70,7 @@ public class ChatRoomController {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         if(userChatRoomService.saveUserChatRoom(chatRoomId, userId) != null){
+            chatRoomService.enterUserChatRoom(chatRoomId);
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
@@ -104,6 +105,7 @@ public class ChatRoomController {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         userChatRoomService.deleteUserChatRoom(chatRoomId, userId);
+        chatRoomService.exitUserChatRoom(chatRoomId);
         return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 
     }
