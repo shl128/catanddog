@@ -32,7 +32,6 @@ function Navbar() {
         <NavLink to="/Chat" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>유저와의 소통</NavLink>
         <NavLink to="/cartoon" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>카툰화</NavLink>
         <NavLink to="/emoji" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>반려티콘</NavLink>
-        <NavLink to="/faceTest" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>트래킹테스트</NavLink>
         <button className='Nav-link' onClick={logout}>로그아웃</button>
       </nav>
       {consultingDialog && 

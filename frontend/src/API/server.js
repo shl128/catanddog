@@ -17,6 +17,7 @@ export default {
     tag: 'api/v1/myPage/tags',
     consultRequest: 'consultRequest',
     webChat: 'webChat',
+    changeActive: 'api/v1/myPage/possible',
     // createPetInformation(Petpage)
     createPet: 'petPage/pets/',
     // spendingOfMonth

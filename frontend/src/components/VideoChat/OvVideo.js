@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './StreamComponent.css';
+import FaceTracking from './FaceTracking'
 
 export default class OvVideoComponent extends Component {
     constructor(props) {
@@ -31,12 +32,16 @@ export default class OvVideoComponent extends Component {
 
     render() {
         return (
-            <video
-                autoPlay={true}
-                id={'video-' + this.props.user.getStreamManager().stream.streamId}
-                ref={this.videoRef}
-                muted={this.props.mutedSound}
-            />
+            <>
+                <video
+                    autoPlay={true}
+                    id={'video-' + this.props.user.getStreamManager().stream.streamId}
+                    ref={this.videoRef}
+                    muted={this.props.mutedSound}
+                />
+                {this.props.user.streamManager && 
+                    <FaceTracking videoRef={this.videoRef} />}
+            </>
         );
     }
 }

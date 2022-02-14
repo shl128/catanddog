@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Modal, Spinner } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import Wait from '../image/쫑이.jpg'
 import './ConsultingRequest.css'
 import { ConsultingCancel, ConsultingWait } from './MainAxios'
 
 function ConsultingRequest(props) {
+  const [requestData, setRequestData] = useState()
+  const waiting = useRef(0)
+  const navigate = useNavigate()
 
   function closeFind() {
-    clearInterval(waiting)
+    stop()
     ConsultingCancel()
     .then(() => {
       console.log("상담 신청 취소 완료")
@@ -18,16 +22,31 @@ function ConsultingRequest(props) {
     })
   }
 
-  const waiting = setInterval(() => {
-    ConsultingWait()
-    .then(() => {
-      console.log("받아오기")
-    })
-    .catch(() => {
-      console.log("받아오기 실패")
-    })
-  }, 1000);
+  function start() {
+    waiting.current = setInterval(() => {
+      ConsultingWait()
+      .then(response => {
+        console.log("수의사의 응답을 기다리는 중", response.data)
+        setRequestData(response.data)
+      })
+      .catch(() => {
+        console.log("기다리기 실패")
+      })
+    }, 1000)
+  }
+  
+  function stop() {
+    clearInterval(waiting.current)
+  }
+  
+  function enter() {
+    navigate(`/chatting/${requestData.videoChatRoom}`)
+    stop()
+  }
 
+  useEffect(() => {
+    start()
+  }, [])
 
   return (
     <>
@@ -45,6 +64,7 @@ function ConsultingRequest(props) {
           <div>{props.consultingData.petContent}</div>
         </Modal.Body>
         <Modal.Footer>
+          {requestData && <button onClick={enter}>입장하기</button>}
           <button className="Consulting-request" onClick={closeFind}>
             취소하기
           </button>
@@ -55,3 +75,14 @@ function ConsultingRequest(props) {
 }
 
 export default ConsultingRequest
+
+
+// waiting.current = setInterval(() => {
+//   ConsultingWait()
+//   .then(response => {
+//     console.log("요청 중", !!response.data)
+//   })
+//   .catch(() => {
+//     console.log("요청 중")
+//   })
+// }, 1000)
