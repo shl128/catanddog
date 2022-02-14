@@ -1,4 +1,4 @@
-import ImageEditor from './react-image-editor';
+import ImageEditor from '@toast-ui/react-image-editor';
 import 'tui-image-editor/dist/tui-image-editor.css';
 
 const CustomImageEditor = () => {
