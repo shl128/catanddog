@@ -23,12 +23,13 @@ export default class StreamComponent extends Component {
 
 
     toggleSound() {
+        // console.log(this.props.user)
         this.setState({ mutedSound: !this.state.mutedSound });
     }
 
     handlePressKey(event) {
         if (event.key === 'Enter') {
-            console.log(this.state.nickname);
+            // console.log(this.state.nickname);
             if (this.state.nickname.length >= 3 && this.state.nickname.length <= 20) {
                 this.props.handleNickname(this.state.nickname);
                 this.toggleNicknameForm();
@@ -45,7 +46,8 @@ export default class StreamComponent extends Component {
                 <div className="pointer nickname">
                     <div onClick={this.toggleNicknameForm}>
                         <span id="nickname">{this.props.user.getNickname()}</span>
-                        {this.props.user.isLocal() && <span id=""> (나)</span>}
+                        { this.props.user.isLocal() && <span id=""> (나)</span>}
+                        { this.props.user.isEmojiActive() && <span>이모지 펄스</span>}
                     </div>
                 </div>
 

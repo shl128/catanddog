@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import VideoRoomComponent from '../../components/VideoChat/VideoRoomComponent';
-import './Chatting.css'
+import './Diagnosischat.css'
 import SERVER from '../../API/server'
 import axios from 'axios';
 
 
-function Chatting () {
+function Diagnosischat () {
     let chatRoomId = useParams().chatRoomId;
     const [nickname, setNickName] = useState('');
     const [userPhoto, setUserPhoto] = useState('');
@@ -38,4 +38,4 @@ function Chatting () {
         </div>
     )
 }
-export default Chatting;
+export default Diagnosischat;
