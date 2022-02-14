@@ -6,7 +6,7 @@ import { faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons'
 
 
 function MyChatroomListItem({chatroom}) {
-  const location = useLocation().pathname
+  // const location = useLocation().pathname
 
   return (
     <div className="My-chat-list-item">

@@ -1,6 +1,5 @@
 .AllChatList {
-  flex-grow: 1;
-  margin: 1rem 0rem;
-  padding: 0rem 1rem;
-  overflow-y: scroll;
+  height: 40vh;
+  overflow: auto;
+  font-weight: bold;
 }
