@@ -216,4 +216,33 @@ public class UserController {
 
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
+
+	@GetMapping("{user_nickname_check}")
+	@ApiOperation(value = "닉네임 중복 체크(사용가능한 닉네임 true)", notes = "닉네임 중복 체크")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<Boolean> checkUserNickname(String userNickname){
+		if(userService.checkUserNickname(userNickname)){
+			return ResponseEntity.status(200).body(false);
+		}
+		return ResponseEntity.status(200).body(true);
+	}
+
+	@GetMapping("{user_nickname_photo}")
+	@ApiOperation(value = "닉네임을 통해 프로필 사진 반환", notes = "닉네임을 통해 프로필 사진 반환")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<String> checkUserNicknamePhoto(String userNickname){
+		User user = userService.getUserByUserNickname(userNickname);
+		return ResponseEntity.status(200).body(user.getUserPhoto());
+
+	}
 }

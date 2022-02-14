@@ -20,14 +20,14 @@
   /* background-color: #f8ebe7; */
   overflow: hidden;
   position: absolute;
-  left: 0;
+  left: 5%;
   right: 0;
   top: 0;
   bottom: 0;
-  height: 100%;
+  height: 90%;
   margin-top: 2rem;
   min-width: 400px !important;
-  width: 70%;
+  width: 60%;
 }
 .bounds-none-block-display, .bounds-none-display-display {
   display: none;
@@ -87,17 +87,17 @@
 
 .viduchat-display-display-display, .viduchat-display-block-display{
   position: absolute;
-  right: 0%;
+  right: 3%;
   z-index: 99999;
-  width: 30%;
+  width: 27%;
   height: 50%;
   background-color: #f8ebe7;
 }
 .viduchat-display-display-none, .viduchat-display-block-none{
   position: absolute;
-  right: 0;
+  right: 3%;
   z-index: 99999;
-  width: 30%;
+  width: 27%;
   height: 80%;
   background-color: #f8ebe7;
   margin-top: 2rem;
@@ -105,26 +105,26 @@
 
 .viduchat-none-display-display, .viduchat-none-block-display{
   position: absolute;
-  right: 0%;
+  right: 3%;
   z-index: 99999;
-  width: 30%;
+  width: 27%;
   height: 50%;
   background-color: #f8ebe7;
 }
 .viduchat-none-display-none, .viduchat-none-block-none{
   position: absolute;
-  right: 0%;
+  right: 3%;
   z-index: 99999;
-  width: 30%;
-  height: 80%;
+  width: 27%;
+  height: 100%;
   background-color: #f8ebe7;
 }
 
 .callender{
   position: absolute;
   z-index: 99999;
-  right: 0;
-  width: 30%;
+  right: 3%;
+  width: 27%;
   top: 50%;
   height: 50%;
   background-color: #ffe0d7;
