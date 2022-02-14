@@ -234,13 +234,19 @@ function Signup() {
                               이메일
                           </li>
                           <li className="item">
+                            {
+                              emailValidation === false 
+                              ?
                               <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
+                              :
+                              <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus readOnly></input>
+
+                            }
                           </li>
                           <li className="item">
                               { 
                                 emailValidation === false 
-                                ? <button onClick={sendEmail} className='submit'>이메일 확인</button>
-                                : <p>인증 성공</p>
+                                && <button onClick={sendEmail} className='submit'>이메일 확인</button>
                               }
                           </li>
                       </ul>
@@ -263,11 +269,13 @@ function Signup() {
                           <input className="emailInput" type="nickname" name="nickname" placeholder="NickName" value={NickName} onChange={onNickNameHandler} />
                         </li>
                         <li className='item'>
-                          {
+                          <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
+
+                          {/* {
                             nicknameValidation === false
-                            ? <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
+                            && <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
                             : <p>확인 성공</p>
-                          }
+                          } */}
                         </li>
                       </ul>
                       <ul className="signupContainer">

@@ -137,10 +137,22 @@ const PasswordFind = (props) => {
                             이메일
                         </li>
                         <li className="item">
+                          {
+                            emailValidation === false
+                            ?
                             <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
+                            :
+                            <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} readOnly></input>
+                            // <h className="correctEmail">{Email}</h>
+                          }
                         </li>
                         <li className="item">
+                          {
+                            emailValidation === false
+                            &&
                             <button onClick={onEmailFind} className='submit'>메일 전송</button>
+                          }
+                            
                         </li>
                     </ul>
                     {
