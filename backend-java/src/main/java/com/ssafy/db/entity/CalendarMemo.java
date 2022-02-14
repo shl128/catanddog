@@ -18,22 +18,20 @@ public class CalendarMemo {
     Integer calendarMemoId;
 
     Long userId;
-    Long petId;
     String calendarMemoCategory;
     String calendarMemoTitle;
-    String calendarMemoContent;
-    Date calendarMemoDate;
+    Date calendarMemoStartDate;
+    Date calendarMemoEndDate;
 
     @Override
     public String toString() {
         return "calendarMemo{" +
                 ", calendarMemoId='" + calendarMemoId + '\'' +
                 ", userId='" + userId + '\'' +
-                ", petId='" + petId + '\'' +
                 ", calendarMemoCategory='" + calendarMemoCategory + '\'' +
                 ", calendarMemoTitle='" + calendarMemoTitle + '\'' +
-                ", calendarMemoContent='" + calendarMemoContent + '\'' +
-                ", calendarMemoDate='" + calendarMemoDate + '\'' +
+                ", calendarMemoDate='" + calendarMemoStartDate + '\'' +
+                ", calendarMemoDate='" + calendarMemoEndDate + '\'' +
                 '}';
     }
 
