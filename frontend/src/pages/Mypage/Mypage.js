@@ -191,7 +191,7 @@ const Mypage = (props) => {
         :
         <div className='mypageContainer'>
           <div className='mypageImageBox'>
-            <PhotoSide onPhoto={onUserPhotohandle} photoData={userPhoto} patchData={patchData}/>
+            <PhotoSide onPhoto={onUserPhotohandle} photoData={userPhoto} patchData={patchData} email={email}/>
           </div>
           <div className='mypageContentBox'>
             <MypageTextForm role='유저 종류' data={userKindName} update={update} handleData={onUserKindHandler}/>
