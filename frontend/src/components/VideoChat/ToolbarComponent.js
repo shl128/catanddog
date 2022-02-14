@@ -89,11 +89,11 @@ export default class ToolbarComponent extends Component {
                             <PowerSettingsNew />
                             <div className='outFont'>나가기</div>
                         </IconButton>
-                            <div className='roomName'>
+                            {/* <div className='roomName'>
                                 {this.props.sessionId && <div id="titleContent">
                                     <span id="session-title">방번호: {mySessionId}</span>
                                 </div>}
-                            </div>
+                            </div> */}
                             {
                                 this.props.isDisplayButton !== 'display' &&
                                 <IconButton color="inherit" className="whasangButton" onClick={this.camDisplayChange}>
@@ -138,9 +138,9 @@ export default class ToolbarComponent extends Component {
                             {localUser !== undefined ?  <div><DateRangeIcon /><div className='font'>캘린더</div></div> :  <div><DateRangeIcon /><div className='font'>캘린더</div></div>}
                         </IconButton>
 
-                        <IconButton color="inherit" className="navButton" >
+                        {/* <IconButton color="inherit" className="navButton" >
                             {localUser !== undefined ?  <div><WallpaperIcon /><div className='font'>가상배경</div></div> :  <div><WallpaperIcon /><div className='font'>가상배경</div></div>}
-                        </IconButton>
+                        </IconButton> */}
 
 
                         <IconButton color="inherit" onClick={this.toggleChat} className="chatButton">

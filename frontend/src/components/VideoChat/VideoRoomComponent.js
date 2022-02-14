@@ -321,7 +321,7 @@ class VideoRoomComponent extends Component {
             this.props.leaveSession();
         }
 
-        this.props.navigate('/main')
+        this.props.navigate('/')
     }
     camStatusChanged() {
         localUser.setVideoActive(!localUser.isVideoActive());

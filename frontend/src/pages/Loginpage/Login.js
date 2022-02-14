@@ -41,7 +41,7 @@ function Login() {
             console.log(response.data)
             localStorage.setItem('accessToken', response.data.accessToken);
 
-            window.location.replace(`/main`)
+            window.location.replace(`/`)
             // return(
             //   navigate('/main')
             // )
