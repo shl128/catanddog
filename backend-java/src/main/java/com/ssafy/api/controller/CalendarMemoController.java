@@ -46,6 +46,7 @@ public class CalendarMemoController {
 
     }
 
+    //전체조회
     @GetMapping("")
     @ApiOperation(value = "캘린더 메모 전체 조회")
     @ApiResponses({
@@ -69,7 +70,8 @@ public class CalendarMemoController {
         return ResponseEntity.status(500).body(null);
     }
 
-    @GetMapping("/memo/{calender_memo_id}")
+    //단일조회
+    @GetMapping("/memo")
     @ApiOperation(value = "캘린더 메모 단일 조회")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -87,7 +89,8 @@ public class CalendarMemoController {
         return ResponseEntity.status(500).body(null);
     }
 
-    @PatchMapping("/memo/{calender_memo_id}")
+    //수정
+    @PatchMapping("/memo")
     @ApiOperation(value = "캘린더 메모 수정")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -105,7 +108,7 @@ public class CalendarMemoController {
     }
 
     // 삭제
-    @DeleteMapping("/memo/{calender_memo_id}")
+    @DeleteMapping("/memo")
     @ApiOperation(value = "캘린더 메모 삭제")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
