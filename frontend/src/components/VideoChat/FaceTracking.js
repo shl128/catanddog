@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as faceapi from 'face-api.js'
 import './FaceTracking.css'
 import img from '../image/로고.png'
@@ -8,8 +8,6 @@ function FaceTracking(props) {
   const [top, setTop] = useState()
   const [left, setLeft] = useState()
   const [height, setHeight] = useState()
-  const imageRef = useRef()
-  const [pW, setPW] = useState()
 
   const run = async () => {
     console.log("run 시작")
@@ -38,30 +36,20 @@ function FaceTracking(props) {
       new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks()
       
-    // const w = detections[0] ? detections[0].detection.box.width * 2 : 0
-    await setPW(props.videoRef.current.offsetWidth)
-    const h = detections[0] ? detections[0].detection.box.height * 2 : 0
-    detections[0] && await setHeight(detections[0].detection.box.height * 2)
-    detections[0] && await setTop(detections[0].detection.box.top * 2 - h / 2)
-    detections[0] && await setLeft(detections[0].detection.box.left)
-
-    imageRef.current.innerHtml = faceapi.createCanvasFromMedia(props.videoRef.current)
-    faceapi.matchDimensions(imageRef.current, {
-      width: props.videoRef.current.offsetWidth,
-      height: props.videoRef.current.offsetHeight,
-    })
-
-    const resized = faceapi.resizeResults(detections, {
-      width: props.videoRef.current.offsetWidth,
-      height: props.videoRef.current.offsetHeight,
-    })
-
-    faceapi.draw.drawDetections(imageRef.current, resized)
+      const resized = faceapi.resizeResults(detections, {
+        width: props.videoRef.current.offsetWidth,
+        height: props.videoRef.current.offsetHeight,
+      })
+      
+    const w = resized[0] ? resized[0].detection.box.width : 0
+    const h = resized[0] ? resized[0].detection.box.height : 0
+    resized[0] && await setHeight(w > h ? w * 1.5 : h * 1.5)
+    resized[0] && await setTop(resized[0].detection.box.top - (h / 2))
+    resized[0] && await setLeft((resized[0].detection.box.left - (w * 2/5)) * 1.1)
 
     setTimeout(() => videoPlay(), 100)
 
   } 
-
 
   useEffect(() => {
     run()
@@ -70,12 +58,9 @@ function FaceTracking(props) {
 
   return(
     <div className="Face-tracking">
-      <canvas ref={imageRef} />
-      <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: `${left}%`, width: height, height: height}}/>
+      <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
     </div>
   )
 }
 
 export default FaceTracking
-
-// detections[0] && await setLeft((detections[0].detection.box.left + detections[0].detection.box.width / 2) * 2.5 - w / 2)
