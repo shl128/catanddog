@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import VideoRoomComponent from '../../components/VideoChat/VideoRoomComponent';
 import './Chatting.css'
 import SERVER from '../../API/server'
@@ -7,10 +7,13 @@ import axios from 'axios';
 
 
 function Chatting () {
-    let chatroomId = useParams().chatroomId;
+    let chatRoomId = useParams().chatRoomId;
     const [nickname, setNickName] = useState('');
+    const [userPhoto, setUserPhoto] = useState('');
     const userData =  localStorage.getItem('accessToken')
+    const navigate = useNavigate()
 
+    
     useEffect(() => {
     axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
       {headers: {
@@ -18,7 +21,7 @@ function Chatting () {
       }})
       .then(res => {
         setNickName(res.data.userNickname)
-        // console.log(res.data.userNickname)
+        setUserPhoto(res.data.userPhoto)
       })
       .catch(err => {
         console.log(err)
@@ -29,7 +32,7 @@ function Chatting () {
         <div className='Chatting'>
             {
                 nickname !== '' 
-                && <VideoRoomComponent chatroomId={chatroomId} nickname={nickname} want={true}/>
+                && <VideoRoomComponent userPhoto={userPhoto} chatroomId={chatRoomId} nickname={nickname} want={true} navigate={navigate} isUserChat="display"/>
             }
             
         </div>

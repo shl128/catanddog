@@ -1,0 +1,46 @@
+.Petpage {
+    height: 90%;
+    width: 100%;  
+    background-color: white;
+    border-radius: 2rem;
+  
+  } 
+
+td {
+    border: none !important;
+    text-align: left;
+    width: 50%; 
+ }
+
+ul {
+    list-style: none;
+}
+
+.no-left-padding {
+    padding-left: 0
+}
+
+.pet-image {
+    border-radius: 6px;
+    width: 300px;
+    height: 400px;
+}
+
+.button{
+    width: 300px;
+    height: 40px;
+    padding: 6px 25px;
+    background-color:#ff8767;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.create-pet {
+    width: 300px;
+    height: 40px;
+    padding: 6px 25px;
+    border-radius: 6px;
+  }
+

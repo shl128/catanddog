@@ -1,0 +1,9 @@
+.Alarm-item {
+  font-weight: bold;
+  margin-top: 2px;
+  padding: 0rem 1rem;
+}
+
+.Alarm-item:hover {
+  background-color: #ffe0d7;
+}

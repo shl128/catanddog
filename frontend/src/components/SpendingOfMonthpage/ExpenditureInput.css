@@ -54,3 +54,7 @@ button {
 	border: none;
 	padding: 0;
 }
+
+.divFixHeight {
+  height: 50px;
+}

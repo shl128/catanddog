@@ -1,0 +1,5 @@
+.My-chat-list {
+  height: 30vh;
+  overflow: auto;
+  font-weight: bold;
+}
