@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface CalendarMemoService {
     CalendarMemo writeCalendarMemo(CalendarMemoWritePostReq calendarMemoWritePostReq, Long userId);
-    List<CalendarMemo> findByCalendarMemo(Long userId, String calendarMemoMonth);
-    List<CalendarMemo> findByCalendarMemoCategory(Long userId, String calendarMemoCategory, String calendarMemoMonth);
-    List<CalendarMemo> findByCalendarMemoOne(Long userId, Integer calendarMemoId);
+    List<CalendarMemo> findByCalendarMemo(Long userId);
+    List<CalendarMemo> findByCalendarMemoCategory(Long userId, String category);
+    List<CalendarMemo> findByCalendarMemoOne(Long userId, Integer id);
 
-    CalendarMemo modifyCalendarMemo(CalendarMemoUpdatePostReq calendarMemoUpdatePostReq, Integer calendarMemoId, Long userId);
+    CalendarMemo modifyCalendarMemo(CalendarMemoUpdatePostReq calendarMemoUpdatePostReq, Integer id, Long userId);
 
-    void deleteCalendarMemo(Long userId, Integer calendarMemoId);
+    void deleteCalendarMemo(Long userId, Integer id);
 }

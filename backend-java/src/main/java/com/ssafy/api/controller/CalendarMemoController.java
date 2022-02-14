@@ -27,7 +27,7 @@ public class CalendarMemoController {
     @Autowired
     CalendarMemoService calendarMemoService;
 
-    @PostMapping("/memo/{user_id}")
+    @PostMapping("/memo")
     @ApiOperation(value = "캘린더 메모 등록")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -46,7 +46,8 @@ public class CalendarMemoController {
 
     }
 
-    @GetMapping("/{user_id}")
+    //전체조회
+    @GetMapping("")
     @ApiOperation(value = "캘린더 메모 전체 조회")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -54,14 +55,14 @@ public class CalendarMemoController {
             @ApiResponse(code = 404, message = "지출내역 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<List<CalendarMemo>> read(@ApiIgnore Authentication authentication, String calendarMemoCategory, String calendarMemoMonth){
+    public ResponseEntity<List<CalendarMemo>> read(@ApiIgnore Authentication authentication, String category){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         List<CalendarMemo> CalendarMemoInfoList;
-        if (calendarMemoCategory.equals("전체")) {
-            CalendarMemoInfoList = calendarMemoService.findByCalendarMemo(userId, calendarMemoMonth);
+        if (category.equals("전체")) {
+            CalendarMemoInfoList = calendarMemoService.findByCalendarMemo(userId);
         } else {
-            CalendarMemoInfoList = calendarMemoService.findByCalendarMemoCategory(userId, calendarMemoCategory, calendarMemoMonth);
+            CalendarMemoInfoList = calendarMemoService.findByCalendarMemoCategory(userId, category);
         }
         if(CalendarMemoInfoList != null){
             return ResponseEntity.status(200).body(CalendarMemoInfoList);
@@ -69,7 +70,8 @@ public class CalendarMemoController {
         return ResponseEntity.status(500).body(null);
     }
 
-    @GetMapping("/memo/{user_id}/{calender_memo_id}")
+    //단일조회
+    @GetMapping("/memo")
     @ApiOperation(value = "캘린더 메모 단일 조회")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -77,17 +79,18 @@ public class CalendarMemoController {
             @ApiResponse(code = 404, message = "지출내역 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<List<CalendarMemo>> read(@ApiIgnore Authentication authentication, Integer calendarMemoId){
+    public ResponseEntity<List<CalendarMemo>> read(@ApiIgnore Authentication authentication, Integer id){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
-        List<CalendarMemo> CalendarMemoInfoList = calendarMemoService.findByCalendarMemoOne(userId, calendarMemoId);
+        List<CalendarMemo> CalendarMemoInfoList = calendarMemoService.findByCalendarMemoOne(userId, id);
         if(CalendarMemoInfoList != null){
             return ResponseEntity.status(200).body(CalendarMemoInfoList);
         }
         return ResponseEntity.status(500).body(null);
     }
 
-    @PatchMapping("/memo/{user_id}/{calender_memo_id}")
+    //수정
+    @PatchMapping("/memo")
     @ApiOperation(value = "캘린더 메모 수정")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -95,17 +98,17 @@ public class CalendarMemoController {
             @ApiResponse(code = 404, message = "지출내역 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> modify(@ApiIgnore Authentication authentication, Integer calendarMemoId, CalendarMemoUpdatePostReq calendarMemoUpdatePostReq){
+    public ResponseEntity<? extends BaseResponseBody> modify(@ApiIgnore Authentication authentication, Integer id, CalendarMemoUpdatePostReq calendarMemoUpdatePostReq){
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
-        if(calendarMemoService.modifyCalendarMemo(calendarMemoUpdatePostReq, calendarMemoId, userId) != null){
+        if(calendarMemoService.modifyCalendarMemo(calendarMemoUpdatePostReq, id, userId) != null){
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
     }
 
     // 삭제
-    @DeleteMapping("/memo/{user_id}/{calender_memo_id}")
+    @DeleteMapping("/memo")
     @ApiOperation(value = "캘린더 메모 삭제")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -113,10 +116,10 @@ public class CalendarMemoController {
             @ApiResponse(code = 404, message = "지출내역 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> delete(@ApiIgnore Authentication authentication, Integer calendarMemoId){
+    public ResponseEntity<? extends BaseResponseBody> delete(@ApiIgnore Authentication authentication, Integer id){
         SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
-        calendarMemoService.deleteCalendarMemo(userId, calendarMemoId);
+        calendarMemoService.deleteCalendarMemo(userId, id);
         return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
     }
 

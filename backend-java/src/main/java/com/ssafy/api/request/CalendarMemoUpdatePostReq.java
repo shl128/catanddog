@@ -9,21 +9,20 @@ import java.util.Date;
 @Getter
 @Setter
 public class CalendarMemoUpdatePostReq {
-    Long petId;
-    String calendarMemoCategory;
-    String calendarMemoTitle;
-    String calendarMemoContent;
+    String category;
+    String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date calendarMemoDate;
+    Date start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date end;
 
     @Override
     public String toString() {
         return "CalendarMemo{" +
-                ", petId='" + petId + '\'' +
-                ", calendarMemoCategory='" + calendarMemoCategory + '\'' +
-                ", calendarMemoTitle='" + calendarMemoTitle + '\'' +
-                ", calendarMemoContent='" + calendarMemoContent + '\'' +
-                ", calendarMemoDate='" + calendarMemoDate + '\'' +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
                 '}';
     }
 }

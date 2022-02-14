@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.64fa1dc7.css",
-    "main.js": "/static/js/main.e2ae0fc4.js",
+    "main.js": "/static/js/main.aab8cc6a.js",
     "static/js/787.af94e789.chunk.js": "/static/js/787.af94e789.chunk.js",
     "static/media/쫑이.jpg": "/static/media/쫑이.31d8412975fb3713fc7a.jpg",
     "static/media/로고.png": "/static/media/로고.424fc872ae08056213ab.png",
@@ -11,11 +11,11 @@
     "static/media/수정버튼.png": "/static/media/수정버튼.67f5a654c128d95fb57b.png",
     "index.html": "/index.html",
     "main.64fa1dc7.css.map": "/static/css/main.64fa1dc7.css.map",
-    "main.e2ae0fc4.js.map": "/static/js/main.e2ae0fc4.js.map",
+    "main.aab8cc6a.js.map": "/static/js/main.aab8cc6a.js.map",
     "787.af94e789.chunk.js.map": "/static/js/787.af94e789.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.64fa1dc7.css",
-    "static/js/main.e2ae0fc4.js"
+    "static/js/main.aab8cc6a.js"
   ]
 }

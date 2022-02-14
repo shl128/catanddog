@@ -93,10 +93,10 @@ public class PetController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @RequestPart("pet_photo") MultipartFile petPhoto, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq) throws IOException {
+    public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @RequestPart(value = "pet_photo",required = false) MultipartFile petPhoto, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq) throws IOException {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
-
+        System.out.println(petPhoto);
         String photoImg = null;
         if(petPhoto != null){
             Base64.Encoder encoder = Base64.getEncoder();

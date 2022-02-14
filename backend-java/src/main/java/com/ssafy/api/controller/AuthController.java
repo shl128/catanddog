@@ -19,6 +19,9 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 
+import java.util.HashMap;
+import java.util.Random;
+
 /**
  * 인증 관련 API 요청 처리를 위한 컨트롤러 정의.
  */
@@ -74,4 +77,36 @@ public class AuthController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 
+	@PostMapping("/kakaoLogin")
+	@ApiOperation(value = "카카오 로그인", notes = "카카오 로그인")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공", response = UserLoginPostRes.class),
+			@ApiResponse(code = 401, message = "인증 실패", response = BaseResponseBody.class),
+			@ApiResponse(code = 404, message = "사용자 없음", response = BaseResponseBody.class),
+			@ApiResponse(code = 500, message = "서버 오류", response = BaseResponseBody.class)
+	})
+	public ResponseEntity<UserLoginPostRes> kakaoLogin(String code) {
+		String accessToken = userService.kakaoToken(code);
+		HashMap<String, Object> userInfo = userService.kakaoUserInfo(accessToken);
+		Object userEmail = userInfo.get("email");
+		Object nickname = userInfo.get("nickname");
+		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
+		registerInfo.setUserEmail(userEmail.toString());
+		Random rnd = new Random();
+		String randomStr = "";
+		for(int i=0; i<3; i++){
+			randomStr += String.valueOf((char) ((int) (rnd.nextInt(26)) + 97));
+		}
+
+		registerInfo.setUserNickname(nickname.toString() + randomStr);
+		registerInfo.setUserKind(0);
+		registerInfo.setUserPassword("faASd156!@#156SDASCQWE@G");
+
+		if(userService.checkUser(userEmail.toString())){
+			return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(userEmail.toString())));
+		}else{
+			userService.createUser(registerInfo);
+			return ResponseEntity.ok(UserLoginPostRes.of(200, "Success", JwtTokenUtil.getToken(userEmail.toString())));
+		}
+	}
 }

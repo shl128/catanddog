@@ -4,8 +4,12 @@ import SERVER from '../../API/server';
 import './Login.css'
 import logo from '../../components/image/로고.png'
 import { Link, useNavigate  } from 'react-router-dom';
+import kakaoLoginBtn from '../../components/image/kakaoLoginBtn.png'
 
 function Login() {
+    const REST_API_KEY = "81167858a8e7e297800ffaee4b944bcc";
+    const REDIRECT_URI = "http://localhost:3000/kakaoOAuth";
+    const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
@@ -39,10 +43,9 @@ function Login() {
         .then(function (response) {
             console.log(response.data)
             localStorage.setItem('accessToken', response.data.accessToken);
-            alert('로그인이 정상적으로 완료되었습니다');
 
             return(
-              navigate('/')
+              navigate('/main')
             )
         })
         .catch(function (error) {
@@ -97,7 +100,7 @@ function Login() {
                           
                             </li>                    
                             <li className="item ">
-                              <p className='googleLoginfont'>Google 로그인</p>
+                              <a href={KAKAO_AUTH_URL}><img src={kakaoLoginBtn} alt=""></img></a>
                             </li>
 
                           </ul>

@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calendarpage, Emoji, Cartoon, Chatting } from './pages/index'
+import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calendarpage, Emoji, Cartoon, Chatting, Diagnosischat, KakaoOAuth } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // import registerServiceWorker from './registerServiceWorker';
-import FaceTracking from './components/VideoChat/FaceTracking'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,12 +20,13 @@ ReactDOM.render(
         <Route path="calendarpage" element={<Calendarpage />} />
         <Route path="emoji" element={<Emoji />} />
         <Route path="cartoon" element={<Cartoon />} />
-        <Route path="faceTest" element={<FaceTracking />} />
       </Route>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/passwordFind" element={<PasswordFind />} />
       <Route path="/chatting/:chatRoomId" element={<Chatting/>} />
+      <Route path="/diagnosischat/:chatRoomId" element={<Diagnosischat/>} />
+      <Route path="/kakaoOAuth" element={<KakaoOAuth />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
