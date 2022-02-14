@@ -69,7 +69,7 @@ public class ExpenditureController {
         return ResponseEntity.status(500).body(null);
     }
 
-    @PatchMapping("/expenditures/{expenditure_id} ")
+    @PatchMapping("/expenditures")
     @ApiOperation(value = "지출내역 수정")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -87,7 +87,7 @@ public class ExpenditureController {
     }
 
     // 삭제
-    @DeleteMapping("/expenditures/{expenditure_id}")
+    @DeleteMapping("/expenditures")
     @ApiOperation(value = "지출내역 삭제")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),

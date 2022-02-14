@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './Top.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import { MyProfile } from './MainAxios'
+import { MyProfile, ConsultingRequestList } from './MainAxios'
 import Toggle  from './Toggle'
-import ConsultingOk from './ConsultingOk'
 import ConsultingAlarm from './ConsultingAlarm'
 
 function Top() {
 
-  const [userdata, setUserdata] = useState('')
   const [userkind, setUserkind] = useState(0)
   const [nickname, setNickname] = useState('')
   const [photo, setPhoto] = useState('')
   const [userActive, setUserActive] = useState(true)
   const [open, setOpen] = useState(false)
-  
+  const [consultingList, setConsultingList] = useState([])
+  const RequestList = useRef()
+
   useEffect(() => {
     MyProfile()
     .then(response => {
@@ -24,33 +24,49 @@ function Top() {
       setNickname(response.data.userNickname)
       setPhoto(response.data.userPhoto)
       setUserActive(response.data.userActive)
-      setUserdata(response.data)
-      console.log("회원정보 가져오기 성공")
-      console.log(response.data)
+      console.log("회원정보 가져오기 성공", response.data)
     })
     .catch(() => {
       console.log("회원정보 가져오기 실패")
     })
-  }, [])
-
-  const consultingList = [
-    {userName: "아무거나", petKind: "코숏", petName: "쿠키", content: "토했어요"},
-    {userName: "이것저것", petKind: "스피츠", petName: "쫑", content: "입을 긁어요"},
-    {userName: "대충대충", petKind: "진돗개", petName: "백구", content: "다리를 절어요"},
-  ]
+    
+    if (userActive) {
+      RequestGetStart()
+    } else {
+      RequestGetStop()
+    }
+  }, [userActive])
 
   function ListOpen() {
     setOpen(!open)
   }
 
+  function RequestGetStart() {
+    console.log("상담 신청 내역 가져오는 중")
+    RequestList.current = setInterval(() => {
+      ConsultingRequestList()
+      .then(response => {
+        console.log("등록된 상담 내역 가져오기 성공", response.data)
+        setConsultingList(response.data)
+      })
+      .catch(() => {
+        console.log("등록된 상담 내역 가져오기 실패")
+      })
+    }, 1000)
+  }
+
+  function RequestGetStop() {
+    clearInterval(RequestList.current)
+    setConsultingList([])
+  }
+
   return (
     <div className="Top-container">
       <div className="Top-profile">
-        {userkind === 2 && <Toggle userdata={userdata} userActive={userActive} setUserActive={setUserActive} />}
-        {userkind === 2 && userActive && <ConsultingOk />}
+        {userkind === 2 && <Toggle userActive={userActive} setUserActive={setUserActive} />}
         <button onClick={ListOpen}>
           <FontAwesomeIcon className="bell-icon" icon={faBell}/>
-          <div>{consultingList.length}</div>
+          <div>{consultingList.length >= 1 && consultingList.length}</div>
         </button>
         <p>티어</p>
         <Link to="/mypage" className="Top-link">
@@ -58,7 +74,7 @@ function Top() {
         </Link>
       </div>
       <div className={open ? "list-open" : "list-off"}>
-        <ConsultingAlarm consultingList={consultingList}/>
+        {consultingList.length >= 1 && <ConsultingAlarm consultingList={consultingList} setUserActive={setUserActive}/>}
       </div>
     </div>
   )

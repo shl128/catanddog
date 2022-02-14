@@ -18,3 +18,8 @@
 .redColor {
   color: red;
 }
+
+.overflowFrame {
+  height: 450px;
+  overflow: auto;
+}

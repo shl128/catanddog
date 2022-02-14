@@ -6,8 +6,9 @@
 
 .Face-container {
   position: absolute;
-  width: 940px;
-  height: 650px;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .Emoji-on {
