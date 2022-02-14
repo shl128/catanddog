@@ -11,4 +11,4 @@ export { default as SpendingOfMonthpage } from './SpendingOfMonthpage/SpendingOf
 export { default as Calendarpage } from './Calendarpage/Calendarpage';
 export { default as Emoji } from './Emojipage/Emoji'
 export { default as Cartoon } from './Cartoonpage/Cartoon'
-
+export { default as KakaoOAuth } from './KakaoOAuthpage/KakaoOAuth'

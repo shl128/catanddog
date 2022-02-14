@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calendarpage, Emoji, Cartoon, Chatting, Diagnosischat } from './pages/index'
+import { Mypage, Signup, Login, PasswordFind, Petpage, Main, Chat, SpendingOfMonthpage, Calendarpage, Emoji, Cartoon, Chatting, Diagnosischat, KakaoOAuth } from './pages/index'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -26,6 +26,7 @@ ReactDOM.render(
       <Route path="/passwordFind" element={<PasswordFind />} />
       <Route path="/chatting/:chatRoomId" element={<Chatting/>} />
       <Route path="/diagnosischat/:chatRoomId" element={<Diagnosischat/>} />
+      <Route path="/kakaoOAuth" element={<KakaoOAuth />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
