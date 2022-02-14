@@ -16,6 +16,7 @@ import MyChatroomList from '../Mainpage/MyChatroomList';
 import { AllRoom } from '../../components/Chatpage/ChatAxios'
 import AllChatList from '../../components/Chatpage/AllChatList'
 import { ChangeActive } from '../../components/Mainpage/MainAxios';
+import SERVER from '../../API/server';
 
 var localUser = new UserModel();
 
@@ -219,6 +220,7 @@ class VideoRoomComponent extends Component {
             localUser.setVideoActive(false)
             localUser.setAudioActive(false)
         }
+
         let publisher = this.OV.initPublisher(undefined, {
             audioSource: undefined,
             videoSource: videoDevices[0].deviceId,
@@ -241,6 +243,16 @@ class VideoRoomComponent extends Component {
             });
 
         }
+
+        axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage + '/{user_nickname_photo}?userNickname=' + this.state.myUserName)
+        .then(res=> {
+            localUser.setUserPhoto(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
         localUser.setNickname(this.state.myUserName);
         localUser.setConnectionId(this.state.session.connection.connectionId);
         localUser.setScreenShareActive(false);
@@ -420,10 +432,21 @@ class VideoRoomComponent extends Component {
                     if (data.isScreenShareActive !== undefined) {
                         user.setScreenShareActive(data.isScreenShareActive);
                     }
-                    // axios.get()
+                    if (data.emoji !== undefined){
+                        user.setEmojiActive(data.emoji)
+                    }
+                    axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage + '/{user_nickname_photo}?userNickname=' + data.nickname)
+                    .then(res=> {
+                        user.setUserPhoto(res.data)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
                     
                 }
             });
+            console.log('꾸구구구ㅜ')
+            console.log(remoteUsers)
             this.setState(
                 {
                     subscribers: remoteUsers,
@@ -663,7 +686,7 @@ class VideoRoomComponent extends Component {
                             chatDisplay={this.state.chatDisplay}
                             close={this.toggleChat}
                             messageReceived={this.checkNotification}
-                            userPhoto={this.props.userPhoto}
+                            // userPhoto={this.props.userPhoto}
                         />
                     </div>
                 )}

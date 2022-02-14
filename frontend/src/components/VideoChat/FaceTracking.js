@@ -53,7 +53,16 @@ function FaceTracking(props) {
   }, [])
 
   return(
-    <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+    <div className='faceFind'>
+      {
+        props.userPhoto !== ''
+        ?
+        <img alt="이미지" src={'data:image/png;base64,' + props.userPhoto} style={{  position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+        :
+        <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+      }
+
+    </div>
   )
 }
 
