@@ -27,7 +27,8 @@ export default class ChatComponent extends Component {
         this.props.user.getStreamManager().stream.session.on('signal:chat', (event) => {
             const data = JSON.parse(event.data);
             let messageList = this.state.messageList;
-            messageList.push({ connectionId: event.from.connectionId, nickname: data.nickname, message: data.message });
+            console.log(data)
+            messageList.push({ connectionId: event.from.connectionId, nickname: data.nickname, message: data.message});
             // const document = window.document;
             // setTimeout(() => {
             //     const userImg = document.getElementById('userImg-' + (this.state.messageList.length - 1));
@@ -52,7 +53,7 @@ export default class ChatComponent extends Component {
     }
 
     sendMessage() {
-        console.log(this.state.message);
+        // console.log(this.state.message);
         if (this.props.user && this.state.message) {
             let message = this.state.message.replace(/ +(?= )/g, '');
             if (message !== '' && message !== ' ') {
@@ -63,6 +64,7 @@ export default class ChatComponent extends Component {
                 });
             }
         }
+        // 여기에 프로필 사진 주소 요청
         this.setState({ message: '' });
     }
 
@@ -98,7 +100,7 @@ export default class ChatComponent extends Component {
                                     'message' + (data.connectionId !== this.props.user.getConnectionId() ? ' left' : ' right')
                                 }
                             >
-                                <img src={'data:image/png;base64,' + this.props.userPhoto} alt="img" width="60" height="60" className="user-img" />
+                                <img src={'data:image/png;base64,' } alt="img" width="60" height="60" className="user-img" />
                                 <div className="msg-detail">
                                     <div className="msg-info">
                                         <p> {data.nickname}</p>

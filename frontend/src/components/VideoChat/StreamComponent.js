@@ -23,12 +23,13 @@ export default class StreamComponent extends Component {
 
 
     toggleSound() {
+        // console.log(this.props.user)
         this.setState({ mutedSound: !this.state.mutedSound });
     }
 
     handlePressKey(event) {
         if (event.key === 'Enter') {
-            console.log(this.state.nickname);
+            // console.log(this.state.nickname);
             if (this.state.nickname.length >= 3 && this.state.nickname.length <= 20) {
                 this.props.handleNickname(this.state.nickname);
                 this.toggleNicknameForm();

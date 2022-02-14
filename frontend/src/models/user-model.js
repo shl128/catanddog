@@ -16,7 +16,7 @@ class UserModel {
         this.nickname = '';
         this.streamManager = null;
         this.type = 'local';
-        this.emoji=false;
+        this.emoji= false;
     }
 
     isAudioActive() {
@@ -37,7 +37,6 @@ class UserModel {
 
     setEmojiActive(isEmojiActive) {
         this.emoji = isEmojiActive;
-        console.log( this.emoji )
     }
 
     getConnectionId() {

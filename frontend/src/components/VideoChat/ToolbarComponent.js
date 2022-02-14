@@ -94,9 +94,12 @@ export default class ToolbarComponent extends Component {
                                     <span id="session-title">방번호: {mySessionId}</span>
                                 </div>}
                             </div>
-                        <IconButton color="inherit" className="whasangButton" onClick={this.camDisplayChange}>
-                            {localUser !== undefined ?  <div><AccountBoxIcon /><div className='font'>화상채팅</div></div> :  <div><AccountBoxIcon /><div className='font'>화상중지</div></div>}
-                        </IconButton>
+                            {
+                                this.props.isDisplayButton !== 'display' &&
+                                <IconButton color="inherit" className="whasangButton" onClick={this.camDisplayChange}>
+                                    {localUser !== undefined ?  <div><AccountBoxIcon /><div className='font'>화상채팅</div></div> :  <div><AccountBoxIcon /><div className='font'>화상중지</div></div>}
+                                </IconButton>
+                            }
                         <IconButton color="inherit" className="muteButton" onClick={this.micStatusChanged}>
                             {localUser !== undefined && localUser.isAudioActive() ? <div><Mic /> <div className='font'>음소거</div></div> : <div><MicOff color="secondary" /><div className='font'>음소거 해제</div></div>}
                         </IconButton>

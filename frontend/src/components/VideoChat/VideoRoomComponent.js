@@ -11,6 +11,10 @@ import OpenViduLayout from '../../layout/openvidu-layout';
 import UserModel from '../../models/user-model';
 import { useNavigate  } from 'react-router-dom';
 import Temp from './Temp';
+import { MyChatRoom } from '../../components/Mainpage/MainAxios';
+import MyChatroomList from '../Mainpage/MyChatroomList';
+import { AllRoom } from '../../components/Chatpage/ChatAxios'
+import AllChatList from '../../components/Chatpage/AllChatList'
 
 var localUser = new UserModel();
 
@@ -38,6 +42,9 @@ class VideoRoomComponent extends Component {
             currentVideoDevice: undefined,
             calenderDisplay: 'display',
             camDisplay: props.isUserChat,
+            myChatRoom: [],
+            userChatRoom: [],
+            isDisplayButton: props.isUserChat,
         };
 
         this.joinSession = this.joinSession.bind(this);
@@ -57,8 +64,38 @@ class VideoRoomComponent extends Component {
         this.togglecalender = this.togglecalender.bind(this)
         this.emojiChange = this.emojiChange.bind(this)
         this.camDisplayChange = this.camDisplayChange.bind(this)
+        this.myChatRoomGet = this.myChatRoomGet.bind(this)
+        this.userChatRoomGet = this.userChatRoomGet.bind(this)
     }
 
+    myChatRoomGet(){
+        MyChatRoom()
+        .then(res=>{
+            console.log(res)
+            this.setState(
+                {
+                    myChatRoom: res.data
+                }          
+            )
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    userChatRoomGet(){
+        AllRoom()  
+        .then(res => {
+            console.log(res)
+            this.setState(
+                {
+                    userChatRoom: res.data
+                }
+            )
+        })
+        .catch(err => {
+            console.log(err)
+        })   
+    }
     componentDidMount() {
         const openViduLayoutOptions = {
             maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
@@ -78,6 +115,10 @@ class VideoRoomComponent extends Component {
         window.addEventListener('resize', this.updateLayout);
         window.addEventListener('resize', this.checkSize);
         this.joinSession();
+        this.myChatRoomGet()
+        
+        this.userChatRoomGet()
+        
     }
 
     componentWillUnmount() {
@@ -128,7 +169,7 @@ class VideoRoomComponent extends Component {
     }
     connectToSession() {
         if (this.props.token !== undefined) {
-            console.log('token received: ', this.props.token);
+            // console.log('token received: ', this.props.token);
             this.connect(this.props.token);
         } else {
             this.getToken().then((token) => {
@@ -137,7 +178,7 @@ class VideoRoomComponent extends Component {
                 if(this.props.error){
                     this.props.error({ error: error.error, messgae: error.message, code: error.code, status: error.status });
                 }
-                console.log('There was an error getting the token:', error.code, error.message);
+                // console.log('There was an error getting the token:', error.code, error.message);
                 alert('There was an error getting the token:', error.message);
               });
         }
@@ -157,7 +198,7 @@ class VideoRoomComponent extends Component {
                     this.props.error({ error: error.error, messgae: error.message, code: error.code, status: error.status });
                 }
                 alert('There was an error connecting to the session:', error.message);
-                console.log('There was an error connecting to the session:', error.code, error.message);
+                // console.log('There was an error connecting to the session:', error.code, error.message);
             });
     }
 
@@ -173,13 +214,10 @@ class VideoRoomComponent extends Component {
             videoSource: videoDevices[0].deviceId,
             publishAudio: localUser.isAudioActive(),
             publishVideo: localUser.isVideoActive(),
-            emoji : localUser.isEmojiActive(),
             resolution: '640x480',
             frameRate: 30,
             insertMode: 'APPEND',
         });
-        console.log('여기봐3')
-        console.log(publisher.emoji)
         if (this.state.session.capabilities.publish) {
             publisher.on('accessAllowed' , () => {
                 this.state.session.publish(publisher).then(() => {
@@ -195,8 +233,11 @@ class VideoRoomComponent extends Component {
         localUser.setNickname(this.state.myUserName);
         localUser.setConnectionId(this.state.session.connection.connectionId);
         localUser.setScreenShareActive(false);
+        // localUser.setEmojiActive(localUser.isEmojiActive())
         localUser.setStreamManager(publisher);
         this.subscribeToUserChanged();
+        this.subscribeToEmojiChanged();
+        
         this.subscribeToStreamDestroyed();
         this.sendSignalUserChanged({ isScreenShareActive: localUser.isScreenShareActive() });
 
@@ -221,7 +262,7 @@ class VideoRoomComponent extends Component {
                         isAudioActive: this.state.localUser.isAudioActive(),
                         isVideoActive: this.state.localUser.isVideoActive(),
                         nickname: this.state.localUser.getNickname(),
-                        isEmojiActive: this.state.localUser.isEmojiActive(),
+                        emoji : this.state.localUser.isEmojiActive(),
                         isScreenShareActive: this.state.localUser.isScreenShareActive(),
                     });
                 }
@@ -253,8 +294,8 @@ class VideoRoomComponent extends Component {
     }
     camStatusChanged() {
         localUser.setVideoActive(!localUser.isVideoActive());
-        console.log('여ㅣ기기기기')
-        console.log(localUser.getStreamManager())
+        // console.log('여ㅣ기기기기')
+        // console.log(localUser.getStreamManager())
         localUser.getStreamManager().publishVideo(localUser.isVideoActive());
         this.sendSignalUserChanged({ isVideoActive: localUser.isVideoActive() });
         this.setState({ localUser: localUser });
@@ -265,17 +306,48 @@ class VideoRoomComponent extends Component {
         localUser.getStreamManager().publishAudio(localUser.isAudioActive());
         this.sendSignalUserChanged({ isAudioActive: localUser.isAudioActive() });
         this.setState({ localUser: localUser });
+        
     }
     emojiChange() {
-        localUser.setEmojiActive(!localUser.isEmojiActive())
-        console.log('여기바')
-        console.log(localUser.getStreamManager())
-        console.log('여기바2')
-        // localUser.getStreamManager().publishEmojiVideo(localUser.isEmojiActive());
-        this.sendSignalUserChanged({ emoji: localUser.isEmojiActive() });
+        let localUser = this.state.localUser;
+        if (localUser.isEmojiActive() === false || localUser.isEmojiActive() === undefined)
+        {
+            localUser.setEmojiActive(true)
+        } else {
+            localUser.setEmojiActive(false)
+        }
         this.setState({ localUser: localUser });
+        const data = { emoji: localUser.isEmojiActive(), nickname: localUser.getNickname() };
+        this.state.session.signal({
+            data: JSON.stringify(data),
+            type: 'emoji',
+        });
+        // let localUser = this.state.localUser;
+        // localUser.setNickname('바보');
+        // this.setState({ localUser: localUser });
+        // this.sendSignalUserChanged({ nickname: '바보' });
     }
+    subscribeToEmojiChanged(){
+        this.state.session.on('signal:emoji', (event) => {
+            const data = JSON.parse(event.data);
+            let remoteUsers = this.state.subscribers;
 
+            remoteUsers.forEach((user) => {
+                if (user.getConnectionId() === event.from.connectionId){
+                    if (data.emoji !== undefined) {
+                        user.setEmojiActive(data.emoji)
+                        console.log(user.emoji)
+                    }
+                }
+            });
+            this.setState(
+                {
+                    subscribers: remoteUsers,
+                },
+            );
+        });
+        
+    }
     nicknameChanged(nickname) {
         let localUser = this.state.localUser;
         localUser.setNickname(nickname);
@@ -316,7 +388,7 @@ class VideoRoomComponent extends Component {
             remoteUsers.forEach((user) => {
                 if (user.getConnectionId() === event.from.connectionId) {
                     const data = JSON.parse(event.data);
-                    console.log('EVENTO REMOTE: ', event.data);
+                    // console.log('EVENTO REMOTE: ', event.data);
                     if (data.isAudioActive !== undefined) {
                         user.setAudioActive(data.isAudioActive);
                     }
@@ -329,9 +401,8 @@ class VideoRoomComponent extends Component {
                     if (data.isScreenShareActive !== undefined) {
                         user.setScreenShareActive(data.isScreenShareActive);
                     }
-                    if (data.isEmojiActive !== undefined) {
-                        user.setEmojiActive(data.emoji)
-                    }
+                    // axios.get()
+                    
                 }
             });
             this.setState(
@@ -467,7 +538,7 @@ class VideoRoomComponent extends Component {
         if (display === 'block') {
             this.setState({ chatDisplay: display, messageReceived: false });
         } else {
-            console.log('chat', display);
+            // console.log('chat', display);
             this.setState({ chatDisplay: display });
         }
 
@@ -538,11 +609,20 @@ class VideoRoomComponent extends Component {
                     togglecalender={this.togglecalender}
                     emojiChange= {this.emojiChange}
                     camDisplayChange= {this.camDisplayChange}
+                    isDisplayButton= {this.state.isDisplayButton}
                 />
 
                 <DialogExtensionComponent showDialog={this.state.showExtensionDialog} cancelClicked={this.closeDialogExtension} />
-
-                <div id="layout" className={`bounds-${this.state.camDisplay}-${this.state.chatDisplay}-${this.state.calenderDisplay}`} >
+                {
+                    this.state.camDisplay === 'none'
+                    ?
+                    <div className='chatRoomArea'>
+                        <MyChatroomList myChatrooms={this.state.myChatRoom}/>
+                        <h2>유저채팅방 목록</h2>
+                        <AllChatList rooms={this.state.userChatRoom}/>
+                    </div>
+                    :
+                     <div id="layout" className={`bounds-${this.state.camDisplay}-${this.state.chatDisplay}-${this.state.calenderDisplay}`} >
                 {localUser !== undefined && localUser.getStreamManager() !== undefined && (
                     <div className="OT_root OT_publisher custom-class" id="localUser">
                         <StreamComponent user={localUser} handleNickname={this.nicknameChanged} />
@@ -553,7 +633,8 @@ class VideoRoomComponent extends Component {
                         <StreamComponent user={sub} streamId={sub.streamManager.stream.streamId} />
                     </div>
                 ))}
-                </div>
+                    </div>
+                }
                 
                 {localUser !== undefined && localUser.getStreamManager() !== undefined && (
                     <div className={`viduchat-${this.state.camDisplay}-${this.state.chatDisplay}-${this.state.calenderDisplay}`} style={chatDisplay}>
@@ -591,7 +672,7 @@ class VideoRoomComponent extends Component {
                     },
                 })
                 .then((response) => {
-                    console.log('CREATE SESION', response);
+                    // console.log('CREATE SESION', response);
                     resolve(response.data.id);
                 })
                 .catch((response) => {
@@ -599,10 +680,10 @@ class VideoRoomComponent extends Component {
                     if (error.response && error.response.status === 409) {
                         resolve(sessionId);
                     } else {
-                        console.log(error);
-                        console.warn(
-                            'No connection to OpenVidu Server. This may be a certificate error at ' + this.OPENVIDU_SERVER_URL,
-                        );
+                        // console.log(error);
+                        // console.warn(
+                        //     'No connection to OpenVidu Server. This may be a certificate error at ' + this.OPENVIDU_SERVER_URL,
+                        // );
                         if (
                             window.confirm(
                                 'No connection to OpenVidu Server. This may be a certificate error at "' +
@@ -631,7 +712,7 @@ class VideoRoomComponent extends Component {
                     },
                 })
                 .then((response) => {
-                    console.log('TOKEN', response);
+                    // console.log('TOKEN', response);
                     resolve(response.data.token);
                 })
                 .catch((error) => reject(error));

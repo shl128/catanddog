@@ -16,7 +16,19 @@
     padding: 0;
 }
 
-
+.chatRoomArea{
+  /* background-color: #f8ebe7; */
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  margin-top: 2rem;
+  min-width: 400px !important;
+  width: 70%;
+}
 .bounds-none-block-display, .bounds-none-display-display {
   display: none;
 }
@@ -31,7 +43,7 @@
   height: 80%;
   margin-top: 2rem;
   min-width: 400px !important;
-  width: 60%;
+  width: 70%;
 }
 .bounds-display-block-none, .bounds-display-display-none {
   background-color: #f8ebe7;
@@ -44,7 +56,7 @@
   height: 80%;
   margin-top: 2rem;
   min-width: 400px !important;
-  width: 80%;
+  width: 70%;
 }
 .bounds-display-none-display {
   background-color: #f8ebe7;
@@ -54,9 +66,11 @@
   right: 0;
   top: 0;
   bottom: 0;
-  height: 90%;
+  height: 80%;
+  margin-top: 2rem;
+
   min-width: 400px !important;
-  width: 80%;
+  width: 70%;
 }
 .bounds-display-none-none {
   background-color: #f8ebe7;
@@ -73,35 +87,36 @@
 
 .viduchat-display-display-display, .viduchat-display-block-display{
   position: absolute;
-  right: 20%;
+  right: 0%;
   z-index: 99999;
-  width: 20%;
-  height: 100%;
+  width: 30%;
+  height: 50%;
   background-color: #f8ebe7;
 }
 .viduchat-display-display-none, .viduchat-display-block-none{
   position: absolute;
   right: 0;
   z-index: 99999;
-  width: 20%;
-  height: 100%;
+  width: 30%;
+  height: 80%;
   background-color: #f8ebe7;
+  margin-top: 2rem;
 }
 
 .viduchat-none-display-display, .viduchat-none-block-display{
   position: absolute;
-  right: 30%;
+  right: 0%;
   z-index: 99999;
-  width: 60%;
-  height: 100%;
+  width: 30%;
+  height: 50%;
   background-color: #f8ebe7;
 }
 .viduchat-none-display-none, .viduchat-none-block-none{
   position: absolute;
-  right: 20%;
+  right: 0%;
   z-index: 99999;
-  width: 60%;
-  height: 100%;
+  width: 30%;
+  height: 80%;
   background-color: #f8ebe7;
 }
 
@@ -109,8 +124,9 @@
   position: absolute;
   z-index: 99999;
   right: 0;
-  width: 20%;
-  height: 100%;
+  width: 30%;
+  top: 50%;
+  height: 50%;
   background-color: #ffe0d7;
 }
 
