@@ -96,10 +96,7 @@ public class PetController {
     public ResponseEntity<? extends BaseResponseBody> update(@ApiIgnore Authentication authentication, @RequestPart(value = "pet_photo",required = false) MultipartFile petPhoto, @PathVariable("pet_id")Long petId, PetUpdatePostReq petUpdatePostReq) throws IOException {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
-<<<<<<< HEAD
-=======
         System.out.println(petPhoto);
->>>>>>> dffe6fe3619356498e4a345050bffc48eaf8a770
         String photoImg = null;
         if(petPhoto != null){
             Base64.Encoder encoder = Base64.getEncoder();
