@@ -21,12 +21,38 @@ ul {
 }
 
 .pet-image {
-    border-radius: 6px;
-    width: 300px;
+    border-radius: 50%;
+    width: 400px;
     height: 400px;
 }
 
+.trans {
+    background-color:#ff8767;
+    border:1px solid #ff8767;
+    width:120px; height:120px;
+    border-radius:75px;
+    text-align:center;
+    margin:0 auto;
+    font-size:14px; color:#fff;
+    vertical-align:middle;
+    line-height:100px;
+    margin-top: 20px;
+    margin-left: 148px;
+    }
+
 .button{
+    width: 200px;
+    height: 40px;
+    padding: 6px 25px;
+    background-color:#ff8767;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 100px;
+}
+
+.basic{
     width: 300px;
     height: 40px;
     padding: 6px 25px;
@@ -44,3 +70,66 @@ ul {
     border-radius: 6px;
   }
 
+  .arrow {
+    display: inline-block;
+    background: #ff8767;
+    position: relative;
+    margin-right: 30px;
+}
+
+.arrow.top, .arrow.bottom {
+    width: 10px;
+    height: 20px;
+}
+
+.arrow.left, .arrow.right {
+    top: 70px;
+    left: 128px;
+    width: 50px;
+    height: 28px;
+}
+
+.arrow:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.arrow.top:after {
+    top: -40px;
+    left: -10px;
+    border-width: 20px 15px;
+    border-color: transparent transparent #ff8767 transparent;
+}
+
+.arrow.bottom:after {
+    top: 20px;
+    left: -10px;
+    border-width: 20px 15px;
+    border-color: #ff8767 transparent transparent transparent;
+}
+
+.arrow.left:after {
+    top: -10px;
+    left: -40px;
+    border-width: 15px 20px;
+    border-color: transparent #ff8767 transparent transparent;
+}
+
+.arrow.right:after {
+    top: -10px;
+    left: 50px;
+    border-width: 25px 30px;
+    border-color: transparent transparent transparent #ff8767;
+}
+
+.h3{
+    padding: 6px 160px;
+    font-size: large;
+}
+
+#before{
+    left:100px;
+}

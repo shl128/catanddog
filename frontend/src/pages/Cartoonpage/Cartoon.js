@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import './Cartoon.css'
 import noImage from '../../components/image/이미지없음.png'
-import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import SERVER from '../../API/server';
 
 const Cartoon = () => {
 
@@ -22,19 +19,22 @@ const Cartoon = () => {
     reader.onloadend = () => {
       const base64 = reader.result;
       if (base64) {
-        setImgBase64(base64.toString()); 
+        setImgBase64(base64.toString());
       }
     }
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]); 
       setPhoto(e.target.files[0]);
+      transBtn(e.target.files[0]);
     }
+
+    
   }
 
-  const transBtn = () => {
+  const transBtn = (petPhoto) => {
     let formData = new FormData();
     formData.append("file_type","image");
-    formData.append("source",Photo);
+    formData.append("source",petPhoto);
     axios.post("https://master-white-box-cartoonization-psi1104.endpoint.ainize.ai/predict",
     formData,
     {
@@ -43,6 +43,7 @@ const Cartoon = () => {
     .then((response)=>{
       const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] } ));
       setCartoonPhoto(url);
+      console.log(url);
     })
   }
 
@@ -56,18 +57,23 @@ const Cartoon = () => {
   
   return (
     <div>
-      <h3>카툰화</h3>
+      <h3>내 반려동물의 사진을 카툰화 해보세요!</h3>
       <div className="Cartoonpage">
-        <Container>
-          <Row>
-            <Col className="mt-5">
+        <Container className='m-3'>
+          <Row className='m-5'>
+            <Col id="">
+              <div>
+              <label className='h3'>
+                Before
+              </label>
+              </div>
               { 
                 imgBase64 == null 
-                ? <img src={noImage} className="pet-image" alt="no" />
-                : <img src={imgBase64} className="pet-image" alt="no" />
+                ? <img src={noImage} className="pet-image mt-2" alt="no" />
+                : <img src={imgBase64} className="pet-image mt-2" alt="no" />
               }
               <div className="mt-1">
-                <label className="button" for="input-file">카툰화 이미지 선택</label>
+                <label className="button mt-2" for="input-file">카툰화 이미지 선택</label>
                 <input type="file"
                   id="input-file" 
                   accept='image/*'
@@ -78,18 +84,25 @@ const Cartoon = () => {
             </Col>
             <Col className="mt-5">
               <div className="mt-5">
-                
+                <br></br>
+                <br></br>
+                <br></br>
               </div>
-                <Button className="button mt-5" variant='danger' onClick={transBtn}>변환</Button>   
+                <label className='arrow right'></label>   
             </Col>
-            <Col className="mt-5">
+            <Col className="">
+            <div>
+              <label className='h3'>
+                After
+              </label>
+              </div>
             { 
                 cartoonPhoto == null 
-                ? <img src={noImage} className="pet-image" alt="no" />
-                : <img src={cartoonPhoto} className="pet-image" alt="no" />
+                ? <img src={noImage} className="pet-image mt-2" alt="no" />
+                : <img src={cartoonPhoto} className="pet-image mt-2" alt="no" />
             }
             <div className='mt-1'>
-            <Button className="button" variant='danger' onClick={downBtn}>다운로드</Button> 
+            <label className="button mt-2" onClick={downBtn}>다운로드</label> 
               </div>  
             </Col>
           </Row>
