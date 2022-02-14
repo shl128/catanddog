@@ -10,8 +10,9 @@ function Diagnosischat () {
     let chatRoomId = useParams().chatRoomId;
     const [nickname, setNickName] = useState('');
     const [userPhoto, setUserPhoto] = useState('');
-    const userData =  localStorage.getItem('accessToken')
-    const navigate = useNavigate()
+    const [userKind, setUserKind] = useState('');
+    const userData =  localStorage.getItem('accessToken');
+    const navigate = useNavigate();
 
     
     useEffect(() => {
@@ -22,6 +23,7 @@ function Diagnosischat () {
       .then(res => {
         setNickName(res.data.userNickname)
         setUserPhoto(res.data.userPhoto)
+        setUserKind(res.data.userKind)
       })
       .catch(err => {
         console.log(err)
@@ -32,7 +34,7 @@ function Diagnosischat () {
         <div className='Chatting'>
             {
                 nickname !== '' 
-                && <VideoRoomComponent userPhoto={userPhoto} chatroomId={chatRoomId} nickname={nickname} want={true} navigate={navigate} isUserChat="display"/>
+                && <VideoRoomComponent userPhoto={userPhoto} chatroomId={chatRoomId} nickname={nickname} want={true} navigate={navigate} isUserChat="display" userKind={userKind}/>
             }
             
         </div>

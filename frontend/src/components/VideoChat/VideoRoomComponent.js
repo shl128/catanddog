@@ -15,6 +15,7 @@ import { MyChatRoom } from '../../components/Mainpage/MainAxios';
 import MyChatroomList from '../Mainpage/MyChatroomList';
 import { AllRoom } from '../../components/Chatpage/ChatAxios'
 import AllChatList from '../../components/Chatpage/AllChatList'
+import { ChangeActive } from '../../components/Mainpage/MainAxios';
 
 var localUser = new UserModel();
 
@@ -66,6 +67,7 @@ class VideoRoomComponent extends Component {
         this.camDisplayChange = this.camDisplayChange.bind(this)
         this.myChatRoomGet = this.myChatRoomGet.bind(this)
         this.userChatRoomGet = this.userChatRoomGet.bind(this)
+        this.userKindReset = this.userKindReset.bind(this)
     }
 
     myChatRoomGet(){
@@ -96,6 +98,15 @@ class VideoRoomComponent extends Component {
             console.log(err)
         })   
     }
+    userKindReset(){
+        ChangeActive(true)
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
     componentDidMount() {
         const openViduLayoutOptions = {
             maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
@@ -116,7 +127,6 @@ class VideoRoomComponent extends Component {
         window.addEventListener('resize', this.checkSize);
         this.joinSession();
         this.myChatRoomGet()
-        
         this.userChatRoomGet()
         
     }
@@ -217,6 +227,7 @@ class VideoRoomComponent extends Component {
             resolution: '640x480',
             frameRate: 30,
             insertMode: 'APPEND',
+            mirror: false,
         });
         if (this.state.session.capabilities.publish) {
             publisher.on('accessAllowed' , () => {
@@ -274,6 +285,13 @@ class VideoRoomComponent extends Component {
     leaveSession() {
         const mySession = this.state.session;
 
+        if (this.props.userKind === 2){
+            if (this.props.isUserChat === "display"){
+                this.userKindReset()
+            }
+        }
+        console.log(this.props.userKind)
+
         if (mySession) {
             mySession.disconnect();
         }
@@ -290,6 +308,7 @@ class VideoRoomComponent extends Component {
         if (this.props.leaveSession) {
             this.props.leaveSession();
         }
+
         this.props.navigate('/main')
     }
     camStatusChanged() {
@@ -615,26 +634,27 @@ class VideoRoomComponent extends Component {
                 <DialogExtensionComponent showDialog={this.state.showExtensionDialog} cancelClicked={this.closeDialogExtension} />
                 {
                     this.state.camDisplay === 'none'
-                    ?
+                    &&
                     <div className='chatRoomArea'>
                         <MyChatroomList myChatrooms={this.state.myChatRoom}/>
                         <h2>유저채팅방 목록</h2>
                         <AllChatList rooms={this.state.userChatRoom}/>
                     </div>
-                    :
-                     <div id="layout" className={`bounds-${this.state.camDisplay}-${this.state.chatDisplay}-${this.state.calenderDisplay}`} >
-                {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-                    <div className="OT_root OT_publisher custom-class" id="localUser">
-                        <StreamComponent user={localUser} handleNickname={this.nicknameChanged} />
-                    </div>
-                )}
-                {this.state.subscribers.map((sub, i) => (
-                    <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
-                        <StreamComponent user={sub} streamId={sub.streamManager.stream.streamId} />
-                    </div>
-                ))}
-                    </div>
+                    
+
                 }
+                    <div id="layout" className={`bounds-${this.state.camDisplay}-${this.state.chatDisplay}-${this.state.calenderDisplay}`} >
+                        {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+                            <div className="OT_root OT_publisher custom-class" id="localUser">
+                                <StreamComponent user={localUser} handleNickname={this.nicknameChanged} />
+                            </div>
+                        )}
+                        {this.state.subscribers.map((sub, i) => (
+                            <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
+                                <StreamComponent user={sub} streamId={sub.streamManager.stream.streamId} />
+                            </div>
+                        ))}
+                    </div>
                 
                 {localUser !== undefined && localUser.getStreamManager() !== undefined && (
                     <div className={`viduchat-${this.state.camDisplay}-${this.state.chatDisplay}-${this.state.calenderDisplay}`} style={chatDisplay}>
