@@ -12,10 +12,16 @@ import java.util.List;
 
 @Repository
 public interface CalendarMemoRepository extends JpaRepository <CalendarMemo, Integer> {
-    @Query(value = "SELECT * from calendar_memo where user_id = :userId and DATE_FORMAT(calendar_memo_date, '%Y-%m') = :calendarMemoMonth order by calendar_memo_id desc",nativeQuery = true)
-    List<CalendarMemo> findByCalendarMemo(@Param("userId") Long userId, @Param("calendarMemoMonth") String calendarMemoMonth);
-    @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_category = :calendarMemoCategory and DATE_FORMAT(calendar_memo_date, '%Y-%m') = :calendarMemoMonth order by calendar_memo_id desc",nativeQuery = true)
-    List<CalendarMemo> findByCalendarMemoCategory(@Param("userId") Long userId, @Param("calendarMemoCategory") String calendarMemoCategory, @Param("calendarMemoMonth") String calendarMemoMonth);
+//    @Query(value = "SELECT * from calendar_memo where user_id = :userId and DATE_FORMAT(calendar_memo_date, '%Y-%m') = :calendarMemoMonth order by calendar_memo_id desc",nativeQuery = true)
+//    List<CalendarMemo> findByCalendarMemo(@Param("userId") Long userId, @Param("calendarMemoMonth") String calendarMemoMonth);
+//    @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_category = :calendarMemoCategory and DATE_FORMAT(calendar_memo_date, '%Y-%m') = :calendarMemoMonth order by calendar_memo_id desc",nativeQuery = true)
+//    List<CalendarMemo> findByCalendarMemoCategory(@Param("userId") Long userId, @Param("calendarMemoCategory") String calendarMemoCategory, @Param("calendarMemoMonth") String calendarMemoMonth);
+
+    @Query(value = "SELECT * from calendar_memo where user_id = :userId order by calendar_memo_id desc",nativeQuery = true)
+    List<CalendarMemo> findByCalendarMemo(@Param("userId") Long userId);
+
+    @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_category = :calendarMemoCategory order by calendar_memo_id desc",nativeQuery = true)
+    List<CalendarMemo> findByCalendarMemoCategory(@Param("userId") Long userId, @Param("calendarMemoCategory") String calendarMemoCategory);
 
     @Query(value = "SELECT * from calendar_memo where user_id = :userId and calendar_memo_id = :calendarMemoId",nativeQuery = true)
     List<CalendarMemo> findByCalendarMemoOne(@Param("userId") Long userId, @Param("calendarMemoId")  Integer calendarMemoId);

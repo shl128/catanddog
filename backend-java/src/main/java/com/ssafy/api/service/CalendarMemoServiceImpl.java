@@ -21,23 +21,22 @@ public class CalendarMemoServiceImpl implements CalendarMemoService {
 
         calendarMemo.setCalendarMemoId(calendarMemo.getCalendarMemoId());
         calendarMemo.setUserId(userId);
-        calendarMemo.setPetId(calendarMemoWritePostReq.getPetId());
         calendarMemo.setCalendarMemoCategory(calendarMemoWritePostReq.getCalendarMemoCategory());
         calendarMemo.setCalendarMemoTitle(calendarMemoWritePostReq.getCalendarMemoTitle());
-        calendarMemo.setCalendarMemoContent(calendarMemoWritePostReq.getCalendarMemoContent());
-        calendarMemo.setCalendarMemoDate(calendarMemoWritePostReq.getCalendarMemoDate());
+        calendarMemo.setCalendarMemoStartDate(calendarMemoWritePostReq.getCalendarMemoStartDate());
+        calendarMemo.setCalendarMemoEndDate(calendarMemoWritePostReq.getCalendarMemoEndDate());
 
         return calendarMemoRepository.save(calendarMemo);
     }
 
     @Override
-    public List<CalendarMemo> findByCalendarMemo(Long userId, String calendarMemoMonth) {
-        return calendarMemoRepository.findByCalendarMemo(userId ,calendarMemoMonth);
+    public List<CalendarMemo> findByCalendarMemo(Long userId) {
+        return calendarMemoRepository.findByCalendarMemo(userId);
     }
 
     @Override
-    public List<CalendarMemo> findByCalendarMemoCategory(Long userId, String calendarMemoCategory, String calendarMemoMonth) {
-        return calendarMemoRepository.findByCalendarMemoCategory(userId, calendarMemoCategory, calendarMemoMonth);
+    public List<CalendarMemo> findByCalendarMemoCategory(Long userId, String calendarMemoCategory) {
+        return calendarMemoRepository.findByCalendarMemoCategory(userId, calendarMemoCategory);
     }
 
     @Override
@@ -51,11 +50,10 @@ public class CalendarMemoServiceImpl implements CalendarMemoService {
         CalendarMemo calendarMemo = new CalendarMemo();
         calendarMemo.setCalendarMemoId(calendarMemoId);
         calendarMemo.setUserId(userId);
-        calendarMemo.setPetId(calendarMemoUpdatePostReq.getPetId());
         calendarMemo.setCalendarMemoCategory(calendarMemoUpdatePostReq.getCalendarMemoCategory());
         calendarMemo.setCalendarMemoTitle(calendarMemoUpdatePostReq.getCalendarMemoTitle());
-        calendarMemo.setCalendarMemoContent(calendarMemoUpdatePostReq.getCalendarMemoContent());
-        calendarMemo.setCalendarMemoDate(calendarMemoUpdatePostReq.getCalendarMemoDate());
+        calendarMemo.setCalendarMemoStartDate(calendarMemoUpdatePostReq.getCalendarMemoStartDate());
+        calendarMemo.setCalendarMemoEndDate(calendarMemoUpdatePostReq.getCalendarMemoEndDate());
         return calendarMemoRepository.save(calendarMemo);
     }
 

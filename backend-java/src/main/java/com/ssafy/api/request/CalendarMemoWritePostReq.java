@@ -11,21 +11,20 @@ import java.util.Date;
 @Setter
 @ApiModel("CalendarMemoWritePostRequest")
 public class CalendarMemoWritePostReq {
-    Long petId;
     String calendarMemoCategory;
     String calendarMemoTitle;
-    String calendarMemoContent;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date calendarMemoDate;
+    Date calendarMemoStartDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date calendarMemoEndDate;
 
     @Override
     public String toString() {
         return "CalendarMemo{" +
-                ", petId='" + petId + '\'' +
                 ", calendarMemoCategory='" + calendarMemoCategory + '\'' +
                 ", calendarMemoTitle='" + calendarMemoTitle + '\'' +
-                ", calendarMemoContent='" + calendarMemoContent + '\'' +
-                ", calendarMemoDate='" + calendarMemoDate + '\'' +
+                ", calendarMemoDate='" + calendarMemoStartDate + '\'' +
+                ", calendarMemoDate='" + calendarMemoEndDate + '\'' +
                 '}';
     }
 }
