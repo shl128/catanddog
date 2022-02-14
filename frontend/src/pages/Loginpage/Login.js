@@ -31,6 +31,9 @@ function Login() {
           {
             userEmail: Email,
             userPassword: Password,
+          },
+          {
+            headers : { "Content-Type": `application/json`}
           }
         )
         .then(function (response) {
@@ -62,7 +65,7 @@ function Login() {
                     <h4>냥과함개와 함께하세요!
                     </h4>
                   </div>
-                <form onSubmit={onSubmitHandler}>
+                <form onSubmit={onSubmitHandler}> 
                   <div className="cflex">
                       <ul className="customcontainer">
                           <li className="item center">
