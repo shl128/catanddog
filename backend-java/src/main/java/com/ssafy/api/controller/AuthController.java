@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * 인증 관련 API 요청 처리를 위한 컨트롤러 정의.
@@ -91,7 +92,13 @@ public class AuthController {
 		Object nickname = userInfo.get("nickname");
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		registerInfo.setUserEmail(userEmail.toString());
-		registerInfo.setUserNickname(nickname.toString());
+		Random rnd = new Random();
+		String randomStr = "";
+		for(int i=0; i<3; i++){
+			randomStr += String.valueOf((char) ((int) (rnd.nextInt(26)) + 97));
+		}
+
+		registerInfo.setUserNickname(nickname.toString() + randomStr);
 		registerInfo.setUserKind(0);
 		registerInfo.setUserPassword("faASd156!@#156SDASCQWE@G");
 

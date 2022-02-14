@@ -28,4 +28,8 @@ public interface UserService {
     String kakaoToken(String code);
 
 	HashMap<String, Object> kakaoUserInfo(String accessToken);
+
+	boolean checkUserNickname(String userNickname);
+
+	User getUserByUserNickname(String userNickname);
 }
