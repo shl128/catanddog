@@ -2,7 +2,7 @@ import axios from 'axios'
 import SERVER from '../../API/server'
 
 const profileUrl = SERVER.BASE_URL + SERVER.ROUTES.mypage
-const petUrl = SERVER.BASE_URL + SERVER.ROUTES.createPet
+const petUrl = SERVER.BASE_URL + SERVER.ROUTES.Petpage
 const myChatUrl = SERVER.BASE_URL + SERVER.ROUTES.myChatRoom
 const userData = localStorage.getItem('accessToken')
 

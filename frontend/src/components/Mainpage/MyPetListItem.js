@@ -8,7 +8,7 @@ function MyPetListItem(pets) {
 
     return (
       <div key={pet.petId}>
-        <Link to="/petpage">
+        <Link to='/petpage' state={{pageType:'read', petId: pet.petId}}>
           <button className="My-pet-list-item">
             <img className="My-pet-img" alt="사진" src={'data:image/png;base64,' + pet.petPhoto}/>
             <span>
