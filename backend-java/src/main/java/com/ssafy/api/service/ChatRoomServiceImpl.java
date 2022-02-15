@@ -55,6 +55,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         // hostId와 userId 비교 후 같을 시 삭제
         ChatRoom chatRoom = chatRoomRepository.getOne(chatRoomId);
         if(chatRoom.getHostId() == userId){
+            chatRoomTagRepository.deleteChatRoomId(chatRoomId);
             userChatRoomRepository.deleteChatRoomId(chatRoomId);
             chatRoomRepository.deleteById(chatRoomId);
         }
