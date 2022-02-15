@@ -101,7 +101,7 @@ const Mypage = (props) => {
   const handleShow = () => setShow(true);
   const onwithdrawal = (e) => {
     e.preventDefault()
-    axios.delete(SERVER.BASE_URL + SERVER.ROUTES.mypage,
+    axios.delete(SERVER.BASE_URL + SERVER.ROUTES.mypage ,
       {headers: {
         Authorization: `Bearer ${userData}`
       }})

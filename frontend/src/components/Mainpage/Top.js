@@ -7,6 +7,7 @@ import { MyProfile, ConsultingRequestList } from './MainAxios'
 import Toggle  from './Toggle'
 import ConsultingAlarm from './ConsultingAlarm'
 import rank from '../image/티어.png'
+import noImage from '../image/이미지없음.png'
 
 function Top() {
 
@@ -76,7 +77,13 @@ function Top() {
       </div>}
       <img className="Top-grade" alt="티어" src={rank} />
       <Link to="/mypage" className="Top-profile">
-        <img className='Top-profile-img' alt="프로필사진" src={'data:image/png;base64,' + photo} />
+        {
+          photo === null
+          ?
+          <img className='Top-profile-img' alt="프로필사진" src={noImage} />
+          :          
+          <img className='Top-profile-img' alt="프로필사진" src={'data:image/png;base64,' + photo} />
+        }
         <div className="Top-profile-name">{nickname}</div>
       </Link>
     </div>
