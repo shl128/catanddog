@@ -1,5 +1,11 @@
 .AllChatList {
-  height: 40vh;
-  overflow: auto;
+  height: 60vh;
   font-weight: bold;
+}
+
+@media (max-height: 900px) {
+  .AllChatList {
+    height: 50vh;
+    font-weight: bold;
+  }
 }

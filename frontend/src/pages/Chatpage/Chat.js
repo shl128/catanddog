@@ -3,6 +3,7 @@ import AllChatList from '../../components/Chatpage/AllChatList'
 import { AllRoom } from '../../components/Chatpage/ChatAxios'
 import ChatSearch from '../../components/Chatpage/ChatSearch'
 import CreateChat from '../../components/Chatpage/CreateChat'
+import './Chat.css'
 
 function Chat() {
   const [rooms, setRooms] = useState([])
@@ -21,13 +22,10 @@ function Chat() {
 
 
   return (
-    <div>
-      <h3>유저들과 소통</h3>
+    <div className="All-chat">
       <ChatSearch setRooms={setRooms}/>
-      <div>
-        <CreateChat trigger={trigger} setTrigger={setTrigger}/>
-        <AllChatList rooms={rooms}/>
-      </div>
+      <CreateChat trigger={trigger} setTrigger={setTrigger} />
+      <AllChatList rooms={rooms}/>
     </div>
   )
 }

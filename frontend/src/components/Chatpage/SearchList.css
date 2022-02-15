@@ -1,0 +1,9 @@
+.Search-list {
+  border-radius: 0.5rem;
+  background-color: white;
+  border-style: solid;
+  width: 40vw;
+  height: 90px;
+  overflow: auto;
+  padding: 0.5rem;
+}

@@ -1,6 +1,7 @@
 .Chat-create {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .Chat-create-form div {

@@ -16,7 +16,7 @@ ReactDOM.render(
         <Route path="" element={<Main />} />
         <Route path="mypage" element={<Mypage />} />
         <Route path="petpage" element={<Petpage />} />
-        <Route path="Chat" element={<Chat />} />
+        <Route path="chat" element={<Chat />} />
         <Route path="spendingOfMonth" element={<SpendingOfMonthpage />} />
         <Route path="calendarpage" element={<Calendarpage />} />
         <Route path="emoji" element={<Emoji />} />
