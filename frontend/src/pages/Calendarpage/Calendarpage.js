@@ -8,8 +8,9 @@ import axios from 'axios';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import AddEventForm from '../../components/Calendarpage/AddEventForm';
 import ReadUpdateEventForm from '../../components/Calendarpage/ReadUpdateEventForm';
+import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 
-const Calendarpage = () => {
+const Calendarpage = (props) => {
   moment.locale('en-US');
   const localizer = momentLocalizer(moment);
   const [allEvents, setAllEvents] = useState([])
@@ -46,23 +47,52 @@ const Calendarpage = () => {
   return (
     <div className="Calendarpage">
       <div className='margin-x'>
-        <div className='gridBox' >
-          <Form.Select className="w-75 filterCategory mt-2" aria-label="Default select example" onChange={axiosGet} ref={filterCategory} >
-            <option value="전체">전체</option>
-            <option value="병원">병원</option>
-            <option value="식사">식사</option>
-            <option value="증상">증상</option>
-            <option value="기타">기타</option>
-          </Form.Select>
-          <button className='Button-style mt-2' onClick={() => setAddEventBtnClick(true)}>일정 추가</button>
+        <div  >
+          {
+            props.inChatting
+            ?
+            <div className='gridBox'>
+            <Form.Select className="inchatting-filterCategory" aria-label="Default select example" onChange={axiosGet} ref={filterCategory} >
+              <option value="전체">전체</option>
+              <option value="병원">병원</option>
+              <option value="식사">식사</option>
+              <option value="증상">증상</option>
+              <option value="기타">기타</option>
+            </Form.Select>
+            <div className='Button-icon-style' onClick={() => setAddEventBtnClick(true)}><AddAlarmIcon/></div>
+          </div>
+            :
+            <div  className='gridBox'>
+              <Form.Select className="w-75 filterCategory mt-2" aria-label="Default select example" onChange={axiosGet} ref={filterCategory} >
+                <option value="전체">전체</option>
+                <option value="병원">병원</option>
+                <option value="식사">식사</option>
+                <option value="증상">증상</option>
+                <option value="기타">기타</option>
+              </Form.Select>
+              <button className='Button-style mt-2' onClick={() => setAddEventBtnClick(true)}>일정 추가</button>
+            </div>
+          }
         </div>
-        <Calendar
+        {
+          props.inChatting
+          ?
+          <Calendar
+            className='mt-2'
+            localizer={localizer}
+            events={allEvents}
+            style={{ height: 250 }}
+            onSelectEvent={event => gotoReadUpdateForm(event)}
+          />
+          :
+          <Calendar
           className='mt-2'
           localizer={localizer}
           events={allEvents}
           style={{ height: 600 }}
           onSelectEvent={event => gotoReadUpdateForm(event)}
         />
+        }
         {addEventBtnClick && 
         <AddEventForm 
           addEventBtnClick={addEventBtnClick} 

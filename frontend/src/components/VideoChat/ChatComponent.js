@@ -3,9 +3,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
 import Send from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
+import SERVER from '../../API/server';
+import axios from 'axios';
 
 import './ChatComponent.css';
-
+import logo from  '../../components/image/로고.png'
 // d
 
 export default class ChatComponent extends Component {
@@ -28,17 +30,30 @@ export default class ChatComponent extends Component {
             const data = JSON.parse(event.data);
             let messageList = this.state.messageList;
             console.log(data)
-            messageList.push({ connectionId: event.from.connectionId, nickname: data.nickname, message: data.message});
-            // const document = window.document;
-            // setTimeout(() => {
-            //     const userImg = document.getElementById('userImg-' + (this.state.messageList.length - 1));
-            //     const video = document.getElementById('video-' + data.streamId);
-            //     const avatar = userImg.getContext('2d');
-            //     avatar.drawImage(video, 200, 120, 285, 285, 0, 0, 60, 60);
-            //     this.props.messageReceived();
-            // }, 50);
-            this.setState({ messageList: messageList });
-            this.scrollToBottom();
+            axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage + '/{user_nickname_photo}?userNickname=' + data.nickname)
+            .then(res=> {   
+                messageList.push({ connectionId: event.from.connectionId, nickname: data.nickname, message: data.message, img: res.data});
+                console.log(messageList)
+                // const document = window.document;
+                // setTimeout(() => {
+                //     const userImg = document.getElementById('userImg-' + (this.state.messageList.length - 1));
+                //     const video = document.getElementById('video-' + data.streamId);
+                //     const avatar = userImg.getContext('2d');
+                //     avatar.drawImage(video, 200, 120, 285, 285, 0, 0, 60, 60);
+                //     this.props.messageReceived();
+                // }, 50);
+            })
+            .then(res => {          
+                this.setState({ messageList: messageList });
+                this.scrollToBottom();
+            })
+            .catch(err => {
+                console.log(err)
+                messageList.push({ connectionId: event.from.connectionId, nickname: data.nickname, message: data.message, img: ''});
+                this.setState({ messageList: messageList });
+                this.scrollToBottom();
+            })
+
         });
     }
 
@@ -99,8 +114,13 @@ export default class ChatComponent extends Component {
                                 className={
                                     'message' + (data.connectionId !== this.props.user.getConnectionId() ? ' left' : ' right')
                                 }
-                            >
-                                <img src={'data:image/png;base64,' } alt="img" width="60" height="60" className="user-img" />
+                            >   {
+                                    data.img === ""
+                                    ?
+                                    <img src={logo} alt="img" width="60" height="60" className="user-img" />
+                                    :
+                                    <img src={'data:image/png;base64,' + data.img } alt="img" width="60" height="60" className="user-img" />
+                                }
                                 <div className="msg-detail">
                                     <div className="msg-info">
                                         <p> {data.nickname}</p>

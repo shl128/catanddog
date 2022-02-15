@@ -14,6 +14,10 @@
     height: 100%;
   }
 
+.mycalendar{
+  height: 80%;
+  width: inherit;
+  }
 .margin-x {
   /* margin-top: 3rem; */
   margin-left: 3rem;
@@ -31,6 +35,13 @@
   padding: 1rem;
 
 }
+.Button-icon-style {
+  grid-column-start: 15;
+  grid-column-end: 17;
+  color: #ff805b;
+  border-style: none;
+  padding: 1rem;
+}
 
 .Button-style:hover {
   background-color: #ff805b;
@@ -39,6 +50,13 @@
 .gridBox {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
+}
+.inchatting-filterCategory{
+  grid-column-start: 8;
+  grid-column-end: 10;
+  text-align: center;
+  height: 30px;
+  margin-top: 15px;
 }
 
 .filterCategory {
