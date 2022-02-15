@@ -11,7 +11,7 @@
   height: 38vh;
 }
 
-@media (max-height: 800px) {
+@media (max-height: 850px) {
   .My-chat-list {
     overflow: auto;
     font-weight: bold;

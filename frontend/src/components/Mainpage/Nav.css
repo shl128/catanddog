@@ -1,9 +1,15 @@
 .Logo {
-  width: 11vw;
-  justify-content: center;
+  width: 12vw;
 }
 
 .Nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.Nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,9 +22,9 @@
   color: gray;
   font-weight: bold;
   width: 70%;
-  height: 5vh;
+  height: 6vh;
   text-align: center;
-  padding: 1vh 0rem;
+  padding: 1.5vh 0rem;
 }
 
 .Nav-link:hover {
@@ -26,12 +32,12 @@
   background-color: #ffe0d7;
   border-radius: 1rem;
   border-style: none;
-  height: 5vh;
+  height: 6vh;
 }
 
 .Nav-link-on {
   width: 70%;
-  height: 5vh;
+  height: 6vh;
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -39,7 +45,7 @@
   border-radius: 1rem;
   border-style: none;
   text-align: center;
-  padding: 1vh 0rem;
+  padding: 1.5vh 0rem;
 }
 
 .Nav-link-on:hover {

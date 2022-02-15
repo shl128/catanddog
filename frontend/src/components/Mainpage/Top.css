@@ -59,6 +59,7 @@
 }
 
 .Top-profile-name {
-  width: 4vw;
+  margin-left: 1vw;
+  display: inline-block;
   text-align: end;
 }

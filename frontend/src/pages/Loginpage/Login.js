@@ -51,7 +51,6 @@ function Login() {
         });
     };
     return (
-      <div className='ground'>
       <div className="Login">
         <div className='card'>
           <div className='container'>
@@ -126,8 +125,6 @@ function Login() {
             </div>
           </div>
         </div>
-      </div>
-
       </div>
     );
   }
