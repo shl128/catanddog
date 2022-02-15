@@ -1,0 +1,22 @@
+.grid-for-x-btn {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.grid-header {
+  grid-column-start: 1;
+  grid-column-end: 7;
+}
+
+.grid-x-btn {
+  grid-column-start: 10;
+  grid-column-end: 10;
+  text-align: center;
+}
+
+.btn-style {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+}
