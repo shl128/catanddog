@@ -5,10 +5,10 @@ import MyChatroomListItem from './MyChatroomListItem'
 function MyChatroomList(props) {
   return (
     <div>
-      <h3>내 채팅방</h3>
+      <div className="My-chat">내 채팅방</div>
       <div className="My-chat-list">
         {props.myChatrooms.map((chatroom) => {
-          return <MyChatroomListItem key={chatroom.chatRoomId} chatroom={chatroom}/>
+          return <MyChatroomListItem key={chatroom.chatRoomId} chatroom={chatroom} setTrigger={props.setTrigger} trigger={props.trigger}/>
         })}
       </div>
     </div>

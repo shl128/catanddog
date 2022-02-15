@@ -1,8 +1,10 @@
 /* eslint-disable */
 export default {
+
   //BASE_URL: 'http://localhost:8085/api/',
   BASE_URL: 'https://i6b109.p.ssafy.io:8085/api/',
   //https://i6b109.p.ssafy.io/
+  REDIRECT_URI: 'https://i6b109.p.ssafy.io/',
 
   ROUTES: {
     // Account

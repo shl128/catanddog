@@ -19,4 +19,7 @@ public interface UserChatRoomRepository extends JpaRepository<UserChatRoom, Long
     @Modifying
     @Query(value = "delete from user_chat_room where chat_room_id = :chatRoomId", nativeQuery = true)
     void deleteChatRoomId(Long chatRoomId);
+
+    @Query(value = "SELECT *from user_chat_room where chat_room_id = :chatRoomId and user_id = :userId",nativeQuery = true)
+    UserChatRoom checkUserChatRoom(Long chatRoomId, Long userId);
 }

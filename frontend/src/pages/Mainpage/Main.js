@@ -3,12 +3,13 @@ import MyPetList from '../../components/Mainpage/MyPetList';
 import Welcome from '../../components/Mainpage/Welcome'
 import MyChatroomList from '../../components/Mainpage/MyChatroomList'
 import { MyPet, MyChatRoom, MyProfile } from '../../components/Mainpage/MainAxios'
-
+import './Main.css'
 
 function Main() {
   const [myChatrooms, setMyChatRooms] = useState([])
   const [pets, setPets] = useState([])
   const [userData, setUserData] = useState([])
+  const [trigger, setTrigger] = useState(true)
 
   useEffect(() =>{
     MyChatRoom()
@@ -36,13 +37,13 @@ function Main() {
     .catch(() => {
       console.log("회원정보 가져오기 실패")
     })
-  }, [])
+  }, [trigger])
 
   return (
-    <div>
+    <div className="Main">
       <Welcome userData={userData}/>
       <MyPetList pets={pets} />
-      <MyChatroomList myChatrooms={myChatrooms} />
+      <MyChatroomList myChatrooms={myChatrooms} trigger={trigger} setTrigger={setTrigger}/>
     </div>
   )
 }

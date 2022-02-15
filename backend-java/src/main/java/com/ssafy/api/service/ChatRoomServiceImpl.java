@@ -55,6 +55,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         // hostId와 userId 비교 후 같을 시 삭제
         ChatRoom chatRoom = chatRoomRepository.getOne(chatRoomId);
         if(chatRoom.getHostId() == userId){
+            chatRoomTagRepository.deleteChatRoomId(chatRoomId);
             userChatRoomRepository.deleteChatRoomId(chatRoomId);
             chatRoomRepository.deleteById(chatRoomId);
         }
@@ -138,6 +139,34 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     @Override
     public List<String> findChatRoomSearchHash(String chatRoomTagName) {
         return chatRoomTagRepository.findBySearchHash(chatRoomTagName);
+    }
+
+    @Override
+    public void enterUserChatRoom(Long chatRoomId) {
+        Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId);
+        chatRoom.get().setUserNowCount(chatRoom.get().getUserNowCount() + 1);
+        ChatRoom chatRoomTmp = new ChatRoom();
+        chatRoomTmp.setChatRoomId(chatRoom.get().getChatRoomId());
+        chatRoomTmp.setHostId(chatRoom.get().getHostId());
+        chatRoomTmp.setChatRoomTitle(chatRoom.get().getChatRoomTitle());
+        chatRoomTmp.setStartTime(chatRoom.get().getStartTime());
+        chatRoomTmp.setUserMaxCount(chatRoom.get().getUserMaxCount());
+        chatRoomTmp.setUserNowCount(chatRoom.get().getUserNowCount());
+        chatRoomRepository.save(chatRoomTmp);
+    }
+
+    @Override
+    public void exitUserChatRoom(Long chatRoomId) {
+        Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId);
+        chatRoom.get().setUserNowCount(chatRoom.get().getUserNowCount() - 1);
+        ChatRoom chatRoomTmp = new ChatRoom();
+        chatRoomTmp.setChatRoomId(chatRoom.get().getChatRoomId());
+        chatRoomTmp.setHostId(chatRoom.get().getHostId());
+        chatRoomTmp.setChatRoomTitle(chatRoom.get().getChatRoomTitle());
+        chatRoomTmp.setStartTime(chatRoom.get().getStartTime());
+        chatRoomTmp.setUserMaxCount(chatRoom.get().getUserMaxCount());
+        chatRoomTmp.setUserNowCount(chatRoom.get().getUserNowCount());
+        chatRoomRepository.save(chatRoomTmp);
     }
 
 }

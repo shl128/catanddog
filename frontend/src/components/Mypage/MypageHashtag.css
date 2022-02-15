@@ -4,7 +4,7 @@
   grid-template-columns: repeat(12, 1fr);
   column-gap: 1rem;
   margin-top: 1rem;
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .MypageHashtag-container .TextForm-label{
@@ -20,7 +20,7 @@
 .MypageHashtag-container .mypageHash{
   background-color: #ffe0d7;
   margin-right: 1rem;
-  font-size: 20px;
+  font-size: 19px;
   height: 100%;
   padding: 5px;
   border-radius: 2rem;
@@ -36,4 +36,5 @@
 
 .MypageHashtag-container .tagsInput{
   width: 50%;
+  background-color: #FFF9F8;
 }

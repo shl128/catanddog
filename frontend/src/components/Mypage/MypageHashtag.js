@@ -9,7 +9,7 @@ import axios from 'axios';
 const MypageHashtag = (props) =>{
   const [addTag, setAddTag] = useState('')
   const [nowTags, setNowTags] = useState(props.tags)
-
+  const userData = localStorage.getItem('accessToken')
   const onAddTagHandle = (e) => {
     setAddTag(e.target.value)
   }
@@ -19,23 +19,40 @@ const MypageHashtag = (props) =>{
   }, [nowTags])
   
   const onAddTagRequest = (e) => {
-    if (nowTags.length > 4) {
-      alert('5개 이상 해쉬태그 설정은 불가능 합니다.')
-    }
-    else{
-      axios.post(SERVER.BASE_URL + SERVER.ROUTES.tag + '/{user_tag_name}?userTagName=' + String(addTag), {},    
-      {headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        }})
-        .then(res => {
-          // 태그 추가가 성공하면 그에 해당하는 태그 id 등등의 정보 필요
-          console.log(res)
-          setNowTags(nowTags.concat({userTagName:addTag}))
-          setAddTag('')
-        })
-        .catch(err => {
-          console.log(err)
-        })
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      if (nowTags.length > 4) {
+        alert('5개 이상 해쉬태그 설정은 불가능 합니다.')
+      }
+      else if(addTag === ''){
+        alert('값을 입력하셔야합니다.')
+      }
+      else{
+        axios.post(SERVER.BASE_URL + SERVER.ROUTES.tag + '/{user_tag_name}?userTagName=' + String(addTag), {},    
+        {headers: {
+          Authorization: `Bearer ${userData}`
+          }})
+          .then(res => {
+            // 태그 추가가 성공하면 그에 해당하는 태그 id 등등의 정보 필요
+            console.log(res)
+  
+            axios.get(SERVER.BASE_URL + SERVER.ROUTES.tag,
+              {headers: {
+                Authorization: `Bearer ${userData}`
+              }})
+              .then(res => {
+                setNowTags(res.data.reverse())
+                setAddTag('')
+                
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
     }
   }
   
@@ -74,7 +91,7 @@ const MypageHashtag = (props) =>{
        {rendering()}
        {
          props.update 
-         && <div className='tagsAddform'> <input className='tagsInput' value={addTag} onChange={onAddTagHandle} /> <button onClick={onAddTagRequest}>추가</button></div>  
+         && <div className='tagsAddform'> <input className='tagsInput' value={addTag} onChange={onAddTagHandle} onKeyPress={onAddTagRequest}/> <button onClick={onAddTagRequest}>추가</button></div>  
        }
        
       </div>

@@ -21,6 +21,7 @@ class UserModel {
         this.userPhoto= '';
     }
 
+
     isAudioActive() {
         return this.audioActive;
     }
@@ -58,6 +59,12 @@ class UserModel {
     }
     isRemote() {
         return !this.isLocal();
+    }
+    getUserPhoto(){
+        return this.userPhoto
+    }
+    setUserPhoto(userPhoto){
+        this.userPhoto = userPhoto
     }
     setAudioActive(isAudioActive) {
         this.audioActive = isAudioActive;

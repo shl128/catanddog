@@ -14,22 +14,24 @@ function Navbar() {
   const [consultingData, setConsultingData] = useState([])
 
   const logout = (e) => {
-    e.preventDefault()
-    localStorage.removeItem('accessToken')
-    navigate('/login')
+    if (window.confirm("정말로 로그아웃 하실건가요?")) {
+      e.preventDefault()
+      localStorage.removeItem('accessToken')
+      navigate('/login')
+    }
   }
 
   return (
-    <div>
-      <Nav.Link href="/main">
+    <div className="Nav">
+      <Nav.Link href="/">
         <img className="Logo" alt="logoname" src={logo} />
       </Nav.Link>
-      <nav className="Nav">
+      <nav className="Nav-item">
         <NavLink to="/petpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link" } state={{pageType:'create'}}>반려동물 추가</NavLink>
         <button className="Nav-link" onClick={() => setConsultingDialog(true)}>실시간 상담</button>
-        <NavLink to="/calendarpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>캘린더</NavLink>
+        <NavLink to="/calendarpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"} inChatting={false}>캘린더</NavLink>
         <NavLink to="/spendingOfMonth" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>이달의 지출</NavLink>
-        <NavLink to="/Chat" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>유저와의 소통</NavLink>
+        <NavLink to="/chat" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>유저와의 소통</NavLink>
         <NavLink to="/cartoon" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>카툰화</NavLink>
         <NavLink to="/emoji" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>반려티콘</NavLink>
         <button className='Nav-link' onClick={logout}>로그아웃</button>

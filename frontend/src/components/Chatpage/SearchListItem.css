@@ -1,0 +1,4 @@
+.Search-list-item:hover {
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,10 +1,6 @@
-.Face {
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.Face-container {
+.Face-tracking {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -18,4 +14,8 @@
 
 .Emoji-off {
   display: none;
+}
+.faceFind{
+  width: 80%;
+  right: 5%;
 }

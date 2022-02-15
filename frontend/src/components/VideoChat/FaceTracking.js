@@ -35,13 +35,17 @@ function FaceTracking(props) {
     const detections = await faceapi.detectAllFaces(props.videoRef.current, 
       new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks()
-      .withFaceExpressions()
-
-    const w = detections[0] ? detections[0].detection.box.width * 2 : 0
-    const h = detections[0] ? detections[0].detection.box.height * 2 : 0
-    detections[0] && await setHeight(detections[0].detection.box.height * 2)
-    detections[0] && await setTop(detections[0].detection.box.top * 2 - h / 2)
-    detections[0] && await setLeft((detections[0].detection.box.left + detections[0].detection.box.width / 2) * 2.5 - w / 2)
+      
+      const resized = faceapi.resizeResults(detections, {
+        width: props.videoRef.current.offsetWidth,
+        height: props.videoRef.current.offsetHeight,
+      })
+      
+    const w = resized[0] ? resized[0].detection.box.width : 0
+    const h = resized[0] ? resized[0].detection.box.height : 0
+    resized[0] && await setHeight(w > h ? w * 1.5 : h * 1.5)
+    resized[0] && await setTop(resized[0].detection.box.top - (h / 2))
+    resized[0] && await setLeft((resized[0].detection.box.left - (w * 2/5)) * 1.1)
 
     setTimeout(() => videoPlay(), 100)
 
@@ -53,7 +57,16 @@ function FaceTracking(props) {
   }, [])
 
   return(
-    <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+    <div className='faceFind'>
+      {
+        props.userPhoto !== ''
+        ?
+        <img alt="이미지" src={'data:image/png;base64,' + props.userPhoto} style={{  position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+        :
+        <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+      }
+
+    </div>
   )
 }
 

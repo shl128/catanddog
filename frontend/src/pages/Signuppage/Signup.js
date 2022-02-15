@@ -39,7 +39,7 @@ function Signup() {
         setUserKindNum(2)
       }
       else{
-        setUserKindNum(1)
+        setUserKindNum(0)
       }
     }, [userKind])
     const handleUserKind = (e) => {
@@ -60,18 +60,21 @@ function Signup() {
     }
     const onNicknameConfirm = (e) => {
       e.preventDefault()
-      axios
-      .get(
-        SERVER.BASE_URL + SERVER.ROUTES.nicknameConfirm + Email,
+      axios.get(
+        SERVER.BASE_URL + SERVER.ROUTES.mypage + `/{user_nickname_check}?userNickname=${NickName}`,
       )
       .then(function (response) {
-        alert('사용 가능한 닉네임 입니다.');
-        setNicknameValidation(true)
+        console.log(response)
+        if(response.data === true){
+          setNicknameValidation(true)
+          alert('사용가능한 닉네임 입니다.')
+        } else{
+          alert('사용 불가능한 닉네임 입니다.')
+        }
       })
       .catch((err)=> {
-        alert('사용 불가능한 닉네임 입니다.')
+        alert('서버연결 실패')
       })
-      console.log(SERVER.BASE_URL + SERVER.ROUTES.eamailConfirm + NickName)
     }
 
     const templateParams = {
@@ -119,18 +122,21 @@ function Signup() {
       // ex) http://localhost:8080/api/v1/myPage/{user_email}?userEmail=hansangwoo1996%40gmail.com
       axios.get(SERVER.BASE_URL + SERVER.ROUTES.eamailConfirm + '{user_email}?userEmail=' + Email)
       .then(res => {
-        emailjs.send(
-          'service_sangwoo',
-          'template_5rbudkm',
-          templateParams,
-          'user_LEBGlHpyf8P6UlU2H8lm9'
-          ).then(res => {
-            setEmailConfirm(true)
-            alert('인증메일을 보냈습니다. 확인 후 숫자를 입력 바랍니다.')
-          }).catch(error => ( alert('인증가능한 이메일 주소를 입력해 주세요')))
+        if(res.data === ""){
+          emailjs.send(
+            'service_sangwoo',
+            'template_5rbudkm',
+            templateParams,
+            'user_LEBGlHpyf8P6UlU2H8lm9'
+            ).then(res => {
+              setEmailConfirm(true)
+              alert('인증메일을 보냈습니다. 확인 후 숫자를 입력 바랍니다.')
+            }).catch(error => ( alert('인증가능한 이메일 주소를 입력해 주세요')))
+        } else{
+          alert('이미 회원가입이 되어있는 이메일 입니다.')
+        }
       })
       .catch(err => {
-        alert('회원가입 되어있지 않은 이메일 입니다.')
       })
 
     }
@@ -176,12 +182,12 @@ function Signup() {
           alert('종류 선택은 필수입니다.')
           return;
         }
-        // if (emailValidation === false){
-        //   alert('이메일 인증은 필수입니다.')
-        // }
-        // if (nicknameValidation === false){
-        //   alert('닉네임 중복확인은 필수입니다.')
-        // }    
+        if (emailValidation === false){
+          alert('이메일 인증은 필수입니다.')
+        }
+        if (nicknameValidation === false){
+          alert('닉네임 중복확인은 필수입니다.')
+        }    
         if (Password === ConfirmPasword) {
 
           axios
@@ -199,6 +205,7 @@ function Signup() {
             .then(function (response) {
               //수정 console.log(response);
               alert('가입이 정상적으로 완료되었습니다');
+              window.location.replace(`/login`)
             //   props.history.push('/login');
             })
             .catch(function (error) {
@@ -211,126 +218,131 @@ function Signup() {
         
     };
     return (
-      <div className='signup'>
-        <div className='card'>
-          <img className='logoImg' src={logo} alt='logo' width="120px" />
-         <div className="signupForm">
-      
-            <div className='signupContainer'>
-              
-              <h4>회원가입</h4>
-            </div>
-            <form onSubmit={onSubmitHandler}>
-                <div className="flex">
-                    <ul className="signupContainer">
-                        <li className="item center">
-                            이메일
-                        </li>
-                        <li className="item">
-                            <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
-                        </li>
-                        <li className="item">
-                            { 
-                              emailValidation === false 
-                              ? <button onClick={sendEmail} className='submit'>이메일 확인</button>
-                              : <p>인증 성공</p>
-                            }
-                        </li>
-                    </ul>
-                    {
-                      emailConfirm === true &&
-                      <ul className="signupContainer confirm">
-                          <li className="item">
-                            <input className='numInput' placeholder="4자리 숫자 입력" autoFocus required value={confirmNum} onChange={handleConfirmNum}/>
+      <div className='ground'>
+        <div className='signup'>
+          <div className='card'>
+            <img className='logoImg' src={logo} alt='logo' width="120px" />
+          <div className="signupForm">
+        
+              <div className='signupContainer'>
+                
+                <h4>회원가입</h4>
+              </div>
+              <form onSubmit={onSubmitHandler}>
+                  <div className="flex">
+                      <ul className="signupContainer">
+                          <li className="item center">
+                              이메일
                           </li>
                           <li className="item">
-                            <button onClick={onConfirmNum} className='submit' >확인</button>
+                            {
+                              emailValidation === false 
+                              ?
+                              <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
+                              :
+                              <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus readOnly></input>
+
+                            }
+                          </li>
+                          <li className="item">
+                              { 
+                                emailValidation === false 
+                                && <button onClick={sendEmail} className='submit'>이메일 확인</button>
+                              }
                           </li>
                       </ul>
-                    }
-                    <ul className="signupContainer">
-                      <li className="item center">
-                        닉네임
-                      </li>                    
-                      <li className="item ">
-                        <input className="emailInput" type="nickname" name="nickname" placeholder="NickName" value={NickName} onChange={onNickNameHandler} />
-                      </li>
-                      <li className='item'>
-                        {
-                          nicknameValidation === false
-                          ? <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
-                          : <p>아이디 중복 확인 성공</p>
-                        }
-                      </li>
-                    </ul>
-                    <ul className="signupContainer">
-                      <li className="item center">
-                      비밀번호
-                      </li>                    
-                      <li className="item ">
-                        <input className="emailInput" type="password" name="password" placeholder="Password" value={Password} onChange={onPasswordHanlder} />
-                      </li>
-                    </ul>
-                    <ul className="signupContainer">
-                      <li className="item center">
-                      비밀번호 확인
-                      </li>                    
-                      <li className="item ">
-                        <input className="emailInput" type="password" name="password" value={ConfirmPasword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} />
-                      </li>
-                    </ul>
-                    <ul className="signupContainer">
-                      <li className="item center">
-                      </li>                    
-                      <li className="item ">
-                        {passwordError && <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</div>}
-                      </li>
-                    </ul>
+                      {
+                        emailConfirm === true &&
+                        <ul className="signupContainer confirm">
+                            <li className="item">
+                              <input className='numInput' placeholder="4자리 숫자 입력" autoFocus required value={confirmNum} onChange={handleConfirmNum}/>
+                            </li>
+                            <li className="item">
+                              <button onClick={onConfirmNum} className='submit' >확인</button>
+                            </li>
+                        </ul>
+                      }
+                      <ul className="signupContainer">
+                        <li className="item center">
+                          닉네임
+                        </li>                    
+                        <li className="item ">
+                          <input className="emailInput" type="nickname" name="nickname" placeholder="NickName" value={NickName} onChange={onNickNameHandler} />
+                        </li>
+                        <li className='item'>
+                          <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
+                        </li>
+                      </ul>
+                      <ul className="signupContainer">
+                        <li className="item center">
+                        비밀번호
+                        </li>                    
+                        <li className="item ">
+                          <input className="emailInput" type="password" name="password" placeholder="Password" value={Password} onChange={onPasswordHanlder} />
+                        </li>
+                      </ul>
+                      <ul className="signupContainer">
+                        <li className="item center">
+                        비밀번호 확인
+                        </li>                    
+                        <li className="item ">
+                          <input className="emailInput" type="password" name="password" value={ConfirmPasword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} />
+                        </li>
+                      </ul>
+                      <ul className="signupContainer">
+                        <li className="item center">
+                        </li>                    
+                        <li className="item ">
+                          {passwordError && <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</div>}
+                        </li>
+                      </ul>
 
-                    <ul className="signupContainer">
-                      <li className="item center">
-                      분류
-                      </li>                    
-                      <li className="item ">
-                        <select onChange={handleUserKind} value={userKind}>
-                        {selectuserList.map((item) => (
-                          <option value={item} key={item}>
-                            {item}
-                          </option>
-                        ))}
-                        </select>
-                      </li>
-                    </ul>
-                    <ul className="signupContainer">
-                      <li className="item center">
-                        핸드폰 번호
-                      </li>                    
-                      <li className="item ">
-                        <input className="emailInput" type="text" onChange={handlePhonNumber} value={phonNumber} />
-                      </li>
-                    </ul>
+                      <ul className="signupContainer">
+                        <li className="item center">
+                        분류
+                        </li>                    
+                        <li className="item ">
+                          <select onChange={handleUserKind} value={userKind}>
+                          {selectuserList.map((item) => (
+                            <option value={item} key={item}>
+                              {item}
+                            </option>
+                          ))}
+                          </select>
+                        </li>
+                      </ul>
+                      <ul className="signupContainer">
+                        <li className="item center">
+                          핸드폰 번호
+                        </li>                    
+                        <li className="item ">
+                          <input className="emailInput" type="text" onChange={handlePhonNumber} value={phonNumber} />
+                        </li>
+                      </ul>
+
+                        <ul className="signupContainer">
+                          <li className="item center">
+                          </li>                    
+                          <li className="item passwordChange">
+                            <button className='submit'>회원 가입</button>
+                          </li>
+                        </ul>
 
                       <ul className="signupContainer">
                         <li className="item center">
                         </li>                    
                         <li className="item passwordChange">
-                          <button className='submit'>회원 가입</button>
+                          <Link to="/login" className='back'>
+                            <div>로그인 페이지로 돌아가기</div>
+                          </Link>
                         </li>
                       </ul>
-
-                    <ul className="signupContainer">
-                      <li className="item center">
-                      </li>                    
-                      <li className="item passwordChange">
-                        <Link to="/login" className='back'>
-                          <div>로그인 페이지로 돌아가기</div>
-                        </Link>
-                      </li>
-                    </ul>
-                </div>
-            </form>
+                  </div>
+              </form>
+            </div>
           </div>
         </div>
+      
       </div>
       );
   }

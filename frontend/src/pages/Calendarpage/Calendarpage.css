@@ -3,7 +3,13 @@
     width: 100%;  
     background-color: white;
     border-radius: 2rem;
+  }
   
+.inChatting-Calendarpage {
+    height: 750px;
+    width: 100%;  
+    background-color: white;
+    border-radius: 2rem;
   } 
 
 .CalendarContainer{
@@ -14,6 +20,10 @@
     height: 100%;
   }
 
+.mycalendar{
+  height: 80%;
+  width: inherit;
+  }
 .margin-x {
   /* margin-top: 3rem; */
   margin-left: 3rem;
@@ -28,8 +38,15 @@
   border-radius: 1rem;
   border-style: none;
   background-color: #ffe0d7;
-  padding: 1rem;
+  /* padding: 1rem; */
 
+}
+.Button-icon-style {
+  grid-column-start: 15;
+  grid-column-end: 17;
+  color: #ff805b;
+  border-style: none;
+  padding: 1rem;
 }
 
 .Button-style:hover {
@@ -39,10 +56,18 @@
 .gridBox {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: 50px;
+}
+.inchatting-filterCategory{
+  grid-column-start: 6;
+  grid-column-end: 11;
+  text-align: center;
+  height: 35px;
+  margin-top: 15px;
 }
 
 .filterCategory {
-  grid-column-start: 7;
+  grid-column-start: 8;
   grid-column-end: 10;
   text-align: center;
 }
@@ -57,4 +82,13 @@
 .date-picker {
   grid-column-start: 5;
   grid-column-end: 17;
+}
+
+.Calendar-height {
+  height: 80%;
+}
+
+.overflow-frame {
+  height: 600px;
+  overflow: auto;
 }

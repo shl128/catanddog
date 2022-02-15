@@ -3,10 +3,10 @@ import { Modal, Spinner } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import Wait from '../image/쫑이.jpg'
 import './ConsultingRequest.css'
-import { ConsultingCancel, ConsultingWait } from './MainAxios'
+import { ConsultingCancel, ConsultingWait, DeleteConsultingRoom } from './MainAxios'
 
 function ConsultingRequest(props) {
-  const [requestData, setRequestData] = useState()
+  const [requestData, setRequestData] = useState(null)
   const waiting = useRef(0)
   const navigate = useNavigate()
 
@@ -26,11 +26,11 @@ function ConsultingRequest(props) {
     waiting.current = setInterval(() => {
       ConsultingWait()
       .then(response => {
-        console.log("수의사의 응답을 기다리는 중", response.data)
+        console.log(response.data)
         setRequestData(response.data)
       })
       .catch(() => {
-        console.log("기다리기 실패")
+        console.log("수의사의 응답을 기다리는 중")
       })
     }, 1000)
   }
@@ -40,8 +40,15 @@ function ConsultingRequest(props) {
   }
   
   function enter() {
-    navigate(`/chatting/${requestData.videoChatRoom}`)
-    stop()
+    navigate(`/diagnosischat/${requestData.videoChatRoom}`)
+    closeFind()
+    DeleteConsultingRoom()
+    .then(() => {
+      console.log("상담 완료")
+    })
+    .catch(() => {
+      console.log("상담 안 끝남")
+    })
   }
 
   useEffect(() => {
@@ -52,17 +59,21 @@ function ConsultingRequest(props) {
     <>
       <Modal dialogClassName="Consulting" show={props.findDocterDialog} onHide={() => props.setFindDocterDialog(false)} centered="true">
         <img className="Wait-image" alt="logoname" src={Wait} />
-        <Modal.Body className="Consulting-body">
+        {!requestData && <Modal.Body className="Consulting-body">
+
           응답할 수 있는 의사분을 찾는 중입니다!!
           <div>
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           </div>
-          <div>{props.consultingData.petName}</div>
-          <div>{props.consultingData.petKind}</div>
-          <div>{props.consultingData.petContent}</div>
-        </Modal.Body>
+          <div>이름: {props.consultingData.petName}</div>
+          <div>종: {props.consultingData.petKind}</div>
+          <div>증상: {props.consultingData.petContent}</div>
+        </Modal.Body>}
+        {requestData && <Modal.Body className="Consulting-body">
+          수의사가 응답했습니다!! 아래의 입장하기 버튼을 눌러주세요 
+        </Modal.Body>}
         <Modal.Footer>
           {requestData && <button onClick={enter}>입장하기</button>}
           <button className="Consulting-request" onClick={closeFind}>

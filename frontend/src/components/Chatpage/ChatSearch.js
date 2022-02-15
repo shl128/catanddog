@@ -4,6 +4,7 @@ import './ChatSearch.css'
 import { SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle, AllRoom } from './ChatAxios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import SearchList from './SearchList'
 
 function ChatSearch(props) {
   const searchType = useRef()
@@ -88,16 +89,15 @@ function ChatSearch(props) {
       </div>
       <div className="Search-content">
         <input className="Search-input" placeholder="검색하기" value={target} onChange={ChangeTarget} onKeyUp={FindTarget}/>
-        <button className={"Search-cancel-" + (target.length > 0 ? "on" : "off") }onClick={CancelSearch}>x</button>
-        {words.map((word, idx) => 
-        <div key={idx} onClick={() => SelectWord(word)}>
-          {word}
-        </div>)}
-        <button className="Search-button" onClick={SearchRooms}>
+        <button className={"Search-cancel-" + (target.length > 0 ? "on" : "off") }onClick={CancelSearch}>X</button>
+        <div className="Search-word-list">
+          {words.length >=1 && <SearchList words={words} SelectWord={SelectWord}/>}
+        </div>
+        <button onClick={SearchRooms}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
-        <button className="Search-button" onClick={AllRooms}>새로고침</button>
       </div>
+      <button className="Search-refresh" onClick={AllRooms}>새로고침</button>
     </div>
   )
 }

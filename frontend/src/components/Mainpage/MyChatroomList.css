@@ -1,5 +1,22 @@
+.My-chat {
+  margin-top: 1rem;
+  font-size: large;
+}
+
 .My-chat-list {
-  height: 30vh;
   overflow: auto;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  height: 38vh;
+}
+
+@media (max-height: 850px) {
+  .My-chat-list {
+    overflow: auto;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    height: 25vh;
+  }
 }
