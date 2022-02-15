@@ -23,4 +23,8 @@ public interface ChatRoomService {
     List<String> findChatRoomSearchTitle(String chatRoomTitle);
 
     List<String> findChatRoomSearchHash(String chatRoomTagName);
+
+    void enterUserChatRoom(Long chatRoomId);
+
+    void exitUserChatRoom(Long chatRoomId);
 }
