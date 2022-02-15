@@ -19,4 +19,9 @@ public interface UserTagRepository extends JpaRepository <UserTag, Integer> {
     @Modifying
     @Query(value = "delete from user_tag where user_id = :userId and user_tag_id = :userTagId", nativeQuery = true)
     void deleteUserTag(Integer userTagId, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "delete from user_tag where user_id = :userId", nativeQuery = true)
+    void deleteUserId(Long userId);
 }
