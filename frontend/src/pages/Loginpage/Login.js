@@ -3,7 +3,7 @@ import axios from 'axios';
 import SERVER from '../../API/server';
 import './Login.css'
 import logo from '../../components/image/로고.png'
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import kakaoLoginBtn from '../../components/image/kakaoLoginBtn.png'
 
 function Login() {
@@ -13,7 +13,6 @@ function Login() {
 
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-    let navigate = useNavigate();
 
     const onEmailHandler = (e) => {
       setEmail(e.currentTarget.value);

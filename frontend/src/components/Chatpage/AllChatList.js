@@ -6,7 +6,7 @@ function AllChatList({rooms}) {
   return (
     <div className="AllChatList">
       {rooms.map((room) => {
-        return <AllChatListItem key={room.chatRoomId} room={room} />
+        return <AllChatListItem key={room.chatRoomId} room={room}/>
       })}
     </div>
   )

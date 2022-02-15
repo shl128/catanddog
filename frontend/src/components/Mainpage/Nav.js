@@ -14,14 +14,16 @@ function Navbar() {
   const [consultingData, setConsultingData] = useState([])
 
   const logout = (e) => {
-    e.preventDefault()
-    localStorage.removeItem('accessToken')
-    navigate('/login')
+    if (window.confirm("정말로 로그아웃 하실건가요?")) {
+      e.preventDefault()
+      localStorage.removeItem('accessToken')
+      navigate('/login')
+    }
   }
 
   return (
     <div>
-      <Nav.Link href="/main">
+      <Nav.Link href="/">
         <img className="Logo" alt="logoname" src={logo} />
       </Nav.Link>
       <nav className="Nav">

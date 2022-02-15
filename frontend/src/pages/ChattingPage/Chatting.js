@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Navigate } from "react-router-dom";
 import VideoRoomComponent from '../../components/VideoChat/VideoRoomComponent';
 import './Chatting.css'
 import SERVER from '../../API/server'
@@ -32,6 +32,10 @@ function Chatting () {
         console.log(err)
       })
     }, []);
+
+    if (!userData) {
+      return <Navigate to="/login" replace={true} />
+    }
 
     return (
         <div className='Chatting'>

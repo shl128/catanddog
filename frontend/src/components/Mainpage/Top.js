@@ -62,20 +62,22 @@ function Top() {
 
   return (
     <div className="Top-container">
-      <div className="Top-profile">
-        {userkind === 2 && <Toggle userActive={userActive} setUserActive={setUserActive} />}
+      {userkind === 2 && <Toggle userActive={userActive} setUserActive={setUserActive} />}
+      {userkind === 2 && 
+      <div style={{position: "relative"}}>
         <button onClick={ListOpen}>
-          <FontAwesomeIcon className="bell-icon" icon={faBell}/>
-          <div>{consultingList.length >= 1 && consultingList.length}</div>
+          <FontAwesomeIcon className={userActive ? "Top-bell-icon-on" : "Top-bell-icon-off"} icon={faBell}/>
         </button>
-        <p>티어</p>
-        <Link to="/mypage" className="Top-link">
-          <img className='profilePhoto' alt="프로필사진" src={'data:image/png;base64,' + photo} /> {nickname}
-        </Link>
-      </div>
-      <div className={open ? "list-open" : "list-off"}>
-        {consultingList.length >= 1 && <ConsultingAlarm consultingList={consultingList} setUserActive={setUserActive}/>}
-      </div>
+        <div className={userActive ? "Top-bell-cnt" : "Top-list-off"}>{consultingList.length >= 1 && consultingList.length}</div>
+        <div className={open ? "Top-list-open" : "Top-list-off"}>
+          {consultingList.length >= 1 && <ConsultingAlarm consultingList={consultingList} setUserActive={setUserActive}/>}
+        </div>
+      </div>}
+      <div className="Top-grade">점수</div>
+      <Link to="/mypage" className="Top-profile">
+        <img className='Top-profile-img' alt="프로필사진" src={'data:image/png;base64,' + photo} />
+        <div className="Top-profile-name">{nickname}</div>
+      </Link>
     </div>
   )
 }

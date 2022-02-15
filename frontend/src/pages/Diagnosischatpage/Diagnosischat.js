@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import VideoRoomComponent from '../../components/VideoChat/VideoRoomComponent';
 import './Diagnosischat.css'
 import SERVER from '../../API/server'
@@ -29,6 +29,10 @@ function Diagnosischat () {
         console.log(err)
       })
     }, []);
+
+    if (!userData) {
+      return <Navigate to="/login" replace={true} />
+    }
 
     return (
         <div className='Chatting'>

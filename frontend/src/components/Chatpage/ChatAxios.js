@@ -42,6 +42,12 @@ function CreateRoom(chatData) {
   })
 }
 
+function EnterRoom(chatroomId) {
+  return axios.post(`${Chat}${chatroomId}`, null, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
 
 
-export { AllRoom, SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle, CreateRoom }
+
+export { AllRoom, SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle, CreateRoom, EnterRoom }

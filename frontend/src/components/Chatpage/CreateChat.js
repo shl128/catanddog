@@ -3,7 +3,7 @@ import './CreateChat.css'
 import { Modal, Form } from 'react-bootstrap'
 import { CreateRoom } from './ChatAxios'
 
-function CreateChat() {
+function CreateChat({ trigger, setTrigger }) {
   const [tagValue, setTagValue] = useState('')
   const [show, setShow] = useState(false)
   const [tags, setTags] = useState([])
@@ -41,6 +41,7 @@ function CreateChat() {
       CreateRoom(chatData)
       .then(() => {
         console.log("채팅방 생성 완료")
+        setTrigger(!trigger)
       })
       .catch(() => {
         console.log("채팅방 생성 실패")
