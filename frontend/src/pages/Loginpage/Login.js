@@ -41,9 +41,10 @@ function Login() {
             console.log(response.data)
             localStorage.setItem('accessToken', response.data.accessToken);
 
-            return(
-              navigate('/main')
-            )
+            window.location.replace(`/`)
+            // return(
+            //   navigate('/main')
+            // )
         })
         .catch(function (error) {
           alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다');
@@ -51,6 +52,7 @@ function Login() {
         });
     };
     return (
+      <div className='ground'>
       <div className="Login">
         <div className='card'>
           <div className='container'>
@@ -125,6 +127,8 @@ function Login() {
             </div>
           </div>
         </div>
+      </div>
+
       </div>
     );
   }

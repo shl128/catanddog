@@ -20,7 +20,6 @@ import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import IconButton from '@material-ui/core/IconButton';
 
-
 export default class ToolbarComponent extends Component {
     constructor(props) {
         super(props);
@@ -89,11 +88,11 @@ export default class ToolbarComponent extends Component {
                             <PowerSettingsNew />
                             <div className='outFont'>나가기</div>
                         </IconButton>
-                            <div className='roomName'>
+                            {/* <div className='roomName'>
                                 {this.props.sessionId && <div id="titleContent">
                                     <span id="session-title">방번호: {mySessionId}</span>
                                 </div>}
-                            </div>
+                            </div> */}
                             {
                                 this.props.isDisplayButton !== 'display' &&
                                 <IconButton color="inherit" className="whasangButton" onClick={this.camDisplayChange}>
@@ -126,9 +125,9 @@ export default class ToolbarComponent extends Component {
                                 </div>
                             )}
 
-                        <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
+                        {/* <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
                             {localUser !== undefined && this.state.fullscreen ?  <div><FullscreenExit /><div className='font'>화면 복귀</div></div> :  <div><Fullscreen /><div className='font'>전체 화면</div></div>}
-                        </IconButton>
+                        </IconButton> */}
 
                         <IconButton color="inherit" className="navButton" onClick={this.emojiChange}>
                             {localUser !== undefined ?  <div><PetsIcon /><div className='font'>얼굴 변환</div></div> :  <div><PetsIcon /><div className='font'>얼굴 복구</div></div>}
@@ -138,9 +137,9 @@ export default class ToolbarComponent extends Component {
                             {localUser !== undefined ?  <div><DateRangeIcon /><div className='font'>캘린더</div></div> :  <div><DateRangeIcon /><div className='font'>캘린더</div></div>}
                         </IconButton>
 
-                        <IconButton color="inherit" className="navButton" >
+                        {/* <IconButton color="inherit" className="navButton" >
                             {localUser !== undefined ?  <div><WallpaperIcon /><div className='font'>가상배경</div></div> :  <div><WallpaperIcon /><div className='font'>가상배경</div></div>}
-                        </IconButton>
+                        </IconButton> */}
 
 
                         <IconButton color="inherit" onClick={this.toggleChat} className="chatButton">

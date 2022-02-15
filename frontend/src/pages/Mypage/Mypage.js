@@ -7,11 +7,9 @@ import {PhotoSide, MypageTextForm, MypageHashtag, WithdrawalModal } from '../../
 const Mypage = (props) => {
   const [user, setUser] = useState('')
   const [email, setEmail] = useState('');
+  const [firstNickname, setFirstNickname] = useState('');
   const [nickname, setNickName] = useState('');
-  const [nickNameConfirm, setnickNameConfirm] = useState(false);
-  const [password, setPassword] = useState('');
-  const [ConfirmPasword, setConfirmPasword] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
+  const [nickNameConfirm, setnickNameConfirm] = useState(true);
   const [phonNumber, setPhonNumber] = useState('');
   const [userKind, setUserKind] = useState(0);
   const [userKindName, setUserKindName] = useState('');
@@ -34,6 +32,7 @@ const Mypage = (props) => {
       setUser(res.data)
       setEmail(res.data.userEmail)
       setNickName(res.data.userNickname)
+      setFirstNickname(res.data.userNickname)
       setPhonNumber(res.data.userPhone)
       setUserKind(res.data.userKind)
       setUserPhoto(res.data.userPhoto)
@@ -60,6 +59,33 @@ const Mypage = (props) => {
     })
   }, []);
 
+  useEffect(() => {
+    if(update && nickname !== firstNickname){
+      setnickNameConfirm(false)
+    }
+    if(nickname === firstNickname){
+      setnickNameConfirm(true)
+    }
+  }, [nickname])
+
+  const onNicknameConfirm = (e) => {
+    e.preventDefault()
+    axios
+    .get(
+      SERVER.BASE_URL + SERVER.ROUTES.mypage + `/{user_nickname_check}?userNickname=${nickname}`,
+    )
+    .then(function (response) {
+      if(response.data === true){
+        setnickNameConfirm(true)
+        alert('사용 가능한 닉네임 입니다.')
+      } else{
+        alert('사용 불가능한 닉네임 입니다.')
+      }
+    })
+    .catch((err)=> {
+      alert('서버연결 실패')
+    })
+  }
 
   useEffect(() => {
     if (userKind === 0){
@@ -105,18 +131,22 @@ const Mypage = (props) => {
       setUpdate(true)
     }
     else {
-      axios.patch(SERVER.BASE_URL + SERVER.ROUTES.mypage, patchData,
-        {
-        headers: {
-            Authorization: `Bearer ${userData}`
-          }})
-        .then(res =>{
-          console.log(res)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      setUpdate(false)
+      if(!nickNameConfirm){
+        alert('아이디 수정시 중복확인은 필수 입니다.')
+      }else{
+        axios.patch(SERVER.BASE_URL + SERVER.ROUTES.mypage, patchData,
+          {
+          headers: {
+              Authorization: `Bearer ${userData}`
+            }})
+          .then(res =>{
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+        setUpdate(false)
+      }
     }
   }
   const cancelUpdate = (e) => {
@@ -130,22 +160,6 @@ const Mypage = (props) => {
   const onNickNameHandler = (e) => {
       setNickName(e.target.value);
   };
-
-   
-  // const onPasswordHanlder = (e) => {
-  //     setPassword(e.target.value);
-  //     if (e.target.value === '' && password === '') {
-  //         setPasswordError(false);
-  //     }
-  // };
-
-  // const onConfirmPasswordHandler = (e) => {
-  //     setConfirmPasword(e.currentTarget.value);
-  //     setPasswordError(e.target.value !== password);
-  //     if (e.currentTarget.value === '' && password === '') {
-  //     setPasswordError(false);
-  //     }
-  // };
 
   const onPhonNumberHandler = (e) => {
       const regex = /^[0-9\b -]{0,13}$/;
@@ -165,20 +179,6 @@ const Mypage = (props) => {
   const onTagsHandle = (e) => {
     setTags(...tags)
   }
-  // const onNicknameConfirm = (e) => {
-  // e.preventDefault()
-  // // axios
-  // // .get(
-  // //     SERVER.BASE_URL + SERVER.ROUTES.nicknameConfirm + nickname,
-  // // )
-  // // .then(function (response) {
-  // //     alert('사용 가능한 닉네임 입니다.');
-  // //     setNicknameValidation(true)
-  // // })
-  // // .catch((err)=> {
-  // //     alert('사용 불가능한 닉네임 입니다.')
-  // // })
-
 
   return (
     <div className="Mypage">
@@ -195,7 +195,7 @@ const Mypage = (props) => {
           </div>
           <div className='mypageContentBox'>
             <MypageTextForm role='유저 종류' data={userKindName} update={update} handleData={onUserKindHandler}/>
-            <MypageTextForm role='닉네임' data={nickname} update={update} handleData={onNickNameHandler}/>
+            <MypageTextForm role='닉네임' data={nickname} update={update} handleData={onNickNameHandler} onNicknameConfirm={onNicknameConfirm} nickNameConfirm={nickNameConfirm}/>
             <MypageTextForm role='이메일' data={email} update={update}  handleData={onEmailHandler}/>
             <MypageTextForm role='전화번호' data={phonNumber} update={update}  handleData={onPhonNumberHandler}/>
             <MypageHashtag role='관심사' update={update} tags={tags} handleData={onTagsHandle} />

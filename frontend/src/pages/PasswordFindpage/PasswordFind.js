@@ -110,7 +110,7 @@ const PasswordFind = (props) => {
       .then((response) => {
         console.log(response)
         alert('변경완료')
-        // 로그인 페이지로 이동시키기
+        window.location.replace(`/login`)
       })
       .catch(err => {
         alert('실패')
@@ -119,83 +119,98 @@ const PasswordFind = (props) => {
   }
 
   return (
-    <div className="PasswordFind">
+    <div className='ground'>
+      <div className="PasswordFind">
+        
+        <div className='card'>
+          <img className='logoImg' src={logo} alt='logo' width="120px" />
+        <div className="register">
       
-      <div className='card'>
-        <img className='logoImg' src={logo} alt='logo' width="120px" />
-      <div className="register">
-    
-          <div className='PasswordContainer'>
-            
-            <h4>이메일로 비밀번호 찾기</h4>
-          </div>
-          <form action="">
-              <div className="flex">
-                  <ul className="PasswordContainer">
-                      <li className="item center">
-                          이메일
-                      </li>
-                      <li className="item">
-                          <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
-                      </li>
-                      <li className="item">
-                          <button onClick={onEmailFind} className='submit'>메일 전송</button>
-                      </li>
-                  </ul>
-                  {
-                    emailConfirm === true &&
-                    <ul className="PasswordContainer confirm">
-                        <li className="item">
-                          <input className='numInput' placeholder="4자리 숫자 입력" autoFocus required value={confirmNum} onChange={handleConfirmNum}/>
-                        </li>
-                        <li className="item">
-                          <button onClick={onConfirmNum} className='submit' >확인</button>
-                        </li>
-                    </ul>
-                  }
-                  { 
-                  emailValidation === true &&
-                  <div>
+            <div className='PasswordContainer'>
+              
+              <h4>이메일로 비밀번호 찾기</h4>
+            </div>
+            <form action="">
+                <div className="flex">
                     <ul className="PasswordContainer">
                         <li className="item center">
-                            새로운 비밀번호
+                            이메일
                         </li>
                         <li className="item">
-                            <input className='emailInput'  type="password" name="password" placeholder="Password" value={Password} onChange={onPasswordHanlder} autoFocus required></input>
+                          {
+                            emailValidation === false
+                            ?
+                            <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
+                            :
+                            <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} readOnly></input>
+                            // <h className="correctEmail">{Email}</h>
+                          }
+                        </li>
+                        <li className="item">
+                          {
+                            emailValidation === false
+                            &&
+                            <button onClick={onEmailFind} className='submit'>메일 전송</button>
+                          }
+                            
                         </li>
                     </ul>
-                    <ul className="PasswordContainer">
+                    {
+                      emailConfirm === true &&
+                      <ul className="PasswordContainer confirm">
+                          <li className="item">
+                            <input className='numInput' placeholder="4자리 숫자 입력" autoFocus required value={confirmNum} onChange={handleConfirmNum}/>
+                          </li>
+                          <li className="item">
+                            <button onClick={onConfirmNum} className='submit' >확인</button>
+                          </li>
+                      </ul>
+                    }
+                    { 
+                    emailValidation === true &&
+                    <div>
+                      <ul className="PasswordContainer">
+                          <li className="item center">
+                              새로운 비밀번호
+                          </li>
+                          <li className="item">
+                              <input className='emailInput'  type="password" name="password" placeholder="Password" value={Password} onChange={onPasswordHanlder} autoFocus required></input>
+                          </li>
+                      </ul>
+                      <ul className="PasswordContainer">
+                          <li className="item center">
+                              비밀번호 확인
+                          </li>
+                          <li className="item">
+                              <input className='emailInput' type="password" name="password" value={ConfirmPasword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} autoFocus required></input>
+                              {passwordError && <div style={{ color: 'red', fontSize: '20px', marginLeft: '50px', marginTop:'10px' }}>비밀번호가 일치하지 않습니다.</div>}
+                          </li>
+                      </ul>
+                      <ul className="PasswordContainer">
                         <li className="item center">
-                            비밀번호 확인
+                        </li>                    
+                        <li className="item passwordChange">
+                          <button onClick={onPasswordChange} className='submit'>변경완료</button>
                         </li>
-                        <li className="item">
-                            <input className='emailInput' type="password" name="password" value={ConfirmPasword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} autoFocus required></input>
-                            {passwordError && <div style={{ color: 'red', fontSize: '20px', marginLeft: '50px', marginTop:'10px' }}>비밀번호가 일치하지 않습니다.</div>}
-                        </li>
-                    </ul>
+                      </ul>
+                    </div>
+                    }
+
                     <ul className="PasswordContainer">
                       <li className="item center">
                       </li>                    
                       <li className="item passwordChange">
-                        <button onClick={onPasswordChange} className='submit'>변경완료</button>
+                        <Link to="/login" className='back'>
+                          <div>로그인 페이지로 돌아가기</div>
+                        </Link>
                       </li>
                     </ul>
-                  </div>
-                  }
+                </div>
+            </form>
+        </div>
+        </div>
+      </div>
 
-                  <ul className="PasswordContainer">
-                    <li className="item center">
-                    </li>                    
-                    <li className="item passwordChange">
-                      <Link to="/login" className='back'>
-                        <div>로그인 페이지로 돌아가기</div>
-                      </Link>
-                    </li>
-                  </ul>
-              </div>
-          </form>
-      </div>
-      </div>
     </div>
   );
 }

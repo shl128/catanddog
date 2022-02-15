@@ -41,8 +41,9 @@ export default class OvVideoComponent extends Component {
                     ref={this.videoRef}
                     muted={this.props.mutedSound}
                 />
-                {this.props.user.streamManager && 
-                    <FaceTracking videoRef={this.videoRef} />}
+                { this.props.user.isEmojiActive() && <FaceTracking videoRef={this.videoRef} userPhoto={this.props.user.getUserPhoto()}/>}
+
+                {/* {this.props.user.streamManager && } */}
             </>
         );
     }

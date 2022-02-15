@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './MypageTextForm.css'
 
 const MypageTextForm = (props) =>{
+  
   return (
     <div className='MypageTextForm-container'>
       <div className='TextForm-label'>
@@ -17,16 +18,23 @@ const MypageTextForm = (props) =>{
           :
           <form>
             {
-              props.role === '유저 종류' && '셀렉트박스'
+              props.role === '유저 종류' && <div>{props.data}</div>
             }
             {
-              props.role === '닉네임' && <input className={props.data} name={props.data}  value={props.data} onChange={props.handleData} autoFocus required />
+              props.role === '닉네임' && 
+              <div>
+                <input className="userInput" name={props.data}  value={props.data} onChange={props.handleData} autoFocus required />
+                {
+                  props.nickNameConfirm === false &&
+                  <button className='confirmNicknameButton' onClick={props.onNicknameConfirm}>중복 확인</button>
+                }
+              </div>
             }
             {
               props.role === '이메일' && <div>{props.data}</div>
             }
                         {
-              props.role === '전화번호' && <input className={props.data} name={props.data}  value={props.data} onChange={props.handleData} autoFocus required />
+              props.role === '전화번호' && <input className="userInput" name={props.data}  value={props.data} onChange={props.handleData} autoFocus required />
             }
 
           </form>
