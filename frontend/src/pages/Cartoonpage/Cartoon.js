@@ -56,11 +56,10 @@ const Cartoon = () => {
   }
   
   return (
-    <div>
-      <h3>내 반려동물의 사진을 카툰화 해보세요!</h3>
+      // <h3>내 반려동물의 사진을 카툰화 해보세요!</h3>
       <div className="Cartoonpage">
-        <Container className='m-3'>
-          <Row className='m-5'>
+        <Container className='Cartoonpage-container'>
+          <Row className=''>
             <Col id="">
               <div>
               <label className='h3'>
@@ -90,25 +89,25 @@ const Cartoon = () => {
               </div>
                 <label className='arrow right'></label>   
             </Col>
-            <Col className="">
-            <div>
-              <label className='h3'>
-                After
-              </label>
+            <Col>
+              <div>
+                <label className='h3'>
+                  After
+                </label>
               </div>
-            { 
+              { 
                 cartoonPhoto == null 
                 ? <img src={noImage} className="pet-image mt-2" alt="no" />
                 : <img src={cartoonPhoto} className="pet-image mt-2" alt="no" />
-            }
-            <div className='mt-1'>
-            <label className="button mt-2" onClick={downBtn}>다운로드</label> 
+              }
+              <div className='mt-1'>
+                <label className="button mt-2" onClick={downBtn}>다운로드</label> 
               </div>  
             </Col>
           </Row>
         </Container> 
       </div>
-    </div>
+    
   )
 }
 

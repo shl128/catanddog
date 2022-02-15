@@ -1,5 +1,5 @@
 .SpendingOfMonthpage {
-  height: 70vh;
+  height: 85%;
   width: 100%;  
   background-color: white;
   border-radius: 2rem;
@@ -26,14 +26,6 @@
 }
 
 @media (max-height: 850px) {
-  .SpendingOfMonthpage {
-    height: 63vh;
-    width: 100%;  
-    background-color: white;
-    border-radius: 2rem;
-    text-align: center;
-  } 
-
   .overflowFrame {
     display: flex;
     flex-direction: column;

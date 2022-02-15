@@ -1,10 +1,14 @@
-.Petpage {
-    height: 90%;
+.Cartoonpage {
+    height: 85%;
     width: 100%;  
     background-color: white;
     border-radius: 2rem;
   
   } 
+
+.Cartoonpage-container {
+    padding: 3rem 3rem;
+}
 
 td {
     border: none !important;

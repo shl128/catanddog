@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
+// import { Nav } from 'react-bootstrap'
 import './Petpage.css'
 import { useLocation } from 'react-router-dom';
 import noImage from '../../components/image/이미지없음.png'
@@ -14,6 +16,7 @@ import axios from 'axios';
 import SERVER from '../../API/server';
 
 const Petpage = () => {
+  let navigate = useNavigate();
   const location = useLocation();
   const [pageType, setPageType] = useState(location.state.pageType);
   var prePageType = pageType;
@@ -193,8 +196,8 @@ const Petpage = () => {
         }}
       )
       .then(() => {
-        alert('반려동물 수정이 정상적으로 완료되었습니다!');
         axiosGet();
+        setPageType('read');
       })
       .catch(() => { alert('수정 오류 발생')} )
   }
@@ -222,10 +225,12 @@ const Petpage = () => {
           "Content-Type": "multipart/form-data",
         }}
       )
-      .then(() => {
-        alert('반려동물 추가가 정상적으로 완료되었습니다!');
+      .then((res) => {
+        console.log(res)
+        navigate('/')
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err)
         alert('오류가 발생하였습니다.');
       });
   }
@@ -241,216 +246,214 @@ const Petpage = () => {
   },[])
 
   return (
-    <div>
-      <h3>반려동물 정보</h3>
-      <div className="Petpage">
-        <Container>
-          <div className="fix-div-height">
-            <Row>
-              <Col className="mt-5">
-                {pageType === 'create' && 
-                  <div>
-                    { 
-                      imgBase64 == null 
-                      ? <img src={noImage} className="pet-image" alt="no" />
-                      : <img src={imgBase64} className="pet-image" alt="alt" />
-                    }
-                    <div className="mt-1">
-                      <label className="button" for="input-file">프로필 사진 변경</label>
-                      <input type="file"
-                        id="input-file" 
-                        accept='image/*'
-                        onChange={handleChangeFile}
-                        style={{display:"none"}}
-                      />
-                    </div>
-                  </div>
-                }
-                {pageType === 'read' && <img src={'data:image/png;base64,' + imgBase64} className="pet-image" alt="no" />}
-                {pageType === 'update' && 
-                  <div>
-                    { 
-                      isUpdating === false 
-                      ? <img src={'data:image/png;base64,' + imgBase64} className="pet-image" alt="no" />
-                      : <img src={imgBase64} className="pet-image" alt="alt" />
-                    }
-                    <div className="mt-1">
-                      <label className="button" for="input-file">프로필 사진 변경</label>
-                      <input type="file"
-                        id="input-file" 
-                        accept='image/*'
-                        onChange={handleChangeFile}
-                        style={{display:"none"}}
-                      />
-                    </div>
-                  </div>
-                }
-              </Col>
-              <Col md="8" className="mt-5">
-                <div>
-                  <Table className="w-50" responsive="sm">
-                    <tbody>
-                      <tr>
-                        <td>이름</td>
-                        <td>
-                          {pageType === 'create' && <Form.Control className="w-75" type="text" placeholder="반려동물 이름" onChange={handlePetName}/>}
-                          {pageType === 'read' && <div>{petName}</div>}
-                          {pageType === 'update' && <Form.Control className="w-75" type="text" placeholder="반려동물 이름" onChange={handlePetName} value={petName}/>}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>동물 종류</td>
-                        <td>
-                          
-                          {pageType === 'create' &&
-                          <Form.Select className="w-75" aria-label="Default select example" onChange={handlePetKind}>
-                            <option value="강아지">강아지</option>
-                            <option value="고양이">고양이</option>
-                          </Form.Select>}
-                          {pageType === 'read' && <div>{petKind}</div>}
-                          {pageType === 'update' &&
-                          <Form.Select className="w-75" aria-label="Default select example" onChange={handlePetKind} value={petKind}>
-                            <option value="강아지">강아지</option>
-                            <option value="고양이">고양이</option>
-                          </Form.Select>}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>품종</td>
-                        <td>
-                          {pageType === 'create' && <Form.Control className="w-75" type="text" placeholder="반려동물 품종" onChange={handlePetBreed}/>}
-                          {pageType === 'read' && <div>{petBreed}</div>}
-                          {pageType === 'update' && <Form.Control className="w-75" type="text" placeholder="반려동물 품종" onChange={handlePetBreed} value={petBreed}/>}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>생일</td>
-                        <td>
-                          {pageType === 'create' && 
-                          <div>
-                            <RadioButtonForm label={knowBirthLabels} change={handleKnowBirth} idName="birthday" checkedCondition={knowBirth} pageType={pageType}/>
-                            <ul className="no-left-padding">
-                              <li className="item">
-                                {
-                                  knowBirth === true
-                                  ?
-                                  <BirthdayPicker type="date" idName="petBirthDate" change={handlePetBirthday}/>
-                                  :
-                                  <BirthdayPicker type="month" idName="petBirthMonth" change={handlePetBirthday}/>  
-                                }
-                              </li>
-                            </ul>
-                          </div>
-                          }
-                          {pageType === 'read' && <div>{petBirthday}</div>}
-                          {pageType === 'update' && 
-                          <div>
-                            <RadioButtonForm label={knowBirthLabels} change={handleKnowBirth} idName="birthday" checkedCondition={knowBirth} readKnowBirthData={readKnowBirthData} initialKnowBirth={initialKnowBirth} pageType={pageType}/>
-                            <ul className="no-left-padding">
-                              <li className="item">
-                                {
-                                  initialKnowBirth === true
-                                  ?
-                                  <div>
-                                    {
-                                      readKnowBirthData === true
-                                      ?
-                                      <BirthdayPicker type="date" idName="petBirthDate" change={handlePetBirthday} baseDay={petBirthday}/>
-                                      :
-                                      <BirthdayPicker type="month" idName="petBirthMonth" change={handlePetBirthday} baseDay={petBirthday}/>
-                                    }
-                                  </div>
-                                  :
-                                  <div>
-                                    {
-                                      knowBirth === true
-                                      ?
-                                      <BirthdayPicker type="date" idName="petBirthDate" change={handlePetBirthday} baseDay={petBirthday}/>
-                                      :
-                                      <BirthdayPicker type="month" idName="petBirthMonth" change={handlePetBirthday} baseDay={petBirthday}/>  
-                                    }
-                                  </div>
-                                }
-                              </li>
-                            </ul>
-                          </div>
-                          }
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>성별</td>
-                        <td>
-                          {pageType === 'create' && <RadioButtonForm label={genderLabels} change={handlePetGender} idName="gender" checkedCondition={genderBool}/>}
-                          {pageType === 'read' && <div>{petGender}</div>}
-                          {pageType === 'update' && <RadioButtonForm label={genderLabels} change={handlePetGender} idName="gender" checkedCondition={genderBool} value={petGender}/>}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>중성화 여부</td>
-                        <td>
-                          {pageType === 'create' && <RadioButtonForm label={neuteringLabels} change={handlePetNeutering} idName="neutering" checkedCondition={petNeutering}/>}
-                          {pageType === 'read' && 
-                            <div>
-                              {
-                                petNeutering === true ? <div>Yes</div> : <div>No</div>
-                              }
-                            </div>
-                          }
-                          {pageType === 'update' && <RadioButtonForm label={neuteringLabels} change={handlePetNeutering} idName="neutering" checkedCondition={petNeutering} value={petNeutering}/>}
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>예방 접종 여부</td>
-                        <td>
-                          {pageType === 'create' && <RadioButtonForm label={vaccinLabels} change={handlePetVaccination} idName="vaccin" checkedCondition={petVaccination}/>}
-                          {pageType === 'read' && 
-                            <div>
-                              {
-                                petVaccination === true ? <div>Yes</div> : <div>No</div>
-                              }
-                            </div>
-                          }
-                          {pageType === 'update' && <RadioButtonForm label={vaccinLabels} change={handlePetVaccination} idName="vaccin" checkedCondition={petVaccination} value={petVaccination}/>}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </div>           
-              </Col>
-            </Row>
-          </div>
+    // <h3>반려동물 정보</h3>
+    <div className="Petpage">
+      <Container>
+        <div className="fix-div-height">
           <Row>
-            <Col>
-            </Col>
-              { pageType === 'create' &&
-                <Col lg="4" md="4" style={{'textAlign':'center'}}>
-                  {
-                    (petPhoto === null && petName === null && petBreed === null && petBirthday === null) ||
-                    (petPhoto === null && petName === '' && petBreed === null && petBirthday === null) ||
-                    (petPhoto === null && petName === null && petBreed === '' && petBirthday === null) ||
-                    (petPhoto === null && petName === null && petBreed === null && petBirthday === '') ||
-                    (petPhoto === null && petName === '' && petBreed === '' && petBirthday === null) ||
-                    (petPhoto === null && petName === '' && petBreed === null && petBirthday === '') ||
-                    (petPhoto === null && petName === null && petBreed === '' && petBirthday === '') ||
-                    (petPhoto === null && petName === '' && petBreed === '' && petBirthday === '')
-                    ?
-                    <Button className="create-pet" variant='danger' disabled>반려 동물 정보 추가</Button>
-                    :
-                    <Button className="create-pet" variant='danger' onClick={onSubmitHandler}>반려 동물 정보 추가</Button>
+            <Col className="mt-5">
+              {pageType === 'create' && 
+                <div>
+                  { 
+                    imgBase64 == null 
+                    ? <img src={noImage} className="petImage" alt="no" />
+                    : <img src={imgBase64} className="petImage" alt="alt" />
                   }
-                </Col> 
+                  <div className="mt-1">
+                    <label className="petImg-change-button" for="input-file">프로필 사진 변경</label>
+                    <input type="file"
+                      id="input-file" 
+                      accept='image/*'
+                      onChange={handleChangeFile}
+                      style={{display:"none"}}
+                    />
+                  </div>
+                </div>
               }
-              {pageType === 'read' && <Col lg="4" md="4" style={{'textAlign':'center'}}><Button className="update-pet" variant='danger' onClick={updateHandler}>수정하기</Button></Col>}
+              {pageType === 'read' && <img src={'data:image/png;base64,' + imgBase64} className="petImage" alt="no" />}
               {pageType === 'update' && 
-                <Col lg="4" md="4" style={{'textAlign':'center'}}>
-                  <span className='me-2'><Button className="update-pet" variant='danger' onClick={updateDoneHandler}>수정완료</Button></span>
-                  <span><Button className="update-pet" variant='danger' onClick={updateCancelHandler}>수정취소</Button></span>
-                </Col>
+                <div>
+                  { 
+                    isUpdating === false 
+                    ? <img src={'data:image/png;base64,' + imgBase64} className="petImage" alt="no" />
+                    : <img src={imgBase64} className="petImage" alt="alt" />
+                  }
+                  <div className="mt-1">
+                    <label className="petImg-change-button" for="input-file">프로필 사진 변경</label>
+                    <input type="file"
+                      id="input-file" 
+                      accept='image/*'
+                      onChange={handleChangeFile}
+                      style={{display:"none"}}
+                    />
+                  </div>
+                </div>
               }
+            </Col>
+            <Col md="8" className="mt-5">
+              <div>
+                <Table className="w-50" responsive="sm">
+                  <tbody>
+                    <tr>
+                      <td>이름</td>
+                      <td>
+                        {pageType === 'create' && <Form.Control className="w-75" type="text" placeholder="반려동물 이름" onChange={handlePetName}/>}
+                        {pageType === 'read' && <div className='mb-3'>{petName}</div>}
+                        {pageType === 'update' && <Form.Control className="w-75" type="text" placeholder="반려동물 이름" onChange={handlePetName} value={petName}/>}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>동물 종류</td>
+                      <td>
+                        
+                        {pageType === 'create' &&
+                        <Form.Select className="w-75" aria-label="Default select example" onChange={handlePetKind}>
+                          <option value="강아지">강아지</option>
+                          <option value="고양이">고양이</option>
+                        </Form.Select>}
+                        {pageType === 'read' && <div className='mb-3'>{petKind}</div>}
+                        {pageType === 'update' &&
+                        <Form.Select className="w-75" aria-label="Default select example" onChange={handlePetKind} value={petKind}>
+                          <option value="강아지">강아지</option>
+                          <option value="고양이">고양이</option>
+                        </Form.Select>}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>품종</td>
+                      <td>
+                        {pageType === 'create' && <Form.Control className="w-75" type="text" placeholder="반려동물 품종" onChange={handlePetBreed}/>}
+                        {pageType === 'read' && <div className='mb-3'>{petBreed}</div>}
+                        {pageType === 'update' && <Form.Control className="w-75" type="text" placeholder="반려동물 품종" onChange={handlePetBreed} value={petBreed}/>}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>생일</td>
+                      <td>
+                        {pageType === 'create' && 
+                        <div>
+                          <RadioButtonForm label={knowBirthLabels} change={handleKnowBirth} idName="birthday" checkedCondition={knowBirth} pageType={pageType}/>
+                          <ul className="no-left-padding">
+                            <li className="item">
+                              {
+                                knowBirth === true
+                                ?
+                                <BirthdayPicker type="date" idName="petBirthDate" change={handlePetBirthday}/>
+                                :
+                                <BirthdayPicker type="month" idName="petBirthMonth" change={handlePetBirthday}/>  
+                              }
+                            </li>
+                          </ul>
+                        </div>
+                        }
+                        {pageType === 'read' && <div className='mb-3'>{petBirthday}</div>}
+                        {pageType === 'update' && 
+                        <div>
+                          <RadioButtonForm label={knowBirthLabels} change={handleKnowBirth} idName="birthday" checkedCondition={knowBirth} readKnowBirthData={readKnowBirthData} initialKnowBirth={initialKnowBirth} pageType={pageType}/>
+                          <ul className="no-left-padding">
+                            <li className="item">
+                              {
+                                initialKnowBirth === true
+                                ?
+                                <div>
+                                  {
+                                    readKnowBirthData === true
+                                    ?
+                                    <BirthdayPicker type="date" idName="petBirthDate" change={handlePetBirthday} baseDay={petBirthday}/>
+                                    :
+                                    <BirthdayPicker type="month" idName="petBirthMonth" change={handlePetBirthday} baseDay={petBirthday}/>
+                                  }
+                                </div>
+                                :
+                                <div>
+                                  {
+                                    knowBirth === true
+                                    ?
+                                    <BirthdayPicker type="date" idName="petBirthDate" change={handlePetBirthday} baseDay={petBirthday}/>
+                                    :
+                                    <BirthdayPicker type="month" idName="petBirthMonth" change={handlePetBirthday} baseDay={petBirthday}/>  
+                                  }
+                                </div>
+                              }
+                            </li>
+                          </ul>
+                        </div>
+                        }
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>성별</td>
+                      <td>
+                        {pageType === 'create' && <RadioButtonForm label={genderLabels} change={handlePetGender} idName="gender" checkedCondition={genderBool}/>}
+                        {pageType === 'read' && <div className='mb-3'>{petGender}</div>}
+                        {pageType === 'update' && <RadioButtonForm label={genderLabels} change={handlePetGender} idName="gender" checkedCondition={genderBool} value={petGender}/>}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>중성화 여부</td>
+                      <td>
+                        {pageType === 'create' && <RadioButtonForm label={neuteringLabels} change={handlePetNeutering} idName="neutering" checkedCondition={petNeutering}/>}
+                        {pageType === 'read' && 
+                          <div>
+                            {
+                              petNeutering === true ? <div className='mb-3'>Yes</div> : <div className='mb-3'>No</div>
+                            }
+                          </div>
+                        }
+                        {pageType === 'update' && <RadioButtonForm label={neuteringLabels} change={handlePetNeutering} idName="neutering" checkedCondition={petNeutering} value={petNeutering}/>}
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>예방 접종 여부</td>
+                      <td>
+                        {pageType === 'create' && <RadioButtonForm label={vaccinLabels} change={handlePetVaccination} idName="vaccin" checkedCondition={petVaccination}/>}
+                        {pageType === 'read' && 
+                          <div>
+                            {
+                              petVaccination === true ? <div>Yes</div> : <div>No</div>
+                            }
+                          </div>
+                        }
+                        {pageType === 'update' && <RadioButtonForm label={vaccinLabels} change={handlePetVaccination} idName="vaccin" checkedCondition={petVaccination} value={petVaccination}/>}
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </div>           
+            </Col>
           </Row>
-        </Container> 
-      </div>
+        </div>
+        <Row>
+          <Col>
+          </Col>
+            { pageType === 'create' &&
+              <Col lg="4" md="4" style={{'textAlign':'center'}}>
+                {
+                  (petPhoto === null && petName === null && petBreed === null && petBirthday === null) ||
+                  (petPhoto === null && petName === '' && petBreed === null && petBirthday === null) ||
+                  (petPhoto === null && petName === null && petBreed === '' && petBirthday === null) ||
+                  (petPhoto === null && petName === null && petBreed === null && petBirthday === '') ||
+                  (petPhoto === null && petName === '' && petBreed === '' && petBirthday === null) ||
+                  (petPhoto === null && petName === '' && petBreed === null && petBirthday === '') ||
+                  (petPhoto === null && petName === null && petBreed === '' && petBirthday === '') ||
+                  (petPhoto === null && petName === '' && petBreed === '' && petBirthday === '')
+                  ?
+                  <Button className="create-pet" variant='danger' disabled>반려 동물 정보 추가</Button>
+                  :
+                  <Button className="create-pet" variant='danger' onClick={onSubmitHandler}>반려 동물 정보 추가</Button>
+                }
+              </Col> 
+            }
+            {pageType === 'read' && <Col lg="4" md="4" style={{'textAlign':'center'}}><Button className="update-pet" variant='danger' onClick={updateHandler}>수정하기</Button></Col>}
+            {pageType === 'update' && 
+              <Col lg="4" md="4" style={{'textAlign':'center'}}>
+                <span className='me-2'><Button className="update-pet" variant='danger' onClick={updateDoneHandler}>수정완료</Button></span>
+                <span><Button className="update-pet" variant='danger' onClick={updateCancelHandler}>수정취소</Button></span>
+              </Col>
+            }
+        </Row>
+      </Container> 
     </div>
   );
 }
