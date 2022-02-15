@@ -74,7 +74,7 @@ const SpendingOfMonthpage = () => {
   return (
     <div className='SpendingOfMonthpage'>
       <div className='SpendingOfMonthHeader'>
-        <h3 className='my-3'>
+        <h4 className='my-3'>
           <span>
             <input id="monthFilter" type="month" className="me-3" style={textAlignCenter} onChange={monthFilterHandler} value={justMonthRender} ref={monthFilter}/>
           </span>
@@ -91,7 +91,7 @@ const SpendingOfMonthpage = () => {
           지출 금액은 총  
           <span className='redColor mx-2'>{numberWithCommas(totalPrice)}</span>
           원 입니다.
-        </h3>
+        </h4>
       </div>
       <div>
         <ExpenditureInput baseDay={dayString} axiosGet={filterContentsGet}/>

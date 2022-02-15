@@ -1,15 +1,14 @@
 .SpendingOfMonthpage {
-    height: 90%;
-    width: 100%;  
-    background-color: white;
-    border-radius: 2rem;
-    text-align: center;
-  } 
+  height: 70vh;
+  width: 100%;  
+  background-color: white;
+  border-radius: 2rem;
+  text-align: center;
+} 
 
 .SpendingOfMonthHeader {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-  }
+  padding: 1rem;
+}
 
 .filter {
   text-align: center;
@@ -20,6 +19,25 @@
 }
 
 .overflowFrame {
+  display: flex;
+  flex-direction: column;
   height: 450px;
   overflow: auto;
+}
+
+@media (max-height: 850px) {
+  .SpendingOfMonthpage {
+    height: 63vh;
+    width: 100%;  
+    background-color: white;
+    border-radius: 2rem;
+    text-align: center;
+  } 
+
+  .overflowFrame {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    overflow: auto;
+  }
 }
