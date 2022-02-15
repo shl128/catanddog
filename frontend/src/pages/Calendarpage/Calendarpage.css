@@ -3,7 +3,13 @@
     width: 100%;  
     background-color: white;
     border-radius: 2rem;
+  }
   
+.inChatting-Calendarpage {
+    height: 750px;
+    width: 100%;  
+    background-color: white;
+    border-radius: 2rem;
   } 
 
 .CalendarContainer{
@@ -32,7 +38,7 @@
   border-radius: 1rem;
   border-style: none;
   background-color: #ffe0d7;
-  padding: 1rem;
+  /* padding: 1rem; */
 
 }
 .Button-icon-style {
@@ -50,12 +56,13 @@
 .gridBox {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: 50px;
 }
 .inchatting-filterCategory{
-  grid-column-start: 8;
-  grid-column-end: 10;
+  grid-column-start: 6;
+  grid-column-end: 11;
   text-align: center;
-  height: 30px;
+  height: 35px;
   margin-top: 15px;
 }
 
@@ -79,4 +86,9 @@
 
 .Calendar-height {
   height: 80%;
+}
+
+.overflow-frame {
+  height: 600px;
+  overflow: auto;
 }

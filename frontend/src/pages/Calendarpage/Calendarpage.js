@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Calendarpage.css'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
+import DateCalculation from '../../components/PublicComponents/DateCalculation';
 import moment from 'moment';
 import Form from 'react-bootstrap/Form'
 import SERVER from '../../API/server';
@@ -11,7 +12,7 @@ import ReadUpdateEventForm from '../../components/Calendarpage/ReadUpdateEventFo
 import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 
 const Calendarpage = (props) => {
-  moment.locale('en-US');
+  moment.locale('ko-KR');
   const localizer = momentLocalizer(moment);
   const [allEvents, setAllEvents] = useState([])
   const [addEventBtnClick, setAddEventBtnClick] = useState(false)
@@ -19,6 +20,11 @@ const Calendarpage = (props) => {
   const filterCategory = useRef('전체');
   const userData = localStorage.getItem('accessToken');
   const [eventId, setEventId] = useState(null)
+
+  const [eventTitle, setEventTitle] = useState(null)
+  const [eventCategory, setEventCategory] = useState(null)
+  const [startEventDate, setStartEventDate] = useState(null)
+  const [endEventDate, setEndEventDate] = useState(null)
 
   function axiosGet() {
     axios.get(
@@ -28,7 +34,7 @@ const Calendarpage = (props) => {
       }}
     )
     .then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
       setAllEvents(res.data)
     })
     .catch((err) => {
@@ -37,15 +43,43 @@ const Calendarpage = (props) => {
   }
 
   function gotoReadUpdateForm(event) {
-    setEventClick(true)
+    // function dateAddDel(sDate, nNum, type) {
+    //   var yyyy = parseInt(sDate.substring(0, 4));
+    //   var mm = parseInt(sDate.substring(5, 7));
+    //   var dd = parseInt(sDate.substring(8, 10));
+    //   var temp = ''
+    //   if (type === "d") {
+    //     temp = new Date(yyyy, mm-1, dd + nNum);
+    //   } else if (type === "m") {
+    //     temp = new Date(yyyy, mm-1 + nNum, dd);
+    //   } else if (type === "y") {
+    //     temp = new Date(yyyy + nNum, mm - 1, dd);
+    //   }
+    //   yyyy = temp.getFullYear();
+    //   mm = temp.getMonth() + 1; mm = (mm < 10) ? '0' + mm : mm;
+    //   dd = temp.getDate(); dd = (dd < 10) ? '0' + dd : dd;
+    //   return yyyy + '-' +  mm  + '-' + dd;
+    // }
+    
+
+    setEventTitle(event.title)
+    setStartEventDate(DateCalculation(event.start,1))
+    setEndEventDate(DateCalculation(event.end,1))
+    // setStartEventDate(dateAddDel(event.start, 1, 'd'))
+    // setEndEventDate(dateAddDel(event.end, 1, 'd'))
+    // setStartEventDate(finalStart)
+    // setEndEventDate(finalEnd)
+    setEventCategory(event.category)
+    
     setEventId(event.id)
+    setEventClick(true)
+    
   }
 
   useEffect(() => { axiosGet(); },[])
-  //무한루프 도는중
 
   return (
-    <div className="Calendarpage">
+    <div className={props.inChatting ? 'inChatting-Calendarpage' : 'Calendarpage'}>
       <div className='margin-x'>
         <div  >
           {
@@ -59,7 +93,7 @@ const Calendarpage = (props) => {
               <option value="증상">증상</option>
               <option value="기타">기타</option>
             </Form.Select>
-            <div className='Button-icon-style' onClick={() => setAddEventBtnClick(true)}><AddAlarmIcon/></div>
+            <button className='Button-icon-style' onClick={() => setAddEventBtnClick(true)}><AddAlarmIcon/></button>
           </div>
             :
             <div  className='gridBox'>
@@ -74,36 +108,44 @@ const Calendarpage = (props) => {
             </div>
           }
         </div>
-        {
-          props.inChatting
-          ?
-          <Calendar
+        <div className='overflow-frame'>
+          {
+            props.inChatting
+            ?
+            <Calendar
+              className='mt-2'
+              localizer={localizer}
+              events={allEvents}
+              style={{ height: 550 }}
+              onSelectEvent={event => gotoReadUpdateForm(event)}
+            />
+            :
+            <Calendar
             className='mt-2'
             localizer={localizer}
             events={allEvents}
-            style={{ height: 250 }}
+            style={{ height: 580 }}
             onSelectEvent={event => gotoReadUpdateForm(event)}
           />
-          :
-          <Calendar
-          className='mt-2'
-          localizer={localizer}
-          events={allEvents}
-          style={{ height: 600 }}
-          onSelectEvent={event => gotoReadUpdateForm(event)}
-        />
-        }
-        {addEventBtnClick && 
-        <AddEventForm 
-          addEventBtnClick={addEventBtnClick} 
-          setAddEventBtnClick={setAddEventBtnClick} 
-        />}
-        {eventClick && 
-        <ReadUpdateEventForm
-          eventClick={eventClick}
-          setEventClick={setEventClick}
-          eventId={eventId}
-        />}
+          }
+          {addEventBtnClick && 
+          <AddEventForm
+            axiosGet={axiosGet}
+            addEventBtnClick={addEventBtnClick} 
+            setAddEventBtnClick={setAddEventBtnClick} 
+          />}
+          {eventClick && 
+          <ReadUpdateEventForm
+            axiosGet={axiosGet}
+            eventTitle={eventTitle}
+            eventCategory={eventCategory}
+            startEventDate={startEventDate}
+            endEventDate={endEventDate}
+            eventClick={eventClick}
+            setEventClick={setEventClick}
+            eventId={eventId}
+          />}
+        </div>
       </div>
         
     </div>

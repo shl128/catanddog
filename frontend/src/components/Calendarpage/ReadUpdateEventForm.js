@@ -6,10 +6,10 @@ import axios from 'axios'
 import SERVER from '../../API/server';
 
 function ReadUpdateForm(props) {
-  const [eventTitle, setEventTitle] = useState(null);
-  const [startEventDate, setStartEventDate] = useState(null);
-  const [endEventDate, setEndEventDate] = useState(null);
-  const [eventCategory, setEventCategory] = useState(null);
+  const [eventTitle, setEventTitle] = useState(props.eventTitle);
+  const [startEventDate, setStartEventDate] = useState(props.startEventDate);
+  const [endEventDate, setEndEventDate] = useState(props.endEventDate);
+  const [eventCategory, setEventCategory] = useState(props.eventCategory);
   const [updateEventBtnClick, setUpdateEventBtnClick] = useState(false)
   
   const userData = localStorage.getItem('accessToken');
@@ -50,7 +50,7 @@ function ReadUpdateForm(props) {
       )
       .then(() => {
         props.setEventClick(false);
-        return() => axiosGet();
+        props.axiosGet();
       })
       .catch(() => {
         alert('수정 실패')
@@ -62,7 +62,7 @@ function ReadUpdateForm(props) {
 
   function updateCancelHandler() {
     setUpdateEventBtnClick(false);
-    return() => axiosGet();
+    axiosGet();
   }
 
   function deleteHandler() {
@@ -74,7 +74,7 @@ function ReadUpdateForm(props) {
     )
     .then(() => {
       props.setEventClick(false);
-      return() => axiosGet();
+      props.axiosGet();
       // window.location.reload();
     })
     .catch(() => {
@@ -82,7 +82,7 @@ function ReadUpdateForm(props) {
     })
   }
 
-  useEffect(() => { axiosGet(); },[])
+  useEffect(() => { props.axiosGet(); },[])
 
   return (
       <Modal dialogClassName="Consulting" show={props.eventClick} centered="true">
