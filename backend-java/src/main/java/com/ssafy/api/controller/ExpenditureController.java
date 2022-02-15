@@ -69,6 +69,26 @@ public class ExpenditureController {
         return ResponseEntity.status(500).body(null);
     }
 
+    @GetMapping("/expendituresOne")
+    @ApiOperation(value = "지출내역 단일조회")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "지출내역 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<List<Expenditure>> readOne(@ApiIgnore Authentication authentication, Integer expenditureId){
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        Long userId = userDetails.getUser().getUserId();
+        List<Expenditure> ExpenditureInfoList;
+        ExpenditureInfoList = expenditureService.findByExpenditureOne(userId, expenditureId);
+        if(ExpenditureInfoList != null){
+            return ResponseEntity.status(200).body(ExpenditureInfoList);
+        }
+        return ResponseEntity.status(500).body(null);
+    }
+
+
     @PatchMapping("/expenditures")
     @ApiOperation(value = "지출내역 수정")
     @ApiResponses({
