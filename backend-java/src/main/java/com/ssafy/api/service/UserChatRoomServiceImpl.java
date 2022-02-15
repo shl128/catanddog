@@ -12,10 +12,13 @@ public class UserChatRoomServiceImpl implements UserChatRoomService{
 
     @Override
     public UserChatRoom saveUserChatRoom(Long chatRoomId, Long userId) {
-        UserChatRoom userChatRoom = new UserChatRoom();
-        userChatRoom.setUserId(userId);
-        userChatRoom.setChatRoomId(chatRoomId);
-        return userChatRoomRepository.save((userChatRoom));
+        if(userChatRoomRepository.checkUserChatRoom(chatRoomId, userId) == null){
+            UserChatRoom userChatRoom = new UserChatRoom();
+            userChatRoom.setUserId(userId);
+            userChatRoom.setChatRoomId(chatRoomId);
+            return userChatRoomRepository.save(userChatRoom);
+        }
+        return null;
     }
 
     @Override

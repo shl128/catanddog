@@ -42,7 +42,7 @@
 }
 
 .filterCategory {
-  grid-column-start: 7;
+  grid-column-start: 8;
   grid-column-end: 10;
   text-align: center;
 }
@@ -57,4 +57,8 @@
 .date-picker {
   grid-column-start: 5;
   grid-column-end: 17;
+}
+
+.Calendar-height {
+  height: 80%;
 }
