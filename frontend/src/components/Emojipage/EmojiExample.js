@@ -1,10 +1,7 @@
 import React from 'react'
 import CustomImageEditor from "./CustomImageEditor"
 import "./EmojiExample.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons'
 import tie from '../image/tie.gif'
-import afterImg from '../image/쫑이_after.png'
 import './EmojiExample.css'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'

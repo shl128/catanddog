@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { MyProfile, ConsultingRequestList } from './MainAxios'
 import Toggle  from './Toggle'
 import ConsultingAlarm from './ConsultingAlarm'
+import rank from '../image/티어.png'
 
 function Top() {
 
@@ -73,7 +74,7 @@ function Top() {
           {consultingList.length >= 1 && <ConsultingAlarm consultingList={consultingList} setUserActive={setUserActive}/>}
         </div>
       </div>}
-      <div className="Top-grade">점수</div>
+      <img className="Top-grade" alt="티어" src={rank} />
       <Link to="/mypage" className="Top-profile">
         <img className='Top-profile-img' alt="프로필사진" src={'data:image/png;base64,' + photo} />
         <div className="Top-profile-name">{nickname}</div>
