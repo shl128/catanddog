@@ -12,21 +12,6 @@ function AddEventForm(props) {
   const [endEventDate, setEndEventDate] = useState(null);
   const [eventCategory, setEventCategory] = useState('병원')
   const userData = localStorage.getItem('accessToken');
-  
-  function axiosGet() {
-    axios.get(
-      `${SERVER.BASE_URL}${SERVER.ROUTES.Calendar}?category=${props.filterCategory}`,
-      {headers: {
-        Authorization: `Bearer ${userData}`,
-      }}
-    )
-    .then((res) => {
-      props.setAllEvents(res.data)
-    })
-    .catch(() => {
-      // alert('캘린더 메모 불러오기 실패')
-    })
-  }
 
   function createHandler() {
     
@@ -44,7 +29,7 @@ function AddEventForm(props) {
         }}
       )
       .then(() => {
-        return () => axiosGet();
+        props.axiosGet();
       })
       .catch(() => {
         alert('이벤트 추가 실패')

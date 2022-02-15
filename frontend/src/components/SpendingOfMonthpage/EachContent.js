@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import './ExpenditureInput.css';
 import {numberWithCommas} from './NumberWithCommas';
+import DateCalculation from '../../components/PublicComponents/DateCalculation';
 import UpdateDeleteButtons from './UpdateDeleteButtons'
 import DatePicker from '../PublicComponents/DatePicker';
 import Form from 'react-bootstrap/Form';
 
 const EachContent = (props) => {
-  var YYYYMMDD = props.expenditureDate.substring(0,10);
+  // var YYYYMMDD = props.expenditureDate.substring(0,10);
+  // var tempYYYYMMDD = String(parseInt(props.expenditureDate.substring(8,10)) + 1)
+  // if (tempYYYYMMDD.length === 1) {
+  //   tempYYYYMMDD = '0' + tempYYYYMMDD
+  // }
+  // DateCalculation(props.expenditureDate,1)
+  var YYYYMMDD = DateCalculation(props.expenditureDate.substring(0,10),1)
   const [isUpdating, setIsUpdating] = useState(false);
-  const [expenditureDate, setExpenditureDate] = useState(YYYYMMDD)
+  const [expenditureDate, setExpenditureDate] = useState(DateCalculation(props.expenditureDate.substring(0,10),1))
   const [expenditureCategory, setExpenditureCategory] = useState(props.expenditureCategory)
   const [expenditureItem, setExpenditureItem] = useState(props.expenditureItem)
   const [expenditurePrice, setExpenditurePrice] = useState(props.expenditurePrice)
@@ -34,7 +41,7 @@ const EachContent = (props) => {
                 {
                     isUpdating === false
                     ?
-                    props.expenditureDate.substring(0,10)
+                    DateCalculation(props.expenditureDate.substring(0,10),1)
                     :
                     <DatePicker type='date' style={textAlignCenter} change={dateHandler} baseDay={expenditureDate}/>
                 }
