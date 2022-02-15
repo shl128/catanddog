@@ -57,10 +57,6 @@ function FaceTracking(props) {
   }, [])
 
   return(
-<<<<<<< HEAD
-    <div className="Face-tracking">
-      <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
-=======
     <div className='faceFind'>
       {
         props.userPhoto !== ''
@@ -70,7 +66,6 @@ function FaceTracking(props) {
         <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
       }
 
->>>>>>> 75ecd4e9b92f6132b6094ac09c9ef956a8e33a56
     </div>
   )
 }
