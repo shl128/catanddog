@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
 import { EnterRoom } from './ChatAxios'
 
-function AllChatListItem(props) {
+function AllChatListItem({room}) {
   const location = useLocation().pathname
-  const canEnter = props.room.userMaxCount > props.room.userNowCount ? true : false
+  const canEnter = room.userMaxCount > room.userNowCount ? true : false
   
   function goChatroom(){
     if (canEnter) {
-      EnterRoom(Number(props.room.chatRoomId))
+      EnterRoom(Number(room.chatRoomId))
       .then(() => {
         console.log("채팅방 입장 성공")
       })
@@ -19,19 +19,19 @@ function AllChatListItem(props) {
         console.log("채팅방 입장 실패")
       })
       if(location !== '/Chat' )
-      window.location.replace(`/chatting/${props.room.chatRoomId}`) 
+      window.location.replace(`/chatting/${room.chatRoomId}`) 
     }
   }
 
   return (
     <div className="All-chat-list-item">
       <div className="chat-left">
-        <div>{props.room.chatRoomTitle}</div>
-        {props.room.tagName.map((tag, idx) => <span key={idx} className="tag" >#{tag} </span>)}
+        <div>{room.chatRoomTitle}</div>
+        {room.tagName.map((tag, idx) => <span key={idx} className="tag" >#{tag} </span>)}
       </div>
       <div className="chat-right">
-        <div>{props.room.userNowCount}/{props.room.userMaxCount}</div>
-        <Link to={`/chatting/${props.room.chatRoomId}`} onClick={goChatroom}>
+        <div>{room.userNowCount}/{room.userMaxCount}</div>
+        <Link to={`/chatting/${room.chatRoomId}`} onClick={goChatroom}>
           <FontAwesomeIcon icon={faLongArrowAltRight} size="3x" style={{color: '#ff8767'}}/>
         </Link>
       </div>

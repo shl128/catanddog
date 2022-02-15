@@ -4,7 +4,7 @@ import SERVER from '../../API/server'
 const profileUrl = SERVER.BASE_URL + SERVER.ROUTES.mypage
 const petUrl = SERVER.BASE_URL + SERVER.ROUTES.Petpage
 const myChatUrl = SERVER.BASE_URL + SERVER.ROUTES.myChatRoom
-const exitChatUrl = SERVER.BASE_URL + SERVER.ROUTES.userChat
+const ChatUrl = SERVER.BASE_URL + SERVER.ROUTES.userChat
 const consultRequest = SERVER.BASE_URL + SERVER.ROUTES.consultRequest
 const webChat = SERVER.BASE_URL + SERVER.ROUTES.webChat
 const changeActive = SERVER.BASE_URL + SERVER.ROUTES.changeActive
@@ -29,8 +29,14 @@ function MyChatRoom() {
   })
 }
 
+function DeleteChatRoom(chatRoomId) {
+  return axios.delete(`${ChatUrl}${chatRoomId}`, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
+
 function ExitMyChatRoom(chatRoomId) {
-  return axios.delete(`${exitChatUrl}exit/${chatRoomId}`, {
+  return axios.delete(`${ChatUrl}exit/${chatRoomId}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }
@@ -83,4 +89,4 @@ function DeleteConsultingRoom() {
   })
 }
 
-export { MyProfile, ChangeActive, MyChatRoom, ExitMyChatRoom, MyPet, ConsultingRequest, ConsultingCancel, ConsultingWait, ConsultingRequestList, ConsultingStart, CreateConsultingRoom, DeleteConsultingRoom}
+export { MyProfile, ChangeActive, MyChatRoom, DeleteChatRoom, ExitMyChatRoom, MyPet, ConsultingRequest, ConsultingCancel, ConsultingWait, ConsultingRequestList, ConsultingStart, CreateConsultingRoom, DeleteConsultingRoom}

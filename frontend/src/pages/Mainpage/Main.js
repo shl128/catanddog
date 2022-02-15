@@ -3,7 +3,7 @@ import MyPetList from '../../components/Mainpage/MyPetList';
 import Welcome from '../../components/Mainpage/Welcome'
 import MyChatroomList from '../../components/Mainpage/MyChatroomList'
 import { MyPet, MyChatRoom, MyProfile } from '../../components/Mainpage/MainAxios'
-
+import './Main.css'
 
 function Main() {
   const [myChatrooms, setMyChatRooms] = useState([])
@@ -40,7 +40,7 @@ function Main() {
   }, [trigger])
 
   return (
-    <div>
+    <div className="Main">
       <Welcome userData={userData}/>
       <MyPetList pets={pets} />
       <MyChatroomList myChatrooms={myChatrooms} trigger={trigger} setTrigger={setTrigger}/>

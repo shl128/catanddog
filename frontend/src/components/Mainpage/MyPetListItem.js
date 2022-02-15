@@ -12,7 +12,7 @@ function MyPetListItem({pet}) {
       <Link to="/petpage" state={{pageType:'read', petId: pet.petId}}>
         <img className="My-pet-img" alt="사진" src={'data:image/png;base64,' + pet.petPhoto}/>
       </Link>
-      <div>
+      <div className="My-pet-list-item-content">
         <div>{pet.petName}</div>
         <div>{pet.petBreed}/{age}살</div>
       </div>

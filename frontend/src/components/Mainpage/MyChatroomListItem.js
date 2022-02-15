@@ -3,7 +3,7 @@ import { Link, useLocation,  } from 'react-router-dom'
 import './MyChatroomListItem.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
-import { ExitMyChatRoom } from './MainAxios'
+import { ExitMyChatRoom, DeleteChatRoom } from './MainAxios'
 
 
 function MyChatroomListItem({chatroom, trigger, setTrigger}) {
@@ -16,17 +16,29 @@ function MyChatroomListItem({chatroom, trigger, setTrigger}) {
   }
 
   function exitChatroom() {
-    console.log(trigger)
+
     if (window.confirm("정말 나갈까요?")) {
       ExitMyChatRoom(chatroom.chatRoomId)
       .then(() => {
         console.log("채팅방 나가기 성공")
         setTrigger(!trigger)
       })
+      .then(() => {
+        if (chatroom.userNowCount === 1) {
+          DeleteChatRoom(chatroom.chatRoomId)
+          .then(() => {
+            console.log("채팅방 삭제 성공")
+          })
+          .catch(() => {
+            console.log("채팅방 삭제 실패")
+          })
+        }
+      })
       .catch(() => {
         console.log("채팅방 나가기 실패")
       })
     }
+
   }
 
   return (
