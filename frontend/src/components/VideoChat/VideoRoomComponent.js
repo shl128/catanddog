@@ -130,7 +130,8 @@ class VideoRoomComponent extends Component {
         this.joinSession();
         this.myChatRoomGet()
         this.userChatRoomGet()
-        
+        console.log('asdasdasdasdasdasd')
+        console.log(this.OPENVIDU_SERVER_URL)
     }
 
     componentWillUnmount() {
