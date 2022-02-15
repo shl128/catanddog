@@ -30,4 +30,9 @@ public interface ExpenditureRepository extends JpaRepository <Expenditure, Integ
     @Modifying
     @Query(value = "delete from expenditure where user_id = :userId and expenditure_id = :expenditureId", nativeQuery = true)
     void delete(Long userId, Integer expenditureId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "delete from expenditure where user_id = :userId", nativeQuery = true)
+    void deleteUserId(Long userId);
 }
