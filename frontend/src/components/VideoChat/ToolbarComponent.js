@@ -20,7 +20,6 @@ import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import IconButton from '@material-ui/core/IconButton';
 
-
 export default class ToolbarComponent extends Component {
     constructor(props) {
         super(props);
@@ -126,9 +125,9 @@ export default class ToolbarComponent extends Component {
                                 </div>
                             )}
 
-                        <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
+                        {/* <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
                             {localUser !== undefined && this.state.fullscreen ?  <div><FullscreenExit /><div className='font'>화면 복귀</div></div> :  <div><Fullscreen /><div className='font'>전체 화면</div></div>}
-                        </IconButton>
+                        </IconButton> */}
 
                         <IconButton color="inherit" className="navButton" onClick={this.emojiChange}>
                             {localUser !== undefined ?  <div><PetsIcon /><div className='font'>얼굴 변환</div></div> :  <div><PetsIcon /><div className='font'>얼굴 복구</div></div>}

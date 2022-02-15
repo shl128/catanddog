@@ -27,7 +27,7 @@ function Navbar() {
       <nav className="Nav">
         <NavLink to="/petpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link" } state={{pageType:'create'}}>반려동물 추가</NavLink>
         <button className="Nav-link" onClick={() => setConsultingDialog(true)}>실시간 상담</button>
-        <NavLink to="/calendarpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>캘린더</NavLink>
+        <NavLink to="/calendarpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"} inChatting={false}>캘린더</NavLink>
         <NavLink to="/spendingOfMonth" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>이달의 지출</NavLink>
         <NavLink to="/Chat" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>유저와의 소통</NavLink>
         <NavLink to="/cartoon" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>카툰화</NavLink>

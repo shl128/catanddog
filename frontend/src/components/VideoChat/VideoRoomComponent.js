@@ -11,6 +11,7 @@ import OpenViduLayout from '../../layout/openvidu-layout';
 import UserModel from '../../models/user-model';
 import { useNavigate  } from 'react-router-dom';
 import Temp from './Temp';
+import Calendarpage from '../../pages/Calendarpage/Calendarpage';
 import { MyChatRoom } from '../../components/Mainpage/MainAxios';
 import MyChatroomList from '../Mainpage/MyChatroomList';
 import { AllRoom } from '../../components/Chatpage/ChatAxios'
@@ -693,7 +694,7 @@ class VideoRoomComponent extends Component {
                 {
                     this.state.calenderDisplay === 'display' &&
                     <div className="callender" >
-                        <Temp/>
+                        <Calendarpage inChatting={true}/>
                     </div>
                 }
             </div>
