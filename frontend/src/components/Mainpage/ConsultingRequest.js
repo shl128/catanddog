@@ -59,8 +59,8 @@ function ConsultingRequest(props) {
     <>
       <Modal dialogClassName="Consulting" show={props.findDocterDialog} onHide={() => props.setFindDocterDialog(false)} centered="true">
         <img className="Wait-image" alt="logoname" src={Wait} />
-        <Modal.Body className="Consulting-body">
-          
+        {!requestData && <Modal.Body className="Consulting-body">
+
           응답할 수 있는 의사분을 찾는 중입니다!!
           <div>
             <Spinner animation="border" role="status">
@@ -70,7 +70,10 @@ function ConsultingRequest(props) {
           <div>이름: {props.consultingData.petName}</div>
           <div>종: {props.consultingData.petKind}</div>
           <div>증상: {props.consultingData.petContent}</div>
-        </Modal.Body>
+        </Modal.Body>}
+        {requestData && <Modal.Body className="Consulting-body">
+          수의사가 응답했습니다!! 아래의 입장하기 버튼을 눌러주세요 
+        </Modal.Body>}
         <Modal.Footer>
           {requestData && <button onClick={enter}>입장하기</button>}
           <button className="Consulting-request" onClick={closeFind}>

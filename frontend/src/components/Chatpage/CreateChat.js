@@ -55,7 +55,7 @@ function CreateChat({ trigger, setTrigger }) {
 
   return (
     <div className="Chat-create">
-      <h3>채팅방 목록</h3>
+      <div style={{fontSize: "large"}}>채팅방 목록</div>
       <button className="Chat-create-button" onClick={handleShow}>
         방 생성
       </button>
