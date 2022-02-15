@@ -39,7 +39,7 @@ function Signup() {
         setUserKindNum(2)
       }
       else{
-        setUserKindNum(1)
+        setUserKindNum(0)
       }
     }, [userKind])
     const handleUserKind = (e) => {
@@ -60,13 +60,14 @@ function Signup() {
     }
     const onNicknameConfirm = (e) => {
       e.preventDefault()
-      axios
-      .get(
+      axios.get(
         SERVER.BASE_URL + SERVER.ROUTES.mypage + `/{user_nickname_check}?userNickname=${NickName}`,
       )
       .then(function (response) {
+        console.log(response)
         if(response.data === true){
           setNicknameValidation(true)
+          alert('사용가능한 닉네임 입니다.')
         } else{
           alert('사용 불가능한 닉네임 입니다.')
         }
@@ -270,12 +271,6 @@ function Signup() {
                         </li>
                         <li className='item'>
                           <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
-
-                          {/* {
-                            nicknameValidation === false
-                            && <button onClick={onNicknameConfirm} className='submit'>중복 확인</button>
-                            : <p>확인 성공</p>
-                          } */}
                         </li>
                       </ul>
                       <ul className="signupContainer">
