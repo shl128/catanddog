@@ -8,7 +8,7 @@ import kakaoLoginBtn from '../../components/image/kakaoLoginBtn.png'
 
 function Login() {
     const REST_API_KEY = "81167858a8e7e297800ffaee4b944bcc";
-    const REDIRECT_URI = "http://localhost:3000/kakaoOAuth";
+    const REDIRECT_URI = SERVER.REDIRECT_URI + "kakaoOAuth";
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
     const [Email, setEmail] = useState('');

@@ -6,13 +6,9 @@ import { useNavigate  } from 'react-router-dom';
 
 const KakaoOAuth = () => {
 
-  const [user_id, setUserId] = useState();
-  const [nickName, setNickName] = useState();
-  const [profileImage, setProfileImage] = useState();
   const REST_API_KEY = "81167858a8e7e297800ffaee4b944bcc";
-  const REDIRECT_URI = "http://localhost:3000/main";
+  const REDIRECT_URI = SERVER.REDIRECT_URI;
   const code = new URL(window.location.href).searchParams.get("code");
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=${code}`;
   let navigate = useNavigate();
 
   const getToken = async () => {
@@ -32,7 +28,7 @@ const KakaoOAuth = () => {
             alert('로그인이 정상적으로 완료되었습니다');
 
             return(
-              navigate('/main')
+              navigate('/')
             )
         })
         .catch(function (error) {
