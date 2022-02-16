@@ -26,6 +26,7 @@ import java.util.Random;
  * 인증 관련 API 요청 처리를 위한 컨트롤러 정의.
  */
 @Api(value = "인증 API", tags = {"Auth."})
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/restAuth")
 public class AuthController {
