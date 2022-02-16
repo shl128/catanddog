@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './Cartoon.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
-import noImage from '../../components/image/이미지없음.png'
 import axios from 'axios';
 
 const Cartoon = () => {
@@ -57,7 +56,7 @@ const Cartoon = () => {
         <div className="Cartoon-content">
           <label className="Cartoon-label">Before</label>
           {imgBase64 == null 
-            ? <img className="Cartoon-img" src={noImage} alt="no" />
+            ? <img className="Cartoon-img" src={process.env.PUBLIC_URL + '/image/noimage.png'} alt="no" />
             : <img className="Cartoon-img" src={imgBase64} alt="no" />
           }
           <div>
@@ -74,7 +73,7 @@ const Cartoon = () => {
         <div className="Cartoon-content">
           <label className="Cartoon-label">After</label>
           {cartoonPhoto == null 
-            ? <img className="Cartoon-img" src={noImage} alt="no" />
+            ? <img className="Cartoon-img" src={process.env.PUBLIC_URL + '/image/noimage.png'} alt="no" />
             : <img className="Cartoon-img" src={cartoonPhoto} alt="no" />
           }
           <div>

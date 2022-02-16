@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import './ExpenditureInput.js';
-import CreateExpenditure from '../image/추가버튼.png';
-import DisabledExpenditure from '../image/추가비활성화버튼.jpg';
 import DatePicker from '../PublicComponents/DatePicker'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
@@ -67,10 +65,10 @@ const ExpenditureInput = (props) => {
        <div className='ExpenditureCreateButtonCol'>
          {
             expenditureItem === null || expenditurePrice === null || expenditureItem === '' || expenditurePrice === ''
-            ? <img src={DisabledExpenditure} alt="no" className='ExpenditureButton'/>
+            ? <img src={process.env.PUBLIC_URL + '/image/nonplus.jpg'} alt="no" className='ExpenditureButton'/>
             :
             <button className='ExpenditureButton' onClick={onSubmitHandler}>
-              <img src={CreateExpenditure} alt="no" className='ExpenditureButton'/>
+              <img src={process.env.PUBLIC_URL + '/image/plus.png'} alt="no" className='ExpenditureButton'/>
             </button>
           }
         </div>

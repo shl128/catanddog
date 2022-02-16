@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 // import { Nav } from 'react-bootstrap'
 import './Petpage.css'
 import { useLocation } from 'react-router-dom';
-import noImage from '../../components/image/이미지없음.png'
 import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -256,7 +255,7 @@ const Petpage = () => {
                 <div>
                   { 
                     imgBase64 == null 
-                    ? <img src={noImage} className="petImage" alt="no" />
+                    ? <img src={process.env.PUBLIC_URL + '/image/noimage.png'} className="petImage" alt="no" />
                     : <img src={imgBase64} className="petImage" alt="alt" />
                   }
                   <div className="mt-1">
