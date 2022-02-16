@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Consulting div {
+  font-family: 'Jua', sans-serif;
+}
+
 .Consulting-button{
   color: white;
   font-weight: bold;

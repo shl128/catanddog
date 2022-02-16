@@ -11,6 +11,10 @@
   height: 38vh;
 }
 
+.My-chat-list::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
 @media (max-height: 850px) {
   .My-chat-list {
     overflow: auto;

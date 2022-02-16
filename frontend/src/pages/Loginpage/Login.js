@@ -51,78 +51,23 @@ function Login() {
         });
     };
     return (
-      <div className="Login">
-        <div className='card'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-4'>
-            
-                <img className='loginLogoImg' src={logo} alt='logo' width="100%" />
+      <div className="Login-page">
+        <div className="Login">
+          <img className="Login-logo" src={logo} alt='logo' width="100%" />
+          <div className="Login-content">
+            <h4>냥과함개와 함께하세요!</h4>
+            <form className="Login-form" onSubmit={onSubmitHandler}>
+              <input className="Login-form-item" type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
+              <input className="Login-form-item" type="password" name="password"  value={Password} autoComplete="off" placeholder="Password" onChange={onPasswordHanlder} autoFocus required></input>
+              <button className="Login-button">Login</button>
+              <a href={KAKAO_AUTH_URL}>
+                <img src={kakaoLoginBtn} alt="" style={{borderRadius: "16px"}}></img>
+              </a>
+              <div className="Login-link">
+                <Link to="/signup" className="Login-link-item">회원가입</Link>
+                <Link to="/passwordFind" className="Login-link-item">비밀번호를 잊으셨나요?</Link>
               </div>
-              <div className='col-8 right'>
-                <div className="login">
-                  <div className='customcontainer'>
-                    <h4>냥과함개와 함께하세요!
-                    </h4>
-                  </div>
-                <form onSubmit={onSubmitHandler}>
-                  <div className="cflex">
-                      <ul className="customcontainer">
-                          <li className="item center">
-                          </li>
-                          <li className="item">
-                            <input className='emailInput' type="email" name="Email" placeholder="Email" value={Email} onChange={onEmailHandler} autoFocus required></input>
-                          </li>
-                      </ul>
-                      <ul className="customcontainer">
-                        <li className="item center">
-                        </li>                    
-                        <li className="item ">
-                          <input className='emailInput' type="password" name="password"  value={Password} autoComplete="off" placeholder="Password" onChange={onPasswordHanlder} autoFocus required></input>
-                        </li>
-                      </ul>
-                      <ul className="customcontainer">
-                        <li className="item center">
-                        </li>                    
-                        <li className="item ">
-                          <button className='submit'>Login</button>
-                        </li>
-                      </ul>
-                      <ul className="customcontainer">
-                        <li className="item center">
-                        </li>   
-                        <li className="item">
-                          <ul className='customcontainer'>
-                            <li className="item center google">
-                          
-                            </li>                    
-                            <li className="item ">
-                              <a href={KAKAO_AUTH_URL}><img src={kakaoLoginBtn} alt=""></img></a>
-                            </li>
-
-                          </ul>
-                        </li>
-                      </ul>
-                      <ul className="customcontainer">
-                        <li className="item center">
-                        </li>                    
-                        <li className="item passwordFind">
-                          <Link to="/passwordFind" className='back'>
-                            <div>비밀번호를 잊으셨나요?</div>
-                          </Link>
-                          <br/>
-                          <Link to="/signup" className='back signup'>
-                            <div>회원가입</div>
-                          </Link>
-                        </li>
-                        <li className="item passwordFind">
-                        </li>
-                      </ul>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

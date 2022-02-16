@@ -1,5 +1,6 @@
 .Search-chat {
   margin-bottom: 1rem;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
 }
@@ -26,13 +27,11 @@
 .Search-cancel-on {
   transform: translate(-200%, 0%);
   align-items: center;
-  font-weight: bold;
 }
 
 .Search-cancel-off {
   transform: translate(-200%, 0%);
   align-items: center;
-  font-weight: bold;
   color: white;
   display: hidden;
   pointer-events: none;
@@ -40,7 +39,6 @@
 
 .Search-refresh {
   color: white;
-  font-weight: bold;
   border-radius: 1rem;
   border-style: none;
   background-color: #ffe0d7;
