@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 
 function MyVerticallyCenteredModal(props) {
   return (
-    <Modal
+    <Modal dialogClassName="Emoji-example"
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Emoji-example div {
+  font-family: 'Jua', sans-serif;
+}
+
 .Example {
   display: flex;
 }
