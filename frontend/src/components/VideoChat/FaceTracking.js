@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as faceapi from 'face-api.js'
 import './FaceTracking.css'
-import img from '../image/로고.png'
 
 function FaceTracking(props) {
   
@@ -63,7 +62,7 @@ function FaceTracking(props) {
         ?
         <img alt="이미지" src={'data:image/png;base64,' + props.userPhoto} style={{  position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
         :
-        <img alt="이미지" src={img} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
+        <img alt="이미지" src={process.env.PUBLIC_URL + '/image/logo.png'} style={{position: 'absolute', borderRadius: '50%', top: top, left: left, width: height, height: height}}/>
       }
 
     </div>
