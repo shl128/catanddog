@@ -38,7 +38,9 @@ const ExpenditureInput = (props) => {
       'expenditureItem': expenditureItem,
       'expenditurePrice': expenditurePrice
     }
-    
+    if (!parseInt(expenditurePrice)) {
+      alert("결제 금액에 숫자를 입력하십시오.")
+    }
     axios
       .post(
         `${ExpenditureUrl}?expenditureCategory=${expenditureCategory}&expenditureDate=${expenditureDate}&expenditureItem=${expenditureItem}&expenditurePrice=${expenditurePrice}`,

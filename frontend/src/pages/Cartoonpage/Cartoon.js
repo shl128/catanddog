@@ -53,7 +53,6 @@ const Cartoon = () => {
   
   return (
     <div>
-      <h3>내 반려동물의 사진을 카툰화 해보세요!</h3>
       <div className="Cartoon">
         <div className="Cartoon-content">
           <label className="Cartoon-label">Before</label>
