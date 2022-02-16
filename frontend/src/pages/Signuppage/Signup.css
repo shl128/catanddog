@@ -1,151 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-.signup {
-  height: 95%;
-  margin: 80px;
-}
-
-.signup .card {
-  width: 100%;
-  height: 90%;
-  border-radius: 5%;
-
-  padding-top: 45px;
-  flex-direction: row;
-  margin: 0 auto;
-}
-* {
-  margin: 0;
-  padding: 0;
-  /* box-sizing: border-box; */
-}
-.signup  .logoImg{
-    position:absolute;
-    left: 30px;
-    top: 20px;
-}
-.signup  ul,
-.signup  li {
-  list-style: none;
-}
-.signup  a {
-  text-decoration: none;
-  color: inherit;
-}        
-.signupForm{
-            width: 80%;
-            height: 100%;
-            margin: 0 auto;
-            padding: 15px 20px;
-            background: white;
-            color: #2b2e4a;
-            font-size: 19px;
-            text-align: left;
-
-            /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); */
-}
-.signupForm h4{
-  font-size: 30px;
-  margin-bottom: 20px;
-  font-weight: 500;
-  color: black;
-  text-align: center;
-  margin-bottom: 50px;
-  margin-top: 10px;
-}
-.signupForm input{
-  width: 80%;
-  height: 40px;
-  outline: none;
-  padding: 10px;
-  border: 1px solid #707070;
-  transition: 0.3s;
-  margin-left: 20px;
-}
-/* .signupForm input:valid, .signupForm input:focus{
-  border: 1px solid #2b2e4a;
-} */
-.signupForm .center{
-  display: flex;
-  align-items: center;
-  width: 150px;
-  margin-top: 5px;
+.Signup-page {
+  height: 100vh;
+  background-color: #ffe0d7;
+  padding: 5rem;
+  font-family: 'Jua', sans-serif;
 }
 
-.signupForm .signupContainer{
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  margin-bottom: 10px;
-}
-.signupForm .signupContainer .item:first-child{
-  margin-right: 10px;
-  margin-bottom: 20px;
-}
-.signupForm .signupContainer .item .idcheck{
+.Signup {
+  background-color: white;
+  border-radius: 2rem;
   height: 100%;
-  margin-left: 10px;
-  padding: 5px 15px;
-  background: #2b2e4a;
-  border: 1px solid #2b2e4a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+
+.Signup-img {
+  width: 30vw;
+  height: 30vw;
+}
+
+.Signup-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.Signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Signup-form-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.Signup-form-item-label {
+  width: 100px;
+}
+
+.Signup-form-itme-input {
+  background-color: #ffe0d7;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+}
+
+.Signup-form-itme-input:focus {
+  outline-color: #ff805b;
+}
+
+.Signup-form-item-button {
   color: white;
-  font-size: 12px;
-  transition: 0.3s;
-}
-.signupForm  .signupContainer .item .idcheck:hover{
-  background: white;
-  color: #2b2e4a;
-}
-.signupForm .signupContainer .item select{
+  background-color: #ff805b;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
   height: 40px;
-  padding: 10px;
-  border: 0.5px solid #FFF9F8;
-  background-color: #FFF9F8;
-  font-size: 15px;
-  margin-left: 20px;
 }
-.signupForm .submit{
-  width: 120px;
-  height: 40px;
+
+.Signup-button {
+  margin-top: 50px;
+  align-self: center;
   color: white;
-  border: none;
-  border-radius: 15%;
-  margin-left: 15px;
-  border: 1px solid #FF805B;
-  background: #FF805B;
-  transition: 0.3s;
-}
-.signupForm  .signupContainer:last-child{
-  margin: 0;
-}
-.signupForm .submit:hover{
-  width: 120px;
+  background-color: #ff805b;
+  width: 50%;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
   height: 40px;
-  border: none;
-  border: 1px solid #FF805B;
-  color: #FF805B;
-  background: white;
 }
-.signupForm .emailInput{
-background-color: #FFF9F8;
-border: none;
+
+.Signup-link {
+  align-self: center;
+  color: black;
+  text-decoration: none;
 }
-.signupForm .numInput{
-  border: none;
-  background-color: #FFF9F8;
-  width: 200px;
-  margin-left: 50px;
-}
-.signupForm .confirm{
-  margin-left: 100px;
-}
-.signupForm .passwordChange{
-  margin-top: 40px;
-  justify-self: center;
-}
-.signupForm .back{
-  text-decoration-line: none;
-  color: #FF805B;
-}
-.signupForm .back:hover{
-  text-decoration-line: none;
-  color: #2b2e4a;
+
+.Signup-link:hover {
+  color: black;
 }

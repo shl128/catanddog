@@ -1,139 +1,58 @@
-.Cartoonpage {
-    height: 85%;
-    width: 100%;  
-    background-color: white;
-    border-radius: 2rem;
-  
-  } 
-
-.Cartoonpage-container {
-    padding: 3rem 3rem;
+.Cartoon {
+  width: 100%;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  align-items: center;
+  padding: 1rem 0rem;
 }
 
-td {
-    border: none !important;
-    text-align: left;
-    width: 50%; 
- }
-
-ul {
-    list-style: none;
+.Cartoon-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.no-left-padding {
-    padding-left: 0
+.Cartoon-img {
+  border-radius: 50%;
+  width: 17vw;
+  height: 17vw;
 }
 
-.pet-image {
+@media (max-height: 85px) {
+  .Cartoon-img {
     border-radius: 50%;
-    width: 400px;
-    height: 400px;
-}
-
-.trans {
-    background-color:#ff8767;
-    border:1px solid #ff8767;
-    width:120px; height:120px;
-    border-radius:75px;
-    text-align:center;
-    margin:0 auto;
-    font-size:14px; color:#fff;
-    vertical-align:middle;
-    line-height:100px;
-    margin-top: 20px;
-    margin-left: 148px;
-    }
-
-.button{
-    width: 200px;
-    height: 40px;
-    padding: 6px 25px;
-    background-color:#ff8767;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-    margin-left: 100px;
-}
-
-.basic{
-    width: 300px;
-    height: 40px;
-    padding: 6px 25px;
-    background-color:#ff8767;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-}
-
-.create-pet {
-    width: 300px;
-    height: 40px;
-    padding: 6px 25px;
-    border-radius: 6px;
+    width: 15vw;
+    height: 15vw;
   }
+} 
 
-  .arrow {
-    display: inline-block;
-    background: #ff8767;
-    position: relative;
-    margin-right: 30px;
+@media (max-height: 750px) {
+  .Cartoon-img {
+    border-radius: 50%;
+    width: 13vw;
+    height: 13vw;
+  }
+} 
+
+.Cartoon-label {
+  font-weight: bold;
+  font-size: large;
 }
 
-.arrow.top, .arrow.bottom {
-    width: 10px;
-    height: 20px;
+.Cartoon-button {
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  background-color: #ff805b;
+  border-style: none;
+  padding: 1rem;
 }
 
-.arrow.left, .arrow.right {
-    top: 70px;
-    left: 128px;
-    width: 50px;
-    height: 28px;
-}
-
-.arrow:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-.arrow.top:after {
-    top: -40px;
-    left: -10px;
-    border-width: 20px 15px;
-    border-color: transparent transparent #ff8767 transparent;
-}
-
-.arrow.bottom:after {
-    top: 20px;
-    left: -10px;
-    border-width: 20px 15px;
-    border-color: #ff8767 transparent transparent transparent;
-}
-
-.arrow.left:after {
-    top: -10px;
-    left: -40px;
-    border-width: 15px 20px;
-    border-color: transparent #ff8767 transparent transparent;
-}
-
-.arrow.right:after {
-    top: -10px;
-    left: 50px;
-    border-width: 25px 30px;
-    border-color: transparent transparent transparent #ff8767;
-}
-
-.h3{
-    padding: 6px 160px;
-    font-size: large;
-}
-
-#before{
-    left:100px;
+.Cartoon-button:hover {
+  background-color: #ffe0d7;
+  cursor: pointer;
 }

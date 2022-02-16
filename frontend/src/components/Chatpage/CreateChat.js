@@ -71,7 +71,7 @@ function CreateChat({ trigger, setTrigger }) {
             </Form.Group>
             <Form.Group>
               <Form.Label>해시태그</Form.Label>
-              <div>
+              <div className="Chat-create-tags">
                 {tags.map((tag, idx) => 
                   <span key={idx}>#{tag} </span>
                 )}
