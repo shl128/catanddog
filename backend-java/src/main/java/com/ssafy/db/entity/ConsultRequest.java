@@ -32,6 +32,8 @@ public class ConsultRequest {
     OffsetDateTime requestTime = OffsetDateTime.now();
     @Column(name="is_done", nullable = false)
     boolean isDone = false;
+    String hostNickname;
+
 
     @Override
     public String toString() {
