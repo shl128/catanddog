@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './PhotoSide.css'
-import noImage from '../image/이미지없음.png'
 import axios from 'axios';
 import SERVER from '../../API/server'
 
@@ -41,7 +40,7 @@ const PhotoSide = (props) => {
     <div className="PhotoSide">
             { 
               imgBase64 === null
-              ? <img src={noImage} className="myPhoto-image" alt="no" />
+              ? <img src={process.env.PUBLIC_URL + '/image/noimage.png'} className="myPhoto-image" alt="no" />
               : <img width='500' height='500' src={'data:image/png;base64,' + imgBase64} className="myPhoto-image" alt="no" />
             }
             <div className="mt-1">

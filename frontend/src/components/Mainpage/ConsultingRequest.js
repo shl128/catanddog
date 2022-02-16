@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Modal, Spinner } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import Wait from '../image/쫑이.jpg'
 import './ConsultingRequest.css'
 import { ConsultingCancel, ConsultingWait, DeleteConsultingRoom } from './MainAxios'
 
@@ -58,7 +57,7 @@ function ConsultingRequest(props) {
   return (
     <>
       <Modal dialogClassName="Consulting" show={props.findDocterDialog} onHide={() => props.setFindDocterDialog(false)} centered="true">
-        <img className="Wait-image" alt="logoname" src={Wait} />
+        <img className="Wait-image" alt="logoname" src={process.env.PUBLIC_URL + '/image/wait.jpg'} />
         {!requestData && <Modal.Body className="Consulting-body">
 
           응답할 수 있는 의사분을 찾는 중입니다!!

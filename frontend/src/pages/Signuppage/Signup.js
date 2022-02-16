@@ -4,7 +4,6 @@ import SERVER from '../../API/server';
 import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com'
 import './Signup.css'
-import logo from '../../components/image/로고.png'
 
 function Signup() {
 
@@ -219,7 +218,7 @@ function Signup() {
     return (
       <div className="Signup-page">
         <div className="Signup">
-          <img className="Signup-img" src={logo} alt='logo' width="120px" />
+          <img className="Signup-img" src={process.env.PUBLIC_URL + '/image/logo.png'} alt='logo' width="120px" />
           <div className="Signup-content">
             <h4>회원가입</h4>
             <form className="Signup-form" onSubmit={onSubmitHandler}>
