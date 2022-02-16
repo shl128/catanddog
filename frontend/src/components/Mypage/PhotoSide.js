@@ -40,7 +40,7 @@ const PhotoSide = (props) => {
   return (
     <div className="PhotoSide">
             { 
-              imgBase64 === '' 
+              imgBase64 === null
               ? <img src={noImage} className="myPhoto-image" alt="no" />
               : <img width='500' height='500' src={'data:image/png;base64,' + imgBase64} className="myPhoto-image" alt="no" />
             }

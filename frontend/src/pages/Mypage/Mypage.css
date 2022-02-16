@@ -25,6 +25,7 @@
   margin-top: 3rem;
   grid-column-start: 6;
   grid-column-end: 13;
+  overflow: auto;
 }
 
 .mypageContentBox .buttonContainer {
