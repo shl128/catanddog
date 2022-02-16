@@ -45,7 +45,7 @@ function ConsultingAlarmItem(props) {
 
       <Modal dialogClassName="Alarm-item-modal" show={show} centered="true">
         <Modal.Header>
-          <div>{props.alarmItem.userName}님의 상담입니다</div>
+          <div>{props.alarmItem.hostNickname}님의 상담입니다</div>
         </Modal.Header>
         <Modal.Body>
           <div>이름: {props.alarmItem.petName}</div>

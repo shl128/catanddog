@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import SERVER from '../../API/server';
 import './Login.css'
-import logo from '../../components/image/로고.png'
 import { Link  } from 'react-router-dom';
 import kakaoLoginBtn from '../../components/image/kakaoLoginBtn.png'
 
@@ -53,7 +52,7 @@ function Login() {
     return (
       <div className="Login-page">
         <div className="Login">
-          <img className="Login-logo" src={logo} alt='logo' width="100%" />
+          <img className="Login-logo" src={process.env.PUBLIC_URL + '/image/logo.png'} alt='logo' width="100%" />
           <div className="Login-content">
             <h4>냥과함개와 함께하세요!</h4>
             <form className="Login-form" onSubmit={onSubmitHandler}>
