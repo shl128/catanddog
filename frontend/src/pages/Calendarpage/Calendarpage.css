@@ -1,15 +1,20 @@
 .Calendarpage {
-    height: 90%;
+    height: 85%;
     width: 100%;  
     background-color: white;
     border-radius: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
   
 .inChatting-Calendarpage {
     height: 750px;
+    /* height: 90%; */
     width: 100%;  
     background-color: white;
     border-radius: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   } 
 
 .CalendarContainer{
@@ -19,16 +24,6 @@
     column-gap: 1rem;
     height: 100%;
   }
-
-.mycalendar{
-  height: 80%;
-  width: inherit;
-  }
-.margin-x {
-  /* margin-top: 3rem; */
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
 
 .Button-style {
   grid-column-start: 15;
@@ -82,10 +77,6 @@
 .date-picker {
   grid-column-start: 5;
   grid-column-end: 17;
-}
-
-.Calendar-height {
-  height: 80%;
 }
 
 .overflow-frame {

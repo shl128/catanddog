@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("consultRequestService")
 public class ConsultRequestServiceImpl implements ConsultRequestService{
@@ -38,7 +39,12 @@ public class ConsultRequestServiceImpl implements ConsultRequestService{
 
     @Override
     public List<ConsultRequest> readByDoctorId(Long userId) {
-        return consultRequestRepository.readByDoctorId(userId);
+        List<ConsultRequest> consultRequestList = consultRequestRepository.readByDoctorId(userId);
+        for(int i=0; i<consultRequestList.size(); i++){
+            Optional<User> user = userRepository.findById(consultRequestList.get(i).getHostId());
+            consultRequestList.get(i).setHostNickname(user.get().getUserNickname());
+        }
+        return consultRequestList;
     }
 
     @Override

@@ -40,6 +40,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserTagRepository userTagRepository;
 	@Autowired
+	ExpenditureRepository expenditureRepository;
+	@Autowired
 	PasswordEncoder passwordEncoder;
 
 	@Override
@@ -103,6 +105,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void deleteUser(User user) {
+		userTagRepository.deleteUserId(user.getUserId());
+		expenditureRepository.deleteUserId(user.getUserId());
 		userRepository.delete(user);
 	}
 
