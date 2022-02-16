@@ -196,9 +196,10 @@ const Mypage = (props) => {
             <MypageTextForm role='닉네임' data={nickname} update={update} handleData={onNickNameHandler} onNicknameConfirm={onNicknameConfirm} nickNameConfirm={nickNameConfirm}/>
             <MypageTextForm role='이메일' data={email} update={update}  handleData={onEmailHandler}/>
             <MypageTextForm role='전화번호' data={phonNumber} update={update}  handleData={onPhonNumberHandler}/>
-            <MypageHashtag role='관심사' update={update} tags={tags} handleData={onTagsHandle} />
-            <div className='buttonContainer'></div>
-            <div className='buttonContainer'></div>
+            <div className='hasharea'>
+              <MypageHashtag role='관심사' update={update} tags={tags} handleData={onTagsHandle} />
+            </div>
+
             <div className='buttonContainer'>
               {
                 update === false
@@ -213,7 +214,9 @@ const Mypage = (props) => {
               }
 
             </div>
-            <WithdrawalModal show={show} handleClose={handleClose} handleShow={handleShow} onwithdrawal={onwithdrawal}/>
+            <div className='resilience'>
+              <WithdrawalModal show={show} handleClose={handleClose} handleShow={handleShow} onwithdrawal={onwithdrawal}/>
+            </div>
           </div>
         </div>
       }
