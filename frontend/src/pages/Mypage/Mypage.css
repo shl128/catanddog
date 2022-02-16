@@ -23,15 +23,9 @@
 
 .mypageContentBox {
   margin-top: 3rem;
-<<<<<<< HEAD
-  grid-column-start: 5;
-  grid-column-end: 12;
-  overflow: auto;
-  height: 500px;
-=======
   grid-column-start: 6;
   grid-column-end: 13;
->>>>>>> 06dfb6710462e9ab2947e9122c2cb0e2d55d4d81
+  overflow: auto;
 }
 
 .mypageContentBox .buttonContainer {
