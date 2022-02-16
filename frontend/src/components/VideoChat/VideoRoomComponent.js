@@ -26,7 +26,7 @@ class VideoRoomComponent extends Component {
         super(props);
         this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
             ? this.props.openviduServerUrl
-            : 'https://' + window.location.hostname + ':5443';
+            : 'https://' + window.location.hostname + ':4443';
         this.OPENVIDU_SERVER_SECRET = this.props.openviduSecret ? this.props.openviduSecret : 'MY_SECRET';
         this.hasBeenUpdated = false;
         this.layout = new OpenViduLayout();
@@ -233,6 +233,7 @@ class VideoRoomComponent extends Component {
             insertMode: 'APPEND',
             mirror: false,
         });
+        console.log("videoDevices : ",videoDevices)
         if (this.state.session.capabilities.publish) {
             publisher.on('accessAllowed' , () => {
                 this.state.session.publish(publisher).then(() => {
