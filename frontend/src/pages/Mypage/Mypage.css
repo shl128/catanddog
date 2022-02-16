@@ -1,5 +1,5 @@
 .Mypage {
-  height: 90%;
+  height: 85%;
   width: 100%;  
   background-color: white;
   border-radius: 2rem;
@@ -16,17 +16,22 @@
 
 
 .mypageImageBox {
-  grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
   margin-left: 2rem;
 }
 
 .mypageContentBox {
   margin-top: 3rem;
+<<<<<<< HEAD
   grid-column-start: 5;
   grid-column-end: 12;
   overflow: auto;
   height: 500px;
+=======
+  grid-column-start: 6;
+  grid-column-end: 13;
+>>>>>>> 06dfb6710462e9ab2947e9122c2cb0e2d55d4d81
 }
 
 .mypageContentBox .buttonContainer {

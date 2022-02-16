@@ -185,9 +185,7 @@ const Mypage = (props) => {
       {
         loading === false
         ?
-        <div>
-          로딩 중
-        </div>
+        <div></div>
         :
         <div className='mypageContainer'>
           <div className='mypageImageBox'>
@@ -199,6 +197,8 @@ const Mypage = (props) => {
             <MypageTextForm role='이메일' data={email} update={update}  handleData={onEmailHandler}/>
             <MypageTextForm role='전화번호' data={phonNumber} update={update}  handleData={onPhonNumberHandler}/>
             <MypageHashtag role='관심사' update={update} tags={tags} handleData={onTagsHandle} />
+            <div className='buttonContainer'></div>
+            <div className='buttonContainer'></div>
             <div className='buttonContainer'>
               {
                 update === false
@@ -217,7 +217,6 @@ const Mypage = (props) => {
           </div>
         </div>
       }
-
     </div>
   );
 }
