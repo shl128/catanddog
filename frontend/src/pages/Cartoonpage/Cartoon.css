@@ -18,8 +18,8 @@
 
 .Cartoon-img {
   border-radius: 50%;
-  width: 20vw;
-  height: 20vw;
+  width: 17vw;
+  height: 17vw;
 }
 
 @media (max-height: 85px) {
