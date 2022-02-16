@@ -5,9 +5,15 @@
   justify-content: space-between;
 }
 
+.Search-group {
+  display: flex;
+  gap: 2rem;
+}
+
 .Search-type {
   width: 120px;
-  height: 100%;
+  border-radius: 5px;
+  border-style: solid;
 }
 
 .Search-content {
@@ -16,7 +22,9 @@
 }
 
 .Search-input {
-  width: 40vw;
+  width: 30vw;
+  border-radius: 5px;
+  border-style: solid;
 }
 
 .Search-word-list {
@@ -41,10 +49,10 @@
   color: white;
   border-radius: 1rem;
   border-style: none;
-  background-color: #ffe0d7;
+  background-color: #ff805b;
   padding: 0.5rem 1rem;
 }
 
 .Search-refresh:hover {
-  background-color: #ff805b;
+  background-color: #ffe0d7;
 }
