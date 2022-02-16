@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 .Alarm-item {
   font-weight: bold;
   margin-top: 2px;
@@ -11,6 +13,7 @@
 
 .Alarm-item-modal div {
   border-radius: 1rem;
+  font-family: 'Jua', sans-serif;
 }
 
 .Alarm-item-accept {
