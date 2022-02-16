@@ -1,56 +1,109 @@
 .Petpage {
-    height: 85%;
-    width: 100%;  
-    background-color: white;
-    border-radius: 2rem;
-    font-weight: bold;
-  } 
-
-td {
-    border: none !important;
-    text-align: left;
-    width: 50%; 
- }
-
-ul {
-    list-style: none;
+  width: 100%;  
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  padding: 2rem;
+  gap: 5vw;
 }
 
-.no-left-padding {
-    padding-left: 0
+.Petpage-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.petImage {
-    border-radius: 6px;
-    width: 300px;
+.Petpage-img {
+  border-radius: 1rem;
+  width: 20vw;
+  max-height: 40vh;
+}
+
+.Petpage-img-choice {
+  margin-top: 1rem;
+  background-color: #ff805b;
+  color: white;
+  width: 100%;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+.Petpage-img-choice:hover {
+  cursor: pointer;
+}
+
+.Petpage-right {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 3vh;
+  padding-top: 3px;
+}
+
+.Petpage-right::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+@media (max-height: 800px) {
+  .Petpage-right {
     height: 400px;
+  }
+  
 }
 
-.petImg-change-button{
-    width: 300px;
-    height: 40px;
-    padding: 6px 25px;
-    background-color:#ff8767;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    text-align: center;
+@media (max-height: 750px) {
+  .Petpage-right {
+    height: 380px;
+  }
 }
 
-.create-pet {
-    width: 300px;
-    height: 40px;
-    padding: 6px 25px;
-    border-radius: 6px;
+@media (max-height: 660px) {
+  .Petpage-right {
+    height: 250px;
+  }
 }
 
-.update-pet {
-    width: 150px;
-    height: 40px;
-    padding: 6px 25px;
-    border-radius: 6px;
+.Petpage-item {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
 }
 
-.fix-div-height {
-    height: 540px;
+.Petpage-item-tag {
+  width: 10vw;
+}
+
+.Petpage-item-value {
+  width: 20vw;
+}
+
+.Petpage-button-list {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding-right: 1rem;
+}
+
+.Petpage-button-none {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #ff805b;
+}
+
+.Petpage-button-none:hover {
+  cursor: default;
+}
+
+.Petpage-button {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #ff805b;
+}
+
+.Petpage-button:hover {
+  background-color: #ffe0d7;
 }
