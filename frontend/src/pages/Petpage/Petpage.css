@@ -39,6 +39,7 @@
   flex-direction: column;
   overflow-y: auto;
   gap: 3vh;
+  padding-top: 3px;
 }
 
 .Petpage-right::-webkit-scrollbar-thumb {
@@ -50,12 +51,6 @@
     height: 400px;
   }
   
-}
-
-@media (max-height: 750px) {
-  .Petpage-right {
-    height: 380px;
-  }
 }
 
 @media (max-height: 750px) {
