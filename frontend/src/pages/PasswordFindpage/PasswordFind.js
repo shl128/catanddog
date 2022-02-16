@@ -3,7 +3,6 @@ import './PasswordFind.css'
 import axios from 'axios';
 import SERVER from '../../API/server';
 import { Link } from 'react-router-dom';
-import logo from '../../components/image/로고.png'
 import emailjs from 'emailjs-com'
 
 const PasswordFind = (props) => {
@@ -123,7 +122,7 @@ const PasswordFind = (props) => {
       <div className="PasswordFind">
         
         <div className='card'>
-          <img className='logoImg' src={logo} alt='logo' width="120px" />
+          <img className='logoImg' src={process.env.PUBLIC_URL + '/image/logo.png'} alt='logo' width="120px" />
         <div className="register">
       
             <div className='PasswordContainer'>

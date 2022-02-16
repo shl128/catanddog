@@ -7,7 +7,6 @@ import SERVER from '../../API/server';
 import axios from 'axios';
 
 import './ChatComponent.css';
-import logo from  '../../components/image/로고.png'
 // d
 
 export default class ChatComponent extends Component {
@@ -117,7 +116,7 @@ export default class ChatComponent extends Component {
                             >   {
                                     data.img === ""
                                     ?
-                                    <img src={logo} alt="img" width="60" height="60" className="user-img" />
+                                    <img src={process.env.PUBLIC_URL + '/image/logo.png'} alt="img" width="60" height="60" className="user-img" />
                                     :
                                     <img src={'data:image/png;base64,' + data.img } alt="img" width="60" height="60" className="user-img" />
                                 }

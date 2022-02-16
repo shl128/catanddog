@@ -1,7 +1,6 @@
 import React from 'react'
 import CustomImageEditor from "./CustomImageEditor"
 import "./EmojiExample.css"
-import tie from '../image/tie.gif'
 import './EmojiExample.css'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -22,7 +21,7 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
       <div className="Example">
         <div>
-          <img className="Example-img" alt="변경 전 이미지" src={tie}/>
+          <img className="Example-img" alt="변경 전 이미지" src={process.env.PUBLIC_URL + '/image/tie.gif'}/>
         </div>
       </div>
       </Modal.Body>

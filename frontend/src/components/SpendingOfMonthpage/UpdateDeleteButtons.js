@@ -1,5 +1,3 @@
-import EditExpenditure from '../image/수정버튼.png';
-import DeleteExpenditure from '../image/삭제버튼.png';
 import axios from 'axios';
 import DateCalculation from '../../components/PublicComponents/DateCalculation';
 import SERVER from '../../API/server';
@@ -80,7 +78,7 @@ const UpdateDeleteButtons = (props) => {
                         props.isUpdating === false
                         ?
                         <button className='ExpenditureButton'>
-                            <img src={EditExpenditure} alt="no" className='ExpenditureButton' onClick={isUpdatingHandler}/>
+                            <img src={process.env.PUBLIC_URL + '/image/edit.png'} alt="no" className='ExpenditureButton' onClick={isUpdatingHandler}/>
                         </button>
                         :
                         <button className='ExpenditureButton' onClick={isUpdatingHandler}>
@@ -91,7 +89,7 @@ const UpdateDeleteButtons = (props) => {
                 :
                 <span>
                     <button className='ExpenditureButton'>
-                        <img src={DeleteExpenditure} alt="no" className='ExpenditureButton' onClick={deleteHandler}/>
+                        <img src={process.env.PUBLIC_URL + '/image/delete.png'} alt="no" className='ExpenditureButton' onClick={deleteHandler}/>
                     </button>
                 </span>
             }

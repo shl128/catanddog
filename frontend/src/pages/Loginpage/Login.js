@@ -3,7 +3,6 @@ import axios from 'axios';
 import SERVER from '../../API/server';
 import './Login.css'
 import { Link  } from 'react-router-dom';
-import kakaoLoginBtn from '../../components/image/kakaoLoginBtn.png'
 
 function Login() {
     const REST_API_KEY = "81167858a8e7e297800ffaee4b944bcc";
@@ -63,7 +62,7 @@ function Login() {
               <input className="Login-form-item" type="password" name="password"  value={Password} autoComplete="off" placeholder="Password" onChange={onPasswordHanlder} autoFocus required></input>
               <button className="Login-button">Login</button>
               <a href={KAKAO_AUTH_URL}>
-                <img src={kakaoLoginBtn} alt="" style={{borderRadius: "16px"}}></img>
+                <img src={process.env.PUBLIC_URL + '/image/kakaoLoginBtn.png'} alt="" style={{borderRadius: "16px"}}></img>
               </a>
               <div className="Login-link">
                 <Link to="/signup" className="Login-link-item">회원가입</Link>

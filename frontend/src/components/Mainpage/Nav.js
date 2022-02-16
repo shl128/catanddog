@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Nav.css'
-import logo from '../image/상단로고.png'
 import { Nav } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
 import ConsultingForm from './ConsultingForm'
@@ -24,7 +23,7 @@ function Navbar() {
   return (
     <div className="Nav">
       <Nav.Link href="/">
-        <img className="Logo" alt="logoname" src={logo} />
+        <img className="Logo" alt="logoname" src={process.env.PUBLIC_URL + '/image/toplogo.png'} />
       </Nav.Link>
       <nav className="Nav-item">
         <NavLink to="/petpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link" } state={{pageType:'create'}}>반려동물 추가</NavLink>
