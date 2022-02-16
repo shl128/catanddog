@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e3d427ea.css",
-    "main.js": "/static/js/main.711f1663.js",
+    "main.js": "/static/js/main.ea29be35.js",
     "static/js/787.af94e789.chunk.js": "/static/js/787.af94e789.chunk.js",
     "static/media/tie.gif": "/static/media/tie.3199e3e5b805d9c5128a.gif",
     "static/media/쫑이.jpg": "/static/media/쫑이.31d8412975fb3713fc7a.jpg",
@@ -13,11 +13,11 @@
     "static/media/수정버튼.png": "/static/media/수정버튼.67f5a654c128d95fb57b.png",
     "index.html": "/index.html",
     "main.e3d427ea.css.map": "/static/css/main.e3d427ea.css.map",
-    "main.711f1663.js.map": "/static/js/main.711f1663.js.map",
+    "main.ea29be35.js.map": "/static/js/main.ea29be35.js.map",
     "787.af94e789.chunk.js.map": "/static/js/787.af94e789.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e3d427ea.css",
-    "static/js/main.711f1663.js"
+    "static/js/main.ea29be35.js"
   ]
 }
