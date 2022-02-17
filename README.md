@@ -153,7 +153,7 @@
 - 유저와의 소통
   
 ![유저와의소통](/uploads/3535887bdb92fc24d20d222c2b0afbe8/유저와의소통.png)
-![유저와의소통2](/uploads/f7be8ace833e25090213a7fcf5dfae53/유저와의소통2.png)
+![유저와의소통2](/uploads/192be6505f330f1c5ae7119a827c80a8/유저와의소통2.png)
 
 - 카툰화
 
