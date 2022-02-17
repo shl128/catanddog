@@ -69,7 +69,7 @@
 - **Front**:
   - HTTP Client: axios
   - Language: React, Node
-- **Server**
+- **Back**
   - WAS: Nginx 1.18
   - Web Application Framework: Spring Boot 2.4.5
   - Database: MySQL
