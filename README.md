@@ -58,7 +58,7 @@
 <img src="/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png" width="800" height="800">
 
 # System Architecture
-![SA](/uploads/6526f362bf9ff6465dece57af6ad4455/SA.PNG)
+![SA](/uploads/d7e5621303642cffb2233401f5b0f299/SA.PNG)
 ![SS](/uploads/29b4ccdbde2c777db3a9e770e9baac14/SS.PNG)
 ### :hammer_and_wrench: 개발 환경
 
