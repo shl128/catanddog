@@ -55,5 +55,6 @@
 
 // 개발 환경, 기술 스택, 시스템 구성도, ERD, 기능 상세 설명 등
 
-ERD
+ERD  
+![](/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png)
 
