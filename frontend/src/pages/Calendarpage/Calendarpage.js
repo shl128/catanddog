@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Calendarpage.css'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import DateCalculation from '../../components/PublicComponents/DateCalculation';
+// import DateCalculation from '../../components/PublicComponents/DateCalculation';
 import moment from 'moment';
 import Form from 'react-bootstrap/Form'
 import SERVER from '../../API/server';
@@ -41,7 +41,7 @@ const Calendarpage = (props) => {
           'id' : event.id,
           'title' : event.title,
           'start' : new Date(event.start),
-          'end' : new Date(DateCalculation(event.end,1)),
+          'end' : new Date(event.end),
           'category' : event.category 
          }
          tempEvents.push(temp)
@@ -57,7 +57,7 @@ const Calendarpage = (props) => {
 
   function gotoReadUpdateForm(event) {
     setEventTitle(event.title)
-    setStartEventDate(DateCalculation(event.start.toISOString().substring(0,10),1))
+    setStartEventDate(event.start.toISOString().substring(0,10))
     setEndEventDate(event.end.toISOString().substring(0,10))
     setEventCategory(event.category)
     setEventId(event.id)

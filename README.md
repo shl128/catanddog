@@ -2,6 +2,10 @@
 
 <!-- 필수 항목 -->
 
+## 냥과함개 - 반려동물 케어 서비스 웹 프로젝트
+
+> ![toplogo](/uploads/08dd1634901f5a6d6ae2bd1a21e75b7f/toplogo.png)
+
 ## 카테고리
 
 | Application | Domain | Language | Framework |
@@ -15,6 +19,18 @@
 | | | :black_square_button: Kotlin | |
 
 <!-- 필수 항목 -->
+
+## 개발 기간
+
+- 2022.01.10 ~ 2022.02.17 
+
+## 팀 소개
+* 이소현: 팀장, 백엔드 개발, 배포
+* 김진용: 프론트엔드 개발
+* 박찬의: 프론트엔드 개발
+* 한상우: 프론트엔드 개발
+* 안재현: [BE] 회원가입, 로그인, 캘린더, 이달의지출 CRUD / [FE] 반려티콘 API 구현
+* 홍종현: 백엔드 개발, 카툰화API, 카카오API 구현 [GitHub](https://github.com/jonghyunH)
 
 ## 프로젝트 소개
 
@@ -48,11 +64,101 @@
 # System Architecture
 ![SA](/uploads/6526f362bf9ff6465dece57af6ad4455/SA.PNG)
 
+프로젝트 컨셉
+  
 
-## 팀 소개
-* 이소현: 팀장, 백엔드 개발, 배포
-* 김진용: 프론트엔드 개발
-* 박찬의: 프론트엔드 개발
-* 한상우: 프론트엔드 개발
-* 안재현: 백엔드 개발
-* 홍종현: 백엔드 개발, 카툰화API 구현 [GitHub](https://github.com/jonghyunH)
+### :hammer_and_wrench: 개발 환경
+
+**A. 언어**
+
+**I. Java 11**
+
+**II. Spring Boot 2.4.5**
+
+**III. Node 16.13**
+
+**IV. React 17.0.2**
+
+**V. jQuery 3.6.0**
+
+**VI. Bootstrap 5.1.3**
+
+**B. 도구**
+
+**I. vsCode**
+
+**II. InteliJ**
+
+**III. Chrome Browser**
+
+**E. API**
+
+**I. OpenVidu**
+
+**II.카카오 로그인**
+
+**III.ainize.ai**
+
+**IV.Toast Image Editor**
+
+**C.아키텍처**
+
+**I. Spring Boot / React & jQuery**
+
+**D.웹서버**
+
+**I. Nginx**
+
+**II.Apache**
+
+**E.WAS서버**
+
+**I. AWS EC2**
+
+
+## 결과물 Preview
+
+- 로그인 페이지 
+
+![로그인페이지](/uploads/50fb85f00341ca68d9437c33930f7757/로그인페이지.png)
+
+- 메인 페이지
+
+![메인페이지](/uploads/4adf45e993c79148d2a4a2964c1d37a5/메인페이지.png)
+
+- 반려동물 추가
+
+![반려동물추가1](/uploads/c8bafd97dac60e065306171c4238c7a7/반려동물추가1.png)
+
+- 실시간 상담
+
+![실시간상담](/uploads/ed42777ac8fdd576a0dabe41005cfb78/실시간상담.png)
+
+- 반려동물 추가
+
+![반려동물추가1](/uploads/0bc22e40fdb9d9b71e4ad51e13469146/반려동물추가1.png)
+
+- 캘린더
+
+![캘린더](/uploads/57065012fb44f9b0380c770b5ad99810/캘린더.png)
+
+- 프로필 페이지
+
+![프로필](/uploads/ada86b9f630495720f0dd8e4064eabd4/프로필.png)
+
+- 이달의 지출
+
+![이달의지출](/uploads/06328b7bf87706554ee334299a278c9f/이달의지출.png)
+
+- 유저와의 소통
+  
+![유저와의소통](/uploads/3535887bdb92fc24d20d222c2b0afbe8/유저와의소통.png)
+![유저와의소통2](/uploads/192be6505f330f1c5ae7119a827c80a8/유저와의소통2.png)
+
+- 카툰화
+
+![카툰화](/uploads/27b2a020e0bed99d061c4228361beb77/카툰화.png)
+
+- 반려티콘
+
+![반려티콘](/uploads/9c4df3fd1fe28940f187e9d024c166f7/반려티콘.png)
