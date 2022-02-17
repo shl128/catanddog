@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import { Form } from 'react-bootstrap'
 import './ChatSearch.css'
 import { SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle, AllRoom } from './ChatAxios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -81,21 +80,21 @@ function ChatSearch(props) {
 
   return (
     <div className="Search-chat">
-      <div className="Search-type">
-        <Form.Select ref={searchType}>
+      <div className="Search-group">
+        <select className="Search-type" ref={searchType}>
           <option value="title">제목</option>
           <option value="tag">해시태그</option>
-        </Form.Select>
-      </div>
-      <div className="Search-content">
-        <input className="Search-input" placeholder="검색하기" value={target} onChange={ChangeTarget} onKeyUp={FindTarget}/>
-        <button className={"Search-cancel-" + (target.length > 0 ? "on" : "off") }onClick={CancelSearch}>X</button>
-        <div className="Search-word-list">
-          {words.length >=1 && <SearchList words={words} SelectWord={SelectWord}/>}
+        </select>
+        <div className="Search-content">
+          <input className="Search-input" placeholder="검색하기" value={target} onChange={ChangeTarget} onKeyUp={FindTarget}/>
+          <button className={"Search-cancel-" + (target.length > 0 ? "on" : "off") }onClick={CancelSearch}>X</button>
+          <div className="Search-word-list">
+            {words.length >=1 && <SearchList words={words} SelectWord={SelectWord}/>}
+          </div>
+          <button onClick={SearchRooms}>
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
         </div>
-        <button onClick={SearchRooms}>
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
       </div>
       <button className="Search-refresh" onClick={AllRooms}>새로고침</button>
     </div>

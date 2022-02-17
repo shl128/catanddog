@@ -26,7 +26,7 @@ class VideoRoomComponent extends Component {
         super(props);
         this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
             ? this.props.openviduServerUrl
-            : 'https://' + window.location.hostname + ':4443';
+            : 'https://i6b109.p.ssafy.io:4443';
         this.OPENVIDU_SERVER_SECRET = this.props.openviduSecret ? this.props.openviduSecret : 'MY_SECRET';
         this.hasBeenUpdated = false;
         this.layout = new OpenViduLayout();
@@ -216,13 +216,12 @@ class VideoRoomComponent extends Component {
     }
 
     async connectWebCam() {
-        var devices = await this.OV.getDevices();
+        var devices = await this.OV.getDevices()
         var videoDevices = devices.filter(device => device.kind === 'videoinput');
         if (this.state.camDisplay === 'none'){
             localUser.setVideoActive(false)
             localUser.setAudioActive(false)
         }
-
         let publisher = this.OV.initPublisher(undefined, {
             audioSource: undefined,
             videoSource: videoDevices[0].deviceId,

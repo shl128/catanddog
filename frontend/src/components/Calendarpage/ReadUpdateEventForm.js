@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Form } from 'react-bootstrap'
 import '../Mainpage/ConsultingForm.css'
 import DatePicker from '../PublicComponents/DatePicker'
+import DateCalculation from '../PublicComponents/DateCalculation';
 import axios from 'axios'
 import SERVER from '../../API/server';
 
@@ -22,11 +23,9 @@ function ReadUpdateForm(props) {
       }}
     )
     .then((res) => {
-      var tempStart = res.data[0].start.substring(0,10)
-      var tempEnd = res.data[0].end.substring(0,10)
       setEventTitle(res.data[0].title)
-      setStartEventDate(tempStart)
-      setEndEventDate(tempEnd)
+      setStartEventDate(res.data[0].start.toJSON().substring(0,10))
+      setEndEventDate(res.data[0].end.toJSON().substring(0,10))
       setEventCategory(res.data[0].category)
     })
     .catch(() => {
@@ -53,6 +52,8 @@ function ReadUpdateForm(props) {
         props.axiosGet();
       })
       .catch(() => {
+        console.log(startEventDate)
+        console.log(endEventDate)
         alert('수정 실패')
       })
     } else {
@@ -83,6 +84,7 @@ function ReadUpdateForm(props) {
   }
 
   useEffect(() => { props.axiosGet(); },[])
+  // useEffect(() => { axiosGet(); },[])
 
   return (
       <Modal dialogClassName="Consulting" show={props.eventClick} centered="true">

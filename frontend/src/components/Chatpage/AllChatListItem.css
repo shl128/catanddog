@@ -15,8 +15,22 @@
   gap: 1rem;
 }
 
+.chat-enter {
+  color: #ff805b;
+}
+
+.chat-enter:hover {
+  cursor: pointer;
+}
+
+.chat-full {
+  color: #ffe0d7;
+}
+
 .tag {
-  border-radius: 1rem;
+  border-radius: 5px;
   background-color: #ffe0d7;
+  font-weight: normal;
   margin-right: 1rem;
+  padding: 2px;
 }

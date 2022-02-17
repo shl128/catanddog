@@ -20,7 +20,6 @@ const Calendarpage = (props) => {
   const filterCategory = useRef('전체');
   const userData = localStorage.getItem('accessToken');
   const [eventId, setEventId] = useState(null)
-
   const [eventTitle, setEventTitle] = useState(null)
   const [eventCategory, setEventCategory] = useState(null)
   const [startEventDate, setStartEventDate] = useState(null)
@@ -34,8 +33,22 @@ const Calendarpage = (props) => {
       }}
     )
     .then((res) => {
-      // console.log(res.data)
-      setAllEvents(res.data)
+      var tempEvents = []
+      var temp = {}
+      res.data.map((event) => {
+        console.log(event.end)
+        temp = {
+          'id' : event.id,
+          'title' : event.title,
+          'start' : new Date(event.start),
+          'end' : new Date(DateCalculation(event.end,1)),
+          'category' : event.category 
+         }
+         tempEvents.push(temp)
+        
+        return (tempEvents)
+      })
+      setAllEvents(tempEvents)
     })
     .catch((err) => {
       console.log(err)
@@ -44,8 +57,8 @@ const Calendarpage = (props) => {
 
   function gotoReadUpdateForm(event) {
     setEventTitle(event.title)
-    setStartEventDate(DateCalculation(event.start,1))
-    setEndEventDate(DateCalculation(event.end,1))
+    setStartEventDate(DateCalculation(event.start.toISOString().substring(0,10),1))
+    setEndEventDate(event.end.toISOString().substring(0,10))
     setEventCategory(event.category)
     setEventId(event.id)
     setEventClick(true)
@@ -82,26 +95,13 @@ const Calendarpage = (props) => {
           </div>
         }
       </div>
-      
-      {
-        props.inChatting
-        ?
-        <Calendar
+      <Calendar
           className='mt-2'
           localizer={localizer}
           events={allEvents}
-          style={{ height: '450' }}
+          style={{ height: '85%' }}
           onSelectEvent={event => gotoReadUpdateForm(event)}
         />
-        :
-        <Calendar
-        className='mt-2'
-        localizer={localizer}
-        events={allEvents}
-        style={{ height: '85%' }}
-        onSelectEvent={event => gotoReadUpdateForm(event)}
-      />
-      }
       {addEventBtnClick && 
       <AddEventForm
         axiosGet={axiosGet}

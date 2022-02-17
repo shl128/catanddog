@@ -9,6 +9,14 @@ function App() {
   const location = useLocation().pathname
   const isLogin = localStorage.getItem('accessToken') ? true : false
   useEffect(() => {
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+      return devices.every(device => {
+        return device.label === ''
+      })
+      ? navigator.mediaDevices.getUserMedia({video: true, audio: true})
+      : null
+    })
   }, [location])
 
   if (!isLogin) {

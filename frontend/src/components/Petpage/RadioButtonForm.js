@@ -11,7 +11,7 @@ const RadioButtonForm = (props) => {
                 ?
                 <Form>
                     {['radio'].map((type) => (
-                    <div key={`birthday-${type}`} className="mb-3">
+                    <div key={`birthday-${type}`}>
                         <RadioButton
                         label={props.label[0]}
                         type={type}
@@ -38,7 +38,7 @@ const RadioButtonForm = (props) => {
                 :
                 <Form>
                     {['radio'].map((type) => (
-                    <div key={`birthday-${type}`} className="mb-3">
+                    <div key={`birthday-${type}`}>
                         <RadioButton
                         label={props.label[0]}
                         type={type}
