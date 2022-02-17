@@ -48,7 +48,7 @@ function Signup() {
     };
     const onConfirmNum = (e) => {
       e.preventDefault()
-      if (confirmNum === randomNumber){
+      if (String(confirmNum) === String(randomNumber)){
         setEmailValidation(true)
         setEmailConfirm(false)
         console.log(emailValidation)

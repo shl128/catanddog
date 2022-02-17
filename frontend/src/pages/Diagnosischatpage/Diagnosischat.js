@@ -16,7 +16,6 @@ function Diagnosischat () {
 
     
     useEffect(() => {
-    navigator.mediaDevices.getUserMedia({audio: true, video: true})
     axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
       {headers: {
         Authorization: `Bearer ${userData}`
