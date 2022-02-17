@@ -50,7 +50,7 @@
   - Ainize API
   - Kakao API
 * 참조 리소스
-  * bootstrapk : 디자인 전반 적용
+  * React-Bootstrap : 디자인 전반 적용
 * 배포 환경
   - URL: i6b109.p.ssafy.io
   - 테스트 계정: (ID) ssafy@ssafy.com / (Password) b109
