@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './ExpenditureInput.css';
-import DateCalculation from '../../components/PublicComponents/DateCalculation';
+// import DateCalculation from '../../components/PublicComponents/DateCalculation';
 import {numberWithCommas} from './NumberWithCommas';
 import UpdateDeleteButtons from './UpdateDeleteButtons'
 import DatePicker from '../PublicComponents/DatePicker';
@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 
 const EachContent = (props) => {
   const [isUpdating, setIsUpdating] = useState(false);
-  const [expenditureDate, setExpenditureDate] = useState(DateCalculation(props.expenditureDate.substring(0,10),1))
+  const [expenditureDate, setExpenditureDate] = useState(props.expenditureDate.substring(0,10))
   const [expenditureCategory, setExpenditureCategory] = useState(props.expenditureCategory)
   const [expenditureItem, setExpenditureItem] = useState(props.expenditureItem)
   const [expenditurePrice, setExpenditurePrice] = useState(props.expenditurePrice)
