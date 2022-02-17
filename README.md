@@ -29,7 +29,7 @@
 * 김진용: 프론트엔드 개발
 * 박찬의: 프론트엔드 개발
 * 한상우: 프론트엔드 개발
-* 안재현: [BE] 회원가입, 로그인, 캘린더, 이달의지출 CRUD / [FE] 반려티콘 API 구현
+* 안재현: 백엔드 개발
 * 홍종현: 백엔드 개발, 카툰화API, 카카오API 구현 [GitHub](https://github.com/jonghyunH)
 
 ## 프로젝트 소개
@@ -63,58 +63,19 @@
 
 # System Architecture
 ![SA](/uploads/6526f362bf9ff6465dece57af6ad4455/SA.PNG)
-
-프로젝트 컨셉
-  
-
+![SS](/uploads/29b4ccdbde2c777db3a9e770e9baac14/SS.PNG)
 ### :hammer_and_wrench: 개발 환경
 
-**A. 언어**
-
-**I. Java 11**
-
-**II. Spring Boot 2.4.5**
-
-**III. Node 16.13**
-
-**IV. React 17.0.2**
-
-**V. jQuery 3.6.0**
-
-**VI. Bootstrap 5.1.3**
-
-**B. 도구**
-
-**I. vsCode**
-
-**II. InteliJ**
-
-**III. Chrome Browser**
-
-**E. API**
-
-**I. OpenVidu**
-
-**II.카카오 로그인**
-
-**III.ainize.ai**
-
-**IV.Toast Image Editor**
-
-**C.아키텍처**
-
-**I. Spring Boot / React & jQuery**
-
-**D.웹서버**
-
-**I. Nginx**
-
-**II.Apache**
-
-**E.WAS서버**
-
-**I. AWS EC2**
-
+- **Front**:
+  - HTTP Client: axios
+  - Language: React, Node
+- **Back**
+  - WAS: Nginx 1.18
+  - Web Application Framework: Spring Boot 2.4.5
+  - Database: MySQL
+  - Language: JAVA
+- **AWS**
+  - Ec2
 
 ## 결과물 Preview
 
