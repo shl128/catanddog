@@ -11,17 +11,20 @@ const WithdrawalModal = (props) => {
       </div>
       <Modal show={props.show} onHide={props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>회원 탈퇴</Modal.Title>
+          <Modal.Title className='WithdTitle'>회원 탈퇴</Modal.Title>
         </Modal.Header>
-        <Modal.Body>진짜 회원 탈퇴 할거에요?</Modal.Body>
+        <Modal.Body>
+          <img className='plizImg' src={process.env.PUBLIC_URL + '/image/pliz.jpg'} alt="noimg"></img>
+          <div className='qfont'>진짜 회원 탈퇴 할거에요?</div>
+        </Modal.Body>
         <Modal.Footer>
           
-          <Button className='mypage-closebutton' onClick={props.handleClose}>
+          <button className='mypage-closebutton' onClick={props.handleClose}>
             Close
-          </Button>
-          <Button className='mypage-WithdrawalButton' onClick={props.onwithdrawal}>
+          </button>
+          <button className='mypage-WithdrawalButton' onClick={props.onwithdrawal}>
             회원 탈퇴
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>

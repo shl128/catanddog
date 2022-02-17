@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 .Withdrawal{
   margin-top: 1rem;
   text-decoration-line: none;
   color: #FF805B;
+  
 }
 .Withdrawal:hover{
   margin-top: 1rem;
@@ -10,24 +12,58 @@
   color: #2b2e4a;
   cursor: pointer;
 }
+.WithdTitle{
+  font-family: 'Jua', sans-serif;
+
+}
 .mypage-closebutton{
   background-color: #ffe0d7;
   border: 1px solid #FF805B;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
   border: #FF805B;
+  font-family: 'Jua', sans-serif;
+
 }
 .mypage-closebutton:hover{
   background-color: #f9f9f9;
   border: 1px  #FF805B;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
   color: #FF805B;
-
+  font-family: 'Jua', sans-serif;
 }
 .mypage-WithdrawalButton{
   background-color: #FF805B;
   border: 1px solid #FF805B;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+  border-radius: 1rem;
+
   border: #FF805B;
+  font-family: 'Jua', sans-serif;
+
 }
 .mypage-WithdrawalButton:hover{
   background-color: #f9f9f9;
   border: 1px  #FF805B;
+  border-style: none;
+  padding: 0rem 1rem;
+  border-radius: 1rem;
+  font-family: 'Jua', sans-serif;
+
+  height: 40px;
   color: #FF805B;
+} 
+.plizImg{
+  width: 100%;
+}
+.qfont{
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Jua', sans-serif;
 }
