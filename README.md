@@ -1,4 +1,4 @@
-# 웹/모바일(웹 기술) 스켈레톤 프로젝트
+# 웹/모바일(웹 기술) 프로젝트
 
 <!-- 필수 항목 -->
 
@@ -39,7 +39,15 @@
   - URL: i6b109.p.ssafy.io
   - 테스트 계정: (ID) ssafy@ssafy.com / (Password) b109
 
-<!-- 자유 양식 -->
+
+## 프로젝트 상세
+
+# ERD  
+<img src="/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png" width="800" height="800">
+
+# System Architecture
+![SA](/uploads/6526f362bf9ff6465dece57af6ad4455/SA.PNG)
+
 
 ## 팀 소개
 * 이소현: 팀장, 백엔드 개발, 배포
@@ -47,14 +55,4 @@
 * 박찬의: 프론트엔드 개발
 * 한상우: 프론트엔드 개발
 * 안재현: 백엔드 개발
-* 홍종현: 백엔드 개발, 카툰화API 구현
-
-<!-- 자유 양식 -->
-
-## 프로젝트 상세 설명
-
-// 개발 환경, 기술 스택, 시스템 구성도, ERD, 기능 상세 설명 등
-
-ERD  
-![](/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png)
-
+* 홍종현: 백엔드 개발, 카툰화API 구현 [GitHub](https://github.com/jonghyunH)
