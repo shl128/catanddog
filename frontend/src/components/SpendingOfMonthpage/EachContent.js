@@ -34,7 +34,7 @@ const EachContent = (props) => {
                 {
                     isUpdating === false
                     ?
-                    DateCalculation(props.expenditureDate.substring(0,10),1)
+                    props.expenditureDate.substring(0,10)
                     :
                     <DatePicker type='date' style={textAlignCenter} change={dateHandler} baseDay={expenditureDate}/>
                 }
