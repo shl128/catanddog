@@ -3,6 +3,7 @@ import { Modal, Form } from 'react-bootstrap'
 import '../Mainpage/ConsultingForm.css'
 import './Form.css'
 import DatePicker from '../PublicComponents/DatePicker'
+import DateCalculation from '../PublicComponents/DateCalculation';
 import axios from 'axios'
 import SERVER from '../../API/server';
 
@@ -13,15 +14,14 @@ function AddEventForm(props) {
   const [eventCategory, setEventCategory] = useState('병원')
   const userData = localStorage.getItem('accessToken');
 
-  function createHandler() {
-    
+  async function createHandler() {
     if (eventTitle && startEventDate && endEventDate && eventCategory) {
       axios.post(
         `${SERVER.BASE_URL}${SERVER.ROUTES.Calendar}memo?category=${eventCategory}&end=${endEventDate}&start=${startEventDate}&title=${eventTitle}`,
         {
           'title':eventTitle,
           'start':startEventDate,
-          'end':endEventDate,
+          'end':DateCalculation(endEventDate,1),
           'category':eventCategory
         },
         {headers: {
