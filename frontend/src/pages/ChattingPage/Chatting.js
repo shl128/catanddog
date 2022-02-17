@@ -16,6 +16,7 @@ function Chatting () {
     const [userKind, setUserKind] = useState('');
 
     useEffect(() => {
+      navigator.mediaDevices.getUserMedia({audio: true, video: true})
       // window.location.replace(location)
       // console.log(location)
     axios.get(SERVER.BASE_URL + SERVER.ROUTES.mypage,
