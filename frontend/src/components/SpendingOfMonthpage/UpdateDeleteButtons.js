@@ -1,5 +1,5 @@
 import axios from 'axios';
-import DateCalculation from '../../components/PublicComponents/DateCalculation';
+// import DateCalculation from '../../components/PublicComponents/DateCalculation';
 import SERVER from '../../API/server';
 
 const UpdateDeleteButtons = (props) => {
@@ -14,7 +14,7 @@ const UpdateDeleteButtons = (props) => {
             Authorization: `Bearer ${userData}`
           }})
           .then((res) => {
-            props.setExpenditureDate(DateCalculation(res.data[0].expenditureDate.substring(0,10),1))
+            props.setExpenditureDate(res.data[0].expenditureDate.substring(0,10))
             props.setExpenditureCategory(res.data[0].expenditureCategory)
             props.setExpenditureItem(res.data[0].expenditureItem)
             props.setExpenditurePrice(res.data[0].expenditurePrice)
