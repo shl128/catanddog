@@ -1,22 +1,45 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { Outlet, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {Signup, Login} from './components/Mypage'
-import Mypage from './components/Mypage/Mypage'
+import Nav from './components/Mainpage/Nav'
+import Top from './components/Mainpage/Top'
+import { Login, Signup, PasswordFind} from './pages'
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        기본
-        <Mypage id="sw"/>
-        <Routes>
-          <Route path="/signup" element={<Signup />}/>
-          <Route path="/login" element={<Login />}/>
-        </Routes>
-      </div>
-    </BrowserRouter>
+  const location = useLocation().pathname
+  const isLogin = localStorage.getItem('accessToken') ? true : false
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+      return devices.every(device => {
+        return device.label === ''
+      })
+      ? navigator.mediaDevices.getUserMedia({video: true, audio: true})
+      : null
+    })
+  }, [location])
 
+  if (!isLogin) {
+    return <Navigate to="/login" replace={true} />
+  }
+
+  return (
+
+    <div className="App">
+      {
+        location === '/Login' | location === '/login' ? <Login/>
+        : location === '/signup' | location === '/Signup' ? <Signup/>
+        : location === '/passwordFind' | location === '/PasswordFind' ? <PasswordFind/>
+        :
+        <div className="App-container">
+          <div className="App-nav"><Nav /></div>
+          <div className="App-page">
+            <Top />
+            <Outlet />
+          </div>
+        </div>
+      }
+    </div>
   );
 }
 

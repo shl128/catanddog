@@ -1,0 +1,41 @@
+.Consulting div {
+  border-radius: 1rem;
+}
+
+.Consulting-button{
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  margin: 0.5rem 2rem;
+  height: 5vh;
+}
+
+.Consulting-button:hover {
+  background-color: #ff805b;
+}
+
+.Wait-image {
+  margin: 1rem;
+  width: auto;
+  border-radius: 1rem;
+}
+
+.Consulting-body {
+  text-align: center;
+}
+
+.Consulting-request {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.Consulting-request:hover {
+  background-color: #ff805b;
+}

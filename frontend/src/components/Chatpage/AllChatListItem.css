@@ -1,0 +1,36 @@
+.All-chat-list-item {
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  margin-top: 1rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.chat-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chat-enter {
+  color: #ff805b;
+}
+
+.chat-enter:hover {
+  cursor: pointer;
+}
+
+.chat-full {
+  color: #ffe0d7;
+}
+
+.tag {
+  border-radius: 5px;
+  background-color: #ffe0d7;
+  font-weight: normal;
+  margin-right: 1rem;
+  padding: 2px;
+}

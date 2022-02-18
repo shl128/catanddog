@@ -1,0 +1,53 @@
+.Logo {
+  width: 12vw;
+}
+
+.Nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.Nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2vh;
+}
+
+.Nav-link {
+  text-decoration: none;
+  color: gray;
+  width: 70%;
+  height: 6vh;
+  text-align: center;
+  padding: 1.5vh 0rem;
+}
+
+.Nav-link:hover {
+  color: white;
+  background-color: #ffe0d7;
+  border-radius: 1rem;
+  border-style: none;
+}
+
+.Nav-link-on {
+  width: 70%;
+  height: 6vh;
+  text-decoration: none;
+  color: white;
+  background-color: #ff805b;
+  border-radius: 1rem;
+  border-style: none;
+  text-align: center;
+  padding: 1.5vh 0rem;
+}
+
+.Nav-link-on:hover {
+  color: white;
+  background-color: #ffe0d7;
+  border-radius: 1rem;
+  border-style: none;
+}

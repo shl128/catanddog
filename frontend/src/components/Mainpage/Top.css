@@ -1,0 +1,65 @@
+.Top-container {
+  display: flex;
+  justify-content: end;
+  gap: 1vw;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.Top-bell-cnt {
+  position: absolute;
+  top: -2vh;
+  left: 2.5vw;
+  font-weight: bold;
+  color: #ff805b;
+}
+
+.Top-bell-icon-on {
+  width: 4vw;
+  height: 4vh;
+  color: #ff805b
+}
+
+.Top-bell-icon-off {
+  width: 4vw;
+  height: 4vh;
+  color: #ffe0d7
+}
+
+.Top-list-open {
+  width: auto;
+}
+
+.Top-list-off {
+  display: none;
+}
+
+.Top-grade {
+  width: 2vw;
+  text-align: center;
+}
+
+.Top-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.Top-profile:hover {
+  color: black;
+}
+
+.Top-profile-img {
+  width: 4vw;
+  height: 4vw;
+  border-radius: 1rem;
+}
+
+.Top-profile-name {
+  margin-left: 1vw;
+  display: inline-block;
+  text-align: end;
+}

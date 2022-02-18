@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Emoji-example div {
+  font-family: 'Jua', sans-serif;
+}
+
+.Example {
+  display: flex;
+}
+
+.Example-img {
+  width:80%;
+  margin-left:10%;
+}
+
+.emojiexample {
+  width:100%;
+  height:100%;
+}
+
+.tui-image-editor-align-wrap, .tui-image-editor-header, .tui-image-editor-main-container {
+  background-color: white !important;
+}
+
+/* .tui-image-editor-submenu, .tui-image-editor-submenu div {
+  background-color: #ffe0d7 !important;
+  color: black !important;
+} */
+
+.tui-image-editor-container {
+  border-radius: 25px;
+}
+
+.tui-image-editor-header {
+  z-index: 100;
+}
+/* 
+.tui-image-editor-wrap div {
+  border: 0px !important;
+} */
+
+.emojidiv {
+  height:100%;
+}

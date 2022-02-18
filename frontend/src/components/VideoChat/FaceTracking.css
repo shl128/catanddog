@@ -1,0 +1,21 @@
+.Face-tracking {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.Emoji-on {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.Emoji-off {
+  display: none;
+}
+.faceFind{
+  width: 80%;
+  right: 5%;
+}

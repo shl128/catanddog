@@ -1,0 +1,15 @@
+.AllChatList {
+  height: 58vh;
+  font-weight: bold;
+  overflow-y: scroll;
+}
+
+.AllChatList::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+@media (max-height: 900px) {
+  .AllChatList {
+    height: 48vh;
+  }
+}

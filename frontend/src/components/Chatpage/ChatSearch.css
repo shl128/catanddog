@@ -1,0 +1,58 @@
+.Search-chat {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Search-group {
+  display: flex;
+  gap: 2rem;
+}
+
+.Search-type {
+  width: 120px;
+  border-radius: 5px;
+  border-style: solid;
+}
+
+.Search-content {
+  display: flex;
+  position: relative;
+}
+
+.Search-input {
+  width: 30vw;
+  border-radius: 5px;
+  border-style: solid;
+}
+
+.Search-word-list {
+  position: absolute;
+  top: 40px;
+}
+
+.Search-cancel-on {
+  transform: translate(-200%, 0%);
+  align-items: center;
+}
+
+.Search-cancel-off {
+  transform: translate(-200%, 0%);
+  align-items: center;
+  color: white;
+  display: hidden;
+  pointer-events: none;
+}
+
+.Search-refresh {
+  color: white;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ff805b;
+  padding: 0.5rem 1rem;
+}
+
+.Search-refresh:hover {
+  background-color: #ffe0d7;
+}

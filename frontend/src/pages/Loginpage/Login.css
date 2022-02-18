@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Login-page {
+  height: 100vh;
+  padding: 5rem;
+  background-color: #ffe0d7;
+  font-family: 'Jua', sans-serif;
+}
+
+.Login {
+  height: 100%;
+  border-radius: 2rem;
+  background-color: white;
+  padding: 1rem 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+
+.Login-logo {
+  width: 30vw;
+  height: 30vw;
+}
+
+@media (max-width: 800px) {
+  .Login {
+    flex-direction: column;
+  }
+
+  .Login-logo {
+    width: 50vw;
+  }
+}
+
+.Login-content {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Login-form-item {
+  width: 100%;
+  background-color: #ffe0d7;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+}
+
+.Login-form-item:focus {
+  outline-color: #ff805b;
+}
+
+.Login-button {
+  width: 100%;
+  color: white;
+  background-color: #ff805b;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+}
+
+.Login-link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Login-link-item {
+  text-decoration: none;
+  color: black;
+
+}
+
+.Login-link-item:hover {
+  color: black;
+}

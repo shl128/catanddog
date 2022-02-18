@@ -1,0 +1,21 @@
+.My-pet {
+  margin-top: 1rem;
+  font-size: large;
+}
+
+.My-pet-list {
+  height: 100%;
+  font-weight: bold;
+  display: flex;
+  gap: 1rem;
+  overflow-x: scroll;
+}
+
+
+.My-pet-list::-webkit-scrollbar {
+  height: 10px;
+}
+
+.My-pet-list::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}

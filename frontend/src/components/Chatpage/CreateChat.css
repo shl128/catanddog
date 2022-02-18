@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Chat-create {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Chat-create-form div {
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-family: 'Jua', sans-serif;
+}
+
+.Chat-create-tags {
+  margin-bottom: 5px;
+}
+
+.Chat-create-button {
+  color: white;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ff805b;
+  padding: 0.5rem 1rem;
+}
+
+.Chat-create-button:hover {
+  background-color: #ffe0d7;
+}

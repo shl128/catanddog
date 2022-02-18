@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Signup-page {
+  height: 100vh;
+  background-color: #ffe0d7;
+  padding: 5rem;
+  font-family: 'Jua', sans-serif;
+}
+
+.Signup {
+  background-color: white;
+  border-radius: 2rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+
+.Signup-img {
+  width: 30vw;
+  height: 30vw;
+}
+
+.Signup-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.Signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Signup-form-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.Signup-form-item-label {
+  width: 100px;
+}
+
+.Signup-form-itme-input {
+  background-color: #ffe0d7;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+}
+
+.Signup-form-itme-input:focus {
+  outline-color: #ff805b;
+}
+
+.Signup-form-item-button {
+  color: white;
+  background-color: #ff805b;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+}
+
+.Signup-button {
+  margin-top: 50px;
+  align-self: center;
+  color: white;
+  background-color: #ff805b;
+  width: 50%;
+  border-radius: 1rem;
+  border-style: none;
+  padding: 0rem 1rem;
+  height: 40px;
+}
+
+.Signup-link {
+  align-self: center;
+  color: black;
+  text-decoration: none;
+}
+
+.Signup-link:hover {
+  color: black;
+}

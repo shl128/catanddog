@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Consulting div {
+  font-family: 'Jua', sans-serif;
+}
+
+.Consulting-button{
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  margin: 0.5rem 2rem;
+  height: 5vh;
+}
+
+.Consulting-accept {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  padding: 1rem;
+  color: white;
+}
+
+.Consulting-accept:hover {
+  background-color: #ff805b;
+}
+
+.Consulting-cancel {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  padding: 1rem;
+  color: white;
+}
+
+.Consulting-cancel:hover {
+  background-color: #f9f9f9;
+  color: #ff805b
+}

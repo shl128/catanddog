@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.Alarm-item {
+  font-weight: bold;
+  margin-top: 2px;
+  padding: 0rem 1rem;
+}
+
+.Alarm-item:hover {
+  border-radius: 8px;
+  background-color: #ffe0d7;
+}
+
+.Alarm-item-modal div {
+  border-radius: 1rem;
+  font-family: 'Jua', sans-serif;
+}
+
+.Alarm-item-accept {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.Alarm-item-accept:hover {
+  background-color: #ff805b;
+}
+
+.Alarm-item-cancel {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #ffe0d7;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.Alarm-item-cancel:hover {
+  background-color: #f9f9f9;
+  color: #ff805b
+}

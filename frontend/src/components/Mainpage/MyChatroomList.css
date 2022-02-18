@@ -1,0 +1,26 @@
+.My-chat {
+  margin-top: 1rem;
+  font-size: large;
+}
+
+.My-chat-list {
+  overflow: auto;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  height: 38vh;
+}
+
+.My-chat-list::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+@media (max-height: 850px) {
+  .My-chat-list {
+    overflow: auto;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    height: 25vh;
+  }
+}

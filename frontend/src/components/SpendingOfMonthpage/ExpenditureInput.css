@@ -1,0 +1,60 @@
+.ExpenditureTable {
+    display: grid;
+    border-radius: 2rem;
+    grid-template-columns: repeat(16, 1fr);
+    column-gap: 1rem;
+    height: 100%;
+    align-items: center;
+  }
+
+.ExpenditureCreateButtonCol {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: right;
+  }
+.ExpenditureButton {
+    width: 25px;
+    height: 25px;
+  }
+
+.ExpenditureDateCol {
+    grid-column-start: 3;
+    grid-column-end: 6;
+  }
+
+.ExpenditureCategoryCol {
+    grid-column-start: 6;
+    grid-column-end: 8;
+  }
+
+.ExpenditureItemCol {
+    grid-column-start: 8;
+    grid-column-end: 12;
+  }
+  
+.ExpenditurePriceCol {
+    grid-column-start: 12;
+    grid-column-end: 15;
+  }
+
+.ExpenditureEditButtonsCol {
+    grid-column-start: 15;
+    grid-column-end: 17;
+    text-align: left;
+  }
+
+hr {
+    grid-column-start: 3;
+    grid-column-end: 15;
+}
+
+button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+}
+
+.divFixHeight {
+  height: 50px;
+}

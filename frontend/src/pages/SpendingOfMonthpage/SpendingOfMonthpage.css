@@ -1,0 +1,40 @@
+.SpendingOfMonthpage {
+  height: 85%;
+  width: 100%;  
+  background-color: white;
+  border-radius: 2rem;
+  text-align: center;
+} 
+
+
+.SpendingOfMonthHeader {
+  padding: 1rem;
+}
+
+.filter {
+  text-align: center;
+}
+
+.redColor {
+  color: red;
+}
+
+.overflowFrame {
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  overflow: auto;
+}
+
+.overflowFrame::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+@media (max-height: 850px) {
+  .overflowFrame {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    overflow: auto;
+  }
+}
