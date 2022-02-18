@@ -1,18 +1,20 @@
 # 냥과함개 - 반려동물 케어 서비스(웹 기술 프로젝트)
-### 온택트 시대 + 펫팸족 증가 + 실제 경험을 바탕으로 온라인으로 쉽게 반려동물을 케어하며 전문가와 상담을 받을수 있으면 좋을거 같다는 아이디어로 출발한 프로젝트  
+
+### 온택트 시대 + 펫팸족 증가 + 실제 경험을 바탕으로 온라인으로 쉽게 반려동물을 케어하며 전문가와 상담을 받을수 있으면 좋을거 같다는 아이디어로 출발한 프로젝트
+
 > ![toplogo](/uploads/08dd1634901f5a6d6ae2bd1a21e75b7f/toplogo.png)
 
 ## 카테고리
 
-| Application | Domain | Language | Framework |
-| ---- | ---- | ---- | ---- |
-| :white_check_mark: Desktop Web | :black_square_button: AI | :white_check_mark: JavaScript | :white_check_mark: React.js |
-| :white_check_mark: Mobile Web | :black_square_button: Big Data | :black_square_button: TypeScript | :black_square_button: React |
-| :white_check_mark: Responsive Web | :black_square_button: Blockchain | :black_square_button: C/C++ | :black_square_button: Angular |
-| :black_square_button: Android App | :black_square_button: IoT | :black_square_button: C# | :black_square_button: Node.js |
-| :black_square_button: iOS App | :black_square_button: AR/VR/Metaverse | :black_square_button: Python | :white_check_mark: Flask/Django |
-| :black_square_button: Desktop App | :black_square_button: Game | :white_check_mark: Java | :white_check_mark: Spring/Springboot |
-| | | :black_square_button: Kotlin | |
+| Application                       | Domain                                | Language                         | Framework                            |
+| --------------------------------- | ------------------------------------- | -------------------------------- | ------------------------------------ |
+| :white_check_mark: Desktop Web    | :black_square_button: AI              | :white_check_mark: JavaScript    | :white_check_mark: React.js          |
+| :white_check_mark: Mobile Web     | :black_square_button: Big Data        | :black_square_button: TypeScript | :black_square_button: React          |
+| :white_check_mark: Responsive Web | :black_square_button: Blockchain      | :black_square_button: C/C++      | :black_square_button: Angular        |
+| :black_square_button: Android App | :black_square_button: IoT             | :black_square_button: C#         | :black_square_button: Node.js        |
+| :black_square_button: iOS App     | :black_square_button: AR/VR/Metaverse | :black_square_button: Python     | :white_check_mark: Flask/Django      |
+| :black_square_button: Desktop App | :black_square_button: Game            | :white_check_mark: Java          | :white_check_mark: Spring/Springboot |
+|                                   |                                       | :black_square_button: Kotlin     |                                      |
 
 <!-- 필수 항목 -->
 
@@ -21,10 +23,11 @@
 - 2022.01.10 ~ 2022.02.17 
 
 ## 팀 소개
+
 * 이소현: 팀장, 백엔드 개발, 배포
-* 김진용: 프론트엔드 개발
-* 박찬의: 프론트엔드 개발
-* 한상우: 프론트엔드 개발
+* 김진용: 프론트엔드(메인페이지, 실시간 상담 신청, 채팅방 관리) 개발, 주 디자인 담당
+* 박찬의: 프론트엔드(반려동물 정보 관리, 이달의 지출, 캘린더) 개발
+* 한상우: 프론트엔드(회원가입, 로그인) 개발, Openvidu 구현, UCC 제작
 * 안재현: 백엔드(회원가입, 로그인, 캘린더, 이달의지출) 개발 / 반려티콘 API 구현
 * 홍종현: 백엔드(펫 관리, 채팅방 관리) 개발, 카툰화API, 카카오API 구현, DB 설계 및 구축 [GitHub](https://github.com/jonghyunH)
 
@@ -51,15 +54,17 @@
   - URL: i6b109.p.ssafy.io
   - 테스트 계정: (ID) ssafy@ssafy.com / (Password) b109
 
-
 ## 프로젝트 상세
 
-# ERD  
+# ERD
+
 <img src="/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png" width="800" height="800">
 
 # System Architecture
+
 ![SA](/uploads/043f6dbc85e32de80756cb2fcf2a5312/SA.PNG)
 ![SS](/uploads/29b4ccdbde2c777db3a9e770e9baac14/SS.PNG)
+
 ### :hammer_and_wrench: 개발 환경
 
 - **Front**:
@@ -108,7 +113,7 @@
 ![이달의지출](/uploads/06328b7bf87706554ee334299a278c9f/이달의지출.png)
 
 - 유저와의 소통
-  
+
 ![유저와의소통](/uploads/3535887bdb92fc24d20d222c2b0afbe8/유저와의소통.png)
 ![유저와의소통2](/uploads/192be6505f330f1c5ae7119a827c80a8/유저와의소통2.png)
 
