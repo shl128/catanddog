@@ -32,6 +32,9 @@ function Login() {
           {
             userEmail: Email,
             userPassword: Password,
+          },
+          {
+            headers : { "Content-Type": `application/json`}
           }
         )
         .then(function (response) {

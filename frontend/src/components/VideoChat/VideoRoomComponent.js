@@ -183,7 +183,7 @@ class VideoRoomComponent extends Component {
     }
     connectToSession() {
         if (this.props.token !== undefined) {
-            // console.log('token received: ', this.props.token);
+             console.log('token received: ', this.props.token);
             this.connect(this.props.token);
         } else {
             this.getToken().then((token) => {
@@ -192,7 +192,7 @@ class VideoRoomComponent extends Component {
                 if(this.props.error){
                     this.props.error({ error: error.error, messgae: error.message, code: error.code, status: error.status });
                 }
-                // console.log('There was an error getting the token:', error.code, error.message);
+                console.log('There was an error getting the token:', error.code, error.message);
                 alert('There was an error getting the token:', error.message);
               });
         }
@@ -212,7 +212,7 @@ class VideoRoomComponent extends Component {
                     this.props.error({ error: error.error, messgae: error.message, code: error.code, status: error.status });
                 }
                 alert('There was an error connecting to the session:', error.message);
-                // console.log('There was an error connecting to the session:', error.code, error.message);
+                console.log('There was an error connecting to the session:', error.code, error.message);
             });
     }
 
@@ -233,6 +233,7 @@ class VideoRoomComponent extends Component {
             insertMode: 'APPEND',
             mirror: false,
         });
+        console.log("videoDevices : ",videoDevices)
         if (this.state.session.capabilities.publish) {
             publisher.on('accessAllowed' , () => {
                 this.state.session.publish(publisher).then(() => {
