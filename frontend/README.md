@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# 웹 기술 FrontEnd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 소개
 
-## Available Scripts
+웹 기술 프로젝트의 frontEnd React 코드
 
-In the project directory, you can run:
+## 기술스택 및 라이브러리
 
-### `npm start`
+| Project | Version | Description |
+| ------- | ------- | ----------- |
+| node    | 16.13.2 |             |
+| react   | 17.0.2  |             |
+| jquery  | 3.6.0   |             |
+|         |         |             |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 개발 환경 구성
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Windows 기준 개발 환경 구성 설명
 
-### `npm test`
+1. nodeJs 설치
+   
+   1. 16.13.2 LTS 버전 클릭 다운로드 → next 눌러서 계속 진행
+      
+      - nodejs: [Node.js](https://nodejs.org/ko/)
+   
+   2. 설치 후 명령 프롬프트(cmd) 확인
+      
+      ```
+      > node -v
+      ```
+      
+      출력 예)
+      
+      ```
+      v16.13.2
+      ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. IDE 설치 *(다른 IDE를 사용하거나 이미 VScode가 설치되어 있다면 생략 가능)*
+   
+   1. 공식 사이트 Visual Studio Code에서 다운로드 
+      - Visualsutio: https://code.visualstudio.com/
+   2. S06P12B109\frontend 폴더 안에서 code로 열기 또는 프로그램 실행 후 [File] 선택 후 \frontend 디렉토리 지정 후 프로젝트 Import 
+      
+      
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. 스켈레톤 다운로드 및 실행
+   
+   1. 프로젝트 다운로드
+      
+      ```
+      git clone <repo URL>
+      ```
+   
+   2. S06P12B109\frontend 폴더 안에서 IDE로 열기 또는 프로그램 실행 후 [File] 선택 후 \frontend 디렉토리 지정 후 프로젝트 Import
+   
+   3. 패키지 설치
+      
+      ```
+      npm install
+      ```
+   
+   4. 프로트엔드 실행하기
+      
+      ```
+      npm start
+      ```

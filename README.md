@@ -1,9 +1,5 @@
-# 웹/모바일(웹 기술) 프로젝트
-
-<!-- 필수 항목 -->
-
-## 냥과함개 - 반려동물 케어 서비스 웹 프로젝트
-
+# 냥과함개 - 반려동물 케어 서비스(웹 기술 프로젝트)
+### 온택트 시대 + 펫팸족 증가 + 실제 경험을 바탕으로 온라인으로 쉽게 반려동물을 케어하며 전문가와 상담을 받을수 있으면 좋을거 같다는 아이디어로 출발한 프로젝트  
 > ![toplogo](/uploads/08dd1634901f5a6d6ae2bd1a21e75b7f/toplogo.png)
 
 ## 카테고리
@@ -25,12 +21,12 @@
 - 2022.01.10 ~ 2022.02.17 
 
 ## 팀 소개
-* 이소현: 팀장, 백엔드 개발, 배포
-* 김진용: 프론트엔드 개발
-* 박찬의: 프론트엔드 개발
-* 한상우: 프론트엔드 개발
-* 안재현: 백엔드 개발
-* 홍종현: 백엔드 개발, 카툰화API, 카카오API 구현 [GitHub](https://github.com/jonghyunH)
+* 이소현: 팀장, 백엔드 개발(실시간 수의사 화상채팅 API), AWS DB구축, Front&Back 배포, OpenVidu서버 구축
+* 김진용: 프론트엔드(메인페이지, 실시간 상담 신청, 채팅방 관리) 개발, 주 디자인 담당
+* 박찬의: 프론트엔드(반려동물 정보 관리, 이달의 지출, 캘린더) 개발
+* 한상우: 프론트엔드(회원가입, 로그인) 개발, Openvidu 구현, UCC 제작
+* 안재현: 백엔드(회원가입, 로그인, 캘린더, 이달의지출) 개발 / 반려티콘 API 구현
+* 홍종현: 백엔드(펫 관리, 채팅방 관리) 개발, 카툰화API, 카카오API 구현, DB 설계 및 구축 [GitHub](https://github.com/jonghyunH)
 
 ## 프로젝트 소개
 
@@ -50,7 +46,7 @@
   - Ainize API
   - Kakao API
 * 참조 리소스
-  * bootstrapk : 디자인 전반 적용
+  * React-Bootstrap : 디자인 전반 적용
 * 배포 환경
   - URL: i6b109.p.ssafy.io
   - 테스트 계정: (ID) ssafy@ssafy.com / (Password) b109
@@ -62,7 +58,7 @@
 <img src="/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png" width="800" height="800">
 
 # System Architecture
-![SA](/uploads/6526f362bf9ff6465dece57af6ad4455/SA.PNG)
+![SA](/uploads/043f6dbc85e32de80756cb2fcf2a5312/SA.PNG)
 ![SS](/uploads/29b4ccdbde2c777db3a9e770e9baac14/SS.PNG)
 ### :hammer_and_wrench: 개발 환경
 
