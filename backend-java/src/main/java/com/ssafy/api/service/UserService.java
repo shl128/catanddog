@@ -32,4 +32,8 @@ public interface UserService {
 	boolean checkUserNickname(String userNickname);
 
 	User getUserByUserNickname(String userNickname);
+
+    String findEmailByEmail(String user_email);
+
+	void updateUserPassword(String userEmail, String userPassword);
 }
