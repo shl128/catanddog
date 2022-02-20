@@ -65,21 +65,39 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     @Override
     public List<ChatRoomRes> findChatRoom(int page) {
         List<ChatRoomRes> chatRoomResList = new ArrayList<>();
-        int pageCnt = (page-1) * 6;
-        List<ChatRoom> chatRoomList = chatRoomRepository.findByPage(pageCnt);
-        Long totalPage = (chatRoomRepository.count() / 6) + 1;
-        for(int i=0; i<chatRoomList.size(); i++){
-            ChatRoomRes chatRoomRes = new ChatRoomRes();
-            ChatRoom chatRoom = chatRoomList.get(i);
-            chatRoomRes.setChatRoomId(chatRoom.getChatRoomId());
-            chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
-            chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
-            chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
-            chatRoomRes.setTotalPage(totalPage);
-            List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
-            chatRoomRes.setTagName(tagName);
-            chatRoomResList.add(chatRoomRes);
+
+        if(page == 0){
+            List<ChatRoom> chatRoomList = chatRoomRepository.findAll();
+            for(int i=0; i<chatRoomList.size(); i++){
+                ChatRoomRes chatRoomRes = new ChatRoomRes();
+                ChatRoom chatRoom = chatRoomList.get(i);
+                chatRoomRes.setChatRoomId(chatRoom.getChatRoomId());
+                chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
+                chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
+                chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
+                chatRoomRes.setTotalPage(0L);
+                List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
+                chatRoomRes.setTagName(tagName);
+                chatRoomResList.add(chatRoomRes);
+            }
+        }else{
+            int pageCnt = (page-1) * 6;
+            List<ChatRoom> chatRoomList = chatRoomRepository.findByPage(pageCnt);
+            Long totalPage = (chatRoomRepository.count() / 6) + 1;
+            for(int i=0; i<chatRoomList.size(); i++){
+                ChatRoomRes chatRoomRes = new ChatRoomRes();
+                ChatRoom chatRoom = chatRoomList.get(i);
+                chatRoomRes.setChatRoomId(chatRoom.getChatRoomId());
+                chatRoomRes.setChatRoomTitle(chatRoom.getChatRoomTitle());
+                chatRoomRes.setUserMaxCount(chatRoom.getUserMaxCount());
+                chatRoomRes.setUserNowCount(chatRoom.getUserNowCount());
+                chatRoomRes.setTotalPage(totalPage);
+                List<String> tagName = chatRoomTagRepository.findByTag(chatRoom.getChatRoomId());
+                chatRoomRes.setTagName(tagName);
+                chatRoomResList.add(chatRoomRes);
+            }
         }
+
 
         return chatRoomResList;
     }
