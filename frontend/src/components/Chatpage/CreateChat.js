@@ -2,8 +2,10 @@ import React, { useState, useRef } from 'react'
 import './CreateChat.css'
 import { Modal, Form } from 'react-bootstrap'
 import { CreateRoom } from './ChatAxios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
-function CreateChat({ trigger, setTrigger }) {
+function CreateChat({ trigger, setTrigger, page, setPage, totalPage, type }) {
   const [tagValue, setTagValue] = useState('')
   const [show, setShow] = useState(false)
   const [tags, setTags] = useState([])
@@ -53,9 +55,22 @@ function CreateChat({ trigger, setTrigger }) {
     }
   }
 
+  function previousPage() {
+    setPage(page - 1)
+  }
+
+  function nextPage() {
+    setPage(page + 1)
+  }
+
   return (
     <div className="Chat-create">
       <div style={{fontSize: "large"}}>채팅방 목록</div>
+      {type === "all" && <div>
+        <FontAwesomeIcon className={page >= 2 ? "Chat-page" : "Chat-page-off"} onClick={previousPage} icon={faAngleLeft} />
+        페이지: {page}
+        <FontAwesomeIcon className={page < totalPage ? "Chat-page" : "Chat-page-off"} onClick={nextPage} icon={faAngleRight} />
+      </div>}
       <button className="Chat-create-button" onClick={handleShow}>
         방 생성
       </button>

@@ -15,12 +15,22 @@
   border-radius: 20px;
 }
 
-@media (max-height: 850px) {
+@media (max-height: 900px) {
   .My-chat-list {
     overflow: auto;
     font-weight: bold;
     display: flex;
     flex-direction: column;
     height: 25vh;
+  }
+}
+
+@media (max-height: 750px) {
+  .My-chat-list {
+    overflow: auto;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    height: 15vh;
   }
 }

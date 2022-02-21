@@ -5,8 +5,8 @@ const ChatroomUrl = SERVER.BASE_URL + SERVER.ROUTES.userChatroom
 const Chat = SERVER.BASE_URL + SERVER.ROUTES.userChat
 const userData = localStorage.getItem('accessToken')
 
-function AllRoom() {
-  return axios.get(`${ChatroomUrl}?page=1`, {
+function AllRoom(page) {
+  return axios.get(`${ChatroomUrl}?page=${page}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }

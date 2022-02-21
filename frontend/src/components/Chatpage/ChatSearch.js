@@ -48,6 +48,8 @@ function ChatSearch(props) {
       SearchRoomByTitle(target)
       .then(response => {
         props.setRooms(response.data)
+        props.setType("title")
+        setTarget("")
         console.log("제목으로 조회 성공", response.data)
       })
       .catch(() =>{
@@ -57,6 +59,8 @@ function ChatSearch(props) {
       SearchRoomByTag(target)
       .then(response => {
         props.setRooms(response.data)
+        props.setType("tag")
+        setTarget("")
         console.log("해시태그로 조회 성공", response.data)
       })
       .catch(() =>{
@@ -68,9 +72,11 @@ function ChatSearch(props) {
   }
 
   function AllRooms() {
-    AllRoom()
+    AllRoom(1)
     .then(response => {
       props.setRooms(response.data)
+      props.setType("all")
+      setTarget("")
       console.log("전체 채팅방 조회 성공", response.data)
     })
     .catch(error => {

@@ -4,7 +4,7 @@ import { Nav } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
 import ConsultingForm from './ConsultingForm'
 import ConsultingRequest from './ConsultingRequest'
-
+import { FindDocter } from './MainAxios'
 
 function Navbar() {
   let navigate = useNavigate()
@@ -20,6 +20,18 @@ function Navbar() {
     }
   }
 
+  function canConsulting() {
+    FindDocter()
+    .then(() => {
+      console.log("상담 가능한 의사가 있습니다")
+      setConsultingDialog(true)
+    })
+    .catch(() => {
+      console.log("상담 가능한 의사가 없습니다")
+      alert("현재 상담 가능한 의사님이 없어요! 조금 이따가 신청해주세요!!")
+    })
+  }
+
   return (
     <div className="Nav">
       <Nav.Link href="/">
@@ -27,7 +39,7 @@ function Navbar() {
       </Nav.Link>
       <nav className="Nav-item">
         <NavLink to="/petpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link" } state={{pageType:'create'}}>반려동물 추가</NavLink>
-        <button className="Nav-link" onClick={() => setConsultingDialog(true)}>실시간 상담</button>
+        <button className="Nav-link" onClick={canConsulting}>실시간 상담</button>
         <NavLink to="/calendarpage" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"} inChatting={false}>캘린더</NavLink>
         <NavLink to="/spendingOfMonth" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>이달의 지출</NavLink>
         <NavLink to="/chat" className={({ isActive }) => isActive ? "Nav-link-on" : "Nav-link"}>유저와의 소통</NavLink>
