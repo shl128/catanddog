@@ -66,11 +66,11 @@ function CreateChat({ trigger, setTrigger, page, setPage, totalPage, type }) {
   return (
     <div className="Chat-create">
       <div style={{fontSize: "large"}}>채팅방 목록</div>
-      {type === "all" && <div>
+      <div>
         <FontAwesomeIcon className={page >= 2 ? "Chat-page" : "Chat-page-off"} onClick={previousPage} icon={faAngleLeft} />
         페이지: {page}
         <FontAwesomeIcon className={page < totalPage ? "Chat-page" : "Chat-page-off"} onClick={nextPage} icon={faAngleRight} />
-      </div>}
+      </div>
       <button className="Chat-create-button" onClick={handleShow}>
         방 생성
       </button>

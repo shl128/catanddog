@@ -12,7 +12,7 @@ function AllRoom(page) {
 }
 
 function SearchRoomByTitle(data) {
-  return axios.get(`${ChatroomUrl}title/${data}/?page=1`, {
+  return axios.get(`${ChatroomUrl}title/${data.word}/?page=${data.page}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }
@@ -24,7 +24,7 @@ function SearchHashByTitle(data) {
 }
 
 function SearchRoomByTag(data) {
-  return axios.get(`${ChatroomUrl}tags/${data}/?page=1`, {
+  return axios.get(`${ChatroomUrl}tags/${data.word}/?page=${data.page}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }

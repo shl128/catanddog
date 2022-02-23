@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import './ChatSearch.css'
-import { SearchRoomByTag, SearchRoomByTitle, SearchHashByTag, SearchHashByTitle, AllRoom } from './ChatAxios'
+import { SearchHashByTag, SearchHashByTitle } from './ChatAxios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import SearchList from './SearchList'
@@ -45,43 +45,25 @@ function ChatSearch(props) {
 
   function SearchRooms() {
     if (searchType.current.value === 'title' && target) {
-      SearchRoomByTitle(target)
-      .then(response => {
-        props.setRooms(response.data)
-        props.setType("title")
-        setTarget("")
-        console.log("제목으로 조회 성공", response.data)
-      })
-      .catch(() =>{
-        alert("제목으로 조회 실패")
-      })
+      props.setWord(target)
+      props.setType("title")
+      props.setPage(1)
+      setTarget("")
     } else if (searchType.current.value === 'tag' && target){
-      SearchRoomByTag(target)
-      .then(response => {
-        props.setRooms(response.data)
-        props.setType("tag")
-        setTarget("")
-        console.log("해시태그로 조회 성공", response.data)
-      })
-      .catch(() =>{
-        alert("해시태그로 조회 실패")
-      })
+      props.setWord(target)
+      props.setType("tag")
+      props.setPage(1)
+      setTarget("")
     } else {
       alert("단어가 없으면 검색할 수 없습니다")
     }
   }
 
   function AllRooms() {
-    AllRoom(1)
-    .then(response => {
-      props.setRooms(response.data)
-      props.setType("all")
-      setTarget("")
-      console.log("전체 채팅방 조회 성공", response.data)
-    })
-    .catch(error => {
-      console.log("전체 채팅방 조회 실패", error)
-    })
+    props.setType("all")
+    props.setTrigger(!props.trigger)
+    props.setPage(1)
+    setTarget("")
   }
 
   return (
