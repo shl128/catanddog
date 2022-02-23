@@ -1,5 +1,7 @@
 package com.ssafy.api.controller;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.ssafy.api.request.PasswordChangeUpdatePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +77,36 @@ public class AuthController {
 		}else{
 			User user = userService.createUser(registerInfo);
 		}
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+
+	@GetMapping("/password/{user_email}")
+	@ApiOperation(value = "존재하는 이메일인지 확인", notes ="존재하는 이메일인지 확인핟다.")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> findEmailByEmail(@PathVariable("user_email") String user_email){
+		String email = userService.findEmailByEmail(user_email);
+		if(email==null){
+			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
+		}else{
+			return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		}
+	}
+
+	@PatchMapping("/password")
+	@ApiOperation(value = "비밀번호를 변경한다.", notes ="해당 이메일의 비밀번호를 수정한다.")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> updateUserPassword(@RequestBody @ApiParam(value="비밀번호 수정 정보", required = true) PasswordChangeUpdatePostReq passwordChangeUpdatePostReq){
+		userService.updateUserPassword(passwordChangeUpdatePostReq.getUserEmail(), passwordChangeUpdatePostReq.getUserPassword());
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 

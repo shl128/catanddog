@@ -47,7 +47,7 @@ const PasswordFind = (props) => {
     // 먼저 디비에 보내서 있는지 검사하고 그 다음 확인 메일 보내서 검증시킨다.
     axios
     .get(
-      SERVER.BASE_URL + SERVER.ROUTES.eamailConfirm + '{user_email}?userEmail=' + Email,
+      SERVER.BASE_URL + SERVER.ROUTES.emailConfirm + '{user_email}?userEmail=' + Email,
     )
     .then(function(response) {
       if(response.data === '')
@@ -108,8 +108,9 @@ const PasswordFind = (props) => {
     }
     if (Password === ConfirmPasword) 
       axios.patch(
-        SERVER.BASE_URL + SERVER.ROUTES.password + Email,
+        SERVER.BASE_URL + SERVER.ROUTES.password,
         {
+          userEmail: Email,
           userPassword: Password,
         }
       )
