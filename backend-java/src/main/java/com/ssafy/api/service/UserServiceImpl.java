@@ -263,5 +263,16 @@ public class UserServiceImpl implements UserService {
 		return userRepositorySupport.findUserByUserNickname(userNickname).get();
 	}
 
+	@Override
+	public String findEmailByEmail(String userEmail) {
+		return userRepository.findEmailByEmail(userEmail);
+	}
+
+	@Override
+	public void updateUserPassword(String userEmail, String userPassword) {
+		String encodePassword = passwordEncoder.encode(userPassword);
+		userRepository.updateUserPassword(userEmail, encodePassword);
+	}
+
 
 }
