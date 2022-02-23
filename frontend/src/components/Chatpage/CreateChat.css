@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+.Chat-page {
+  margin: 0rem 1rem;
+}
+
+.Chat-page-off {
+  margin: 0rem 1rem;
+  visibility: hidden;
+}
+
 .Chat-create-form div {
   border-radius: 1rem;
   padding: 0.5rem 1rem;

@@ -89,4 +89,10 @@ function DeleteConsultingRoom() {
   })
 }
 
-export { MyProfile, ChangeActive, MyChatRoom, DeleteChatRoom, ExitMyChatRoom, MyPet, ConsultingRequest, ConsultingCancel, ConsultingWait, ConsultingRequestList, ConsultingStart, CreateConsultingRoom, DeleteConsultingRoom}
+function FindDocter() {
+  return axios.get(`${webChat}/doctor`, {
+    headers: { Authorization: `Bearer ${userData}` }
+  })
+}
+
+export { MyProfile, ChangeActive, MyChatRoom, DeleteChatRoom, ExitMyChatRoom, MyPet, ConsultingRequest, ConsultingCancel, ConsultingWait, ConsultingRequestList, ConsultingStart, CreateConsultingRoom, DeleteConsultingRoom, FindDocter }

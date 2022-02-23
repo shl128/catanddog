@@ -5,14 +5,14 @@ const ChatroomUrl = SERVER.BASE_URL + SERVER.ROUTES.userChatroom
 const Chat = SERVER.BASE_URL + SERVER.ROUTES.userChat
 const userData = localStorage.getItem('accessToken')
 
-function AllRoom() {
-  return axios.get(`${ChatroomUrl}?page=1`, {
+function AllRoom(page) {
+  return axios.get(`${ChatroomUrl}?page=${page}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }
 
 function SearchRoomByTitle(data) {
-  return axios.get(`${ChatroomUrl}title/${data}/?page=1`, {
+  return axios.get(`${ChatroomUrl}title/${data.word}/?page=${data.page}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }
@@ -24,7 +24,7 @@ function SearchHashByTitle(data) {
 }
 
 function SearchRoomByTag(data) {
-  return axios.get(`${ChatroomUrl}tags/${data}/?page=1`, {
+  return axios.get(`${ChatroomUrl}tags/${data.word}/?page=${data.page}`, {
     headers: { Authorization: `Bearer ${userData}` }
   })
 }
