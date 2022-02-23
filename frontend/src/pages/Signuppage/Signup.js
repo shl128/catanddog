@@ -118,14 +118,14 @@ function Signup() {
       // 동기처리를 하고싶은
       templateParams.notes = tempRandomNumber
       // ex) http://localhost:8080/api/v1/myPage/{user_email}?userEmail=hansangwoo1996%40gmail.com
-      axios.get(SERVER.BASE_URL + SERVER.ROUTES.eamailConfirm + '{user_email}?userEmail=' + Email)
+      axios.get(SERVER.BASE_URL + SERVER.ROUTES.emailConfirm + '{user_email}?userEmail=' + Email)
       .then(res => {
         if(res.data === ""){
           emailjs.send(
-            'service_sangwoo',
-            'template_5rbudkm',
+            'service_sw',
+            'template_bjwh6qa',
             templateParams,
-            'user_LEBGlHpyf8P6UlU2H8lm9'
+            'user_OnFLmwEa5V0vnCGUUUDfC'
             ).then(res => {
               setEmailConfirm(true)
               alert('인증메일을 보냈습니다. 확인 후 숫자를 입력 바랍니다.')

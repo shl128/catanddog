@@ -56,10 +56,10 @@ const PasswordFind = (props) => {
       } else{
         // alert('이메일을 전송하였습니다. 이메일로 숫자를 확인 후 입력바랍니다.')
         emailjs.send(
-          'service_sangwoo',
-          'template_5rbudkm',
+          'service_sw',
+          'template_bjwh6qa',
           templateParams,
-          'user_LEBGlHpyf8P6UlU2H8lm9'
+          'user_OnFLmwEa5V0vnCGUUUDfC'
           ).then(res => {
             setEmailConfirm(true)
             
@@ -176,7 +176,6 @@ const PasswordFind = (props) => {
                       비밀번호 확인
                   </div>
                     <input className='PasswordFind-form-itme-input' type="password" name="password" value={ConfirmPasword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} autoFocus required></input>
-                    {passwordError && <div style={{ color: 'red', fontSize: '20px', marginLeft: '50px', marginTop:'10px' }}>비밀번호가 일치하지 않습니다.</div>}
                 </div>    
                 <button onClick={onPasswordChange} className='PasswordFind-form-item-okay-button'>변경완료</button>
 
