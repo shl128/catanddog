@@ -1,6 +1,6 @@
 # 냥과함개 - 반려동물 케어 서비스(웹 기술 프로젝트)
 ### 온택트 시대 + 펫팸족 증가 + 실제 경험을 바탕으로 온라인으로 쉽게 반려동물을 케어하며 전문가와 상담을 받을수 있으면 좋을거 같다는 아이디어로 출발한 프로젝트  
-> ![toplogo](/uploads/08dd1634901f5a6d6ae2bd1a21e75b7f/toplogo.png)
+> ![toplogo](https://user-images.githubusercontent.com/25664543/176662363-8a2d7f68-15b8-445e-b9c0-57bfc188261f.png)
 
 ## 카테고리
 
@@ -55,11 +55,11 @@
 ## 프로젝트 상세
 
 # ERD  
-<img src="/uploads/acfae49f53739b192ea0ac4cbb8a0890/ERD.png" width="800" height="800">
+![ERD](https://user-images.githubusercontent.com/25664543/176662465-b5188e85-8b7d-4f9d-bc18-bdf8f3ee64bc.png)
 
 # System Architecture
-![SA](/uploads/043f6dbc85e32de80756cb2fcf2a5312/SA.PNG)
-![SS](/uploads/29b4ccdbde2c777db3a9e770e9baac14/SS.PNG)
+![architecture](https://user-images.githubusercontent.com/25664543/176662570-689c5d48-0b72-4d82-b0c3-f49c0033c8ae.PNG)
+![architecture2](https://user-images.githubusercontent.com/25664543/176662609-94df6e1f-1168-427b-9cb4-fb30a27cadf4.PNG)
 ### :hammer_and_wrench: 개발 환경
 
 - **Front**:
@@ -77,45 +77,45 @@
 
 - 로그인 페이지 
 
-![로그인페이지](/uploads/50fb85f00341ca68d9437c33930f7757/로그인페이지.png)
+![로그인페이지](https://user-images.githubusercontent.com/25664543/176662659-0b562b1a-df85-4648-8264-25dd0b2bfa48.png)
 
 - 메인 페이지
 
-![메인페이지](/uploads/4adf45e993c79148d2a4a2964c1d37a5/메인페이지.png)
+![메인페이지](https://user-images.githubusercontent.com/25664543/176662705-b617cc24-8edc-4695-a43b-554dc8c697ff.png)
 
 - 반려동물 추가
 
-![반려동물추가1](/uploads/c8bafd97dac60e065306171c4238c7a7/반려동물추가1.png)
+![반려동물추가1](https://user-images.githubusercontent.com/25664543/176662753-e1085b96-b2a7-43ea-b471-df07fb36e21a.png)
 
 - 실시간 상담
 
-![실시간상담](/uploads/ed42777ac8fdd576a0dabe41005cfb78/실시간상담.png)
+![실시간상담](https://user-images.githubusercontent.com/25664543/176662788-2d7f4294-dd01-48d2-8bad-d29230262509.png)
 
 - 반려동물 추가
 
-![반려동물추가1](/uploads/0bc22e40fdb9d9b71e4ad51e13469146/반려동물추가1.png)
+![반려동물추가1 (1)](https://user-images.githubusercontent.com/25664543/176662910-a47f2511-8d0d-4115-a2b6-a24c0b7acae2.png)
 
 - 캘린더
 
-![캘린더](/uploads/57065012fb44f9b0380c770b5ad99810/캘린더.png)
+![캘린더](https://user-images.githubusercontent.com/25664543/176663029-d6ccde52-9898-42d3-b82c-fe3abec7e454.png)
 
 - 프로필 페이지
 
-![프로필](/uploads/ada86b9f630495720f0dd8e4064eabd4/프로필.png)
+![프로필](https://user-images.githubusercontent.com/25664543/176663063-2f5356b8-b48b-4ad1-a193-f42e54737469.png)
 
 - 이달의 지출
 
-![이달의지출](/uploads/06328b7bf87706554ee334299a278c9f/이달의지출.png)
+![이달의지출](https://user-images.githubusercontent.com/25664543/176663108-6fab1f7c-7232-407e-b46e-6fbb263ae902.png)
 
 - 유저와의 소통
   
-![유저와의소통](/uploads/3535887bdb92fc24d20d222c2b0afbe8/유저와의소통.png)
-![유저와의소통2](/uploads/192be6505f330f1c5ae7119a827c80a8/유저와의소통2.png)
+![유저와의소통](https://user-images.githubusercontent.com/25664543/176663123-22947e5f-a518-4d64-84cb-065340d3d13b.png)
+![유저와의소통2](https://user-images.githubusercontent.com/25664543/176663131-9d3a5fb3-26c6-4175-a2d5-025fef569417.png)
 
 - 카툰화
 
-![카툰화](/uploads/27b2a020e0bed99d061c4228361beb77/카툰화.png)
+![카툰화](https://user-images.githubusercontent.com/25664543/176663210-c63583f5-53c5-48c3-893e-b361b2537b92.png)
 
 - 반려티콘
 
-![반려티콘](/uploads/9c4df3fd1fe28940f187e9d024c166f7/반려티콘.png)
+![반려티콘](https://user-images.githubusercontent.com/25664543/176663226-89788ce5-4b0b-4862-a0aa-5e54c5b56af5.png)
